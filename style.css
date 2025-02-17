@@ -1,0 +1,50 @@
+/* Apply a notebook-like background */
+body {
+    background: #1e1e1e;
+    color: #f8f8f2;
+    font-family: 'Handjet', monospace;
+}
+
+/* Notebook-style grid lines */
+.notebook {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 100% 25px;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+}
+
+/* Code block styling *
+
+ */
+pre {
+    background-color: #1e293b; /* Dark background */
+    color: #f8f8f2;
+    border-left: 4px solid #38bdf8; /* Blue border */
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+nav a {
+    transition: all 0.2s ease-in-out;
+}
+
+nav a:hover {
+    transform: translateX(5px);
+    color: #38bdf8; /* Tailwind blue */
+}

@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Cheat Sheet - The Ultimate Guide</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn Python quickly with this complete cheat sheet covering variables, loops, functions, OOP, web scraping, and more.">
+    <meta name="keywords" content="Python, Python cheat sheet, Python tutorial, learn Python, Python programming">
+    <meta name="author" content="Python Cheat Sheet">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (Facebook & LinkedIn) -->
+    <meta property="og:title" content="Python Cheat Sheet - The Ultimate Guide">
+    <meta property="og:description" content="Master Python with this complete cheat sheet covering everything from variables to AI & ML.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/vivitoa/python-cheat-sheet/main/python-cheat-sheet/assets/python-cheat-sheet.png">
+    <meta property="og:url" content="https://vivitoa.github.io/python-cheat-sheet/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Python Cheat Sheet - The Ultimate Guide">
+    <meta name="twitter:description" content="Quickly learn Python with this complete cheat sheet.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/vivitoa/python-cheat-sheet/main/python-cheat-sheet/assets/python-cheat-sheet.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark bg-gray-900 text-gray-200"
+>
+<!-- Mobile Menu Button -->
+<button id="menu-btn" class="md:hidden fixed top-4 left-4 z-50 bg-gray-700 text-white p-2 rounded-md">
+    ☰ Menu
+</button>
+
+<!-- Sidebar Navigation -->
+<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 md:block hidden">
+    <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
+    <nav class="mt-5 space-y-2">
+        <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
+        <a href="#data-types" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Types</a>
+        <a href="#operators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Operators</a>
+        <a href="#machine-learning" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Machine Learning</a>
+        <a href="#cybersecurity" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Cybersecurity</a>
+    </nav>
+</aside>
+
+    <!-- Sidebar Navigation -->
+    <aside class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5">
+        <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
+        <nav class="mt-5 space-y-2 overflow-y-auto h-full flex flex-col justify-between pb-20">
+    <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
+    <a href="#data-types" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Types</a>
+    <a href="#operators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Operators</a>
+    <a href="#conditions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Conditional Statements</a>
+    <a href="#loops" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Loops</a>
+    <a href="#functions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Functions</a>
+    <a href="#oop" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">OOP</a>
+    <a href="#exceptions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Exception Handling</a>
+    <a href="#modules-imports" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Modules & Imports</a>
+    <a href="#lambda-functions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Lambda Functions</a>
+    <a href="#decorators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Decorators</a>
+    <a href="#generators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Generators</a>
+    <a href="#file-handling-advanced" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">CSV & JSON</a>
+    <a href="#regex" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Regular Expressions</a>
+    <a href="#api-requests" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">APIs & Requests</a>
+    <a href="#database" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Databases (SQLite)</a>
+    <a href="#web-scraping" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Web Scraping</a>
+    <a href="#data-science" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Science</a>
+    <a href="#gui-programming" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">GUI Programming</a>
+    <a href="#machine-learning" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Machine Learning</a>
+    <a href="#cybersecurity" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Cybersecurity</a>
+</nav>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-10 notebook">
+
+        <!-- Variables -->
+<section id="variables" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Variables in Python</h2>
+    <p class="mb-3">A <strong>variable</strong> stores a value. Python is <strong>dynamically typed</strong>, so you don't need to declare a type.</p>
+
+    <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300 mb-4">
+# Basic variable assignment
+age = 25
+name = "Alice"
+price = 99.99
+is_python_fun = True</pre>
+
+    <div class="space-y-4">
+        <!-- Variable Naming -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400 mb-2">Naming Rules</h3>
+            <ul class="list-disc list-inside ml-4">
+                <li>Must start with letter or underscore</li>
+                <li>Can contain letters, numbers, and underscores</li>
+                <li>Case-sensitive (Age ≠ AGE ≠ age)</li>
+                <li>Use snake_case convention (my_variable)</li>
+            </ul>
+        </div>
+
+        <!-- Dynamic Typing -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400 mb-2">Dynamic Typing</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Reassign different types
+value = 100         # Integer
+value = "Python"    # Now string
+value = [1, 2, 3]   # Now list</pre>
+        </div>
+
+        <!-- Type Conversion -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400 mb-2">Type Conversion</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+num_str = str(42)    # "42"
+str_num = int("123")  # 123
+num_float = float(7) # 7.0</pre>
+        </div>
+
+        <!-- Common Methods -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400 mb-2">Common Methods</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# String methods
+name = "python"
+upper_name = name.upper()  # "PYTHON"
+
+# List methods
+numbers = [1, 2, 3]
+numbers.append(4)  # [1, 2, 3, 4]
+
+# Dictionary methods
+user = {"name": "Alice", "age": 30}
+keys = user.keys()  # dict_keys(['name', 'age'])</pre>
+        </div>
+
+        <!-- Multiple Assignment -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400 mb-2">Multiple Assignment</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Assign multiple variables
+x, y, z = 1, 2, 3
+
+# Swap values
+a, b = 10, 20
+a, b = b, a  # a=20, b=10</pre>
+        </div>
+
+        <!-- Formatted Strings -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400 mb-2">Formatted Strings (f-strings)</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+name = "Bob"
+age = 25
+print(f"{name} is {age} years old")  # Bob is 25 years old</pre>
+        </div>
+    </div>
+</section>
+
+        <!-- Data Types -->
+<section id="data-types" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Data Types in Python</h2>
+    <p class="mb-3">Python uses <strong>dynamic typing</strong> and has several built-in data types:</p>
+
+    <div class="space-y-4">
+        <!-- Core Types Table -->
+        <table class="w-full text-left text-gray-300 border border-gray-600">
+            <thead class="bg-gray-700">
+                <tr>
+                    <th class="px-4 py-2 border border-gray-600">Type</th>
+                    <th class="px-4 py-2 border border-gray-600">Description</th>
+                    <th class="px-4 py-2 border border-gray-600">Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">int</td>
+                    <td class="px-4 py-2 border border-gray-600">Integer numbers</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">42</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">float</td>
+                    <td class="px-4 py-2 border border-gray-600">Floating-point numbers</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">3.1415</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">str</td>
+                    <td class="px-4 py-2 border border-gray-600">Text sequences</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">"Hello"</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">bool</td>
+                    <td class="px-4 py-2 border border-gray-600">Boolean values</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">True/False</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">list</td>
+                    <td class="px-4 py-2 border border-gray-600">Mutable sequence</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">[1, 2, 3]</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">tuple</td>
+                    <td class="px-4 py-2 border border-gray-600">Immutable sequence</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">(1, 2, 3)</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">dict</td>
+                    <td class="px-4 py-2 border border-gray-600">Key-value pairs</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">{"key": "value"}</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">set</td>
+                    <td class="px-4 py-2 border border-gray-600">Unique elements</td>
+                    <td class="px-4 py-2 border border-gray-600 font-mono">{1, 2, 3}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Type Conversion -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">Type Conversion</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+int("25")        # 25 → Convert to integer
+float(7)         # 7.0 → Convert to float
+str(100)         # "100" → Convert to string
+list("hello")    # ['h', 'e', 'l', 'l', 'o']
+tuple([1,2,3])   # (1, 2, 3)
+set([1,2,2,3])   # {1, 2, 3}</pre>
+        </div>
+
+        <!-- Type Checking -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">Type Checking</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+type(42)         # → <class 'int'>
+isinstance(3.14, float)  # → True</pre>
+        </div>
+
+        <!-- Special Values -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">Special Values</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+None         # Represents absence of value
+True/False   # Boolean constants
+...</pre>
+        </div>
+    </div>
+</section>
+
+        <!-- Type Conversion -->
+<section id="type-conversion" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Type Checking & Conversion</h2>
+
+    <div class="space-y-4">
+        <!-- Type Checking -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">Type Checking</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+num = 42
+print(type(num))          # &lt;class 'int'&gt;
+
+name = "Alice"
+print(isinstance(name, str))  # True
+
+mixed_list = [1, "two", 3.0]
+print(type(mixed_list))   # &lt;class 'list'&gt;</pre>
+        </div>
+
+        <!-- Conversion Methods -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">Conversion Functions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# String to numeric
+int_num = int("100")        # 100
+float_num = float("3.14")   # 3.14
+
+# Numeric to string
+str_num = str(255)          # "255"
+
+# List conversions
+num_tuple = tuple([1, 2, 3])  # (1, 2, 3)
+char_list = list("Hello")    # ['H', 'e', 'l', 'l', 'o']
+
+# Boolean conversion
+bool_val = bool(1)          # True
+int_from_bool = int(True)   # 1</pre>
+        </div>
+
+        <!-- Special Cases -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">Special Conversions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Base conversion
+hex_num = int("ff", 16)     # 255
+bin_num = bin(42)           # '0b101010'
+
+# ASCII conversion
+char = chr(65)              # 'A'
+code = ord('A')             # 65
+
+# String formatting
+formatted = f"{255:x}"      # "ff" (hexadecimal)</pre>
+        </div>
+
+        <!-- Error Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">Error Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+try:
+    num = int("123a")
+except ValueError as e:
+    print(f"Conversion error: {e}")
+
+# Check before conversion
+value = "3.14"
+if value.replace('.', '', 1).isdigit():
+    print(float(value))</pre>
+        </div>
+    </div>
+</section>
+            <!-- Operators -->
+<section id="operators" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Operators & Expressions</h2>
+    <p class="mb-3">Operators in Python allow you to perform calculations and logical comparisons.</p>
+
+    <div class="space-y-6">
+        <!-- Arithmetic Operators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Arithmetic Operators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+print(10 + 3)   # Addition → 13
+print(10 - 3)   # Subtraction → 7
+print(10 * 3)   # Multiplication → 30
+print(10 ** 3)  # Exponentiation → 1000
+print(10 / 3)   # Division → 3.333...
+print(10 // 3)  # Floor Division → 3
+print(10 % 3)   # Modulus → 1</pre>
+        </div>
+
+        <!-- Assignment Operators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Assignment Operators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+x = 5
+x += 3   # x = x + 3 → 8
+x -= 2   # x = x - 2 → 6
+x *= 4   # x = x * 4 → 24
+x /= 3   # x = x / 3 → 8.0
+x **= 2  # x = x ** 2 → 64.0
+x %= 5   # x = x % 5 → 4.0</pre>
+        </div>
+
+        <!-- Comparison Operators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Comparison Operators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+print(5 == 5)    # Equal → True
+print(5 != 3)    # Not Equal → True
+print(5 > 3)     # Greater Than → True
+print(5 <= 3)    # Less or Equal → False
+print("a" == "A")# Case-sensitive → False
+print(1.0 == 1)  # Value comparison → True</pre>
+        </div>
+
+        <!-- Logical Operators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Logical Operators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+age = 25
+has_license = True
+
+# And/Or combinations
+can_drive = age >= 18 and has_license
+discount = age <= 12 or age >= 65
+
+# Truthy/Falsy evaluation
+name = ""
+if not name:
+    print("Name is required")</pre>
+        </div>
+
+        <!-- Identity Operators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Identity Operators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+a = [1,2,3]
+b = [1,2,3]
+print(a is b)     # False (different objects)
+print(a == b)     # True (same values)
+
+x = None
+print(x is None)  # True</pre>
+        </div>
+
+        <!-- Membership Operators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Membership Operators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+colors = ["red", "green", "blue"]
+print("green" in colors)    # True
+print("yellow" not in colors) # True
+
+text = "Hello World"
+print("World" in text)      # True</pre>
+        </div>
+
+        <!-- Bitwise Operators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Bitwise Operators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+a = 60    # 0011 1100
+b = 13    # 0000 1101
+
+print(a & b)   # AND → 12 (0000 1100)
+print(a | b)   # OR → 61 (0011 1101)
+print(a ^ b)   # XOR → 49 (0011 0001)
+print(~a)      # NOT → -61
+print(a << 2)  # Shift left → 240
+print(a >> 2)  # Shift right → 15</pre>
+        </div>
+
+        <!-- Operator Precedence -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Operator Precedence</h3>
+            <div class="bg-gray-800 p-3 rounded-md text-green-300 text-lg">
+                <p class="mb-2">Order of operations (highest to lowest):</p>
+                <ol class="list-decimal list-inside">
+                    <li>() - Parentheses</li>
+                    <li>** - Exponentiation</li>
+                    <li>~ + - - Unary operators</li>
+                    <li>* / % // - Multiplication/Division</li>
+                    <li>+ - - Addition/Subtraction</li>
+                    <li>&lt;&lt; &gt;&gt; - Bitwise shifts</li>
+                    <li>&amp; - Bitwise AND</li>
+                    <li>^ | - Bitwise XOR/OR</li>
+                    <li>&lt;= &lt; &gt; &gt;= == != - Comparisons</li>
+                    <li>is, is not, in, not in - Identity/Membership</li>
+                    <li>not - Logical NOT</li>
+                    <li>and - Logical AND</li>
+                    <li>or - Logical OR</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Conditional Statements -->
+<section id="conditions" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Conditional Statements</h2>
+    <p class="mb-3">Python supports <code class="text-blue-300">if</code>, <code class="text-blue-300">elif</code>, and <code class="text-blue-300">else</code> statements for decision-making.</p>
+
+    <div class="space-y-4">
+        <!-- Basic Conditional -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Syntax</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+x = 20
+if x > 10:
+    print("Greater than 10")
+elif x == 10:
+    print("Exactly 10")
+else:
+    print("Less than 10")</pre>
+        </div>
+
+        <!-- Multiple Conditions -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Multiple Conditions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+age = 25
+has_license = True
+
+if age >= 18 and has_license:
+    print("Can drive")
+elif age >= 16 or has_license:
+    print("Learner's permit")
+else:
+    print("Cannot drive")</pre>
+        </div>
+
+        <!-- Nested Conditionals -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Nested Conditionals</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+num = 15
+if num > 0:
+    if num % 2 == 0:
+        print("Positive even number")
+    else:
+        print("Positive odd number")
+else:
+    print("Non-positive number")</pre>
+        </div>
+
+        <!-- Ternary Operator -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Ternary Operator</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Short-hand if-else
+age = 20
+status = "Adult" if age >= 18 else "Minor"
+print(status)  # Adult</pre>
+        </div>
+    </div>
+</section>
+<!-- Loops -->
+<section id="loops" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Loops in Python</h2>
+    <p class="mb-3">Loops help automate repetitive tasks.</p>
+
+    <div class="space-y-4">
+        <!-- For Loop -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 For Loop</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Iterate through list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit.upper())
+
+# With index using enumerate
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")
+
+# Range with step
+for num in range(0, 10, 2):
+    print(num)  # 0, 2, 4, 6, 8</pre>
+        </div>
+
+        <!-- While Loop -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 While Loop</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Basic while loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# With break/continue
+while True:
+    user_input = input("Enter 'q' to quit: ")
+    if user_input == 'q':
+        break
+    elif user_input.isdigit():
+        continue
+    print(f"You entered: {user_input}")</pre>
+        </div>
+
+        <!-- Loop Control -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Loop Control</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Else clause in loops
+for n in range(2, 10):
+    for x in range(2, n):
+        if n % x == 0:
+            break
+    else:
+        print(f"{n} is prime")
+
+# Zip multiple iterables
+names = ["Alice", "Bob"]
+ages = [25, 30]
+for name, age in zip(names, ages):
+    print(f"{name} is {age} years old")</pre>
+        </div>
+
+        <!-- Comprehensions -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Comprehensions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# List comprehension
+squares = [x**2 for x in range(10)]
+
+# Dictionary comprehension
+square_dict = {x: x**2 for x in range(5)}
+
+# Set comprehension
+unique_lengths = {len(word) for word in ["hello", "world", "python"]}</pre>
+        </div>
+    </div>
+</section>
+<!-- Functions -->
+<section id="functions" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Functions in Python</h2>
+    <p class="mb-3">Functions help organize code into reusable blocks.</p>
+
+    <div class="space-y-4">
+        <!-- Basic Function -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Function</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def greet(name):
+    return "Hello " + name
+
+print(greet("Alice"))  # Outputs: Hello Alice</pre>
+        </div>
+
+        <!-- Parameters & Return Values -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Parameters & Return Values</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Multiple parameters and return values
+def calculate(x, y):
+    sum = x + y
+    product = x * y
+    return sum, product
+
+s, p = calculate(3, 4)
+print(f"Sum: {s}, Product: {p}")  # Sum: 7, Product: 12</pre>
+        </div>
+
+        <!-- Advanced Parameters -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Parameters</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# *args for variable arguments
+def average(*numbers):
+    return sum(numbers) / len(numbers)
+
+print(average(5, 10, 15))  # 10.0
+
+# **kwargs for keyword arguments
+def user_profile(**details):
+    for key, value in details.items():
+        print(f"{key}: {value}")
+
+user_profile(name="Alice", age=25, city="NY")</pre>
+        </div>
+
+        <!-- Function Types -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Special Function Types</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Lambda (anonymous) functions
+square = lambda x: x ** 2
+print(square(5))  # 25
+
+# Decorator functions
+def logger(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@logger
+def example():
+    print("Hello from example")
+
+example()</pre>
+        </div>
+
+        <!-- Recursion -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Recursion</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def factorial(n):
+    return 1 if n <= 1 else n * factorial(n-1)
+
+print(factorial(5))  # 120</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Function Best Practices</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Type hints and docstrings
+def power(base: float, exponent: int) -> float:
+    """Calculate base raised to the power of exponent.
+    
+    Args:
+        base: The base number
+        exponent: The exponent (must be positive integer)
+    
+    Returns:
+        The result of base^exponent
+    """
+    return base ** exponent
+
+print(power(2, 3))  # 8.0</pre>
+        </div>
+
+        <!-- Scope & Closures -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Scope & Closures</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def outer():
+    message = "Hello"
+    def inner():
+        print(message)  # Accessing outer scope
+    return inner
+
+closure = outer()
+closure()  # Hello</pre>
+        </div>
+
+        <!-- Global vs Local Variables -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Global & Local Variables</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+count = 0  # Global variable
+
+def increment():
+    global count  # Declare global variable
+    local_num = 5  # Local variable
+    count += local_num
+
+increment()
+print(count)  # 5
+
+# Accessing global without modification
+def show_global():
+    print("Global count:", count)
+
+show_global()  # Global count: 5</pre>
+            <p class="mt-2 text-gray-300 text-sm">
+                Note: Avoid using global variables when possible. Use function parameters and return values instead.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- Lists & Tuples -->
+<section id="lists-tuples" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Lists & Tuples in Python</h2>
+
+    <div class="space-y-6">
+        <!-- Lists Section -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Lists</h3>
+            <p class="mb-3">Ordered, mutable collection. Created with square brackets <code class="text-blue-300">[]</code></p>
+
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Basic operations
+nums = [1, 2, 3, 4, 5]
+print(nums[1])        # 2 (indexing)
+print(nums[-1])       # 5 (negative indexing)
+print(nums[1:4])      # [2, 3, 4] (slicing)
+print(len(nums))      # 5 (length)
+print(3 in nums)      # True (membership check)</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Common methods
+fruits = ["apple", "banana"]
+fruits.append("orange")      # Add item
+fruits.insert(1, "mango")    # Insert at position
+fruits.remove("banana")      # Remove item
+popped = fruits.pop(0)       # Remove and return item
+fruits.sort()                # Sort in-place
+fruits.reverse()             # Reverse in-place
+print(fruits)                # ['orange', 'mango']</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# List operations
+a = [1, 2] + [3, 4]      # Concatenation → [1,2,3,4]
+b = [0] * 3              # Repetition → [0,0,0]
+c = [x**2 for x in a]    # List comprehension → [1,4,9,16]
+d = a.copy()             # Shallow copy</pre>
+            </div>
+        </div>
+
+        <!-- Tuples Section -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Tuples</h3>
+            <p class="mb-3">Ordered, immutable collection. Created with parentheses <code class="text-blue-300">()</code></p>
+
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Basic operations
+colors = ('red', 'green', 'blue')
+print(colors[1])        # green
+print(colors[::2])      # ('red', 'blue') (slicing)
+print(len(colors))      # 3
+print('red' in colors)  # True</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Tuple methods
+numbers = (1, 2, 2, 3)
+print(numbers.count(2))  # 2 (occurrences)
+print(numbers.index(3)) # 3 (first occurrence index)</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Tuple unpacking
+point = (10, 20)
+x, y = point            # x=10, y=20
+
+# Returning multiple values
+def min_max(nums):
+    return min(nums), max(nums)
+result = min_max([5,2,8,1])  # (1,8)</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Immutability note
+# colors[0] = 'yellow'  # TypeError
+# Can contain mutable elements
+mixed = (1, [2, 3], "hello")
+mixed[1].append(4)     # Valid → (1, [2,3,4], "hello")</pre>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 List vs Tuple Comparison</h3>
+            <table class="w-full text-left text-gray-300 border border-gray-600">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Feature</th>
+                        <th class="px-4 py-2 border border-gray-600">List</th>
+                        <th class="px-4 py-2 border border-gray-600">Tuple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Mutability</td>
+                        <td class="px-4 py-2 border border-gray-600">Mutable</td>
+                        <td class="px-4 py-2 border border-gray-600">Immutable</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Memory</td>
+                        <td class="px-4 py-2 border border-gray-600">More memory</td>
+                        <td class="px-4 py-2 border border-gray-600">Less memory</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Use Case</td>
+                        <td class="px-4 py-2 border border-gray-600">Changing data</td>
+                        <td class="px-4 py-2 border border-gray-600">Fixed data</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Methods</td>
+                        <td class="px-4 py-2 border border-gray-600">append(), sort(), etc</td>
+                        <td class="px-4 py-2 border border-gray-600">count(), index()</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- Dictionaries & Sets -->
+<section id="dictionaries-sets" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Dictionaries & Sets</h2>
+
+    <div class="space-y-6">
+        <!-- Dictionaries Section -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Dictionaries</h3>
+            <p class="mb-3">Mutable mapping type storing key-value pairs. Created with <code class="text-blue-300">{}</code> or <code class="text-blue-300">dict()</code></p>
+
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Dictionary creation
+empty_dict = {}
+grades = dict(Alice=95, Bob=88)
+person = {"name": "Alice", "age": 25, "scores": [95, 88]}
+
+# Access methods
+print(person.get("name"))          # Alice
+print(person.get("height", 160))    # 160 (default if key missing)
+print(person.keys())                # dict_keys(['name', 'age', 'scores'])
+print(person.values())              # dict_values(['Alice', 25, [95, 88]])
+print(person.items())               # dict_items([('name', 'Alice'), ...])</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Dictionary operations
+person["city"] = "New York"         # Add/update
+del person["age"]                   # Delete key
+popped = person.pop("scores")       # Remove and return value
+person.update({"age": 30, "job": "Engineer"})  # Merge dictionaries
+
+# Dictionary comprehension
+square_dict = {x: x**2 for x in range(5)}  # {0:0, 1:1, 2:4, 3:9, 4:16}</pre>
+            </div>
+        </div>
+
+        <!-- Sets Section -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Sets</h3>
+            <p class="mb-3">Unordered collection of unique elements. Created with <code class="text-blue-300">{}</code> or <code class="text-blue-300">set()</code></p>
+
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Set operations
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+print(a | b)   # Union → {1,2,3,4}
+print(a & b)   # Intersection → {2,3}
+print(a - b)   # Difference → {1}
+print(a ^ b)   # Symmetric Difference → {1,4}</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Set methods
+s = {1, 2, 3}
+s.add(4)                # {1,2,3,4}
+s.discard(2)            # {1,3,4} (no error if missing)
+s.remove(3)             # {1,4} (raises KeyError if missing)
+s.update([5,6])         # {1,4,5,6}
+popped = s.pop()        # Remove and return arbitrary element
+
+# Set comprehension
+even_squares = {x**2 for x in range(10) if x%2 == 0}</pre>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Dictionary vs Set Comparison</h3>
+            <table class="w-full text-left text-gray-300 border border-gray-600">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Feature</th>
+                        <th class="px-4 py-2 border border-gray-600">Dictionary</th>
+                        <th class="px-4 py-2 border border-gray-600">Set</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Elements</td>
+                        <td class="px-4 py-2 border border-gray-600">Key-value pairs</td>
+                        <td class="px-4 py-2 border border-gray-600">Unique values</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Ordering</td>
+                        <td class="px-4 py-2 border border-gray-600">Insertion ordered (Python 3.7+)</td>
+                        <td class="px-4 py-2 border border-gray-600">Unordered</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Mutability</td>
+                        <td class="px-4 py-2 border border-gray-600">Mutable</td>
+                        <td class="px-4 py-2 border border-gray-600">Mutable</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Use Case</td>
+                        <td class="px-4 py-2 border border-gray-600">Data records, lookups</td>
+                        <td class="px-4 py-2 border border-gray-600">Membership testing, duplicates removal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- OOP (Classes & Objects) -->
+<section id="oop" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Object-Oriented Programming (OOP)</h2>
+
+    <div class="space-y-6">
+        <!-- Existing Classes & Objects content... -->
+        
+        <!-- Encapsulation & Properties -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Encapsulation & Properties</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Temperature:
+    def __init__(self, celsius):
+        self._celsius = celsius  # Protected attribute
+    
+    @property
+    def fahrenheit(self):
+        return (self._celsius * 9/5) + 32
+    
+    @fahrenheit.setter
+    def fahrenheit(self, value):
+        self._celsius = (value - 32) * 5/9
+
+temp = Temperature(25)
+print(temp.fahrenheit)  # 77.0
+temp.fahrenheit = 32
+print(temp._celsius)     # 0.0</pre>
+        </div>
+
+        <!-- Multiple Inheritance -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Multiple Inheritance</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Flyer:
+    def fly(self):
+        return "Flying"
+
+class Swimmer:
+    def swim(self):
+        return "Swimming"
+
+class Duck(Flyer, Swimmer):
+    pass
+
+duck = Duck()
+print(duck.fly())   # Flying
+print(duck.swim())  # Swimming</pre>
+        </div>
+
+        <!-- Abstract Base Classes -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Abstract Base Classes</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+# shape = Shape()  # Error
+circle = Circle(5)
+print(circle.area())  # 78.5</pre>
+        </div>
+
+        <!-- Operator Overloading -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Operator Overloading</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Book:
+    def __init__(self, title, pages):
+        self.title = title
+        self.pages = pages
+    
+    def __add__(self, other):
+        return Book(f"{self.title} & {other.title}", self.pages + other.pages)
+    
+    def __str__(self):
+        return f"'{self.title}' ({self.pages} pages)"
+
+b1 = Book("Python 101", 300)
+b2 = Book("OOP Guide", 200)
+combined = b1 + b2
+print(combined)  # 'Python 101 & OOP Guide' (500 pages)</pre>
+        </div>
+
+        <!-- Decorators (Logging/Caching) -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Decorators (Logging/Caching)</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import functools
+import time
+
+# Logging decorator
+def logger(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        result = func(*args, **kwargs)
+        print(f"Finished {func.__name__}")
+        return result
+    return wrapper
+
+# Caching decorator
+def cache(max_size=128):
+    def decorator(func):
+        cache = {}
+        @functools.wraps(func)
+        def wrapper(*args):
+            if args in cache:
+                return cache[args]
+            result = func(*args)
+            cache[args] = result
+            return result
+        return wrapper
+    return decorator
+
+class Calculator:
+    @logger
+    def add(self, a, b):
+        return a + b
+    
+    @cache()
+    def factorial(self, n):
+        return 1 if n <= 1 else n * self.factorial(n-1)
+
+calc = Calculator()
+print(calc.add(2, 3))  # Logs calls
+print(calc.factorial(5))  # Caches results</pre>
+            <p class="mt-2 text-gray-300 text-sm">
+                Common decorator uses: logging, caching, timing, access control, validation
+            </p>
+        </div>
+    </div>
+</section>
+<!-- File Handling -->
+<section id="file-handling" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 File Handling in Python</h2>
+
+    <div class="space-y-6">
+        <!-- Basic File Operations -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic File Operations</h3>
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Modes: r (read), w (write), a (append), r+ (read/write)
+# b (binary mode), t (text mode, default)
+
+# Writing to a file
+with open("diary.txt", "w") as f:
+    f.write("First line\n")
+    f.writelines(["Second line\n", "Third line\n"])
+
+# Reading entire content
+with open("diary.txt", "r") as f:
+    print(f.read())  # Full content
+
+# Reading line by line
+with open("diary.txt", "r") as f:
+    for line in f:
+        print(line.strip())</pre>
+            </div>
+        </div>
+
+        <!-- File Positioning -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 File Positioning</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+with open("data.bin", "wb+") as f:
+    # Write binary data
+    f.write(b"\x00\x01\x02\x03")
+    
+    # Move to start (position 0)
+    f.seek(0)
+    
+    # Read first 2 bytes
+    print(f.read(2))  # b'\x00\x01'
+    
+    # Current position
+    print(f.tell())   # 2</pre>
+        </div>
+
+        <!-- CSV Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 CSV Files</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import csv
+
+# Writing CSV
+with open("data.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Name", "Age"])
+    writer.writerows([
+        ["Alice", 25],
+        ["Bob", 30]
+    ])
+
+# Reading CSV
+with open("data.csv", "r") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(f"{row['Name']}: {row['Age']}")</pre>
+        </div>
+
+        <!-- JSON Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 JSON Files</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import json
+
+# Writing to a JSON file
+data = {"name": "Alice", "scores": [88, 95]}
+with open("data.json", "w") as f:
+    json.dump(data, f, indent=2)
+
+# Reading from a JSON file
+with open("data.json", "r") as f:
+    loaded = json.load(f)
+    print(loaded["name"])  # Alice</pre>
+        </div>
+
+        <!-- File Management -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 File Management</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import os
+import shutil
+
+# File operations
+os.rename("old.txt", "new.txt")    # Rename
+os.remove("file.txt")             # Delete
+shutil.copy("src.txt", "dst.txt")  # Copy
+shutil.move("src.txt", "dest/")    # Move
+
+# Directory operations
+os.mkdir("new_dir")               # Create directory
+os.listdir(".")                   # List files
+os.path.exists("file.txt")        # Check existence</pre>
+        </div>
+    </div>
+</section>
+<!-- Exception Handling -->
+<section id="exceptions" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Exception Handling</h2>
+    <p class="mb-3">Python uses <code class="text-blue-300">try</code>/<code class="text-blue-300">except</code> blocks to handle runtime errors. Built-in exceptions include:</p>
+    
+    <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="text-gray-300">
+            <p><code>ValueError</code> - Invalid value</p>
+            <p><code>TypeError</code> - Invalid operation type</p>
+            <p><code>IndexError</code> - Invalid sequence index</p>
+        </div>
+        <div class="text-gray-300">
+            <p><code>KeyError</code> - Missing dictionary key</p>
+            <p><code>FileNotFoundError</code> - Missing file</p>
+            <p><code>KeyboardInterrupt</code> - User interrupt</p>
+        </div>
+    </div>
+
+    <div class="space-y-6">
+        <!-- Basic Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Error Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+try:
+    age = int(input("Enter age: "))
+except ValueError:
+    print("Please enter a valid number!")</pre>
+        </div>
+
+        <!-- Advanced Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Catching multiple exceptions
+try:
+    file = open("data.txt")
+    data = file.read()
+    value = int(data)
+except (FileNotFoundError, ValueError) as e:
+    print(f"Error: {str(e)}")
+else:
+    print("Successfully read value:", value)
+finally:
+    file.close() if 'file' in locals() else None</pre>
+        </div>
+
+        <!-- Custom Exceptions -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Custom Exceptions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class InvalidEmailError(Exception):
+    """Raised when email format is invalid"""
+    def __init__(self, email):
+        self.email = email
+        super().__init__(f"Invalid email: {email}")
+
+def validate_email(email):
+    if "@" not in email:
+        raise InvalidEmailError(email)
+    return True
+
+try:
+    validate_email("user.example.com")
+except InvalidEmailError as e:
+    print(e)</pre>
+        </div>
+
+        <!-- Exception Chaining -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Exception Chaining</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+try:
+    open("missing.txt")
+except FileNotFoundError as e:
+    raise RuntimeError("Failed to process file") from e</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use specific exceptions instead of bare <code>except:</code></p>
+                <p>✓ Include cleanup code in <code>finally</code> blocks</p>
+                <p>✓ Use <code>else</code> for code that should run only if no exceptions</p>
+                <p>✓ Log exceptions with <code>logging.exception()</code></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modules & Imports -->
+<section id="modules-imports" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Modules & Imports</h2>
+    <p class="mb-3">Modules allow you to organize code into reusable files. Python's module system includes:</p>
+
+    <div class="space-y-6">
+        <!-- Import Types -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Import Types</h3>
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# 1. Standard import
+import math
+print(math.pi)
+
+# 2. Import with alias
+import numpy as np
+print(np.array([1,2]))
+
+# 3. From-import
+from datetime import datetime
+print(datetime.now())
+
+# 4. Wildcard import (not recommended)
+from random import *
+print(randint(1,10))</pre>
+            </div>
+        </div>
+
+        <!-- Module Attributes -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Module Attributes</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# mymodule.py
+__version__ = "1.0"
+def helper():
+    return "Help!"
+
+def main():
+    print("Running module")
+
+if __name__ == "__main__":
+    main()</pre>
+
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# main.py
+import mymodule
+print(mymodule.__version__)  # 1.0
+print(mymodule.__name__)     # mymodule</pre>
+        </div>
+
+        <!-- Package Structure -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Packages</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Package structure
+my_package/
+├── __init__.py
+├── utils.py
+└── subpackage/
+    ├── __init__.py
+    └── helpers.py
+
+# Import from package
+from my_package.utils import format_data
+from my_package.subpackage.helpers import validate</pre>
+        </div>
+
+        <!-- Built-in Modules -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Common Built-in Modules</h3>
+            <div class="grid grid-cols-2 gap-4 text-gray-300">
+                <div>
+                    <p><code>sys</code> - System parameters</p>
+                    <p><code>os</code> - OS operations</p>
+                    <p><code>math</code> - Math functions</p>
+                    <p><code>datetime</code> - Date/time handling</p>
+                </div>
+                <div>
+                    <p><code>json</code> - JSON processing</p>
+                    <p><code>re</code> - Regular expressions</p>
+                    <p><code>argparse</code> - CLI parsing</p>
+                    <p><code>logging</code> - Logging system</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Search Path -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Module Search Path</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import sys
+print(sys.path)  # List of directories Python searches for modules
+
+# Add custom path
+sys.path.append("/path/to/my/modules")</pre>
+        </div>
+
+        <!-- Reloading Modules -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Reloading Modules</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import importlib
+import mymodule
+
+# After modifying mymodule.py
+importlib.reload(mymodule)</pre>
+        </div>
+    </div>
+</section>
+<!-- Lambda Functions -->
+<section id="lambda-functions" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Lambda Functions</h2>
+    <p class="mb-3">Anonymous functions defined with <code class="text-blue-300">lambda</code> keyword. Syntax: <code>lambda arguments: expression</code></p>
+
+    <div class="space-y-6">
+        <!-- Basic Usage -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Syntax</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Simple addition
+add = lambda a, b: a + b
+print(add(3, 5))  # 8
+
+# No arguments
+greet = lambda: "Hello World"
+print(greet())     # Hello World</pre>
+        </div>
+
+        <!-- Common Use Cases -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Common Use Cases</h3>
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Sorting with key
+people = [{"name": "Alice", "age": 25}, {"name": "Bob", "age": 30}]
+sorted_ages = sorted(people, key=lambda x: x['age'])
+print(sorted_ages)  # [{'name': 'Alice', 'age': 25}, ...]</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Filtering with condition
+numbers = [1, 2, 3, 4, 5, 6]
+even = list(filter(lambda x: x % 2 == 0, numbers))
+print(even)  # [2, 4, 6]</pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Reduce with lambda
+from functools import reduce
+product = reduce(lambda x, y: x * y, [1, 2, 3, 4])
+print(product)  # 24</pre>
+            </div>
+        </div>
+
+        <!-- Advanced Usage -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Patterns</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Conditional logic
+grade = lambda score: 'Pass' if score >= 50 else 'Fail'
+print(grade(65))  # Pass
+
+# Multiple arguments
+full_name = lambda first, last: f"{first.strip().title()} {last.strip().title()}"
+print(full_name("  john ", "doe "))  # John Doe</pre>
+        </div>
+
+        <!-- Limitations -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Limitations & Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use for simple operations only</p>
+                <p>✓ Avoid complex logic (use regular functions instead)</p>
+                <p>✓ Can't contain statements (only expressions)</p>
+                <p>✓ No annotations or docstrings</p>
+                <p>✓ Preserve readability - don't chain multiple lambdas</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Decorators -->
+<section id="decorators" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Decorators</h2>
+    <p class="mb-3">Decorators modify or enhance functions without changing their core functionality.</p>
+
+    <div class="space-y-6">
+        <!-- Basic Decorator -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Decorator</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def decorator(func):
+    def wrapper():
+        print("Before function call")
+        func()
+        print("After function call")
+    return wrapper
+
+@decorator
+def hello():
+    print("Hello, world!")
+
+hello()</pre>
+        </div>
+
+        <!-- Decorators with Arguments -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Decorators with Arguments</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def repeat(n_times):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n_times):
+                result = func(*args, **kwargs)
+            return result
+        return wrapper
+    return decorator
+
+@repeat(n_times=3)
+def greet(name):
+    print(f"Hello {name}")
+
+greet("Alice")  # Prints 3 times</pre>
+        </div>
+
+        <!-- Class-based Decorators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Class-based Decorators</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Timer:
+    def __init__(self, func):
+        self.func = func
+    
+    def __call__(self, *args, **kwargs):
+        import time
+        start = time.time()
+        result = self.func(*args, **kwargs)
+        end = time.time()
+        print(f"Execution time: {end - start:.2f}s")
+        return result
+
+@Timer
+def long_operation():
+    time.sleep(1)
+
+long_operation()  # Prints execution time</pre>
+        </div>
+
+        <!-- Decorator Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use <code>functools.wraps</code> to preserve metadata</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import functools
+
+def decorator(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper</pre>
+                
+                <p>✓ Stack multiple decorators properly</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+@decorator1
+@decorator2
+def my_function():
+    pass</pre>
+                
+                <p>✓ Handle exceptions in decorators</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def handle_errors(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            print(f"Error: {str(e)}")
+    return wrapper</pre>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Generators -->
+<section id="generators" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Generators in Python</h2>
+    <p class="mb-3">Generators produce values on-the-fly using <code>yield</code>, preserving memory for large datasets.</p>
+
+    <div class="space-y-6">
+        <!-- Basic Generator -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Generator Basics</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def fibonacci(limit):
+    a, b = 0, 1
+    while a < limit:
+        yield a
+        a, b = b, a + b
+
+# Using generator
+for num in fibonacci(100):
+    print(num)  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89</pre>
+        </div>
+
+        <!-- Generator Expressions -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Generator Expressions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Similar to list comprehension but with ()
+squares = (x**2 for x in range(10))
+print(next(squares))  # 0
+print(next(squares))  # 1
+
+# Memory efficient sum
+sum_of_squares = sum(x**2 for x in range(1000000))</pre>
+        </div>
+
+        <!-- Sending Values -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Sending Values</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def accumulator():
+    total = 0
+    while True:
+        value = yield
+        total += value
+        yield total
+
+gen = accumulator()
+next(gen)  # Prime the generator
+print(gen.send(10))  # 10
+print(gen.send(20))  # 30</pre>
+        </div>
+
+        <!-- Yield From -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Yield From</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def countdown(n):
+    while n > 0:
+        yield n
+        n -= 1
+
+def countup(n):
+    yield from countdown(n)
+    yield from range(1, n+1)
+
+for num in countup(3):
+    print(num)  # 3, 2, 1, 1, 2, 3</pre>
+        </div>
+
+        <!-- Generator Methods -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Generator Methods</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def generator_func():
+    try:
+        while True:
+            item = yield
+            print(item)
+    except GeneratorExit:
+        print("Generator closed")
+
+gen = generator_func()
+next(gen)  # Start generator
+gen.send("Hello")  # Prints Hello
+gen.close()         # Prints Generator closed</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use for memory-efficient iteration</p>
+                <p>✓ Prefer generator expressions for simple cases</p>
+                <p>✓ Handle <code>GeneratorExit</code> for cleanup</p>
+                <p>✓ Use <code>yield from</code> for nested generators</p>
+                <p>✓ Remember generators are single-use</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CSV & JSON Handling -->
+<section id="file-handling-advanced" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Working with CSV & JSON</h2>
+
+    <div class="space-y-6">
+        <!-- CSV Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced CSV Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import csv
+
+# Reading with DictReader
+with open("data.csv", "r") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(f"{row['Name']} is {row['Age']} years old")
+
+# Writing with DictWriter
+with open("output.csv", "w", newline="") as f:
+    fieldnames = ["Name", "Email"]
+    writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';')
+    writer.writeheader()
+    writer.writerow({"Name": "Alice", "Email": "alice@example.com"})
+
+# Handling TSV files
+with open("data.tsv", "w", newline="") as f:
+    writer = csv.writer(f, delimiter='\t')
+    writer.writerow(["ID", "Value"])</pre>
+        </div>
+
+        <!-- JSON Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced JSON Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import json
+from datetime import datetime
+
+# Custom JSON encoder
+class CustomEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        return super().default(obj)
+
+data = {"time": datetime.now(), "name": "Alice"}
+json_str = json.dumps(data, cls=CustomEncoder)
+
+# Custom JSON decoder
+def datetime_decoder(dct):
+    for key, value in dct.items():
+        try:
+            dct[key] = datetime.fromisoformat(value)
+        except:
+            pass
+    return dct
+
+loaded = json.loads(json_str, object_hook=datetime_decoder)</pre>
+        </div>
+
+        <!-- Pandas Integration -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Using Pandas</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import pandas as pd
+
+# Read CSV
+df = pd.read_csv("data.csv", parse_dates=['timestamp'])
+
+# Write JSON
+df.to_json("data.json", orient='records')
+
+# Handle large files
+chunk_iter = pd.read_csv("large.csv", chunksize=10000)
+for chunk in chunk_iter:
+    process(chunk)</pre>
+        </div>
+    </div>
+</section>
+
+<!-- Multithreading -->
+<section id="multithreading" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Multithreading in Python</h2>
+    
+    <div class="space-y-6">
+        <!-- Thread Pools -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Thread Pools</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from concurrent.futures import ThreadPoolExecutor
+import time
+
+def task(n):
+    time.sleep(n)
+    return n * n
+
+with ThreadPoolExecutor(max_workers=3) as executor:
+    futures = [executor.submit(task, i) for i in range(1,4)]
+    results = [f.result() for f in futures]
+print(results)  # [1, 4, 9]</pre>
+        </div>
+
+        <!-- Thread Synchronization -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Thread Synchronization</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from threading import Lock
+
+counter = 0
+lock = Lock()
+
+def increment():
+    global counter
+    with lock:
+        temp = counter
+        temp += 1
+        counter = temp
+
+threads = [threading.Thread(target=increment) for _ in range(1000)]
+for t in threads:
+    t.start()
+for t in threads:
+    t.join()
+print(counter)  # 1000</pre>
+        </div>
+
+        <!-- Daemon Threads -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Daemon Threads</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+def background_task():
+    while True:
+        print("Running...")
+        time.sleep(1)
+
+daemon = threading.Thread(target=background_task, daemon=True)
+daemon.start()
+# Will terminate when main program exits</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use thread pools instead of manual thread management</p>
+                <p>✓ Always use locks for shared resources</p>
+                <p>✓ Prefer ThreadPoolExecutor for most cases</p>
+                <p>✓ Use daemon threads for background tasks</p>
+                <p>✓ Avoid the Global Interpreter Lock (GIL) limitations</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Regular Expressions -->
+<section id="regex" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Regular Expressions (Regex)</h2>
+    <p class="mb-3">Pattern matching using Python's <code>re</code> module. Common metacharacters:</p>
+
+    <div class="grid grid-cols-2 gap-4 mb-4 text-gray-300">
+        <div>
+            <p><code>.</code> Any character</p>
+            <p><code>\d</code> Digit (0-9)</p>
+            <p><code>\w</code> Word character</p>
+            <p><code>\s</code> Whitespace</p>
+        </div>
+        <div>
+            <p><code>^</code> Start of string</p>
+            <p><code>$</code> End of string</p>
+            <p><code>[abc]</code> Any of a/b/c</p>
+            <p><code>a|b</code> a or b</p>
+        </div>
+    </div>
+
+    <div class="space-y-6">
+        <!-- Basic Patterns -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Common Methods</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import re
+
+# Match object methods
+text = "Date: 2023-08-15"
+match = re.search(r"(\d{4})-(\d{2})-(\d{2})", text)
+if match:
+    print(match.group())   # 2023-08-15
+    print(match.groups())  # ('2023', '08', '15')
+    print(match.start())   # 6
+    print(match.end())     # 16</pre>
+        </div>
+
+        <!-- Substitution -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Substitution</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Replace dates
+text = "Copyright 2022. Updated 2023."
+new_text = re.sub(r"\d{4}", "YEAR", text)
+print(new_text)  # Copyright YEAR. Updated YEAR.</pre>
+        </div>
+
+        <!-- Compiling Patterns -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Compiled Patterns</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Precompile for reuse
+phone_re = re.compile(r"\(\d{3}\) \d{3}-\d{4}")
+text = "Call (415) 555-1234"
+match = phone_re.search(text)
+print(match.group())  # (415) 555-1234</pre>
+        </div>
+
+        <!-- Flags -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Regex Flags</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Case-insensitive matching
+text = "Color or colour?"
+matches = re.findall(r"colou?r", text, flags=re.IGNORECASE)
+print(matches)  # ['Color', 'colour']</pre>
+        </div>
+
+        <!-- Advanced Patterns -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Patterns</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Lookaheads and lookbehinds
+text = "100kg 200lb"
+weights = re.findall(r"\d+(?=kg)", text)  # Positive lookahead
+print(weights)  # ['100']
+
+# Named groups
+date_re = r"(?P<year>\d{4})-(?P<month>\d{2})"
+match = re.search(date_re, "2023-08")
+print(match.groupdict())  # {'year': '2023', 'month': '08'}</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use raw strings (r"pattern")</p>
+                <p>✓ Precompile patterns for repeated use</p>
+                <p>✓ Use verbose mode for complex patterns</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+pattern = re.compile(r"""
+    \b             # Word boundary
+    [A-Z0-9._%+-]+ # Username
+    @ 
+    [A-Z0-9.-]+    # Domain
+    \. 
+    [A-Z]{2,}      # TLD
+    \b""", re.VERBOSE | re.IGNORECASE)</pre>
+                <p>✓ Test patterns with online regex testers</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- APIs & Requests -->
+<section id="api-requests" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Working with APIs (Requests Module)</h2>
+    <p class="mb-3">Handle HTTP requests with Python's <code>requests</code> library. Common methods:</p>
+    
+    <div class="grid grid-cols-2 gap-4 mb-4 text-gray-300">
+        <div>
+            <p><code>GET</code> - Retrieve data</p>
+            <p><code>POST</code> - Create resource</p>
+            <p><code>PUT</code> - Update resource</p>
+        </div>
+        <div>
+            <p><code>DELETE</code> - Remove resource</p>
+            <p><code>PATCH</code> - Partial update</p>
+            <p><code>HEAD</code> - Get headers</p>
+        </div>
+    </div>
+
+    <div class="space-y-6">
+        <!-- Request Methods -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 HTTP Methods</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# PUT request
+response = requests.put("https://api.example.com/items/1", json={"name": "new item"})
+
+# DELETE request
+response = requests.delete("https://api.example.com/items/1")
+
+# PATCH request
+response = requests.patch("https://api.example.com/items/1", json={"price": 19.99})</pre>
+        </div>
+
+        <!-- Headers & Authentication -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Headers & Authentication</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Custom headers
+headers = {
+    "User-Agent": "MyApp/1.0",
+    "Authorization": "Bearer abc123"
+}
+response = requests.get("https://api.example.com", headers=headers)
+
+# Basic auth
+from requests.auth import HTTPBasicAuth
+response = requests.get(
+    "https://api.example.com",
+    auth=HTTPBasicAuth("user", "pass")
+)</pre>
+        </div>
+
+        <!-- Handling Responses -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Response Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+response = requests.get("https://api.example.com")
+
+print(response.status_code)    # 200
+print(response.headers)        # Response headers
+print(response.text[:100])     # First 100 characters
+print(response.json().keys())  # JSON keys
+print(response.raise_for_status())  # Raise exception for 4xx/5xx</pre>
+        </div>
+
+        <!-- Error Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Error Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+try:
+    response = requests.get("https://api.example.com", timeout=5)
+    response.raise_for_status()
+except requests.exceptions.HTTPError as err:
+    print(f"HTTP error: {err}")
+except requests.exceptions.Timeout:
+    print("Request timed out")
+except requests.exceptions.RequestException as err:
+    print(f"Request error: {err}")</pre>
+        </div>
+
+        <!-- Sessions -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Using Sessions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+with requests.Session() as session:
+    session.headers.update({"X-API-Key": "secret"})
+    
+    # Persistent settings
+    response1 = session.get("https://api.example.com/list")
+    response2 = session.post("https://api.example.com/create", json={"data": "value"})</pre>
+        </div>
+
+        <!-- File Uploads -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 File Uploads</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+files = {"file": open("report.pdf", "rb")}
+response = requests.post("https://api.example.com/upload", files=files)</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Always set timeouts</p>
+                <p>✓ Use sessions for multiple requests</p>
+                <p>✓ Handle exceptions properly</p>
+                <p>✓ Validate SSL certificates</p>
+                <p>✓ Rate limit your requests</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Safe request with timeout and verification
+requests.get("https://api.example.com", timeout=5, verify=True)</pre>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SQLite Database -->
+<section id="database" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Working with Databases (SQLite3)</h2>
+    
+    <div class="space-y-6">
+        <!-- Basic Operations -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Core Operations</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import sqlite3
+from contextlib import closing
+
+# Using context manager for connection
+with closing(sqlite3.connect("app.db")) as conn:
+    with closing(conn.cursor()) as cursor:
+        # Parameterized query
+        cursor.execute("INSERT INTO users (name, age) VALUES (?, ?)", ("Bob", 30))
+        
+        # Batch insert
+        users = [("Charlie", 25), ("Diana", 28)]
+        cursor.executemany("INSERT INTO users (name, age) VALUES (?, ?)", users)
+    
+    conn.commit()</pre>
+        </div>
+
+        <!-- Advanced Queries -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Queries</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Foreign key support
+conn.execute("PRAGMA foreign_keys = ON")
+
+# Create table with relations
+conn.execute("""CREATE TABLE orders (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    amount REAL,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+)""")</pre>
+        </div>
+
+        <!-- Transactions -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Transactions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+try:
+    conn = sqlite3.connect("bank.db")
+    conn.execute("UPDATE accounts SET balance = balance - 100 WHERE id = 1")
+    conn.execute("UPDATE accounts SET balance = balance + 100 WHERE id = 2")
+    conn.commit()
+except sqlite3.Error:
+    conn.rollback()
+finally:
+    conn.close()</pre>
+        </div>
+
+        <!-- Row Factories -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Row Factories</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Access columns by name
+conn.row_factory = sqlite3.Row
+cursor = conn.cursor()
+cursor.execute("SELECT * FROM users LIMIT 1")
+row = cursor.fetchone()
+print(row["name"], row["age"])</pre>
+        </div>
+
+        <!-- Date Handling -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Date/Time Handling</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import datetime
+
+# Register adapters and converters
+sqlite3.register_adapter(datetime.datetime, lambda dt: dt.isoformat())
+sqlite3.register_converter("timestamp", lambda dt: datetime.datetime.fromisoformat(dt.decode()))
+
+conn = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES)
+conn.execute("CREATE TABLE events (id INTEGER, created_at timestamp)")</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Always use parameterized queries</p>
+                <p>✓ Use context managers for connections</p>
+                <p>✓ Enable foreign key support</p>
+                <p>✓ Handle transactions explicitly</p>
+                <p>✓ Close connections properly</p>
+                <p>✓ Use row factories for named access</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Web Scraping -->
+<section id="web-scraping" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Web Scraping with Python</h2>
+    <div class="space-y-6">
+        <!-- BeautifulSoup -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced BeautifulSoup</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from bs4 import BeautifulSoup
+import requests
+
+# Configure session
+session = requests.Session()
+session.headers.update({"User-Agent": "Mozilla/5.0"})
+
+# Handle pagination
+for page in range(1, 4):
+    url = f"https://example.com/page/{page}"
+    response = session.get(url)
+    soup = BeautifulSoup(response.text, "lxml")  # Using lxml parser
+    
+    # CSS Selectors
+    articles = soup.select("div.article > h2.title")
+    for article in articles:
+        print(article.get_text(strip=True))
+    
+    # Extract attributes and handle missing elements
+    prices = soup.find_all("span", class_="price")
+    for price in prices:
+        print(price["data-value"] if price else "N/A")</pre>
+        </div>
+
+        <!-- Selenium -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Selenium</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from selenium.webdriver import Chrome
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = Chrome()
+driver.get("https://example.com/login")
+
+# Form interaction
+driver.find_element(By.ID, "username").send_keys("user123")
+driver.find_element(By.ID, "password").send_keys("pass123")
+driver.find_element(By.XPATH, "//button[@type='submit']").click()
+
+# Wait for elements
+try:
+    element = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "dashboard"))
+    )
+    print("Login successful")
+except TimeoutError:
+    print("Login failed")
+
+# Execute JavaScript
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+driver.save_screenshot("page.png")
+driver.quit()</pre>
+        </div>
+
+        <!-- Scrapy -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Scrapy Framework</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import scrapy
+
+class QuoteSpider(scrapy.Spider):
+    name = "quotes"
+    start_urls = ["http://quotes.toscrape.com"]
+    
+    def parse(self, response):
+        for quote in response.css("div.quote"):
+            yield {
+                "text": quote.css("span.text::text").get(),
+                "author": quote.css("small.author::text").get(),
+            }
+        
+        next_page = response.css("li.next a::attr(href)").get()
+        if next_page:
+            yield response.follow(next_page, self.parse)</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Respect robots.txt and website terms</p>
+                <p>✓ Use delays between requests (time.sleep(2))</p>
+                <p>✓ Rotate user agents and IP addresses</p>
+                <p>✓ Handle CAPTCHAs and JavaScript challenges</p>
+                <p>✓ Cache responses for development</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Proxies and headers
+proxies = {"http": "http://10.10.1.10:3128"}
+headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"}
+response = requests.get(url, headers=headers, proxies=proxies)</pre>
+            </div>
+        </div>
+
+        <!-- Advanced Techniques -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Techniques</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Headless browsing
+from selenium.webdriver.chrome.options import Options
+
+options = Options()
+options.add_argument("--headless=new")
+driver = Chrome(options=options)
+
+# Handling JavaScript-rendered content
+driver.get("https://example.com")
+WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.CLASS_NAME, "dynamic-content"))
+)
+
+# Scraping tables
+table = driver.find_element(By.TAG_NAME, "table")
+rows = table.find_elements(By.TAG_NAME, "tr")
+for row in rows:
+    print([cell.text for cell in row.find_elements(By.TAG_NAME, "td")])</pre>
+        </div>
+    </div>
+</section>
+<!-- Data Science Libraries -->
+<section id="data-science" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Data Science with Python</h2>
+    <div class="space-y-6">
+        <!-- NumPy -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 NumPy (Numerical Computing)</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import numpy as np
+
+# Array creation
+arr = np.array([[1, 2], [3, 4]])  # 2D array
+zeros = np.zeros((3, 3))          # 3x3 zero matrix
+range_arr = np.arange(0, 10, 2)  # [0 2 4 6 8]
+
+# Array operations
+print(arr.shape)      # (2, 2)
+print(arr.reshape(4)) # [1 2 3 4]
+print(arr.T)          # Transpose
+print(np.dot(arr, arr))  # Matrix multiplication
+
+# Universal functions
+print(np.sqrt(arr))     # Element-wise square root
+print(np.sum(arr))      # 10
+print(arr.mean(axis=0)) # Column means [2. 3.]</pre>
+        </div>
+
+        <!-- Pandas -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Pandas (Data Manipulation)</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import pandas as pd
+
+# DataFrame operations
+df = pd.read_csv("data.csv")
+print(df.head(2))           # First 2 rows
+print(df.describe())        # Statistics
+print(df[df['Age'] > 25])  # Filtering
+print(df.groupby('City')['Salary'].mean())  # Aggregation
+
+# Handling missing data
+df['Age'] = df['Age'].fillna(df['Age'].mean())
+df = df.dropna()
+
+# Merging DataFrames
+df1 = pd.DataFrame({'key': ['A', 'B'], 'val': [1, 2]})
+df2 = pd.DataFrame({'key': ['A', 'B'], 'val': [3, 4]})
+merged = pd.merge(df1, df2, on='key')</pre>
+        </div>
+
+        <!-- Matplotlib -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Matplotlib (Data Visualization)</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import matplotlib.pyplot as plt
+
+# Subplots and styling
+fig, ax = plt.subplots(2, 1, figsize=(8, 6))
+ax[0].plot([1, 2, 3], [2, 4, 3], 'ro-', label='Line 1')
+ax[0].set_title('Sales Data')
+ax[0].legend()
+
+# Histogram
+ax[1].hist(np.random.randn(1000), bins=30, alpha=0.5)
+ax[1].set_xlabel('Values')
+plt.tight_layout()
+plt.savefig('plot.png')</pre>
+        </div>
+
+        <!-- Scikit-learn -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Scikit-learn (Machine Learning)</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Model training
+X = [[1], [2], [3], [4]]
+y = [2, 4, 6, 8]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
+print(f"R² Score: {model.score(X_test, y_test):.2f}")</pre>
+        </div>
+
+        <!-- Seaborn -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Seaborn (Advanced Visualization)</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import seaborn as sns
+
+# Advanced plots
+tips = sns.load_dataset("tips")
+sns.jointplot(x="total_bill", y="tip", data=tips, kind="reg")
+sns.pairplot(tips, hue="time")
+plt.show()</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use vectorized operations in NumPy</p>
+                <p>✓ Optimize pandas with proper dtypes</p>
+                <p>✓ Handle missing data early</p>
+                <p>✓ Normalize features for ML models</p>
+                <p>✓ Use virtual environments</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Install packages
+# pip install numpy pandas matplotlib scikit-learn seaborn</pre>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- GUI Programming -->
+<section id="gui-programming" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 GUI Programming with Python</h2>
+    <div class="space-y-6">
+        <!-- Tkinter -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Tkinter Advanced</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import tkinter as tk
+from tkinter import ttk, messagebox
+
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Advanced Tkinter")
+        self.geometry("400x300")
+        
+        # Widgets
+        self.label = ttk.Label(self, text="Enter text:")
+        self.entry = ttk.Entry(self)
+        self.button = ttk.Button(self, text="Submit", command=self.on_submit)
+        self.listbox = tk.Listbox(self)
+        
+        # Layout
+        self.label.pack(pady=5)
+        self.entry.pack(pady=5)
+        self.button.pack(pady=5)
+        self.listbox.pack(pady=5, fill=tk.BOTH, expand=True)
+        
+        # Menu
+        menubar = tk.Menu(self)
+        file_menu = tk.Menu(menubar, tearoff=0)
+        file_menu.add_command(label="Exit", command=self.destroy)
+        menubar.add_cascade(label="File", menu=file_menu)
+        self.config(menu=menubar)
+    
+    def on_submit(self):
+        text = self.entry.get()
+        if text:
+            self.listbox.insert(tk.END, text)
+            self.entry.delete(0, tk.END)
+        else:
+            messagebox.showwarning("Input Error", "Please enter text")
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()</pre>
+        </div>
+
+        <!-- PyQt -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 PyQt Advanced</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
+                            QLabel, QPushButton, QLineEdit, QListWidget)
+from PyQt5.QtCore import Qt
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Advanced PyQt")
+        self.setGeometry(100, 100, 400, 300)
+        
+        # Central widget
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        layout = QVBoxLayout()
+        
+        # Widgets
+        self.label = QLabel("Enter text:")
+        self.entry = QLineEdit()
+        self.button = QPushButton("Submit")
+        self.list_widget = QListWidget()
+        
+        # Layout
+        layout.addWidget(self.label)
+        layout.addWidget(self.entry)
+        layout.addWidget(self.button)
+        layout.addWidget(self.list_widget)
+        central_widget.setLayout(layout)
+        
+        # Signals
+        self.button.clicked.connect(self.on_submit)
+        self.entry.returnPressed.connect(self.on_submit)
+        
+        # Menu
+        menu = self.menuBar()
+        file_menu = menu.addMenu("File")
+        exit_action = file_menu.addAction("Exit")
+        exit_action.triggered.connect(self.close)
+    
+    def on_submit(self):
+        text = self.entry.text()
+        if text:
+            self.list_widget.addItem(text)
+            self.entry.clear()
+        else:
+            self.statusBar().showMessage("Please enter text", 3000)
+
+if __name__ == "__main__":
+    app = QApplication([])
+    window = MainWindow()
+    window.show()
+    app.exec_()</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Separate UI and business logic</p>
+                <p>✓ Use threading for long-running tasks</p>
+                <p>✓ Follow platform-specific design guidelines</p>
+                <p>✓ Implement error handling</p>
+                <p>✓ Use layout managers (grid/pack in Tkinter, QLayout in PyQt)</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Threading example for PyQt
+from PyQt5.QtCore import QThread
+
+class Worker(QThread):
+    def run(self):
+        # Long-running task
+        self.sleep(5)
+        
+# Usage
+worker = Worker()
+worker.start()</pre>
+            </div>
+        </div>
+
+        <!-- Additional Libraries -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Other GUI Libraries</h3>
+            <div class="text-gray-300 space-y-2">
+                <p><strong>Kivy:</strong> Cross-platform, mobile-friendly</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from kivy.app import App
+from kivy.uix.button import Button
+
+class MyApp(App):
+    def build(self):
+        return Button(text='Hello Kivy')
+
+MyApp().run()</pre>
+                
+                <p><strong>PySimpleGUI:</strong> Simplified wrapper</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import PySimpleGUI as sg
+
+layout = [[sg.Text("Hello")], [sg.Button("OK")]]
+window = sg.Window("Demo", layout)
+event, values = window.read()</pre>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Machine Learning -->
+<section id="machine-learning" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Machine Learning with Python</h2>
+    <div class="space-y-6">
+        <!-- Scikit-learn -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Scikit-learn Pipeline</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+# Create pipeline
+pipe = make_pipeline(
+    StandardScaler(),
+    SVC(kernel='rbf')
+)
+
+# Train and evaluate
+pipe.fit(X_train, y_train)
+score = pipe.score(X_test, y_test)</pre>
+        </div>
+
+        <!-- TensorFlow -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 TensorFlow Training</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Model training
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+history = model.fit(X_train, y_train, 
+                    epochs=10,
+                    validation_split=0.2)
+
+# Evaluation
+test_loss, test_acc = model.evaluate(X_test, y_test)
+print(f"Test accuracy: {test_acc:.2f}")
+
+# Save model
+model.save("model.h5")</pre>
+        </div>
+
+        <!-- PyTorch -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 PyTorch Training Loop</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import torch.optim as optim
+
+criterion = nn.MSELoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+for epoch in range(100):
+    # Forward pass
+    outputs = model(inputs)
+    loss = criterion(outputs, labels)
+    
+    # Backward pass
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    
+    if (epoch+1) % 10 == 0:
+        print(f'Epoch {epoch+1}, Loss: {loss.item():.4f}')</pre>
+        </div>
+
+        <!-- Model Evaluation -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Model Evaluation</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from sklearn.metrics import classification_report
+
+# Classification report
+y_pred = model.predict(X_test)
+print(classification_report(y_test, y_pred))
+
+# Confusion matrix
+from sklearn.metrics import confusion_matrix
+print(confusion_matrix(y_test, y_pred))</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Split data into train/validation/test sets</p>
+                <p>✓ Normalize/standardize features</p>
+                <p>✓ Use cross-validation</p>
+                <p>✓ Monitor training with TensorBoard</p>
+                <p>✓ Version control your models</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Data splitting
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42)</pre>
+            </div>
+        </div>
+
+        <!-- Hyperparameter Tuning -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Hyperparameter Tuning</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from sklearn.model_selection import GridSearchCV
+
+params = {'C': [0.1, 1, 10], 'gamma': [1, 0.1, 0.01]}
+grid = GridSearchCV(SVC(), params, cv=5)
+grid.fit(X_train, y_train)
+
+print(f"Best params: {grid.best_params_}")</pre>
+        </div>
+    </div>
+</section>
+<!-- Cybersecurity -->
+<section id="cybersecurity" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Cybersecurity with Python</h2>
+    <div class="space-y-6">
+        <!-- Hashing & Salting -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Secure Password Hashing</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import bcrypt
+import secrets
+
+# Generate secure password hash
+password = "user_password".encode()
+salt = bcrypt.gensalt(rounds=12)
+hashed = bcrypt.hashpw(password, salt)
+
+# Verify password
+if bcrypt.checkpw(password, hashed):
+    print("Access granted")</pre>
+        </div>
+
+        <!-- Asymmetric Encryption -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 RSA Encryption</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.primitives import hashes
+
+# Generate key pair
+private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+public_key = private_key.public_key()
+
+# Encrypt with public key
+message = b"Secret Message"
+ciphertext = public_key.encrypt(
+    message,
+    padding.OAEP(
+        mgf=padding.MGF1(algorithm=hashes.SHA256()),
+        algorithm=hashes.SHA256(),
+        label=None
+    )
+)
+
+# Decrypt with private key
+plaintext = private_key.decrypt(
+    ciphertext,
+    padding.OAEP(
+        mgf=padding.MGF1(algorithm=hashes.SHA256()),
+        algorithm=hashes.SHA256(),
+        label=None
+    )
+)</pre>
+        </div>
+
+        <!-- Digital Signatures -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Digital Signatures</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives import hashes
+
+# Sign message
+signature = private_key.sign(
+    message,
+    padding.PSS(
+        mgf=padding.MGF1(hashes.SHA256()),
+        salt_length=padding.PSS.MAX_LENGTH
+    ),
+    hashes.SHA256()
+)
+
+# Verify signature
+try:
+    public_key.verify(
+        signature,
+        message,
+        padding.PSS(
+            mgf=padding.MGF1(hashes.SHA256()),
+            salt_length=padding.PSS.MAX_LENGTH
+        ),
+        hashes.SHA256()
+    )
+    print("Signature valid")
+except InvalidSignature:
+    print("Signature invalid")</pre>
+        </div>
+
+        <!-- Network Security -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 SSL/TLS Verification</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import requests
+import ssl
+
+# Secure requests
+response = requests.get("https://api.example.com", verify=True)
+
+# Create SSL context
+context = ssl.create_default_context()
+context.check_hostname = True
+context.verify_mode = ssl.CERT_REQUIRED</pre>
+        </div>
+
+        <!-- Security Tools -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Security Utilities</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Secure random generation
+import secrets
+token = secrets.token_urlsafe(32)  # 256-bit secure URL-safe token
+
+# Input validation
+import re
+def sanitize_input(input_str):
+    return re.sub(r'[^a-zA-Z0-9]', '', input_str)
+
+# Secret management
+from getpass import getpass</pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use bcrypt/argon2 for password storage</p>
+                <p>✓ Never store secrets in code</p>
+                <p>✓ Validate all user inputs</p>
+                <p>✓ Use HTTPS for network communication</p>
+                <p>✓ Rotate encryption keys regularly</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+# Dependency security check
+# pip install safety
+# safety check</pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </section>
+    </main>
+<script>
+document.getElementById("menu-btn").addEventListener("click", function () {
+    document.getElementById("sidebar").classList.toggle("hidden");
+});
+</script>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="hidden fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-md">
+    ↑ Top
+</button>
+
+<script>
+const backToTop = document.getElementById("back-to-top");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        backToTop.classList.remove("hidden");
+    } else {
+        backToTop.classList.add("hidden");
+    }
+});
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+
+</body>
+</html>
