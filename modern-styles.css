@@ -1,0 +1,167 @@
+/* Improved CSS Variables */
+:root {
+    --primary: #2ecc71;
+    --primary-dark: #27ae60;
+    --background: #ffffff;
+    --text: #2c3e50;
+    --code-bg: #f8f9fa;
+    --border: #e0e0e0;
+    
+    /* New variables */
+    --spacing-unit: 1rem;
+    --max-width: 1200px;
+    --border-radius: 8px;
+    --transition-timing: 0.2s;
+}
+
+/* Improved Base Styles */
+body {
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background var(--transition-timing), color var(--transition-timing);
+}
+
+/* Enhanced Container */
+.container {
+    width: min(var(--max-width), 90%);
+    margin: 0 auto;
+    padding: calc(var(--spacing-unit) * 2);
+    display: grid;
+    gap: var(--spacing-unit);
+}
+
+/* Improved Code Blocks */
+.highlight {
+    position: relative;
+    background: var(--code-bg);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-unit);
+    margin: calc(var(--spacing-unit) * 1.5) 0;
+    overflow-x: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Better Syntax Highlighting */
+.highlight pre {
+    font-family: 'Ubuntu Mono', monospace;
+    margin: 0;
+    tab-size: 4;
+    counter-reset: line;
+}
+
+.highlight pre code {
+    display: block;
+    white-space: pre;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Enhanced Interactive Elements */
+.copy-btn {
+    position: absolute;
+    right: var(--spacing-unit);
+    top: var(--spacing-unit);
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: calc(var(--border-radius) / 2);
+    cursor: pointer;
+    transition: background var(--transition-timing), opacity 0.2s;
+    opacity: 0.9;
+}
+
+.copy-btn:hover {
+    background: var(--primary-dark);
+    opacity: 1;
+}
+
+/* Improved Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1a1a1a;
+        --text: #e0e0e0;
+        --code-bg: #2d2d2d;
+        --border: #404040;
+    }
+}
+
+.dark-mode {
+    /* Maintain existing dark mode class for toggle */
+    --background: #1a1a1a;
+    --text: #e0e0e0;
+    --code-bg: #2d2d2d;
+    --border: #404040;
+}
+
+/* Better Responsive Handling */
+@media (max-width: 768px) {
+    :root {
+        --spacing-unit: 0.75rem;
+    }
+    
+    .container {
+        padding: var(--spacing-unit);
+    }
+    
+    .highlight {
+        border-radius: calc(var(--border-radius) / 2);
+    }
+}
+
+/* Added Utility Classes */
+.text-primary {
+    color: var(--primary);
+}
+
+.bg-code {
+    background: var(--code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 0.3em;
+}
+
+.shadow-lg {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved Navigation */
+nav a {
+    transition: background-color var(--transition-timing), transform 0.1s;
+}
+
+nav a:hover {
+    transform: translateX(4px);
+}
+
+/* Better Focus States */
+button:focus,
+a:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.code-container {
+    background: var(--code-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+    border: 1px solid var(--border);
+}
+
+.code-container h3 {
+    color: var(--primary);
+    margin-top: 0;
+    font-family: 'Roboto Slab', serif;
+}
+
+pre code {
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 0.9em;
+} 
