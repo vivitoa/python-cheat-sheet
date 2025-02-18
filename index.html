@@ -601,15 +601,10 @@ print(a << 2)  # Shift left → 240
 print(a >> 2)  # Shift right → 15</pre>
         </div>
 
-        <!-- Operator Precedence -->
+        <!-- Walrus Operator -->
         <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Operator Precedence</h3>
-            <div class="bg-gray-800 p-3 rounded-md text-green-300 text-lg">
-                <!-- Walrus Operator section -->
-                <div class="mb-6 pb-4 border-b border-gray-600">
-                    <h4 class="text-lg font-semibold mb-2">Walrus Operator (:=)</h4>
-                    <p class="text-sm mb-2">Assignment expression operator (Python 3.8+)</p>
-                    <pre class="text-sm">
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Walrus Operator</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Assignment expression (Python 3.8+)
 if (n := len(items)) > 10:
     print(f"List is long ({n} items)")
@@ -619,31 +614,32 @@ if (n := len(items)) > 10:
 
 # In while loop
 while (chunk := file.read(8192)):</pre>
-                </div>
+        </div>
 
-                <!-- Order of Operations section -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-2">Order of Operations</h4>
-                    <p class="mb-2">From highest to lowest precedence:</p>
-                    <ol class="list-decimal list-inside">
-                        <li>() - Parentheses</li>
-                        <li>** - Exponentiation</li>
-                        <li>~ + - - Unary operators</li>
-                        <li>* / % // - Multiplication/Division</li>
-                        <li>+ - - Addition/Subtraction</li>
-                        <li>&lt;&lt; &gt;&gt; - Bitwise shifts</li>
-                        <li>&amp; - Bitwise AND</li>
-                        <li>^ | - Bitwise XOR/OR</li>
-                        <li>:= - Assignment expression (Walrus)</li>
-                        <li>&lt;= &lt; &gt; &gt;= == != - Comparisons</li>
-                        <li>is, is not, in, not in - Identity/Membership</li>
-                        <li>not - Logical NOT</li>
-                        <li>and - Logical AND</li>
-                        <li>or - Logical OR</li>
-                    </ol>
-                </div>
+        <!-- Order of Operations -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Order of Operations</h3>
+            <div class="bg-gray-800 p-3 rounded-md text-green-300">
+                <p class="mb-2">From highest to lowest precedence:</p>
+                <ol class="list-decimal list-inside space-y-1">
+                    <li>() - Parentheses</li>
+                    <li>** - Exponentiation</li>
+                    <li>~ + - - Unary operators</li>
+                    <li>* / % // - Multiplication/Division</li>
+                    <li>+ - - Addition/Subtraction</li>
+                    <li>&lt;&lt; &gt;&gt; - Bitwise shifts</li>
+                    <li>&amp; - Bitwise AND</li>
+                    <li>^ | - Bitwise XOR/OR</li>
+                    <li>:= - Assignment expression (Walrus)</li>
+                    <li>&lt;= &lt; &gt; &gt;= == != - Comparisons</li>
+                    <li>is, is not, in, not in - Identity/Membership</li>
+                    <li>not - Logical NOT</li>
+                    <li>and - Logical AND</li>
+                    <li>or - Logical OR</li>
+                </ol>
             </div>
         </div>
+
     </div>
 </section>
 <!-- Conditional Statements -->
