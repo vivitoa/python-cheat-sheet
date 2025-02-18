@@ -38,6 +38,56 @@
 
     <!-- Custom Font -->
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Make code blocks responsive */
+        pre {
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            overflow-x: auto !important;
+            max-width: 100% !important;
+        }
+
+        /* Code block scrollbar styling */
+        pre::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        pre::-webkit-scrollbar-track {
+            background: #374151;
+            border-radius: 4px;
+        }
+
+        pre::-webkit-scrollbar-thumb {
+            background: #4B5563;
+            border-radius: 4px;
+        }
+
+        /* Table responsiveness */
+        table {
+            display: block;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Ensure main content doesn't overlap with sidebar on desktop */
+        @media (min-width: 768px) {
+            main {
+                margin-left: 16rem; /* w-64 = 16rem */
+            }
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 767px) {
+            .notebook {
+                margin-left: 0 !important;
+                padding: 1rem !important;
+            }
+            pre {
+                padding: 0.5rem !important;
+            }
+        }
+    </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200"
 >
@@ -93,22 +143,6 @@
         });
     });
 </script>
-
-<style>
-    /* Make code blocks responsive */
-    pre {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        overflow-x: auto;
-    }
-    
-    /* Ensure main content doesn't overlap with sidebar on desktop */
-    @media (min-width: 768px) {
-        main {
-            margin-left: 16rem; /* w-64 = 16rem */
-        }
-    }
-</style>
 
     <!-- Main Content -->
     <main class="ml-64 p-10 notebook">
