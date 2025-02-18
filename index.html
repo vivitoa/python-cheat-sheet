@@ -94,11 +94,71 @@
             }
         }
 
-        /* Ensure sidebar appears above content but below menu button */
-        #sidebar {
-            z-index: 30;
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            opacity: 0;
+            visibility: hidden;
         }
-        
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Sidebar styles */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 16rem;
+            background-color: #1F2937;
+            z-index: 40;
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 767px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+
+            #sidebar.active {
+                transform: translateX(0);
+            }
+
+            main {
+                margin-left: 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #sidebar {
+                transform: translateX(0) !important;
+            }
+        }
+
+        /* Menu button */
+        #menu-btn {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 50;
+            display: none;
+        }
+
+        @media (max-width: 767px) {
+            #menu-btn {
+                display: block;
+            }
+        }
+
         /* Prevent content from blocking sidebar interaction */
         main {
             z-index: 10;
@@ -128,12 +188,6 @@
             }
         }
 
-        @media (min-width: 768px) {
-            #sidebar {
-                transform: translateX(0) !important;
-            }
-        }
-
         /* Prevent body scroll when menu is open */
         body.menu-open {
             overflow: hidden;
@@ -156,8 +210,13 @@
 <body class="dark bg-gray-900 text-gray-200"
 >
 <!-- Mobile Menu Button -->
-<button id="menu-btn" class="md:hidden fixed top-4 left-4 z-50 bg-gray-700 text-white p-2 rounded-md">
+<button id="menu-btn" class="bg-gray-700 text-white p-2 rounded-md">
     ☰ Menu
+</button>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+    ↑ Top
 </button>
 
 <!-- Sidebar Navigation -->
