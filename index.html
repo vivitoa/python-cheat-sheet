@@ -207,6 +207,13 @@
                 display: block;
             }
         }
+
+        /* Add this to your existing styles */
+        .code-comment {
+            color: #9CA3AF;  /* gray-400 */
+            font-family: 'Roboto Mono', monospace;
+            font-style: italic;
+        }
     </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200"
@@ -262,7 +269,7 @@
     <p class="mb-3">A <strong>variable</strong> stores a value. Python is <strong>dynamically typed</strong>, so you don't need to declare a type.</p>
 
     <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300 mb-4">
-# Basic variable assignment
+<span class="code-comment"># Basic variable assignment</span>
 age = 25
 name = "Alice"
 price = 99.99
@@ -284,36 +291,36 @@ is_python_fun = True</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400 mb-2">Dynamic Typing</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Reassign different types
-value = 100         # Integer
-value = "Python"    # Now string
-value = [1, 2, 3]   # Now list</pre>
+<span class="code-comment"># Reassign different types</span>
+value = 100         <span class="code-comment"># Integer</span>
+value = "Python"    <span class="code-comment"># Now string</span>
+value = [1, 2, 3]   <span class="code-comment"># Now list</span></pre>
         </div>
 
         <!-- Type Conversion -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400 mb-2">Type Conversion</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-num_str = str(42)    # "42"
-str_num = int("123")  # 123
-num_float = float(7) # 7.0</pre>
+num_str = str(42)    <span class="code-comment"># "42"</span>
+str_num = int("123")  <span class="code-comment"># 123</span>
+num_float = float(7) <span class="code-comment"># 7.0</span></pre>
         </div>
 
         <!-- Common Methods -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400 mb-2">Common Methods</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# String methods
+<span class="code-comment"># String methods</span>
 name = "python"
-upper_name = name.upper()  # "PYTHON"
+upper_name = name.upper()  <span class="code-comment"># "PYTHON"</span>
 
-# List methods
+<span class="code-comment"># List methods</span>
 numbers = [1, 2, 3]
-numbers.append(4)  # [1, 2, 3, 4]
+numbers.append(4)  <span class="code-comment"># [1, 2, 3, 4]</span>
 
-# Dictionary methods
+<span class="code-comment"># Dictionary methods</span>
 user = {"name": "Alice", "age": 30}
-keys = user.keys()  # dict_keys(['name', 'age'])</pre>
+keys = user.keys()  <span class="code-comment"># dict_keys(['name', 'age'])</span></pre>
         </div>
 
         <!-- Multiple Assignment -->
