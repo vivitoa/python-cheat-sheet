@@ -1987,7 +1987,7 @@ def background_task():
 
 daemon = threading.Thread(target=background_task, daemon=True)
 daemon.start()
-# Will terminate when main program exits</pre>
+<span class="code-comment"># Will terminate when main program exits</span></pre>
         </div>
 
         <!-- Best Practices -->
@@ -2414,7 +2414,7 @@ class QuoteSpider(scrapy.Spider):
                 <p>✓ Handle CAPTCHAs and JavaScript challenges</p>
                 <p>✓ Cache responses for development</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Proxies and headers
+<span class="code-comment"># Proxies and headers</span>
 proxies = {"http": "http://10.10.1.10:3128"}
 headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"}
 response = requests.get(url, headers=headers, proxies=proxies)</pre>
@@ -2555,8 +2555,8 @@ plt.show()</pre>
                 <p>✓ Normalize features for ML models</p>
                 <p>✓ Use virtual environments</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Install packages
-# pip install numpy pandas matplotlib scikit-learn seaborn</pre>
+<span class="code-comment"># Install packages</span>
+<span class="code-comment"># pip install numpy pandas matplotlib scikit-learn seaborn</span></pre>
             </div>
         </div>
     </div>
@@ -2672,14 +2672,14 @@ if __name__ == "__main__":
                 <p>✓ Implement error handling</p>
                 <p>✓ Use layout managers (grid/pack in Tkinter, QLayout in PyQt)</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Threading example for PyQt
+<span class="code-comment"># Threading example for PyQt</span>
 from PyQt5.QtCore import QThread
 class Worker(QThread):
     def run(self):
         # Long-running task
         self.sleep(5)
         
-# Usage
+<span class="code-comment"># Usage</span>
 worker = Worker()
 worker.start()</pre>
             </div>
@@ -2786,7 +2786,7 @@ print(confusion_matrix(y_test, y_pred))</pre>
                 <p>✓ Monitor training with TensorBoard</p>
                 <p>✓ Version control your models</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Data splitting
+<span class="code-comment"># Data splitting</span>
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42)</pre>
