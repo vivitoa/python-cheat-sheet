@@ -2456,18 +2456,18 @@ for row in rows:
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import numpy as np
 
-# Array creation
+<span class="code-comment"># Array creation</span>
 arr = np.array([[1, 2], [3, 4]])  <span class="code-comment"># 2D array</span>
 zeros = np.zeros((3, 3))          <span class="code-comment"># 3x3 zero matrix</span>
 range_arr = np.arange(0, 10, 2)  <span class="code-comment"># [0 2 4 6 8]</span>
 
-# Array operations
+<span class="code-comment"># Array operations</span>
 print(arr.shape)      <span class="code-comment"># (2, 2)</span>
 print(arr.reshape(4)) <span class="code-comment"># [1 2 3 4]</span>
 print(arr.T)          <span class="code-comment"># Transpose</span>
 print(np.dot(arr, arr))  <span class="code-comment"># Matrix multiplication</span>
 
-# Universal functions
+<span class="code-comment"># Universal functions</span>
 print(np.sqrt(arr))     <span class="code-comment"># Element-wise square root</span>
 print(np.sum(arr))      <span class="code-comment"># 10</span>
 print(arr.mean(axis=0)) <span class="code-comment"># Column means [2. 3.]</span></pre>
@@ -2479,36 +2479,35 @@ print(arr.mean(axis=0)) <span class="code-comment"># Column means [2. 3.]</span>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import pandas as pd
 
-# DataFrame operations
+<span class="code-comment"># DataFrame operations</span>
 df = pd.read_csv("data.csv")
 print(df.head(2))           <span class="code-comment"># First 2 rows</span>
 print(df.describe())        <span class="code-comment"># Statistics</span>
 print(df[df['Age'] > 25])  <span class="code-comment"># Filtering</span>
 print(df.groupby('City')['Salary'].mean())  <span class="code-comment"># Aggregation</span>
 
-# Handling missing data
+<span class="code-comment"># Handling missing data</span>
 df['Age'] = df['Age'].fillna(df['Age'].mean())
 df = df.dropna()
 
-# Merging DataFrames
+<span class="code-comment"># Merging DataFrames</span>
 df1 = pd.DataFrame({'key': ['A', 'B'], 'val': [1, 2]})
 df2 = pd.DataFrame({'key': ['A', 'B'], 'val': [3, 4]})
 merged = pd.merge(df1, df2, on='key')</pre>
         </div>
-
         <!-- Matplotlib -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Matplotlib (Data Visualization)</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import matplotlib.pyplot as plt
 
-# Subplots and styling
+<span class="code-comment"># Subplots and styling</span>
 fig, ax = plt.subplots(2, 1, figsize=(8, 6))
 ax[0].plot([1, 2, 3], [2, 4, 3], 'ro-', label='Line 1')
 ax[0].set_title('Sales Data')
 ax[0].legend()
 
-# Histogram
+<span class="code-comment"># Histogram</span>
 ax[1].hist(np.random.randn(1000), bins=30, alpha=0.5)
 ax[1].set_xlabel('Values')
 plt.tight_layout()
@@ -2522,7 +2521,7 @@ plt.savefig('plot.png')</pre>
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
-# Model training
+<span class="code-comment"># Model training</span>
 X = [[1], [2], [3], [4]]
 y = [2, 4, 6, 8]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
@@ -2538,7 +2537,7 @@ print(f"R² Score: {model.score(X_test, y_test):.2f}")</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import seaborn as sns
 
-# Advanced plots
+<span class="code-comment"># Advanced plots</span>
 tips = sns.load_dataset("tips")
 sns.jointplot(x="total_bill", y="tip", data=tips, kind="reg")
 sns.pairplot(tips, hue="time")
@@ -2578,19 +2577,19 @@ class App(tk.Tk):
         self.title("Advanced Tkinter")
         self.geometry("400x300")
         
-        # Widgets
+        <span class="code-comment"># Widgets</span>
         self.label = ttk.Label(self, text="Enter text:")
         self.entry = ttk.Entry(self)
         self.button = ttk.Button(self, text="Submit", command=self.on_submit)
         self.listbox = tk.Listbox(self)
         
-        # Layout
+        <span class="code-comment"># Layout</span>
         self.label.pack(pady=5)
         self.entry.pack(pady=5)
         self.button.pack(pady=5)
         self.listbox.pack(pady=5, fill=tk.BOTH, expand=True)
         
-        # Menu
+        <span class="code-comment"># Menu</span>
         menubar = tk.Menu(self)
         file_menu = tk.Menu(menubar, tearoff=0)
         file_menu.add_command(label="Exit", command=self.destroy)
@@ -2621,29 +2620,29 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Advanced PyQt")
         self.setGeometry(100, 100, 400, 300)
         
-        # Central widget
+        <span class="code-comment"># Central widget</span>
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         layout = QVBoxLayout()
         
-        # Widgets
+        <span class="code-comment"># Widgets</span>
         self.label = QLabel("Enter text:")
         self.entry = QLineEdit()
         self.button = QPushButton("Submit")
         self.list_widget = QListWidget()
         
-        # Layout
+        <span class="code-comment"># Layout</span>
         layout.addWidget(self.label)
         layout.addWidget(self.entry)
         layout.addWidget(self.button)
         layout.addWidget(self.list_widget)
         central_widget.setLayout(layout)
         
-        # Signals
+        <span class="code-comment"># Signals</span>
         self.button.clicked.connect(self.on_submit)
         self.entry.returnPressed.connect(self.on_submit)
         
-        # Menu
+        <span class="code-comment"># Menu</span>
         menu = self.menuBar()
         file_menu = menu.addMenu("File")
         exit_action = file_menu.addAction("Exit")
@@ -2676,7 +2675,7 @@ if __name__ == "__main__":
 from PyQt5.QtCore import QThread
 class Worker(QThread):
     def run(self):
-        # Long-running task
+        <span class="code-comment"># Long-running task</span>
         self.sleep(5)
         
 <span class="code-comment"># Usage</span>
@@ -2718,12 +2717,12 @@ event, values = window.read()</pre>
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
-# Create pipeline
+<span class="code-comment"># Create pipeline</span>
 pipe = make_pipeline(
     StandardScaler(),
     SVC(kernel='rbf')
 )
-# Train and evaluate
+<span class="code-comment"># Train and evaluate</span>
 pipe.fit(X_train, y_train)
 score = pipe.score(X_test, y_test)</pre>
         </div>
@@ -2731,17 +2730,17 @@ score = pipe.score(X_test, y_test)</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 TensorFlow Training</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Model training
+<span class="code-comment"># Model training</span>
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 history = model.fit(X_train, y_train, 
                     epochs=10,
                     validation_split=0.2)
-# Evaluation
+<span class="code-comment"># Evaluation</span>
 test_loss, test_acc = model.evaluate(X_test, y_test)
 print(f"Test accuracy: {test_acc:.2f}")
-# Save model
+<span class="code-comment"># Save model</span>
 model.save("model.h5")</pre>
         </div>
         <!-- PyTorch -->
@@ -2752,11 +2751,11 @@ import torch.optim as optim
 criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 for epoch in range(100):
-    # Forward pass
+    <span class="code-comment"># Forward pass</span>
     outputs = model(inputs)
     loss = criterion(outputs, labels)
     
-    # Backward pass
+    <span class="code-comment"># Backward pass</span>
     optimizer.zero_grad()
     loss.backward()
     optimizer.step()
@@ -2769,10 +2768,10 @@ for epoch in range(100):
             <h3 class="text-xl font-semibold text-blue-400">🔸 Model Evaluation</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 from sklearn.metrics import classification_report
-# Classification report
+<span class="code-comment"># Classification report</span>
 y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
-# Confusion matrix
+<span class="code-comment"># Confusion matrix</span>
 from sklearn.metrics import confusion_matrix
 print(confusion_matrix(y_test, y_pred))</pre>
         </div>
@@ -2814,11 +2813,11 @@ print(f"Best params: {grid.best_params_}")</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import bcrypt
 import secrets
-# Generate secure password hash
+<span class="code-comment"># Generate secure password hash</span>
 password = "user_password".encode()
 salt = bcrypt.gensalt(rounds=12)
 hashed = bcrypt.hashpw(password, salt)
-# Verify password
+<span class="code-comment"># Verify password</span>
 if bcrypt.checkpw(password, hashed):
     print("Access granted")</pre>
         </div>
@@ -2828,10 +2827,10 @@ if bcrypt.checkpw(password, hashed):
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import hashes
-# Generate key pair
+<span class="code-comment"># Generate key pair</span>
 private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 public_key = private_key.public_key()
-# Encrypt with public key
+<span class="code-comment"># Encrypt with public key</span>
 message = b"Secret Message"
 ciphertext = public_key.encrypt(
     message,
@@ -2841,7 +2840,7 @@ ciphertext = public_key.encrypt(
         label=None
     )
 )
-# Decrypt with private key
+<span class="code-comment"># Decrypt with private key</span>
 plaintext = private_key.decrypt(
     ciphertext,
     padding.OAEP(
@@ -2857,7 +2856,7 @@ plaintext = private_key.decrypt(
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes
-# Sign message
+<span class="code-comment"># Sign message</span>
 signature = private_key.sign(
     message,
     padding.PSS(
@@ -2866,7 +2865,7 @@ signature = private_key.sign(
     ),
     hashes.SHA256()
 )
-# Verify signature
+<span class="code-comment"># Verify signature</span>
 try:
     public_key.verify(
         signature,
@@ -2887,9 +2886,9 @@ except InvalidSignature:
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import requests
 import ssl
-# Secure requests
+<span class="code-comment"># Secure requests</span>
 response = requests.get("https://api.example.com", verify=True)
-# Create SSL context
+<span class="code-comment"># Create SSL context</span>
 context = ssl.create_default_context()
 context.check_hostname = True
 context.verify_mode = ssl.CERT_REQUIRED</pre>
@@ -2898,14 +2897,14 @@ context.verify_mode = ssl.CERT_REQUIRED</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Security Utilities</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Secure random generation
+<span class="code-comment"># Secure random generation</span>
 import secrets
-token = secrets.token_urlsafe(32)  # 256-bit secure URL-safe token
-# Input validation
+token = secrets.token_urlsafe(32)  <span class="code-comment"># 256-bit secure URL-safe token</span>
+<span class="code-comment"># Input validation</span>
 import re
 def sanitize_input(input_str):
     return re.sub(r'[^a-zA-Z0-9]', '', input_str)
-# Secret management
+<span class="code-comment"># Secret management</span>
 from getpass import getpass</pre>
         </div>
         <!-- Best Practices -->
@@ -2978,3 +2977,4 @@ from getpass import getpass</pre>
 </script>
 </body>
 </html>
+
