@@ -93,6 +93,22 @@
                 padding: 1rem !important;
             }
         }
+
+        /* Ensure sidebar appears above content but below menu button */
+        #sidebar {
+            z-index: 30;
+        }
+        
+        /* Prevent content from blocking sidebar interaction */
+        main {
+            z-index: 10;
+            position: relative;
+        }
+        
+        /* Ensure menu button stays on top */
+        #menu-btn {
+            z-index: 50;
+        }
     </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200"
@@ -103,7 +119,7 @@
 </button>
 
 <!-- Single Sidebar Navigation -->
-<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 transform md:translate-x-0 transition-transform duration-200 ease-in-out -translate-x-full">
+<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 transform md:translate-x-0 transition-transform duration-200 ease-in-out -translate-x-full z-40">
     <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
     <nav class="mt-5 space-y-2 overflow-y-auto h-full pb-20">
         <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
@@ -142,6 +158,15 @@
     
     menuBtn.addEventListener('click', () => {
         sidebar.classList.toggle('-translate-x-full');
+    });
+
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 && // Only on mobile
+            !sidebar.contains(e.target) && // Not clicking sidebar
+            !menuBtn.contains(e.target)) { // Not clicking menu button
+            sidebar.classList.add('-translate-x-full');
+        }
     });
 
     // Close menu when clicking a link (mobile)
