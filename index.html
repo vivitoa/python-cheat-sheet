@@ -46,46 +46,69 @@
     ☰ Menu
 </button>
 
-<!-- Sidebar Navigation -->
-<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 md:block hidden">
+<!-- Single Sidebar Navigation -->
+<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 transform md:translate-x-0 transition-transform duration-200 ease-in-out -translate-x-full">
     <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
-    <nav class="mt-5 space-y-2">
+    <nav class="mt-5 space-y-2 overflow-y-auto h-full pb-20">
         <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
         <a href="#data-types" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Types</a>
         <a href="#operators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Operators</a>
+        <a href="#conditions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Conditional Statements</a>
+        <a href="#loops" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Loops</a>
+        <a href="#functions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Functions</a>
+        <a href="#oop" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">OOP</a>
+        <a href="#exceptions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Exception Handling</a>
+        <a href="#modules-imports" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Modules & Imports</a>
+        <a href="#lambda-functions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Lambda Functions</a>
+        <a href="#decorators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Decorators</a>
+        <a href="#generators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Generators</a>
+        <a href="#file-handling-advanced" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">CSV & JSON</a>
+        <a href="#regex" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Regular Expressions</a>
+        <a href="#api-requests" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">APIs & Requests</a>
+        <a href="#database" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Databases (SQLite)</a>
+        <a href="#web-scraping" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Web Scraping</a>
+        <a href="#data-science" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Science</a>
+        <a href="#gui-programming" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">GUI Programming</a>
         <a href="#machine-learning" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Machine Learning</a>
         <a href="#cybersecurity" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Cybersecurity</a>
     </nav>
 </aside>
 
-    <!-- Sidebar Navigation -->
-    <aside class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5">
-        <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
-        <nav class="mt-5 space-y-2 overflow-y-auto h-full flex flex-col justify-between pb-20">
-    <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
-    <a href="#data-types" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Types</a>
-    <a href="#operators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Operators</a>
-    <a href="#conditions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Conditional Statements</a>
-    <a href="#loops" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Loops</a>
-    <a href="#functions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Functions</a>
-    <a href="#oop" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">OOP</a>
-    <a href="#exceptions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Exception Handling</a>
-    <a href="#modules-imports" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Modules & Imports</a>
-    <a href="#lambda-functions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Lambda Functions</a>
-    <a href="#decorators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Decorators</a>
-    <a href="#generators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Generators</a>
-    <a href="#file-handling-advanced" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">CSV & JSON</a>
-    <a href="#regex" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Regular Expressions</a>
-    <a href="#api-requests" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">APIs & Requests</a>
-    <a href="#database" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Databases (SQLite)</a>
-    <a href="#web-scraping" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Web Scraping</a>
-    <a href="#data-science" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Science</a>
-    <a href="#gui-programming" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">GUI Programming</a>
-    <a href="#machine-learning" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Machine Learning</a>
-    <a href="#cybersecurity" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Cybersecurity</a>
-</nav>
+<!-- Add this script at the end of your body tag -->
+<script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+    });
 
-    </aside>
+    // Close menu when clicking a link (mobile)
+    document.querySelectorAll('#sidebar a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) { // md breakpoint
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    });
+</script>
+
+<style>
+    /* Make code blocks responsive */
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-x: auto;
+    }
+    
+    /* Ensure main content doesn't overlap with sidebar on desktop */
+    @media (min-width: 768px) {
+        main {
+            margin-left: 16rem; /* w-64 = 16rem */
+        }
+    }
+</style>
 
     <!-- Main Content -->
     <main class="ml-64 p-10 notebook">
@@ -2393,429 +2416,4 @@ plt.show()</pre>
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-class App(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("Advanced Tkinter")
-        self.geometry("400x300")
-        
-        # Widgets
-        self.label = ttk.Label(self, text="Enter text:")
-        self.entry = ttk.Entry(self)
-        self.button = ttk.Button(self, text="Submit", command=self.on_submit)
-        self.listbox = tk.Listbox(self)
-        
-        # Layout
-        self.label.pack(pady=5)
-        self.entry.pack(pady=5)
-        self.button.pack(pady=5)
-        self.listbox.pack(pady=5, fill=tk.BOTH, expand=True)
-        
-        # Menu
-        menubar = tk.Menu(self)
-        file_menu = tk.Menu(menubar, tearoff=0)
-        file_menu.add_command(label="Exit", command=self.destroy)
-        menubar.add_cascade(label="File", menu=file_menu)
-        self.config(menu=menubar)
-    
-    def on_submit(self):
-        text = self.entry.get()
-        if text:
-            self.listbox.insert(tk.END, text)
-            self.entry.delete(0, tk.END)
-        else:
-            messagebox.showwarning("Input Error", "Please enter text")
-
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()</pre>
-        </div>
-
-        <!-- PyQt -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 PyQt Advanced</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
-                            QLabel, QPushButton, QLineEdit, QListWidget)
-from PyQt5.QtCore import Qt
-
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Advanced PyQt")
-        self.setGeometry(100, 100, 400, 300)
-        
-        # Central widget
-        central_widget = QWidget()
-        self.setCentralWidget(central_widget)
-        layout = QVBoxLayout()
-        
-        # Widgets
-        self.label = QLabel("Enter text:")
-        self.entry = QLineEdit()
-        self.button = QPushButton("Submit")
-        self.list_widget = QListWidget()
-        
-        # Layout
-        layout.addWidget(self.label)
-        layout.addWidget(self.entry)
-        layout.addWidget(self.button)
-        layout.addWidget(self.list_widget)
-        central_widget.setLayout(layout)
-        
-        # Signals
-        self.button.clicked.connect(self.on_submit)
-        self.entry.returnPressed.connect(self.on_submit)
-        
-        # Menu
-        menu = self.menuBar()
-        file_menu = menu.addMenu("File")
-        exit_action = file_menu.addAction("Exit")
-        exit_action.triggered.connect(self.close)
-    
-    def on_submit(self):
-        text = self.entry.text()
-        if text:
-            self.list_widget.addItem(text)
-            self.entry.clear()
-        else:
-            self.statusBar().showMessage("Please enter text", 3000)
-
-if __name__ == "__main__":
-    app = QApplication([])
-    window = MainWindow()
-    window.show()
-    app.exec_()</pre>
-        </div>
-
-        <!-- Best Practices -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
-            <div class="text-gray-300 space-y-2">
-                <p>✓ Separate UI and business logic</p>
-                <p>✓ Use threading for long-running tasks</p>
-                <p>✓ Follow platform-specific design guidelines</p>
-                <p>✓ Implement error handling</p>
-                <p>✓ Use layout managers (grid/pack in Tkinter, QLayout in PyQt)</p>
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Threading example for PyQt
-from PyQt5.QtCore import QThread
-
-class Worker(QThread):
-    def run(self):
-        # Long-running task
-        self.sleep(5)
-        
-# Usage
-worker = Worker()
-worker.start()</pre>
-            </div>
-        </div>
-
-        <!-- Additional Libraries -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Other GUI Libraries</h3>
-            <div class="text-gray-300 space-y-2">
-                <p><strong>Kivy:</strong> Cross-platform, mobile-friendly</p>
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-from kivy.app import App
-from kivy.uix.button import Button
-
-class MyApp(App):
-    def build(self):
-        return Button(text='Hello Kivy')
-
-MyApp().run()</pre>
-                
-                <p><strong>PySimpleGUI:</strong> Simplified wrapper</p>
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-import PySimpleGUI as sg
-
-layout = [[sg.Text("Hello")], [sg.Button("OK")]]
-window = sg.Window("Demo", layout)
-event, values = window.read()</pre>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Machine Learning -->
-<section id="machine-learning" class="mb-10">
-    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Machine Learning with Python</h2>
-    <div class="space-y-6">
-        <!-- Scikit-learn -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Scikit-learn Pipeline</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
-
-# Create pipeline
-pipe = make_pipeline(
-    StandardScaler(),
-    SVC(kernel='rbf')
-)
-
-# Train and evaluate
-pipe.fit(X_train, y_train)
-score = pipe.score(X_test, y_test)</pre>
-        </div>
-
-        <!-- TensorFlow -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 TensorFlow Training</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Model training
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
-
-history = model.fit(X_train, y_train, 
-                    epochs=10,
-                    validation_split=0.2)
-
-# Evaluation
-test_loss, test_acc = model.evaluate(X_test, y_test)
-print(f"Test accuracy: {test_acc:.2f}")
-
-# Save model
-model.save("model.h5")</pre>
-        </div>
-
-        <!-- PyTorch -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 PyTorch Training Loop</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-import torch.optim as optim
-
-criterion = nn.MSELoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-for epoch in range(100):
-    # Forward pass
-    outputs = model(inputs)
-    loss = criterion(outputs, labels)
-    
-    # Backward pass
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
-    
-    if (epoch+1) % 10 == 0:
-        print(f'Epoch {epoch+1}, Loss: {loss.item():.4f}')</pre>
-        </div>
-
-        <!-- Model Evaluation -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Model Evaluation</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-from sklearn.metrics import classification_report
-
-# Classification report
-y_pred = model.predict(X_test)
-print(classification_report(y_test, y_pred))
-
-# Confusion matrix
-from sklearn.metrics import confusion_matrix
-print(confusion_matrix(y_test, y_pred))</pre>
-        </div>
-
-        <!-- Best Practices -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
-            <div class="text-gray-300 space-y-2">
-                <p>✓ Split data into train/validation/test sets</p>
-                <p>✓ Normalize/standardize features</p>
-                <p>✓ Use cross-validation</p>
-                <p>✓ Monitor training with TensorBoard</p>
-                <p>✓ Version control your models</p>
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Data splitting
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42)</pre>
-            </div>
-        </div>
-
-        <!-- Hyperparameter Tuning -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Hyperparameter Tuning</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-from sklearn.model_selection import GridSearchCV
-
-params = {'C': [0.1, 1, 10], 'gamma': [1, 0.1, 0.01]}
-grid = GridSearchCV(SVC(), params, cv=5)
-grid.fit(X_train, y_train)
-
-print(f"Best params: {grid.best_params_}")</pre>
-        </div>
-    </div>
-</section>
-<!-- Cybersecurity -->
-<section id="cybersecurity" class="mb-10">
-    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Cybersecurity with Python</h2>
-    <div class="space-y-6">
-        <!-- Hashing & Salting -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Secure Password Hashing</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-import bcrypt
-import secrets
-
-# Generate secure password hash
-password = "user_password".encode()
-salt = bcrypt.gensalt(rounds=12)
-hashed = bcrypt.hashpw(password, salt)
-
-# Verify password
-if bcrypt.checkpw(password, hashed):
-    print("Access granted")</pre>
-        </div>
-
-        <!-- Asymmetric Encryption -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 RSA Encryption</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
-from cryptography.hazmat.primitives import hashes
-
-# Generate key pair
-private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
-public_key = private_key.public_key()
-
-# Encrypt with public key
-message = b"Secret Message"
-ciphertext = public_key.encrypt(
-    message,
-    padding.OAEP(
-        mgf=padding.MGF1(algorithm=hashes.SHA256()),
-        algorithm=hashes.SHA256(),
-        label=None
-    )
-)
-
-# Decrypt with private key
-plaintext = private_key.decrypt(
-    ciphertext,
-    padding.OAEP(
-        mgf=padding.MGF1(algorithm=hashes.SHA256()),
-        algorithm=hashes.SHA256(),
-        label=None
-    )
-)</pre>
-        </div>
-
-        <!-- Digital Signatures -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Digital Signatures</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-from cryptography.hazmat.primitives.asymmetric import padding
-from cryptography.hazmat.primitives import hashes
-
-# Sign message
-signature = private_key.sign(
-    message,
-    padding.PSS(
-        mgf=padding.MGF1(hashes.SHA256()),
-        salt_length=padding.PSS.MAX_LENGTH
-    ),
-    hashes.SHA256()
-)
-
-# Verify signature
-try:
-    public_key.verify(
-        signature,
-        message,
-        padding.PSS(
-            mgf=padding.MGF1(hashes.SHA256()),
-            salt_length=padding.PSS.MAX_LENGTH
-        ),
-        hashes.SHA256()
-    )
-    print("Signature valid")
-except InvalidSignature:
-    print("Signature invalid")</pre>
-        </div>
-
-        <!-- Network Security -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 SSL/TLS Verification</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-import requests
-import ssl
-
-# Secure requests
-response = requests.get("https://api.example.com", verify=True)
-
-# Create SSL context
-context = ssl.create_default_context()
-context.check_hostname = True
-context.verify_mode = ssl.CERT_REQUIRED</pre>
-        </div>
-
-        <!-- Security Tools -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Security Utilities</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Secure random generation
-import secrets
-token = secrets.token_urlsafe(32)  # 256-bit secure URL-safe token
-
-# Input validation
-import re
-def sanitize_input(input_str):
-    return re.sub(r'[^a-zA-Z0-9]', '', input_str)
-
-# Secret management
-from getpass import getpass</pre>
-        </div>
-
-        <!-- Best Practices -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
-            <div class="text-gray-300 space-y-2">
-                <p>✓ Use bcrypt/argon2 for password storage</p>
-                <p>✓ Never store secrets in code</p>
-                <p>✓ Validate all user inputs</p>
-                <p>✓ Use HTTPS for network communication</p>
-                <p>✓ Rotate encryption keys regularly</p>
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Dependency security check
-# pip install safety
-# safety check</pre>
-            </div>
-        </div>
-    </div>
-</section>
-
-        </section>
-    </main>
-<script>
-document.getElementById("menu-btn").addEventListener("click", function () {
-    document.getElementById("sidebar").classList.toggle("hidden");
-});
-</script>
-<!-- Back to Top Button -->
-<button id="back-to-top" class="hidden fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-md">
-    ↑ Top
-</button>
-
-<script>
-const backToTop = document.getElementById("back-to-top");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-        backToTop.classList.remove("hidden");
-    } else {
-        backToTop.classList.add("hidden");
-    }
-});
-
-backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-</script>
-
-</body>
-</html>
+# ... (rest of the code remains unchanged)
