@@ -937,7 +937,7 @@ show_global()  <span class="code-comment"># Global count: 5</span></pre>
 
             <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Basic operations
+<span class="code-comment"># Basic operations</span>
 nums = [1, 2, 3, 4, 5]
 print(nums[1])        <span class="code-comment"># 2 (indexing)</span>
 print(nums[-1])       <span class="code-comment"># 5 (negative indexing)</span>
@@ -946,7 +946,7 @@ print(len(nums))      <span class="code-comment"># 5 (length)</span>
 print(3 in nums)      <span class="code-comment"># True (membership check)</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Common methods
+<span class="code-comment"># Common methods</span>
 fruits = ["apple", "banana"]
 fruits.append("orange")      <span class="code-comment"># Add item</span>
 fruits.insert(1, "mango")    <span class="code-comment"># Insert at position</span>
@@ -957,7 +957,7 @@ fruits.reverse()             <span class="code-comment"># Reverse in-place</span
 print(fruits)                <span class="code-comment"># ['orange', 'mango']</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# List operations
+<span class="code-comment"># List operations</span>
 a = [1, 2] + [3, 4]      <span class="code-comment"># Concatenation → [1,2,3,4]</span>
 b = [0] * 3              <span class="code-comment"># Repetition → [0,0,0]</span>
 c = [x**2 for x in a]    <span class="code-comment"># List comprehension → [1,4,9,16]</span>
@@ -972,7 +972,7 @@ d = a.copy()             <span class="code-comment"># Shallow copy</span></pre>
 
             <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Basic operations
+<span class="code-comment"># Basic operations</span>
 colors = ('red', 'green', 'blue')
 print(colors[1])        <span class="code-comment"># green</span>
 print(colors[::2])      <span class="code-comment"># ('red', 'blue') (slicing)</span>
@@ -980,25 +980,25 @@ print(len(colors))      <span class="code-comment"># 3</span>
 print('red' in colors)  <span class="code-comment"># True</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Tuple methods
+<span class="code-comment"># Tuple methods</span>
 numbers = (1, 2, 2, 3)
 print(numbers.count(2))  <span class="code-comment"># 2 (occurrences)</span>
 print(numbers.index(3)) <span class="code-comment"># 3 (first occurrence index)</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Tuple unpacking
+<span class="code-comment"># Tuple unpacking</span>
 point = (10, 20)
 x, y = point            <span class="code-comment"># x=10, y=20</span>
 
-# Returning multiple values
+<span class="code-comment"># Returning multiple values</span>
 def min_max(nums):
     return min(nums), max(nums)
 result = min_max([5,2,8,1])  <span class="code-comment"># (1,8)</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Immutability note
-# colors[0] = 'yellow'  <span class="code-comment"># TypeError</span>
-# Can contain mutable elements
+<span class="code-comment"># Immutability note</span>
+<span class="code-comment"># colors[0] = 'yellow'  # TypeError</span>
+<span class="code-comment"># Can contain mutable elements</span>
 mixed = (1, [2, 3], "hello")
 mixed[1].append(4)     <span class="code-comment"># Valid → (1, [2,3,4], "hello")</span></pre>
             </div>
@@ -1053,12 +1053,12 @@ mixed[1].append(4)     <span class="code-comment"># Valid → (1, [2,3,4], "hell
 
             <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Dictionary creation
+<span class="code-comment"># Dictionary creation</span>
 empty_dict = {}
 grades = dict(Alice=95, Bob=88)
 person = {"name": "Alice", "age": 25, "scores": [95, 88]}
 
-# Access methods
+<span class="code-comment"># Access methods</span>
 print(person.get("name"))          <span class="code-comment"># Alice</span>
 print(person.get("height", 160))    <span class="code-comment"># 160 (default if key missing)</span>
 print(person.keys())                <span class="code-comment"># dict_keys(['name', 'age', 'scores'])</span>
@@ -1066,13 +1066,13 @@ print(person.values())              <span class="code-comment"># dict_values(['A
 print(person.items())               <span class="code-comment"># dict_items([('name', 'Alice'), ...])</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Dictionary operations
+<span class="code-comment"># Dictionary operations</span>
 person["city"] = "New York"         <span class="code-comment"># Add/update</span>
 del person["age"]                   <span class="code-comment"># Delete key</span>
 popped = person.pop("scores")       <span class="code-comment"># Remove and return value</span>
 person.update({"age": 30, "job": "Engineer"})  <span class="code-comment"># Merge dictionaries</span>
 
-# Dictionary comprehension
+<span class="code-comment"># Dictionary comprehension</span>
 square_dict = {x: x**2 for x in range(5)}  <span class="code-comment"># {0:0, 1:1, 2:4, 3:9, 4:16}</span></pre>
             </div>
         </div>
@@ -1084,7 +1084,7 @@ square_dict = {x: x**2 for x in range(5)}  <span class="code-comment"># {0:0, 1:
 
             <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Set operations
+<span class="code-comment"># Set operations</span>
 a = {1, 2, 3}
 b = {2, 3, 4}
 
@@ -1094,7 +1094,7 @@ print(a - b)   <span class="code-comment"># Difference → {1}</span>
 print(a ^ b)   <span class="code-comment"># Symmetric Difference → {1,4}</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Set methods
+<span class="code-comment"># Set methods</span>
 s = {1, 2, 3}
 s.add(4)                <span class="code-comment"># {1,2,3,4}</span>
 s.discard(2)            <span class="code-comment"># {1,3,4} (no error if missing)</span>
@@ -1102,7 +1102,7 @@ s.remove(3)             <span class="code-comment"># {1,4} (raises KeyError if m
 s.update([5,6])         <span class="code-comment"># {1,4,5,6}</span>
 popped = s.pop()        <span class="code-comment"># Remove and return arbitrary element</span>
 
-# Set comprehension
+<span class="code-comment"># Set comprehension</span>
 even_squares = {x**2 for x in range(10) if x%2 == 0}</pre>
             </div>
         </div>
@@ -1211,7 +1211,7 @@ class Circle(Shape):
     def area(self):
         return 3.14 * self.radius ** 2
 
-# shape = Shape()  <span class="code-comment"># Error</span>
+<span class="code-comment"># shape = Shape()  # Error</span>
 circle = Circle(5)
 print(circle.area())  <span class="code-comment"># 78.5</span></pre>
         </div>
@@ -1244,7 +1244,7 @@ print(combined)  <span class="code-comment"># 'Python 101 & OOP Guide' (500 page
 import functools
 import time
 
-# Logging decorator
+<span class="code-comment"># Logging decorator</span>
 def logger(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -1254,7 +1254,7 @@ def logger(func):
         return result
     return wrapper
 
-# Caching decorator
+<span class="code-comment"># Caching decorator</span>
 def cache(max_size=128):
     def decorator(func):
         cache = {}
@@ -1296,19 +1296,19 @@ print(calc.factorial(5))  <span class="code-comment"># Caches results</span></pr
             <h3 class="text-xl font-semibold text-blue-400">🔸 Basic File Operations</h3>
             <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Modes: r (read), w (write), a (append), r+ (read/write)
-# b (binary mode), t (text mode, default)
+<span class="code-comment"># Modes: r (read), w (write), a (append), r+ (read/write)</span>
+<span class="code-comment"># b (binary mode), t (text mode, default)</span>
 
-# Writing to a file
+<span class="code-comment"># Writing to a file</span>
 with open("diary.txt", "w") as f:
     f.write("First line\n")
     f.writelines(["Second line\n", "Third line\n"])
 
-# Reading entire content
+<span class="code-comment"># Reading entire content</span>
 with open("diary.txt", "r") as f:
     print(f.read())  <span class="code-comment"># Full content</span>
 
-# Reading line by line
+<span class="code-comment"># Reading line by line</span>
 with open("diary.txt", "r") as f:
     for line in f:
         print(line.strip())</pre>
@@ -1320,16 +1320,16 @@ with open("diary.txt", "r") as f:
             <h3 class="text-xl font-semibold text-blue-400">🔸 File Positioning</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 with open("data.bin", "wb+") as f:
-    # Write binary data
+    <span class="code-comment"># Write binary data</span>
     f.write(b"\x00\x01\x02\x03")
     
-    # Move to start (position 0)
+    <span class="code-comment"># Move to start (position 0)</span>
     f.seek(0)
     
-    # Read first 2 bytes
+    <span class="code-comment"># Read first 2 bytes</span>
     print(f.read(2))  <span class="code-comment"># b'\x00\x01'</span>
     
-    # Current position
+    <span class="code-comment"># Current position</span>
     print(f.tell())   <span class="code-comment"># 2</span></pre>
         </div>
 
@@ -1339,7 +1339,7 @@ with open("data.bin", "wb+") as f:
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import csv
 
-# Writing CSV
+<span class="code-comment"># Writing CSV</span>
 with open("data.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerow(["Name", "Age"])
@@ -1348,7 +1348,7 @@ with open("data.csv", "w", newline="") as f:
         ["Bob", 30]
     ])
 
-# Reading CSV
+<span class="code-comment"># Reading CSV</span>
 with open("data.csv", "r") as f:
     reader = csv.DictReader(f)
     for row in reader:
@@ -1361,12 +1361,12 @@ with open("data.csv", "r") as f:
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import json
 
-# Writing to a JSON file
+<span class="code-comment"># Writing to a JSON file</span>
 data = {"name": "Alice", "scores": [88, 95]}
 with open("data.json", "w") as f:
     json.dump(data, f, indent=2)
 
-# Reading from a JSON file
+<span class="code-comment"># Reading from a JSON file</span>
 with open("data.json", "r") as f:
     loaded = json.load(f)
     print(loaded["name"])  <span class="code-comment"># Alice</span></pre>
@@ -1379,13 +1379,13 @@ with open("data.json", "r") as f:
 import os
 import shutil
 
-# File operations
+<span class="code-comment"># File operations</span>
 os.rename("old.txt", "new.txt")    <span class="code-comment"># Rename</span>
 os.remove("file.txt")             <span class="code-comment"># Delete</span>
 shutil.copy("src.txt", "dst.txt")  <span class="code-comment"># Copy</span>
 shutil.move("src.txt", "dest/")    <span class="code-comment"># Move</span>
 
-# Directory operations
+<span class="code-comment"># Directory operations</span>
 os.mkdir("new_dir")               <span class="code-comment"># Create directory</span>
 os.listdir(".")                   <span class="code-comment"># List files</span>
 os.path.exists("file.txt")        <span class="code-comment"># Check existence</span></pre>
@@ -1425,7 +1425,7 @@ except ValueError:
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Handling</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Catching multiple exceptions
+<span class="code-comment"># Catching multiple exceptions</span>
 try:
     file = open("data.txt")
     data = file.read()
@@ -1492,19 +1492,19 @@ except FileNotFoundError as e:
             <h3 class="text-xl font-semibold text-blue-400">🔸 Import Types</h3>
             <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# 1. Standard import
+<span class="code-comment"># 1. Standard import</span>
 import math
 print(math.pi)
 
-# 2. Import with alias
+<span class="code-comment"># 2. Import with alias</span>
 import numpy as np
 print(np.array([1,2]))
 
-# 3. From-import
+<span class="code-comment"># 3. From-import</span>
 from datetime import datetime
 print(datetime.now())
 
-# 4. Wildcard import (not recommended)
+<span class="code-comment"># 4. Wildcard import (not recommended)</span>
 from random import *
 print(randint(1,10))</pre>
             </div>
@@ -1514,7 +1514,7 @@ print(randint(1,10))</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Module Attributes</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# mymodule.py
+<span class="code-comment"># mymodule.py</span>
 __version__ = "1.0"
 def helper():
     return "Help!"
@@ -1526,7 +1526,7 @@ if __name__ == "__main__":
     main()</pre>
 
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# main.py
+<span class="code-comment"># main.py</span>
 import mymodule
 print(mymodule.__version__)  <span class="code-comment"># 1.0</span>
 print(mymodule.__name__)     <span class="code-comment"># mymodule</span></pre>
@@ -1536,7 +1536,7 @@ print(mymodule.__name__)     <span class="code-comment"># mymodule</span></pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Packages</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Package structure
+<span class="code-comment"># Package structure</span>
 my_package/
 ├── __init__.py
 ├── utils.py
@@ -1544,7 +1544,7 @@ my_package/
     ├── __init__.py
     └── helpers.py
 
-# Import from package
+<span class="code-comment"># Import from package</span>
 from my_package.utils import format_data
 from my_package.subpackage.helpers import validate</pre>
         </div>
@@ -1575,7 +1575,7 @@ from my_package.subpackage.helpers import validate</pre>
 import sys
 print(sys.path)  <span class="code-comment"># List of directories Python searches for modules</span>
 
-# Add custom path
+<span class="code-comment"># Add custom path</span>
 sys.path.append("/path/to/my/modules")</pre>
         </div>
 
@@ -1586,7 +1586,7 @@ sys.path.append("/path/to/my/modules")</pre>
 import importlib
 import mymodule
 
-# After modifying mymodule.py
+<span class="code-comment"># After modifying mymodule.py</span>
 importlib.reload(mymodule)</pre>
         </div>
     </div>
@@ -1601,11 +1601,11 @@ importlib.reload(mymodule)</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Syntax</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Simple addition
+<span class="code-comment"># Simple addition</span>
 add = lambda a, b: a + b
 print(add(3, 5))  <span class="code-comment"># 8</span>
 
-# No arguments
+<span class="code-comment"># No arguments</span>
 greet = lambda: "Hello World"
 print(greet())     <span class="code-comment"># Hello World</span></pre>
         </div>
@@ -1615,19 +1615,19 @@ print(greet())     <span class="code-comment"># Hello World</span></pre>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Common Use Cases</h3>
             <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Sorting with key
+<span class="code-comment"># Sorting with key</span>
 people = [{"name": "Alice", "age": 25}, {"name": "Bob", "age": 30}]
 sorted_ages = sorted(people, key=lambda x: x['age'])
 print(sorted_ages)  <span class="code-comment"># [{'name': 'Alice', 'age': 25}, ...]</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Filtering with condition
+<span class="code-comment"># Filtering with condition</span>
 numbers = [1, 2, 3, 4, 5, 6]
 even = list(filter(lambda x: x % 2 == 0, numbers))
 print(even)  <span class="code-comment"># [2, 4, 6]</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Reduce with lambda
+<span class="code-comment"># Reduce with lambda</span>
 from functools import reduce
 product = reduce(lambda x, y: x * y, [1, 2, 3, 4])
 print(product)  <span class="code-comment"># 24</span></pre>
@@ -1638,11 +1638,11 @@ print(product)  <span class="code-comment"># 24</span></pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Patterns</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Conditional logic
+<span class="code-comment"># Conditional logic</span>
 grade = lambda score: 'Pass' if score >= 50 else 'Fail'
 print(grade(65))  <span class="code-comment"># Pass</span>
 
-# Multiple arguments
+<span class="code-comment"># Multiple arguments</span>
 full_name = lambda first, last: f"{first.strip().title()} {last.strip().title()}"
 print(full_name("  john ", "doe "))  <span class="code-comment"># John Doe</span></pre>
         </div>
@@ -1670,6 +1670,7 @@ print(full_name("  john ", "doe "))  <span class="code-comment"># John Doe</span
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Decorator</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Basic decorator example</span>
 def decorator(func):
     def wrapper():
         print("Before function call")
@@ -1682,12 +1683,9 @@ def hello():
     print("Hello, world!")
 
 hello()</pre>
-        </div>
 
-        <!-- Decorators with Arguments -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Decorators with Arguments</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Decorator with arguments</span>
 def repeat(n_times):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -1702,12 +1700,9 @@ def greet(name):
     print(f"Hello {name}")
 
 greet("Alice")  <span class="code-comment"># Prints 3 times</span></pre>
-        </div>
 
-        <!-- Class-based Decorators -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Class-based Decorators</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Class-based decorator</span>
 class Timer:
     def __init__(self, func):
         self.func = func
@@ -1725,14 +1720,9 @@ def long_operation():
     time.sleep(1)
 
 long_operation()  <span class="code-comment"># Prints execution time</span></pre>
-        </div>
 
-        <!-- Decorator Best Practices -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
-            <div class="text-gray-300 space-y-2">
-                <p>✓ Use <code>functools.wraps</code> to preserve metadata</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Using functools.wraps to preserve metadata</span>
 import functools
 
 def decorator(func):
@@ -1741,15 +1731,15 @@ def decorator(func):
         return func(*args, **kwargs)
     return wrapper</pre>
                 
-                <p>✓ Stack multiple decorators properly</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Stacking multiple decorators</span>
 @decorator1
 @decorator2
 def my_function():
     pass</pre>
                 
-                <p>✓ Handle exceptions in decorators</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Error handling in decorators</span>
 def handle_errors(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -1758,7 +1748,6 @@ def handle_errors(func):
         except Exception as e:
             print(f"Error: {str(e)}")
     return wrapper</pre>
-            </div>
         </div>
     </div>
 </section>
@@ -1772,13 +1761,14 @@ def handle_errors(func):
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Generator Basics</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Generator function example</span>
 def fibonacci(limit):
     a, b = 0, 1
     while a < limit:
         yield a
         a, b = b, a + b
 
-# Using generator
+<span class="code-comment"># Using generator</span>
 for num in fibonacci(100):
     print(num)  <span class="code-comment"># 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89</span></pre>
         </div>
@@ -1787,12 +1777,12 @@ for num in fibonacci(100):
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Generator Expressions</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Similar to list comprehension but with ()
+<span class="code-comment"># Similar to list comprehension but with ()</span>
 squares = (x**2 for x in range(10))
 print(next(squares))  <span class="code-comment"># 0</span>
 print(next(squares))  <span class="code-comment"># 1</span>
 
-# Memory efficient sum
+<span class="code-comment"># Memory efficient sum</span>
 sum_of_squares = sum(x**2 for x in range(1000000))</pre>
         </div>
 
@@ -1872,20 +1862,20 @@ gen.close()         <span class="code-comment"># Prints Generator closed</span><
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import csv
 
-# Reading with DictReader
+<span class="code-comment"># Reading with DictReader</span>
 with open("data.csv", "r") as f:
     reader = csv.DictReader(f)
     for row in reader:
         print(f"{row['Name']} is {row['Age']} years old")
 
-# Writing with DictWriter
+<span class="code-comment"># Writing with DictWriter</span>
 with open("output.csv", "w", newline="") as f:
     fieldnames = ["Name", "Email"]
     writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=';')
     writer.writeheader()
     writer.writerow({"Name": "Alice", "Email": "alice@example.com"})
 
-# Handling TSV files
+<span class="code-comment"># Handling TSV files</span>
 with open("data.tsv", "w", newline="") as f:
     writer = csv.writer(f, delimiter='\t')
     writer.writerow(["ID", "Value"])</pre>
@@ -1898,7 +1888,7 @@ with open("data.tsv", "w", newline="") as f:
 import json
 from datetime import datetime
 
-# Custom JSON encoder
+<span class="code-comment"># Custom JSON encoder</span>
 class CustomEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime):
@@ -1908,7 +1898,7 @@ class CustomEncoder(json.JSONEncoder):
 data = {"time": datetime.now(), "name": "Alice"}
 json_str = json.dumps(data, cls=CustomEncoder)
 
-# Custom JSON decoder
+<span class="code-comment"># Custom JSON decoder</span>
 def datetime_decoder(dct):
     for key, value in dct.items():
         try:
@@ -1926,13 +1916,13 @@ loaded = json.loads(json_str, object_hook=datetime_decoder)</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import pandas as pd
 
-# Read CSV
+<span class="code-comment"># Read CSV</span>
 df = pd.read_csv("data.csv", parse_dates=['timestamp'])
 
-# Write JSON
+<span class="code-comment"># Write JSON</span>
 df.to_json("data.json", orient='records')
 
-# Handle large files
+<span class="code-comment"># Handle large files</span>
 chunk_iter = pd.read_csv("large.csv", chunksize=10000)
 for chunk in chunk_iter:
     process(chunk)</pre>
@@ -2040,7 +2030,7 @@ daemon.start()
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import re
 
-# Match object methods
+<span class="code-comment"># Match object methods</span>
 text = "Date: 2023-08-15"
 match = re.search(r"(\d{4})-(\d{2})-(\d{2})", text)
 if match:
@@ -2054,7 +2044,7 @@ if match:
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Substitution</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Replace dates
+<span class="code-comment"># Replace dates</span>
 text = "Copyright 2022. Updated 2023."
 new_text = re.sub(r"\d{4}", "YEAR", text)
 print(new_text)  <span class="code-comment"># Copyright YEAR. Updated YEAR.</span></pre>
@@ -2064,7 +2054,7 @@ print(new_text)  <span class="code-comment"># Copyright YEAR. Updated YEAR.</spa
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Compiled Patterns</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Precompile for reuse
+<span class="code-comment"># Precompile for reuse</span>
 phone_re = re.compile(r"\(\d{3}\) \d{3}-\d{4}")
 text = "Call (415) 555-1234"
 match = phone_re.search(text)
@@ -2075,7 +2065,7 @@ print(match.group())  <span class="code-comment"># (415) 555-1234</span></pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Regex Flags</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Case-insensitive matching
+<span class="code-comment"># Case-insensitive matching</span>
 text = "Color or colour?"
 matches = re.findall(r"colou?r", text, flags=re.IGNORECASE)
 print(matches)  <span class="code-comment"># ['Color', 'colour']</span></pre>
@@ -2085,12 +2075,12 @@ print(matches)  <span class="code-comment"># ['Color', 'colour']</span></pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Patterns</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Lookaheads and lookbehinds
+<span class="code-comment"># Lookaheads and lookbehinds</span>
 text = "100kg 200lb"
 weights = re.findall(r"\d+(?=kg)", text)  <span class="code-comment"># Positive lookahead</span>
 print(weights)  <span class="code-comment"># ['100']</span>
 
-# Named groups
+<span class="code-comment"># Named groups</span>
 date_re = r"(?P<year>\d{4})-(?P<month>\d{2})"
 match = re.search(date_re, "2023-08")
 print(match.groupdict())  <span class="code-comment"># {'year': '2023', 'month': '08'}</span></pre>
@@ -2140,13 +2130,13 @@ pattern = re.compile(r"""
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 HTTP Methods</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# PUT request
+<span class="code-comment"># PUT request</span>
 response = requests.put("https://api.example.com/items/1", json={"name": "new item"})
 
-# DELETE request
+<span class="code-comment"># DELETE request</span>
 response = requests.delete("https://api.example.com/items/1")
 
-# PATCH request
+<span class="code-comment"># PATCH request</span>
 response = requests.patch("https://api.example.com/items/1", json={"price": 19.99})</pre>
         </div>
 
@@ -2154,14 +2144,14 @@ response = requests.patch("https://api.example.com/items/1", json={"price": 19.9
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Headers & Authentication</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Custom headers
+<span class="code-comment"># Custom headers</span>
 headers = {
     "User-Agent": "MyApp/1.0",
     "Authorization": "Bearer abc123"
 }
 response = requests.get("https://api.example.com", headers=headers)
 
-# Basic auth
+<span class="code-comment"># Basic auth</span>
 from requests.auth import HTTPBasicAuth
 response = requests.get(
     "https://api.example.com",
@@ -2204,7 +2194,7 @@ except requests.exceptions.RequestException as err:
 with requests.Session() as session:
     session.headers.update({"X-API-Key": "secret"})
     
-    # Persistent settings
+    <span class="code-comment"># Persistent settings</span>
     response1 = session.get("https://api.example.com/list")
     response2 = session.post("https://api.example.com/create", json={"data": "value"})</pre>
         </div>
@@ -2227,7 +2217,7 @@ response = requests.post("https://api.example.com/upload", files=files)</pre>
                 <p>✓ Validate SSL certificates</p>
                 <p>✓ Rate limit your requests</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Safe request with timeout and verification
+<span class="code-comment"># Safe request with timeout and verification</span>
 requests.get("https://api.example.com", timeout=5, verify=True)</pre>
             </div>
         </div>
@@ -2245,13 +2235,13 @@ requests.get("https://api.example.com", timeout=5, verify=True)</pre>
 import sqlite3
 from contextlib import closing
 
-# Using context manager for connection
+<span class="code-comment"># Using context manager for connection</span>
 with closing(sqlite3.connect("app.db")) as conn:
     with closing(conn.cursor()) as cursor:
-        # Parameterized query
+        <span class="code-comment"># Parameterized query</span>
         cursor.execute("INSERT INTO users (name, age) VALUES (?, ?)", ("Bob", 30))
         
-        # Batch insert
+        <span class="code-comment"># Batch insert</span>
         users = [("Charlie", 25), ("Diana", 28)]
         cursor.executemany("INSERT INTO users (name, age) VALUES (?, ?)", users)
     
@@ -2262,10 +2252,10 @@ with closing(sqlite3.connect("app.db")) as conn:
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Queries</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Foreign key support
+<span class="code-comment"># Foreign key support</span>
 conn.execute("PRAGMA foreign_keys = ON")
 
-# Create table with relations
+<span class="code-comment"># Create table with relations</span>
 conn.execute("""CREATE TABLE orders (
     id INTEGER PRIMARY KEY,
     user_id INTEGER,
@@ -2293,7 +2283,7 @@ finally:
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Row Factories</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Access columns by name
+<span class="code-comment"># Access columns by name</span>
 conn.row_factory = sqlite3.Row
 cursor = conn.cursor()
 cursor.execute("SELECT * FROM users LIMIT 1")
@@ -2307,7 +2297,7 @@ print(row["name"], row["age"])</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import datetime
 
-# Register adapters and converters
+<span class="code-comment"># Register adapters and converters</span>
 sqlite3.register_adapter(datetime.datetime, lambda dt: dt.isoformat())
 sqlite3.register_converter("timestamp", lambda dt: datetime.datetime.fromisoformat(dt.decode()))
 
@@ -2340,22 +2330,21 @@ conn.execute("CREATE TABLE events (id INTEGER, created_at timestamp)")</pre>
 from bs4 import BeautifulSoup
 import requests
 
-# Configure session
+<span class="code-comment"># Configure session</span>
 session = requests.Session()
 session.headers.update({"User-Agent": "Mozilla/5.0"})
 
-# Handle pagination
+<span class="code-comment"># Handle pagination</span>
 for page in range(1, 4):
     url = f"https://example.com/page/{page}"
     response = session.get(url)
-    soup = BeautifulSoup(response.text, "lxml")  # Using lxml parser
-    
-    # CSS Selectors
+    soup = BeautifulSoup(response.text, "lxml")  <span class="code-comment"># Using lxml parser</span> 
+    <span class="code-comment"># CSS Selectors</span>
     articles = soup.select("div.article > h2.title")
     for article in articles:
         print(article.get_text(strip=True))
     
-    # Extract attributes and handle missing elements
+    <span class="code-comment"># Extract attributes and handle missing elements</span>
     prices = soup.find_all("span", class_="price")
     for price in prices:
         print(price["data-value"] if price else "N/A")</pre>
@@ -2373,12 +2362,12 @@ from selenium.webdriver.support import expected_conditions as EC
 driver = Chrome()
 driver.get("https://example.com/login")
 
-# Form interaction
+<span class="code-comment"># Form interaction</span>
 driver.find_element(By.ID, "username").send_keys("user123")
 driver.find_element(By.ID, "password").send_keys("pass123")
 driver.find_element(By.XPATH, "//button[@type='submit']").click()
 
-# Wait for elements
+<span class="code-comment"># Wait for elements</span>
 try:
     element = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, "dashboard"))
@@ -2387,7 +2376,7 @@ try:
 except TimeoutError:
     print("Login failed")
 
-# Execute JavaScript
+<span class="code-comment"># Execute JavaScript</span>
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 driver.save_screenshot("page.png")
 driver.quit()</pre>
@@ -2436,20 +2425,20 @@ response = requests.get(url, headers=headers, proxies=proxies)</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Techniques</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Headless browsing
+<span class="code-comment"># Headless browsing</span>
 from selenium.webdriver.chrome.options import Options
 
 options = Options()
 options.add_argument("--headless=new")
 driver = Chrome(options=options)
 
-# Handling JavaScript-rendered content
+<span class="code-comment"># Handling JavaScript-rendered content</span>
 driver.get("https://example.com")
 WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.CLASS_NAME, "dynamic-content"))
 )
 
-# Scraping tables
+<span class="code-comment"># Scraping tables</span>
 table = driver.find_element(By.TAG_NAME, "table")
 rows = table.find_elements(By.TAG_NAME, "tr")
 for row in rows:
@@ -2929,9 +2918,9 @@ from getpass import getpass</pre>
                 <p>✓ Use HTTPS for network communication</p>
                 <p>✓ Rotate encryption keys regularly</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Dependency security check
-# pip install safety
-# safety check</pre>
+<span class="code-comment"># Dependency security check</span>
+<span class="code-comment"># pip install safety</span>
+<span class="code-comment"># safety check</span></pre>
             </div>
         </div>
     </div>
