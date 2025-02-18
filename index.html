@@ -605,6 +605,21 @@ print(a >> 2)  # Shift right → 15</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Operator Precedence</h3>
             <div class="bg-gray-800 p-3 rounded-md text-green-300 text-lg">
+                <!-- Add Walrus Operator section before precedence list -->
+                <div class="mb-4">
+                    <p class="mb-2">Walrus Operator (:=)</p>
+                    <pre class="text-sm">
+# Assignment expression (Python 3.8+)
+if (n := len(items)) > 10:
+    print(f"List is long ({n} items)")
+
+# In list comprehension
+[x for x in range(100) if (square := x**2) < 100]
+
+# In while loop
+while (chunk := file.read(8192)):</pre>
+                </div>
+
                 <p class="mb-2">Order of operations (highest to lowest):</p>
                 <ol class="list-decimal list-inside">
                     <li>() - Parentheses</li>
@@ -615,6 +630,7 @@ print(a >> 2)  # Shift right → 15</pre>
                     <li>&lt;&lt; &gt;&gt; - Bitwise shifts</li>
                     <li>&amp; - Bitwise AND</li>
                     <li>^ | - Bitwise XOR/OR</li>
+                    <li>:= - Assignment expression (Walrus)</li>
                     <li>&lt;= &lt; &gt; &gt;= == != - Comparisons</li>
                     <li>is, is not, in, not in - Identity/Membership</li>
                     <li>not - Logical NOT</li>
