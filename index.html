@@ -138,6 +138,19 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* Mobile sidebar */
+        @media (max-width: 767px) {
+            #sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            #sidebar.active {
+                transform: translateX(0);
+                display: block;
+            }
+        }
     </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200"
@@ -147,8 +160,8 @@
     ☰ Menu
 </button>
 
-<!-- Single Sidebar Navigation -->
-<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 transform transition-transform duration-200 ease-in-out md:translate-x-0 -translate-x-full z-40">
+<!-- Sidebar Navigation -->
+<aside id="sidebar" class="fixed top-0 left-0 w-64 h-screen bg-gray-800 p-5 md:block hidden">
     <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
     <nav class="mt-5 space-y-2 overflow-y-auto h-full pb-20">
         <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
@@ -180,7 +193,7 @@
 </aside>
 
 <!-- Main Content -->
-<main class="md:ml-64 p-4 md:p-10 w-full relative z-10">
+<main class="md:ml-64 p-4 md:p-10">
 
         <!-- Variables -->
 <section id="variables" class="mb-10">
