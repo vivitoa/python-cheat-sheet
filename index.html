@@ -327,12 +327,12 @@ keys = user.keys()  <span class="code-comment"># dict_keys(['name', 'age'])</spa
         <div>
             <h3 class="text-xl font-semibold text-blue-400 mb-2">Multiple Assignment</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Assign multiple variables
+<span class="code-comment"># Assign multiple variables</span>
 x, y, z = 1, 2, 3
 
-# Swap values
+<span class="code-comment"># Swap values</span>
 a, b = 10, 20
-a, b = b, a  # a=20, b=10</pre>
+a, b = b, a  <span class="code-comment"># a=20, b=10</span></pre>
         </div>
 
         <!-- Formatted Strings -->
@@ -341,7 +341,7 @@ a, b = b, a  # a=20, b=10</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 name = "Bob"
 age = 25
-print(f"{name} is {age} years old")  # Bob is 25 years old</pre>
+print(f"{name} is {age} years old")  <span class="code-comment"># Bob is 25 years old</span></pre>
         </div>
     </div>
 </section>
@@ -409,28 +409,28 @@ print(f"{name} is {age} years old")  # Bob is 25 years old</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">Type Conversion</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-int("25")        # 25 → Convert to integer
-float(7)         # 7.0 → Convert to float
-str(100)         # "100" → Convert to string
-list("hello")    # ['h', 'e', 'l', 'l', 'o']
-tuple([1,2,3])   # (1, 2, 3)
-set([1,2,2,3])   # {1, 2, 3}</pre>
+int("25")        <span class="code-comment"># 25 → Convert to integer</span>
+float(7)         <span class="code-comment"># 7.0 → Convert to float</span>
+str(100)         <span class="code-comment"># "100" → Convert to string</span>
+list("hello")    <span class="code-comment"># ['h', 'e', 'l', 'l', 'o']</span>
+tuple([1,2,3])   <span class="code-comment"># (1, 2, 3)</span>
+set([1,2,2,3])   <span class="code-comment"># {1, 2, 3}</span></pre>
         </div>
 
         <!-- Type Checking -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">Type Checking</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-type(42)         # → <class 'int'>
-isinstance(3.14, float)  # → True</pre>
+type(42)         <span class="code-comment"># → &lt;class 'int'&gt;</span>
+isinstance(3.14, float)  <span class="code-comment"># → True</span></pre>
         </div>
 
         <!-- Special Values -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">Special Values</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-None         # Represents absence of value
-True/False   # Boolean constants
+None         <span class="code-comment"># Represents absence of value</span>
+True/False   <span class="code-comment"># Boolean constants</span>
 ...</pre>
         </div>
     </div>
@@ -446,49 +446,49 @@ True/False   # Boolean constants
             <h3 class="text-xl font-semibold text-blue-400">Type Checking</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 num = 42
-print(type(num))          # &lt;class 'int'&gt;
+print(type(num))          <span class="code-comment"># &lt;class 'int'&gt;</span>
 
 name = "Alice"
-print(isinstance(name, str))  # True
+print(isinstance(name, str))  <span class="code-comment"># True</span>
 
 mixed_list = [1, "two", 3.0]
-print(type(mixed_list))   # &lt;class 'list'&gt;</pre>
+print(type(mixed_list))   <span class="code-comment"># &lt;class 'list'&gt;</span></pre>
         </div>
 
         <!-- Conversion Methods -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">Conversion Functions</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# String to numeric
-int_num = int("100")        # 100
-float_num = float("3.14")   # 3.14
+<span class="code-comment"># String to numeric</span>
+int_num = int("100")        <span class="code-comment"># 100</span>
+float_num = float("3.14")   <span class="code-comment"># 3.14</span>
 
-# Numeric to string
-str_num = str(255)          # "255"
+<span class="code-comment"># Numeric to string</span>
+str_num = str(255)          <span class="code-comment"># "255"</span>
 
-# List conversions
-num_tuple = tuple([1, 2, 3])  # (1, 2, 3)
-char_list = list("Hello")    # ['H', 'e', 'l', 'l', 'o']
+<span class="code-comment"># List conversions</span>
+num_tuple = tuple([1, 2, 3])  <span class="code-comment"># (1, 2, 3)</span>
+char_list = list("Hello")    <span class="code-comment"># ['H', 'e', 'l', 'l', 'o']</span>
 
-# Boolean conversion
-bool_val = bool(1)          # True
-int_from_bool = int(True)   # 1</pre>
+<span class="code-comment"># Boolean conversion</span>
+bool_val = bool(1)          <span class="code-comment"># True</span>
+int_from_bool = int(True)   <span class="code-comment"># 1</span></pre>
         </div>
 
         <!-- Special Cases -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">Special Conversions</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Base conversion
-hex_num = int("ff", 16)     # 255
-bin_num = bin(42)           # '0b101010'
+<span class="code-comment"># Base conversion</span>
+hex_num = int("ff", 16)     <span class="code-comment"># 255</span>
+bin_num = bin(42)           <span class="code-comment"># '0b101010'</span>
 
-# ASCII conversion
-char = chr(65)              # 'A'
-code = ord('A')             # 65
+<span class="code-comment"># ASCII conversion</span>
+char = chr(65)              <span class="code-comment"># 'A'</span>
+code = ord('A')             <span class="code-comment"># 65</span>
 
-# String formatting
-formatted = f"{255:x}"      # "ff" (hexadecimal)</pre>
+<span class="code-comment"># String formatting</span>
+formatted = f"{255:x}"      <span class="code-comment"># "ff" (hexadecimal)</span></pre>
         </div>
 
         <!-- Error Handling -->
@@ -500,7 +500,7 @@ try:
 except ValueError as e:
     print(f"Conversion error: {e}")
 
-# Check before conversion
+<span class="code-comment"># Check before conversion</span>
 value = "3.14"
 if value.replace('.', '', 1).isdigit():
     print(float(value))</pre>
@@ -517,13 +517,13 @@ if value.replace('.', '', 1).isdigit():
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Arithmetic Operators</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-print(10 + 3)   # Addition → 13
-print(10 - 3)   # Subtraction → 7
-print(10 * 3)   # Multiplication → 30
-print(10 ** 3)  # Exponentiation → 1000
-print(10 / 3)   # Division → 3.333...
-print(10 // 3)  # Floor Division → 3
-print(10 % 3)   # Modulus → 1</pre>
+print(10 + 3)   <span class="code-comment"># Addition → 13</span>
+print(10 - 3)   <span class="code-comment"># Subtraction → 7</span>
+print(10 * 3)   <span class="code-comment"># Multiplication → 30</span>
+print(10 ** 3)  <span class="code-comment"># Exponentiation → 1000</span>
+print(10 / 3)   <span class="code-comment"># Division → 3.333...</span>
+print(10 // 3)  <span class="code-comment"># Floor Division → 3</span>
+print(10 % 3)   <span class="code-comment"># Modulus → 1</span></pre>
         </div>
 
         <!-- Assignment Operators -->
@@ -531,24 +531,24 @@ print(10 % 3)   # Modulus → 1</pre>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Assignment Operators</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 x = 5
-x += 3   # x = x + 3 → 8
-x -= 2   # x = x - 2 → 6
-x *= 4   # x = x * 4 → 24
-x /= 3   # x = x / 3 → 8.0
-x **= 2  # x = x ** 2 → 64.0
-x %= 5   # x = x % 5 → 4.0</pre>
+x += 3   <span class="code-comment"># x = x + 3 → 8</span>
+x -= 2   <span class="code-comment"># x = x - 2 → 6</span>
+x *= 4   <span class="code-comment"># x = x * 4 → 24</span>
+x /= 3   <span class="code-comment"># x = x / 3 → 8.0</span>
+x **= 2  <span class="code-comment"># x = x ** 2 → 64.0</span>
+x %= 5   <span class="code-comment"># x = x % 5 → 4.0</span></pre>
         </div>
 
         <!-- Comparison Operators -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Comparison Operators</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-print(5 == 5)    # Equal → True
-print(5 != 3)    # Not Equal → True
-print(5 > 3)     # Greater Than → True
-print(5 <= 3)    # Less or Equal → False
-print("a" == "A")# Case-sensitive → False
-print(1.0 == 1)  # Value comparison → True</pre>
+print(5 == 5)    <span class="code-comment"># Equal → True</span>
+print(5 != 3)    <span class="code-comment"># Not Equal → True</span>
+print(5 > 3)     <span class="code-comment"># Greater Than → True</span>
+print(5 <= 3)    <span class="code-comment"># Less or Equal → False</span>
+print("a" == "A")<span class="code-comment"># Case-sensitive → False</span>
+print(1.0 == 1)  <span class="code-comment"># Value comparison → True</span></pre>
         </div>
 
         <!-- Logical Operators -->
@@ -558,11 +558,11 @@ print(1.0 == 1)  # Value comparison → True</pre>
 age = 25
 has_license = True
 
-# And/Or combinations
+<span class="code-comment"># And/Or combinations</span>
 can_drive = age >= 18 and has_license
 discount = age <= 12 or age >= 65
 
-# Truthy/Falsy evaluation
+<span class="code-comment"># Truthy/Falsy evaluation</span>
 name = ""
 if not name:
     print("Name is required")</pre>
@@ -574,11 +574,11 @@ if not name:
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 a = [1,2,3]
 b = [1,2,3]
-print(a is b)     # False (different objects)
-print(a == b)     # True (same values)
+print(a is b)     <span class="code-comment"># False (different objects)</span>
+print(a == b)     <span class="code-comment"># True (same values)</span>
 
 x = None
-print(x is None)  # True</pre>
+print(x is None)  <span class="code-comment"># True</span></pre>
         </div>
 
         <!-- Membership Operators -->
@@ -586,40 +586,40 @@ print(x is None)  # True</pre>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Membership Operators</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 colors = ["red", "green", "blue"]
-print("green" in colors)    # True
-print("yellow" not in colors) # True
+print("green" in colors)    <span class="code-comment"># True</span>
+print("yellow" not in colors) <span class="code-comment"># True</span>
 
 text = "Hello World"
-print("World" in text)      # True</pre>
+print("World" in text)      <span class="code-comment"># True</span></pre>
         </div>
 
         <!-- Bitwise Operators -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Bitwise Operators</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-a = 60    # 0011 1100
-b = 13    # 0000 1101
+a = 60    <span class="code-comment"># 0011 1100</span>
+b = 13    <span class="code-comment"># 0000 1101</span>
 
-print(a & b)   # AND → 12 (0000 1100)
-print(a | b)   # OR → 61 (0011 1101)
-print(a ^ b)   # XOR → 49 (0011 0001)
-print(~a)      # NOT → -61
-print(a << 2)  # Shift left → 240
-print(a >> 2)  # Shift right → 15</pre>
+print(a & b)   <span class="code-comment"># AND → 12 (0000 1100)</span>
+print(a | b)   <span class="code-comment"># OR → 61 (0011 1101)</span>
+print(a ^ b)   <span class="code-comment"># XOR → 49 (0011 0001)</span>
+print(~a)      <span class="code-comment"># NOT → -61</span>
+print(a << 2)  <span class="code-comment"># Shift left → 240</span>
+print(a >> 2)  <span class="code-comment"># Shift right → 15</span></pre>
         </div>
 
         <!-- Walrus Operator -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Walrus Operator</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Assignment expression (Python 3.8+)
+<span class="code-comment"># Assignment expression (Python 3.8+)</span>
 if (n := len(items)) > 10:
     print(f"List is long ({n} items)")
 
-# In list comprehension
+<span class="code-comment"># In list comprehension</span>
 [x for x in range(100) if (square := x**2) < 100]
 
-# In while loop
+<span class="code-comment"># In while loop</span>
 while (chunk := file.read(8192)):</pre>
         </div>
 
@@ -701,10 +701,10 @@ else:
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Ternary Operator</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Short-hand if-else
+<span class="code-comment"># Short-hand if-else</span>
 age = 20
 status = "Adult" if age >= 18 else "Minor"
-print(status)  # Adult</pre>
+print(status)  <span class="code-comment"># Adult</span></pre>
         </div>
     </div>
 </section>
@@ -718,31 +718,31 @@ print(status)  # Adult</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 For Loop</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Iterate through list
+<span class="code-comment"># Iterate through list</span>
 fruits = ["apple", "banana", "cherry"]
 for fruit in fruits:
     print(fruit.upper())
 
-# With index using enumerate
+<span class="code-comment"># With index using enumerate</span>
 for index, fruit in enumerate(fruits):
     print(f"{index}: {fruit}")
 
-# Range with step
+<span class="code-comment"># Range with step</span>
 for num in range(0, 10, 2):
-    print(num)  # 0, 2, 4, 6, 8</pre>
+    print(num)  <span class="code-comment"># 0, 2, 4, 6, 8</span></pre>
         </div>
 
         <!-- While Loop -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 While Loop</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Basic while loop
+<span class="code-comment"># Basic while loop</span>
 count = 0
 while count < 5:
     print(count)
     count += 1
 
-# With break/continue
+<span class="code-comment"># With break/continue</span>
 while True:
     user_input = input("Enter 'q' to quit: ")
     if user_input == 'q':
@@ -756,7 +756,7 @@ while True:
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Loop Control</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Else clause in loops
+<span class="code-comment"># Else clause in loops</span>
 for n in range(2, 10):
     for x in range(2, n):
         if n % x == 0:
@@ -764,7 +764,7 @@ for n in range(2, 10):
     else:
         print(f"{n} is prime")
 
-# Zip multiple iterables
+<span class="code-comment"># Zip multiple iterables</span>
 names = ["Alice", "Bob"]
 ages = [25, 30]
 for name, age in zip(names, ages):
@@ -775,13 +775,13 @@ for name, age in zip(names, ages):
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Comprehensions</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# List comprehension
+<span class="code-comment"># List comprehension</span>
 squares = [x**2 for x in range(10)]
 
-# Dictionary comprehension
+<span class="code-comment"># Dictionary comprehension</span>
 square_dict = {x: x**2 for x in range(5)}
 
-# Set comprehension
+<span class="code-comment"># Set comprehension</span>
 unique_lengths = {len(word) for word in ["hello", "world", "python"]}</pre>
         </div>
     </div>
@@ -799,34 +799,34 @@ unique_lengths = {len(word) for word in ["hello", "world", "python"]}</pre>
 def greet(name):
     return "Hello " + name
 
-print(greet("Alice"))  # Outputs: Hello Alice</pre>
+print(greet("Alice"))  <span class="code-comment"># Outputs: Hello Alice</span></pre>
         </div>
 
         <!-- Parameters & Return Values -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Parameters & Return Values</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Multiple parameters and return values
+<span class="code-comment"># Multiple parameters and return values</span>
 def calculate(x, y):
     sum = x + y
     product = x * y
     return sum, product
 
 s, p = calculate(3, 4)
-print(f"Sum: {s}, Product: {p}")  # Sum: 7, Product: 12</pre>
+print(f"Sum: {s}, Product: {p}")  <span class="code-comment"># Sum: 7, Product: 12</span></pre>
         </div>
 
         <!-- Advanced Parameters -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Parameters</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# *args for variable arguments
+<span class="code-comment"># *args for variable arguments</span>
 def average(*numbers):
     return sum(numbers) / len(numbers)
 
-print(average(5, 10, 15))  # 10.0
+print(average(5, 10, 15))  <span class="code-comment"># 10.0</span>
 
-# **kwargs for keyword arguments
+<span class="code-comment"># **kwargs for keyword arguments</span>
 def user_profile(**details):
     for key, value in details.items():
         print(f"{key}: {value}")
@@ -838,11 +838,11 @@ user_profile(name="Alice", age=25, city="NY")</pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Special Function Types</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Lambda (anonymous) functions
+<span class="code-comment"># Lambda (anonymous) functions</span>
 square = lambda x: x ** 2
-print(square(5))  # 25
+print(square(5))  <span class="code-comment"># 25</span>
 
-# Decorator functions
+<span class="code-comment"># Decorator functions</span>
 def logger(func):
     def wrapper(*args, **kwargs):
         print(f"Calling {func.__name__}")
@@ -863,14 +863,14 @@ example()</pre>
 def factorial(n):
     return 1 if n <= 1 else n * factorial(n-1)
 
-print(factorial(5))  # 120</pre>
+print(factorial(5))  <span class="code-comment"># 120</span></pre>
         </div>
 
         <!-- Best Practices -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Function Best Practices</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-# Type hints and docstrings
+<span class="code-comment"># Type hints and docstrings</span>
 def power(base: float, exponent: int) -> float:
     """Calculate base raised to the power of exponent.
     
@@ -883,7 +883,7 @@ def power(base: float, exponent: int) -> float:
     """
     return base ** exponent
 
-print(power(2, 3))  # 8.0</pre>
+print(power(2, 3))  <span class="code-comment"># 8.0</span></pre>
         </div>
 
         <!-- Scope & Closures -->
@@ -893,32 +893,32 @@ print(power(2, 3))  # 8.0</pre>
 def outer():
     message = "Hello"
     def inner():
-        print(message)  # Accessing outer scope
+        print(message)  <span class="code-comment"># Accessing outer scope</span>
     return inner
 
 closure = outer()
-closure()  # Hello</pre>
+closure()  <span class="code-comment"># Hello</span></pre>
         </div>
 
         <!-- Global vs Local Variables -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Global & Local Variables</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-count = 0  # Global variable
+count = 0  <span class="code-comment"># Global variable</span>
 
 def increment():
-    global count  # Declare global variable
-    local_num = 5  # Local variable
+    global count  <span class="code-comment"># Declare global variable</span>
+    local_num = 5  <span class="code-comment"># Local variable</span>
     count += local_num
 
 increment()
-print(count)  # 5
+print(count)  <span class="code-comment"># 5</span>
 
-# Accessing global without modification
+<span class="code-comment"># Accessing global without modification</span>
 def show_global():
     print("Global count:", count)
 
-show_global()  # Global count: 5</pre>
+show_global()  <span class="code-comment"># Global count: 5</span></pre>
             <p class="mt-2 text-gray-300 text-sm">
                 Note: Avoid using global variables when possible. Use function parameters and return values instead.
             </p>
@@ -939,29 +939,29 @@ show_global()  # Global count: 5</pre>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Basic operations
 nums = [1, 2, 3, 4, 5]
-print(nums[1])        # 2 (indexing)
-print(nums[-1])       # 5 (negative indexing)
-print(nums[1:4])      # [2, 3, 4] (slicing)
-print(len(nums))      # 5 (length)
-print(3 in nums)      # True (membership check)</pre>
+print(nums[1])        <span class="code-comment"># 2 (indexing)</span>
+print(nums[-1])       <span class="code-comment"># 5 (negative indexing)</span>
+print(nums[1:4])      <span class="code-comment"># [2, 3, 4] (slicing)</span>
+print(len(nums))      <span class="code-comment"># 5 (length)</span>
+print(3 in nums)      <span class="code-comment"># True (membership check)</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Common methods
 fruits = ["apple", "banana"]
-fruits.append("orange")      # Add item
-fruits.insert(1, "mango")    # Insert at position
-fruits.remove("banana")      # Remove item
-popped = fruits.pop(0)       # Remove and return item
-fruits.sort()                # Sort in-place
-fruits.reverse()             # Reverse in-place
-print(fruits)                # ['orange', 'mango']</pre>
+fruits.append("orange")      <span class="code-comment"># Add item</span>
+fruits.insert(1, "mango")    <span class="code-comment"># Insert at position</span>
+fruits.remove("banana")      <span class="code-comment"># Remove item</span>
+popped = fruits.pop(0)       <span class="code-comment"># Remove and return item</span>
+fruits.sort()                <span class="code-comment"># Sort in-place</span>
+fruits.reverse()             <span class="code-comment"># Reverse in-place</span>
+print(fruits)                <span class="code-comment"># ['orange', 'mango']</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # List operations
-a = [1, 2] + [3, 4]      # Concatenation → [1,2,3,4]
-b = [0] * 3              # Repetition → [0,0,0]
-c = [x**2 for x in a]    # List comprehension → [1,4,9,16]
-d = a.copy()             # Shallow copy</pre>
+a = [1, 2] + [3, 4]      <span class="code-comment"># Concatenation → [1,2,3,4]</span>
+b = [0] * 3              <span class="code-comment"># Repetition → [0,0,0]</span>
+c = [x**2 for x in a]    <span class="code-comment"># List comprehension → [1,4,9,16]</span>
+d = a.copy()             <span class="code-comment"># Shallow copy</span></pre>
             </div>
         </div>
 
@@ -974,33 +974,33 @@ d = a.copy()             # Shallow copy</pre>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Basic operations
 colors = ('red', 'green', 'blue')
-print(colors[1])        # green
-print(colors[::2])      # ('red', 'blue') (slicing)
-print(len(colors))      # 3
-print('red' in colors)  # True</pre>
+print(colors[1])        <span class="code-comment"># green</span>
+print(colors[::2])      <span class="code-comment"># ('red', 'blue') (slicing)</span>
+print(len(colors))      <span class="code-comment"># 3</span>
+print('red' in colors)  <span class="code-comment"># True</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Tuple methods
 numbers = (1, 2, 2, 3)
-print(numbers.count(2))  # 2 (occurrences)
-print(numbers.index(3)) # 3 (first occurrence index)</pre>
+print(numbers.count(2))  <span class="code-comment"># 2 (occurrences)</span>
+print(numbers.index(3)) <span class="code-comment"># 3 (first occurrence index)</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Tuple unpacking
 point = (10, 20)
-x, y = point            # x=10, y=20
+x, y = point            <span class="code-comment"># x=10, y=20</span>
 
 # Returning multiple values
 def min_max(nums):
     return min(nums), max(nums)
-result = min_max([5,2,8,1])  # (1,8)</pre>
+result = min_max([5,2,8,1])  <span class="code-comment"># (1,8)</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Immutability note
-# colors[0] = 'yellow'  # TypeError
+# colors[0] = 'yellow'  <span class="code-comment"># TypeError</span>
 # Can contain mutable elements
 mixed = (1, [2, 3], "hello")
-mixed[1].append(4)     # Valid → (1, [2,3,4], "hello")</pre>
+mixed[1].append(4)     <span class="code-comment"># Valid → (1, [2,3,4], "hello")</span></pre>
             </div>
         </div>
 
@@ -1059,21 +1059,21 @@ grades = dict(Alice=95, Bob=88)
 person = {"name": "Alice", "age": 25, "scores": [95, 88]}
 
 # Access methods
-print(person.get("name"))          # Alice
-print(person.get("height", 160))    # 160 (default if key missing)
-print(person.keys())                # dict_keys(['name', 'age', 'scores'])
-print(person.values())              # dict_values(['Alice', 25, [95, 88]])
-print(person.items())               # dict_items([('name', 'Alice'), ...])</pre>
+print(person.get("name"))          <span class="code-comment"># Alice</span>
+print(person.get("height", 160))    <span class="code-comment"># 160 (default if key missing)</span>
+print(person.keys())                <span class="code-comment"># dict_keys(['name', 'age', 'scores'])</span>
+print(person.values())              <span class="code-comment"># dict_values(['Alice', 25, [95, 88]])</span>
+print(person.items())               <span class="code-comment"># dict_items([('name', 'Alice'), ...])</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Dictionary operations
-person["city"] = "New York"         # Add/update
-del person["age"]                   # Delete key
-popped = person.pop("scores")       # Remove and return value
-person.update({"age": 30, "job": "Engineer"})  # Merge dictionaries
+person["city"] = "New York"         <span class="code-comment"># Add/update</span>
+del person["age"]                   <span class="code-comment"># Delete key</span>
+popped = person.pop("scores")       <span class="code-comment"># Remove and return value</span>
+person.update({"age": 30, "job": "Engineer"})  <span class="code-comment"># Merge dictionaries</span>
 
 # Dictionary comprehension
-square_dict = {x: x**2 for x in range(5)}  # {0:0, 1:1, 2:4, 3:9, 4:16}</pre>
+square_dict = {x: x**2 for x in range(5)}  <span class="code-comment"># {0:0, 1:1, 2:4, 3:9, 4:16}</span></pre>
             </div>
         </div>
 
@@ -1088,19 +1088,19 @@ square_dict = {x: x**2 for x in range(5)}  # {0:0, 1:1, 2:4, 3:9, 4:16}</pre>
 a = {1, 2, 3}
 b = {2, 3, 4}
 
-print(a | b)   # Union → {1,2,3,4}
-print(a & b)   # Intersection → {2,3}
-print(a - b)   # Difference → {1}
-print(a ^ b)   # Symmetric Difference → {1,4}</pre>
+print(a | b)   <span class="code-comment"># Union → {1,2,3,4}</span>
+print(a & b)   <span class="code-comment"># Intersection → {2,3}</span>
+print(a - b)   <span class="code-comment"># Difference → {1}</span>
+print(a ^ b)   <span class="code-comment"># Symmetric Difference → {1,4}</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Set methods
 s = {1, 2, 3}
-s.add(4)                # {1,2,3,4}
-s.discard(2)            # {1,3,4} (no error if missing)
-s.remove(3)             # {1,4} (raises KeyError if missing)
-s.update([5,6])         # {1,4,5,6}
-popped = s.pop()        # Remove and return arbitrary element
+s.add(4)                <span class="code-comment"># {1,2,3,4}</span>
+s.discard(2)            <span class="code-comment"># {1,3,4} (no error if missing)</span>
+s.remove(3)             <span class="code-comment"># {1,4} (raises KeyError if missing)</span>
+s.update([5,6])         <span class="code-comment"># {1,4,5,6}</span>
+popped = s.pop()        <span class="code-comment"># Remove and return arbitrary element</span>
 
 # Set comprehension
 even_squares = {x**2 for x in range(10) if x%2 == 0}</pre>
@@ -1157,7 +1157,7 @@ even_squares = {x**2 for x in range(10) if x%2 == 0}</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 class Temperature:
     def __init__(self, celsius):
-        self._celsius = celsius  # Protected attribute
+        self._celsius = celsius  <span class="code-comment"># Protected attribute</span>
     
     @property
     def fahrenheit(self):
@@ -1168,9 +1168,9 @@ class Temperature:
         self._celsius = (value - 32) * 5/9
 
 temp = Temperature(25)
-print(temp.fahrenheit)  # 77.0
+print(temp.fahrenheit)  <span class="code-comment"># 77.0</span>
 temp.fahrenheit = 32
-print(temp._celsius)     # 0.0</pre>
+print(temp._celsius)     <span class="code-comment"># 0.0</span></pre>
         </div>
 
         <!-- Multiple Inheritance -->
@@ -1189,8 +1189,8 @@ class Duck(Flyer, Swimmer):
     pass
 
 duck = Duck()
-print(duck.fly())   # Flying
-print(duck.swim())  # Swimming</pre>
+print(duck.fly())   <span class="code-comment"># Flying</span>
+print(duck.swim())  <span class="code-comment"># Swimming</span></pre>
         </div>
 
         <!-- Abstract Base Classes -->
@@ -1211,9 +1211,9 @@ class Circle(Shape):
     def area(self):
         return 3.14 * self.radius ** 2
 
-# shape = Shape()  # Error
+# shape = Shape()  <span class="code-comment"># Error</span>
 circle = Circle(5)
-print(circle.area())  # 78.5</pre>
+print(circle.area())  <span class="code-comment"># 78.5</span></pre>
         </div>
 
         <!-- Operator Overloading -->
@@ -1234,7 +1234,7 @@ class Book:
 b1 = Book("Python 101", 300)
 b2 = Book("OOP Guide", 200)
 combined = b1 + b2
-print(combined)  # 'Python 101 & OOP Guide' (500 pages)</pre>
+print(combined)  <span class="code-comment"># 'Python 101 & OOP Guide' (500 pages)</span></pre>
         </div>
 
         <!-- Decorators (Logging/Caching) -->
@@ -1278,8 +1278,8 @@ class Calculator:
         return 1 if n <= 1 else n * self.factorial(n-1)
 
 calc = Calculator()
-print(calc.add(2, 3))  # Logs calls
-print(calc.factorial(5))  # Caches results</pre>
+print(calc.add(2, 3))  <span class="code-comment"># Logs calls</span>
+print(calc.factorial(5))  <span class="code-comment"># Caches results</span></pre>
             <p class="mt-2 text-gray-300 text-sm">
                 Common decorator uses: logging, caching, timing, access control, validation
             </p>
@@ -1306,7 +1306,7 @@ with open("diary.txt", "w") as f:
 
 # Reading entire content
 with open("diary.txt", "r") as f:
-    print(f.read())  # Full content
+    print(f.read())  <span class="code-comment"># Full content</span>
 
 # Reading line by line
 with open("diary.txt", "r") as f:
@@ -1327,10 +1327,10 @@ with open("data.bin", "wb+") as f:
     f.seek(0)
     
     # Read first 2 bytes
-    print(f.read(2))  # b'\x00\x01'
+    print(f.read(2))  <span class="code-comment"># b'\x00\x01'</span>
     
     # Current position
-    print(f.tell())   # 2</pre>
+    print(f.tell())   <span class="code-comment"># 2</span></pre>
         </div>
 
         <!-- CSV Handling -->
@@ -1369,7 +1369,7 @@ with open("data.json", "w") as f:
 # Reading from a JSON file
 with open("data.json", "r") as f:
     loaded = json.load(f)
-    print(loaded["name"])  # Alice</pre>
+    print(loaded["name"])  <span class="code-comment"># Alice</span></pre>
         </div>
 
         <!-- File Management -->
@@ -1380,15 +1380,15 @@ import os
 import shutil
 
 # File operations
-os.rename("old.txt", "new.txt")    # Rename
-os.remove("file.txt")             # Delete
-shutil.copy("src.txt", "dst.txt")  # Copy
-shutil.move("src.txt", "dest/")    # Move
+os.rename("old.txt", "new.txt")    <span class="code-comment"># Rename</span>
+os.remove("file.txt")             <span class="code-comment"># Delete</span>
+shutil.copy("src.txt", "dst.txt")  <span class="code-comment"># Copy</span>
+shutil.move("src.txt", "dest/")    <span class="code-comment"># Move</span>
 
 # Directory operations
-os.mkdir("new_dir")               # Create directory
-os.listdir(".")                   # List files
-os.path.exists("file.txt")        # Check existence</pre>
+os.mkdir("new_dir")               <span class="code-comment"># Create directory</span>
+os.listdir(".")                   <span class="code-comment"># List files</span>
+os.path.exists("file.txt")        <span class="code-comment"># Check existence</span></pre>
         </div>
     </div>
 </section>
@@ -1528,8 +1528,8 @@ if __name__ == "__main__":
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # main.py
 import mymodule
-print(mymodule.__version__)  # 1.0
-print(mymodule.__name__)     # mymodule</pre>
+print(mymodule.__version__)  <span class="code-comment"># 1.0</span>
+print(mymodule.__name__)     <span class="code-comment"># mymodule</span></pre>
         </div>
 
         <!-- Package Structure -->
@@ -1573,7 +1573,7 @@ from my_package.subpackage.helpers import validate</pre>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Module Search Path</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 import sys
-print(sys.path)  # List of directories Python searches for modules
+print(sys.path)  <span class="code-comment"># List of directories Python searches for modules</span>
 
 # Add custom path
 sys.path.append("/path/to/my/modules")</pre>
@@ -1603,11 +1603,11 @@ importlib.reload(mymodule)</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Simple addition
 add = lambda a, b: a + b
-print(add(3, 5))  # 8
+print(add(3, 5))  <span class="code-comment"># 8</span>
 
 # No arguments
 greet = lambda: "Hello World"
-print(greet())     # Hello World</pre>
+print(greet())     <span class="code-comment"># Hello World</span></pre>
         </div>
 
         <!-- Common Use Cases -->
@@ -1618,19 +1618,19 @@ print(greet())     # Hello World</pre>
 # Sorting with key
 people = [{"name": "Alice", "age": 25}, {"name": "Bob", "age": 30}]
 sorted_ages = sorted(people, key=lambda x: x['age'])
-print(sorted_ages)  # [{'name': 'Alice', 'age': 25}, ...]</pre>
+print(sorted_ages)  <span class="code-comment"># [{'name': 'Alice', 'age': 25}, ...]</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Filtering with condition
 numbers = [1, 2, 3, 4, 5, 6]
 even = list(filter(lambda x: x % 2 == 0, numbers))
-print(even)  # [2, 4, 6]</pre>
+print(even)  <span class="code-comment"># [2, 4, 6]</span></pre>
 
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Reduce with lambda
 from functools import reduce
 product = reduce(lambda x, y: x * y, [1, 2, 3, 4])
-print(product)  # 24</pre>
+print(product)  <span class="code-comment"># 24</span></pre>
             </div>
         </div>
 
@@ -1640,11 +1640,11 @@ print(product)  # 24</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Conditional logic
 grade = lambda score: 'Pass' if score >= 50 else 'Fail'
-print(grade(65))  # Pass
+print(grade(65))  <span class="code-comment"># Pass</span>
 
 # Multiple arguments
 full_name = lambda first, last: f"{first.strip().title()} {last.strip().title()}"
-print(full_name("  john ", "doe "))  # John Doe</pre>
+print(full_name("  john ", "doe "))  <span class="code-comment"># John Doe</span></pre>
         </div>
 
         <!-- Limitations -->
@@ -1701,7 +1701,7 @@ def repeat(n_times):
 def greet(name):
     print(f"Hello {name}")
 
-greet("Alice")  # Prints 3 times</pre>
+greet("Alice")  <span class="code-comment"># Prints 3 times</span></pre>
         </div>
 
         <!-- Class-based Decorators -->
@@ -1724,7 +1724,7 @@ class Timer:
 def long_operation():
     time.sleep(1)
 
-long_operation()  # Prints execution time</pre>
+long_operation()  <span class="code-comment"># Prints execution time</span></pre>
         </div>
 
         <!-- Decorator Best Practices -->
@@ -1780,7 +1780,7 @@ def fibonacci(limit):
 
 # Using generator
 for num in fibonacci(100):
-    print(num)  # 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89</pre>
+    print(num)  <span class="code-comment"># 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89</span></pre>
         </div>
 
         <!-- Generator Expressions -->
@@ -1789,8 +1789,8 @@ for num in fibonacci(100):
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Similar to list comprehension but with ()
 squares = (x**2 for x in range(10))
-print(next(squares))  # 0
-print(next(squares))  # 1
+print(next(squares))  <span class="code-comment"># 0</span>
+print(next(squares))  <span class="code-comment"># 1</span>
 
 # Memory efficient sum
 sum_of_squares = sum(x**2 for x in range(1000000))</pre>
@@ -1808,9 +1808,9 @@ def accumulator():
         yield total
 
 gen = accumulator()
-next(gen)  # Prime the generator
-print(gen.send(10))  # 10
-print(gen.send(20))  # 30</pre>
+next(gen)  <span class="code-comment"># Prime the generator</span>
+print(gen.send(10))  <span class="code-comment"># 10</span>
+print(gen.send(20))  <span class="code-comment"># 30</span></pre>
         </div>
 
         <!-- Yield From -->
@@ -1827,7 +1827,7 @@ def countup(n):
     yield from range(1, n+1)
 
 for num in countup(3):
-    print(num)  # 3, 2, 1, 1, 2, 3</pre>
+    print(num)  <span class="code-comment"># 3, 2, 1, 1, 2, 3</span></pre>
         </div>
 
         <!-- Generator Methods -->
@@ -1843,9 +1843,9 @@ def generator_func():
         print("Generator closed")
 
 gen = generator_func()
-next(gen)  # Start generator
-gen.send("Hello")  # Prints Hello
-gen.close()         # Prints Generator closed</pre>
+next(gen)  <span class="code-comment"># Start generator</span>
+gen.send("Hello")  <span class="code-comment"># Prints Hello</span>
+gen.close()         <span class="code-comment"># Prints Generator closed</span></pre>
         </div>
 
         <!-- Best Practices -->
@@ -1959,7 +1959,7 @@ def task(n):
 with ThreadPoolExecutor(max_workers=3) as executor:
     futures = [executor.submit(task, i) for i in range(1,4)]
     results = [f.result() for f in futures]
-print(results)  # [1, 4, 9]</pre>
+print(results)  <span class="code-comment"># [1, 4, 9]</span></pre>
         </div>
 
         <!-- Thread Synchronization -->
@@ -1983,7 +1983,7 @@ for t in threads:
     t.start()
 for t in threads:
     t.join()
-print(counter)  # 1000</pre>
+print(counter)  <span class="code-comment"># 1000</span></pre>
         </div>
 
         <!-- Daemon Threads -->
@@ -2044,10 +2044,10 @@ import re
 text = "Date: 2023-08-15"
 match = re.search(r"(\d{4})-(\d{2})-(\d{2})", text)
 if match:
-    print(match.group())   # 2023-08-15
-    print(match.groups())  # ('2023', '08', '15')
-    print(match.start())   # 6
-    print(match.end())     # 16</pre>
+    print(match.group())   <span class="code-comment"># 2023-08-15</span>
+    print(match.groups())  <span class="code-comment"># ('2023', '08', '15')</span>
+    print(match.start())   <span class="code-comment"># 6</span>
+    print(match.end())     <span class="code-comment"># 16</span></pre>
         </div>
 
         <!-- Substitution -->
@@ -2057,7 +2057,7 @@ if match:
 # Replace dates
 text = "Copyright 2022. Updated 2023."
 new_text = re.sub(r"\d{4}", "YEAR", text)
-print(new_text)  # Copyright YEAR. Updated YEAR.</pre>
+print(new_text)  <span class="code-comment"># Copyright YEAR. Updated YEAR.</span></pre>
         </div>
 
         <!-- Compiling Patterns -->
@@ -2068,7 +2068,7 @@ print(new_text)  # Copyright YEAR. Updated YEAR.</pre>
 phone_re = re.compile(r"\(\d{3}\) \d{3}-\d{4}")
 text = "Call (415) 555-1234"
 match = phone_re.search(text)
-print(match.group())  # (415) 555-1234</pre>
+print(match.group())  <span class="code-comment"># (415) 555-1234</span></pre>
         </div>
 
         <!-- Flags -->
@@ -2078,7 +2078,7 @@ print(match.group())  # (415) 555-1234</pre>
 # Case-insensitive matching
 text = "Color or colour?"
 matches = re.findall(r"colou?r", text, flags=re.IGNORECASE)
-print(matches)  # ['Color', 'colour']</pre>
+print(matches)  <span class="code-comment"># ['Color', 'colour']</span></pre>
         </div>
 
         <!-- Advanced Patterns -->
@@ -2087,13 +2087,13 @@ print(matches)  # ['Color', 'colour']</pre>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 # Lookaheads and lookbehinds
 text = "100kg 200lb"
-weights = re.findall(r"\d+(?=kg)", text)  # Positive lookahead
-print(weights)  # ['100']
+weights = re.findall(r"\d+(?=kg)", text)  <span class="code-comment"># Positive lookahead</span>
+print(weights)  <span class="code-comment"># ['100']</span>
 
 # Named groups
 date_re = r"(?P<year>\d{4})-(?P<month>\d{2})"
 match = re.search(date_re, "2023-08")
-print(match.groupdict())  # {'year': '2023', 'month': '08'}</pre>
+print(match.groupdict())  <span class="code-comment"># {'year': '2023', 'month': '08'}</span></pre>
         </div>
 
         <!-- Best Practices -->
@@ -2105,12 +2105,12 @@ print(match.groupdict())  # {'year': '2023', 'month': '08'}</pre>
                 <p>✓ Use verbose mode for complex patterns</p>
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 pattern = re.compile(r"""
-    \b             # Word boundary
-    [A-Z0-9._%+-]+ # Username
+    \b             <span class="code-comment"># Word boundary</span>
+    [A-Z0-9._%+-]+ <span class="code-comment"># Username</span>
     @ 
-    [A-Z0-9.-]+    # Domain
+    [A-Z0-9.-]+    <span class="code-comment"># Domain</span>
     \. 
-    [A-Z]{2,}      # TLD
+    [A-Z]{2,}      <span class="code-comment"># TLD</span>
     \b""", re.VERBOSE | re.IGNORECASE)</pre>
                 <p>✓ Test patterns with online regex testers</p>
             </div>
@@ -2175,11 +2175,11 @@ response = requests.get(
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 response = requests.get("https://api.example.com")
 
-print(response.status_code)    # 200
-print(response.headers)        # Response headers
-print(response.text[:100])     # First 100 characters
-print(response.json().keys())  # JSON keys
-print(response.raise_for_status())  # Raise exception for 4xx/5xx</pre>
+print(response.status_code)    <span class="code-comment"># 200</span>
+print(response.headers)        <span class="code-comment"># Response headers</span>
+print(response.text[:100])     <span class="code-comment"># First 100 characters</span>
+print(response.json().keys())  <span class="code-comment"># JSON keys</span>
+print(response.raise_for_status())  <span class="code-comment"># Raise exception for 4xx/5xx</span></pre>
         </div>
 
         <!-- Error Handling -->
@@ -2468,20 +2468,20 @@ for row in rows:
 import numpy as np
 
 # Array creation
-arr = np.array([[1, 2], [3, 4]])  # 2D array
-zeros = np.zeros((3, 3))          # 3x3 zero matrix
-range_arr = np.arange(0, 10, 2)  # [0 2 4 6 8]
+arr = np.array([[1, 2], [3, 4]])  <span class="code-comment"># 2D array</span>
+zeros = np.zeros((3, 3))          <span class="code-comment"># 3x3 zero matrix</span>
+range_arr = np.arange(0, 10, 2)  <span class="code-comment"># [0 2 4 6 8]</span>
 
 # Array operations
-print(arr.shape)      # (2, 2)
-print(arr.reshape(4)) # [1 2 3 4]
-print(arr.T)          # Transpose
-print(np.dot(arr, arr))  # Matrix multiplication
+print(arr.shape)      <span class="code-comment"># (2, 2)</span>
+print(arr.reshape(4)) <span class="code-comment"># [1 2 3 4]</span>
+print(arr.T)          <span class="code-comment"># Transpose</span>
+print(np.dot(arr, arr))  <span class="code-comment"># Matrix multiplication</span>
 
 # Universal functions
-print(np.sqrt(arr))     # Element-wise square root
-print(np.sum(arr))      # 10
-print(arr.mean(axis=0)) # Column means [2. 3.]</pre>
+print(np.sqrt(arr))     <span class="code-comment"># Element-wise square root</span>
+print(np.sum(arr))      <span class="code-comment"># 10</span>
+print(arr.mean(axis=0)) <span class="code-comment"># Column means [2. 3.]</span></pre>
         </div>
 
         <!-- Pandas -->
@@ -2492,10 +2492,10 @@ import pandas as pd
 
 # DataFrame operations
 df = pd.read_csv("data.csv")
-print(df.head(2))           # First 2 rows
-print(df.describe())        # Statistics
-print(df[df['Age'] > 25])  # Filtering
-print(df.groupby('City')['Salary'].mean())  # Aggregation
+print(df.head(2))           <span class="code-comment"># First 2 rows</span>
+print(df.describe())        <span class="code-comment"># Statistics</span>
+print(df[df['Age'] > 25])  <span class="code-comment"># Filtering</span>
+print(df.groupby('City')['Salary'].mean())  <span class="code-comment"># Aggregation</span>
 
 # Handling missing data
 df['Age'] = df['Age'].fillna(df['Age'].mean())
