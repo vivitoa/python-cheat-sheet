@@ -109,6 +109,35 @@
         #menu-btn {
             z-index: 50;
         }
+
+        /* Sidebar and main content positioning */
+        #sidebar {
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 767px) {
+            main {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            #sidebar {
+                width: 100%;
+                max-width: 256px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #sidebar {
+                transform: translateX(0) !important;
+            }
+        }
+
+        /* Prevent body scroll when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200"
@@ -119,7 +148,7 @@
 </button>
 
 <!-- Single Sidebar Navigation -->
-<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 transform md:translate-x-0 transition-transform duration-200 ease-in-out -translate-x-full z-40">
+<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 p-5 transform transition-transform duration-200 ease-in-out md:translate-x-0 -translate-x-full z-40">
     <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
     <nav class="mt-5 space-y-2 overflow-y-auto h-full pb-20">
         <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
@@ -150,37 +179,8 @@
     </nav>
 </aside>
 
-<!-- Add this script at the end of your body tag -->
-<script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menu-btn');
-    const sidebar = document.getElementById('sidebar');
-    
-    menuBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('-translate-x-full');
-    });
-
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth < 768 && // Only on mobile
-            !sidebar.contains(e.target) && // Not clicking sidebar
-            !menuBtn.contains(e.target)) { // Not clicking menu button
-            sidebar.classList.add('-translate-x-full');
-        }
-    });
-
-    // Close menu when clicking a link (mobile)
-    document.querySelectorAll('#sidebar a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 768) { // md breakpoint
-                sidebar.classList.add('-translate-x-full');
-            }
-        });
-    });
-</script>
-
-    <!-- Main Content -->
-    <main class="ml-64 p-10 notebook">
+<!-- Main Content -->
+<main class="md:ml-64 p-4 md:p-10 w-full relative z-10">
 
         <!-- Variables -->
 <section id="variables" class="mb-10">
@@ -2861,6 +2861,43 @@ window.addEventListener("scroll", () => {
 backToTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
+</script>
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    const body = document.body;
+    
+    menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('-translate-x-full');
+        body.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 && 
+            !sidebar.contains(e.target) && 
+            !menuBtn.contains(e.target)) {
+            sidebar.classList.add('-translate-x-full');
+            body.classList.remove('menu-open');
+        }
+    });
+
+    // Prevent clicks inside sidebar from closing it
+    sidebar.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Close menu when clicking links
+    document.querySelectorAll('#sidebar a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                sidebar.classList.add('-translate-x-full');
+                body.classList.remove('menu-open');
+            }
+        });
+    });
 </script>
 </body>
 </html>
