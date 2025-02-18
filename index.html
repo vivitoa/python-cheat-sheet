@@ -40,12 +40,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Make code blocks responsive */
+        /* Remove word wrapping, allow horizontal scroll */
         pre {
-            white-space: pre-wrap !important;
-            word-wrap: break-word !important;
+            white-space: pre !important;
             overflow-x: auto !important;
-            max-width: 100% !important;
+            max-width: none !important;
+            width: max-content !important;
+            min-width: 100% !important;
         }
 
         /* Code block scrollbar styling */
@@ -63,11 +64,19 @@
             border-radius: 4px;
         }
 
-        /* Table responsiveness */
+        /* Table responsiveness with horizontal scroll */
         table {
             display: block;
             overflow-x: auto;
-            max-width: 100%;
+            white-space: nowrap;
+            width: max-content;
+            min-width: 100%;
+        }
+
+        /* Main content container */
+        main {
+            overflow-x: auto !important;
+            max-width: 100vw !important;
         }
 
         /* Ensure main content doesn't overlap with sidebar on desktop */
@@ -82,9 +91,6 @@
             .notebook {
                 margin-left: 0 !important;
                 padding: 1rem !important;
-            }
-            pre {
-                padding: 0.5rem !important;
             }
         }
     </style>
