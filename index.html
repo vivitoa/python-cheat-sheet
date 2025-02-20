@@ -339,10 +339,24 @@ a, b = b, a  <span class="code-comment"># a=20, b=10</span></pre>
         <div>
             <h3 class="text-xl font-semibold text-blue-400 mb-2">Formatted Strings (f-strings)</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Common formatting with f-strings</span>
 name = "Bob"
 age = 25
-print(f"{name} is {age} years old")  <span class="code-comment"># Bob is 25 years old</span></pre>
-        </div>
+print(f"{name} is {age} years old")  <span class="code-comment"># Bob is 25 years old</span>
+
+<span class="code-comment"># Centering a string</span>
+name = "Bob"
+print(f"{name:{'-'}^20}")  <span class="code-comment"># --------Bob---------</span>
+
+<span class="code-comment"># Padding string to the right</span>
+name = "Bob"
+print(f"{name:{'-'}&lt;10}")  <span class="code-comment"># Bob-------</span>
+
+<span class="code-comment"># Padding string to the left</span>
+name = "Bob"
+print(f"{name:{'-'}&gt;10}")  <span class="code-comment"># -------Bob<span></pre>
+
+</div>
     </div>
 </section>
 
