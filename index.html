@@ -264,7 +264,7 @@
 <main class="p-4 md:p-10">
 
         <!-- Variables -->
-<section id="variables" class="mb-10">
+<section id="variables" class="mb-10 mt-12 md:mt-0">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Variables in Python</h2>
     <p class="mb-3">A <strong>variable</strong> stores a value. Python is <strong>dynamically typed</strong>, so you don't need to declare a type.</p>
 
@@ -950,7 +950,7 @@ show_global()  <span class="code-comment"># Global count: 5</span></pre>
             <p class="mb-3">Ordered, mutable collection. Created with square brackets <code class="text-blue-300">[]</code></p>
 
             <div class="space-y-4">
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 <span class="code-comment"># Basic operations</span>
 nums = [1, 2, 3, 4, 5]
 print(nums[1])        <span class="code-comment"># 2 (indexing)</span>
@@ -1086,7 +1086,7 @@ mixed[1].append(4)     <span class="code-comment"># Valid → (1, [2,3,4], "hell
             <p class="mb-3">Mutable mapping type storing key-value pairs. Created with <code class="text-blue-300">{}</code> or <code class="text-blue-300">dict()</code></p>
 
             <div class="space-y-4">
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 <span class="code-comment"># Dictionary creation</span>
 empty_dict = {}
 grades = dict(Alice=95, Bob=88)
@@ -1317,7 +1317,7 @@ print(calc.factorial(5))  <span class="code-comment"># Caches results</span></pr
             <p class="mt-2 text-gray-300 text-sm">
                 Common decorator uses: logging, caching, timing, access control, validation
             </p>
-        </div>
+    </div>
 
         <!-- Basic Class Structure -->
         <div>
@@ -1329,7 +1329,7 @@ class Person:
     def __init__(self, name, age):
         self.name = name      <span class="code-comment"># Instance attribute</span>
         self.age = age
-    
+
     def greet(self):         <span class="code-comment"># Instance method</span>
         return f"Hello, I'm {self.name}"
     
@@ -1374,7 +1374,7 @@ print(account._BankAccount__balance)  <span class="code-comment"># 1000 (name ma
 class Animal:
     def __init__(self, name):
         self.name = name
-    
+
     def speak(self):
         raise NotImplementedError  <span class="code-comment"># Abstract method pattern</span>
 
@@ -1399,10 +1399,10 @@ class Vector:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-    
+
     def __add__(self, other):     <span class="code-comment"># + operator</span>
         return Vector(self.x + other.x, self.y + other.y)
-    
+
     def __len__(self):            <span class="code-comment"># len() function</span>
         return 2
     
@@ -1411,7 +1411,7 @@ class Vector:
     
     def __eq__(self, other):      <span class="code-comment"># == operator</span>
         return self.x == other.x and self.y == other.y
-    
+
     def __getitem__(self, key):   <span class="code-comment"># [] indexing</span>
         if key == 0: return self.x
         if key == 1: return self.y
@@ -1431,16 +1431,16 @@ print(len(v1))      <span class="code-comment"># 2</span></pre>
 class Circle:
     def __init__(self, radius):
         self._radius = radius
-    
+
     @property
     def radius(self):            <span class="code-comment"># Getter</span>
         return self._radius
-    
+
     @radius.setter
     def radius(self, value):     <span class="code-comment"># Setter</span>
         if value < 0:
             raise ValueError("Radius cannot be negative")
-        self._radius = value
+            self._radius = value
     
     @property
     def area(self):             <span class="code-comment"># Read-only property</span>
@@ -1468,7 +1468,7 @@ class Car:
     def __init__(self):
         self.engine = Engine()  <span class="code-comment"># Composition</span>
         self._speed = 0
-    
+
     def start(self):
         status = self.engine.start()
         return f"Car started. {status}"
@@ -1489,7 +1489,7 @@ print(car.start())    <span class="code-comment"># Car started. Engine running</
         <!-- Basic File Operations -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Basic File Operations</h3>
-            <div class="space-y-4">
+    <div class="space-y-4">
                 <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 <span class="code-comment"># Modes: r (read), w (write), a (append), r+ (read/write)</span>
 <span class="code-comment"># b (binary mode), t (text mode, default)</span>
@@ -2796,7 +2796,7 @@ class App(tk.Tk):
         if text:
             self.listbox.insert(tk.END, text)
             self.entry.delete(0, tk.END)
-        else:
+else:
             messagebox.showwarning("Input Error", "Please enter text")
 if __name__ == "__main__":
     app = App()
@@ -2865,7 +2865,7 @@ if __name__ == "__main__":
                 <p>✓ Follow platform-specific design guidelines</p>
                 <p>✓ Implement error handling</p>
                 <p>✓ Use layout managers (grid/pack in Tkinter, QLayout in PyQt)</p>
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 <span class="code-comment"># Threading example for PyQt</span>
 from PyQt5.QtCore import QThread
 class Worker(QThread):
