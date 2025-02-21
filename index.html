@@ -299,14 +299,10 @@
 
 <!-- Sidebar Navigation -->
 <aside id="sidebar" class="bg-gray-800 p-5 h-screen overflow-y-auto">
-    <div class="sticky top-0 bg-gray-800 h-16 z-40 -mx-5 px-5 md:hidden">
-        <!-- Menu button moved inside sticky div -->
-        <button id="menu-btn" class="bg-gray-700 text-white p-2 rounded-md">
-            ☰ Menu
-        </button>
-    </div>
-    <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
-    <nav class="mt-5 space-y-2">
+    <div class="fixed top-0 left-0 w-full bg-gray-800 h-16 z-40 md:hidden"></div>
+    <div class="fixed top-16 left-0 w-full bg-gray-800 h-16 z-40 md:hidden"></div>
+    <h1 class="text-xl font-bold text-white mt-32 md:mt-0">🐍 Python Cheat Sheet</h1>
+    <nav class="mt-5 space-y-2 relative z-30">
         <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
         <a href="#data-types" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Types</a>
         <a href="#operators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Operators</a>
@@ -429,7 +425,7 @@ print(f"{name:{'-'}&lt;10}")  <span class="code-comment"># Bob-------</span>
 
 <span class="code-comment"># Padding string to the left</span>
 name = "Bob"
-print(f"{name:{'-'}&gt;10}")  <span class="code-comment"># -------Bob<span></pre>
+print(f"{name:{'-'}&gt;10}")  <span class="code-comment"># -------Bob</span></pre>
 
 </div>
     </div>
