@@ -288,7 +288,7 @@
 <div class="fixed top-0 left-0 w-full bg-gray-900 h-16 z-40 md:hidden"></div>
 
 <!-- Mobile Menu Button -->
-<button id="menu-btn" class="bg-gray-700 text-white p-2 rounded-md">
+<button id="menu-btn" class="bg-gray-700 text-white p-2 rounded-md hidden">
     ☰ Menu
 </button>
 
@@ -299,7 +299,9 @@
 
 <!-- Sidebar Navigation -->
 <aside id="sidebar" class="bg-gray-800 p-5 h-screen overflow-y-auto">
-    <div class="sticky top-0 bg-gray-800 h-16 z-40 -mx-5 px-5 md:hidden"></div>
+    <div class="sticky top-0 bg-gray-800 h-16 z-40 -mx-5 px-5 md:hidden flex items-center">
+        ☰ Menu
+    </div>
     <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
     <nav class="mt-5 space-y-2">
         <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
