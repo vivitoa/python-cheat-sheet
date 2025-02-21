@@ -198,7 +198,7 @@
         /* Mobile sidebar */
         @media (max-width: 767px) {
             #sidebar {
-                padding-top: 4rem;
+                padding-top: 0 !important;
             }
             
             #sidebar.active {
@@ -207,14 +207,13 @@
             }
             
             #sidebar h1 {
-                margin-top: 3rem;
+                margin-top: 0;
+                padding-top: 0.5rem;
             }
 
             /* Ensure sidebar content starts below fixed headers */
             #sidebar nav {
-                padding-top: 2rem;
-                position: relative;
-                z-index: 30;
+                padding-top: 0;
             }
         }
 
@@ -268,7 +267,7 @@
         /* Mobile-specific adjustments */
         @media (max-width: 767px) {
             #sidebar {
-                padding-top: 4rem;
+                padding-top: 0 !important;
             }
             
             #sidebar .fixed {
@@ -277,7 +276,8 @@
             }
             
             #sidebar h1 {
-                margin-top: 3rem;
+                margin-top: 0;
+                padding-top: 0.5rem;
             }
         }
     </style>
