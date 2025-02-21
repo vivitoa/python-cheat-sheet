@@ -1318,6 +1318,167 @@ print(calc.factorial(5))  <span class="code-comment"># Caches results</span></pr
                 Common decorator uses: logging, caching, timing, access control, validation
             </p>
         </div>
+
+        <!-- Basic Class Structure -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic Class Structure</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Person:
+    species = "Homo sapiens"  <span class="code-comment"># Class attribute</span>
+
+    def __init__(self, name, age):
+        self.name = name      <span class="code-comment"># Instance attribute</span>
+        self.age = age
+    
+    def greet(self):         <span class="code-comment"># Instance method</span>
+        return f"Hello, I'm {self.name}"
+    
+    @classmethod
+    def create_anonymous(cls):  <span class="code-comment"># Class method</span>
+        return cls("Anonymous", 0)
+    
+    @staticmethod
+    def is_adult(age):       <span class="code-comment"># Static method</span>
+        return age >= 18
+
+person = Person("Alice", 25)
+print(person.greet())        <span class="code-comment"># Hello, I'm Alice</span>
+print(Person.is_adult(25))   <span class="code-comment"># True</span></pre>
+        </div>
+
+        <!-- Private and Protected Members -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Access Modifiers</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance    <span class="code-comment"># Private attribute (name mangling)</span>
+        self._id = "123"           <span class="code-comment"># Protected attribute (convention)</span>
+    
+    def __validate(self):          <span class="code-comment"># Private method</span>
+        return self.__balance >= 0
+    
+    def deposit(self, amount):
+        self.__balance += amount
+        return self.__validate()
+
+account = BankAccount(1000)
+<span class="code-comment"># print(account.__balance)  # AttributeError</span>
+print(account._BankAccount__balance)  <span class="code-comment"># 1000 (name mangling access)</span></pre>
+        </div>
+
+        <!-- Method Types and Super -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Inheritance and Method Types</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def speak(self):
+        raise NotImplementedError  <span class="code-comment"># Abstract method pattern</span>
+
+class Cat(Animal):
+    def __init__(self, name, color):
+        super().__init__(name)    <span class="code-comment"># Call parent constructor</span>
+        self.color = color
+    
+    def speak(self):             <span class="code-comment"># Method override</span>
+        return f"{self.name} says Meow!"
+
+cat = Cat("Whiskers", "gray")
+print(cat.speak())              <span class="code-comment"># Whiskers says Meow!</span>
+print(isinstance(cat, Animal))  <span class="code-comment"># True</span></pre>
+        </div>
+
+        <!-- Magic Methods -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Magic Methods</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, other):     <span class="code-comment"># + operator</span>
+        return Vector(self.x + other.x, self.y + other.y)
+    
+    def __len__(self):            <span class="code-comment"># len() function</span>
+        return 2
+    
+    def __str__(self):            <span class="code-comment"># str() function</span>
+        return f"Vector({self.x}, {self.y})"
+    
+    def __eq__(self, other):      <span class="code-comment"># == operator</span>
+        return self.x == other.x and self.y == other.y
+    
+    def __getitem__(self, key):   <span class="code-comment"># [] indexing</span>
+        if key == 0: return self.x
+        if key == 1: return self.y
+        raise IndexError("Vector index out of range")
+
+v1 = Vector(1, 2)
+v2 = Vector(3, 4)
+print(v1 + v2)      <span class="code-comment"># Vector(4, 6)</span>
+print(v1[0])        <span class="code-comment"># 1</span>
+print(len(v1))      <span class="code-comment"># 2</span></pre>
+        </div>
+
+        <!-- Property Decorators -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Advanced Properties</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+    
+    @property
+    def radius(self):            <span class="code-comment"># Getter</span>
+        return self._radius
+    
+    @radius.setter
+    def radius(self, value):     <span class="code-comment"># Setter</span>
+        if value < 0:
+            raise ValueError("Radius cannot be negative")
+        self._radius = value
+    
+    @property
+    def area(self):             <span class="code-comment"># Read-only property</span>
+        return 3.14 * self._radius ** 2
+    
+    @property
+    def diameter(self):         <span class="code-comment"># Computed property</span>
+        return self._radius * 2
+
+circle = Circle(5)
+print(circle.area)     <span class="code-comment"># 78.5</span>
+circle.radius = 10     <span class="code-comment"># Using setter</span>
+print(circle.diameter) <span class="code-comment"># 20</span></pre>
+        </div>
+
+        <!-- Composition -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Composition</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+class Engine:
+    def start(self):
+        return "Engine running"
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()  <span class="code-comment"># Composition</span>
+        self._speed = 0
+    
+    def start(self):
+        status = self.engine.start()
+        return f"Car started. {status}"
+    
+    def __repr__(self):        <span class="code-comment"># Developer string representation</span>
+        return f"Car(speed={self._speed})"
+
+car = Car()
+print(car.start())    <span class="code-comment"># Car started. Engine running</span></pre>
+        </div>
     </div>
 </section>
 <!-- File Handling -->
