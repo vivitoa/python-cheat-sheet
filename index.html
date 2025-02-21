@@ -214,6 +214,31 @@
             font-family: 'Roboto Mono', monospace;
             font-style: italic;
         }
+
+        /* Menu button */
+        #menu-btn {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 50;
+            display: none;
+        }
+
+        /* Main content positioning */
+        main {
+            padding-top: 4rem !important; /* Ensures content starts below fixed menu */
+        }
+
+        @media (max-width: 767px) {
+            #menu-btn {
+                display: block;
+            }
+            
+            main {
+                margin-left: 0;
+                padding-top: 4rem !important;
+            }
+        }
     </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200"
@@ -261,7 +286,7 @@
 </aside>
 
 <!-- Main Content -->
-<main class="p-4 md:p-10 pt-16 md:pt-4">
+<main class="p-4 md:p-10 pt-16 md:pt-4 !important">
 
         <!-- Variables -->
 <section id="variables" class="mb-10 mt-12 md:mt-0">
