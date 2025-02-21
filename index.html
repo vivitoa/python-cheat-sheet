@@ -298,11 +298,11 @@
 </button>
 
 <!-- Sidebar Navigation -->
-<aside id="sidebar" class="bg-gray-800 p-5 h-screen overflow-y-auto">
+<aside id="sidebar" class="bg-gray-800 h-screen overflow-y-auto">
     <div class="fixed top-0 left-0 w-full bg-gray-800 h-16 z-40 md:hidden"></div>
-    <div class="fixed top-16 left-0 w-full bg-gray-800 h-16 z-40 md:hidden"></div>
-    <h1 class="text-xl font-bold text-white mt-32 md:mt-0">🐍 Python Cheat Sheet</h1>
-    <nav class="mt-5 space-y-2 relative z-30">
+    <div class="p-5 pt-16 md:pt-5">
+        <h1 class="text-xl font-bold text-white">🐍 Python Cheat Sheet</h1>
+        <nav class="mt-5 space-y-2">
         <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
         <a href="#data-types" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Types</a>
         <a href="#operators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Operators</a>
@@ -1561,7 +1561,7 @@ print(car.start())    <span class="code-comment"># Car started. Engine running</
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Basic File Operations</h3>
     <div class="space-y-4">
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
 <span class="code-comment"># Modes: r (read), w (write), a (append), r+ (read/write)</span>
 <span class="code-comment"># b (binary mode), t (text mode, default)</span>
 
@@ -1674,7 +1674,7 @@ os.path.exists("file.txt")        <span class="code-comment"># Check existence</
             <p><code>FileNotFoundError</code> - Missing file</p>
             <p><code>KeyboardInterrupt</code> - User interrupt</p>
         </div>
-    </div>
+        </div>
 
     <div class="space-y-6">
         <!-- Basic Handling -->
@@ -1954,11 +1954,11 @@ hello()</pre>
 <span class="code-comment"># Decorator with arguments</span>
 def repeat(n_times):
     def decorator(func):
-        def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs):
             for _ in range(n_times):
-                result = func(*args, **kwargs)
-            return result
-        return wrapper
+        result = func(*args, **kwargs)
+        return result
+    return wrapper
     return decorator
 
 @repeat(n_times=3)
@@ -1991,8 +1991,8 @@ long_operation()  <span class="code-comment"># Prints execution time</span></pre
 <span class="code-comment"># Using functools.wraps to preserve metadata</span>
 import functools
 
-def decorator(func):
-    @functools.wraps(func)
+    def decorator(func):
+        @functools.wraps(func)
     def wrapper(*args, **kwargs):
         return func(*args, **kwargs)
     return wrapper</pre>
@@ -2114,7 +2114,7 @@ gen.close()         <span class="code-comment"># Prints Generator closed</span><
                 <p>✓ Use <code>yield from</code> for nested generators</p>
                 <p>✓ Remember generators are single-use</p>
             </div>
-        </div>
+    </div>
     </div>
 </section>
 <!-- CSV & JSON Handling -->
@@ -2145,7 +2145,7 @@ with open("output.csv", "w", newline="") as f:
 with open("data.tsv", "w", newline="") as f:
     writer = csv.writer(f, delimiter='\t')
     writer.writerow(["ID", "Value"])</pre>
-        </div>
+            </div>
 
         <!-- JSON Handling -->
         <div>
