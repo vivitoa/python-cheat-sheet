@@ -198,13 +198,23 @@
         /* Mobile sidebar */
         @media (max-width: 767px) {
             #sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease-in-out;
+                padding-top: 4rem;
             }
             
             #sidebar.active {
                 transform: translateX(0);
                 display: block;
+            }
+            
+            #sidebar h1 {
+                margin-top: 3rem;
+            }
+
+            /* Ensure sidebar content starts below fixed headers */
+            #sidebar nav {
+                padding-top: 2rem;
+                position: relative;
+                z-index: 30;
             }
         }
 
