@@ -58,6 +58,14 @@ Visit the live cheat sheet at: [https://vivitoa.github.io/python-cheat-sheet/](h
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## 🚀 Discussions
+
+Join the discussion on how we can improve the Python cheat sheet and suggest new information. [Share your ideas here!](https://github.com/vivitoa/python-cheat-sheet/discussions)
+
+## 📜 MIT License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 ## 👤 Author
 
 - GitHub: [@vivitoa](https://github.com/vivitoa)
