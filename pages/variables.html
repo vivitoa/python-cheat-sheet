@@ -690,7 +690,65 @@ del visitor_count  <span class="code-comment"># Marks for garbage collection</sp
                 </ol>
             </div>
         </section>
+        <!-- Add this section after "Core Concepts of Variables" -->
+<section class="mb-12">
+    <h2 class="text-2xl font-bold mb-4 text-yellow-400">Variable Operations</h2>
 
+    <!-- Variable Naming Rules -->
+    <div class="mb-6">
+        <h3 class="text-xl font-bold mb-3 text-blue-400">Naming Conventions</h3>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <pre class="text-green-300">
+<span class="code-comment"># Valid names</span>
+my_variable = 10
+_variable    = 20
+variable2   = 30
+
+<span class="code-comment"># Invalid names</span>
+<span class="code-comment"># 2variable  = 40   # Can't start with number</span>
+<span class="code-comment"># my-variable = 50  # No hyphens</span>
+<span class="code-comment"># $variable   = 60  # No special characters</span></pre>
+        </div>
+    </div>
+
+    <!-- Common Methods -->
+    <div class="mb-6">
+        <h3 class="text-xl font-bold mb-3 text-blue-400">Common Type Methods</h3>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <pre class="text-green-300">
+<span class="code-comment"># String methods</span>
+text = "  python  "
+print(text.strip().upper())   <span class="code-comment"># "PYTHON"</span>
+
+<span class="code-comment"># List methods</span>
+numbers = [1, 2, 3]
+numbers.append(4)
+print(numbers)                <span class="code-comment"># [1, 2, 3, 4]</span>
+
+<span class="code-comment"># Dictionary methods</span>
+user = {"name": "Alice", "age": 30}
+print(user.keys())            <span class="code-comment"># dict_keys(['name', 'age'])</span></pre>
+        </div>
+    </div>
+
+    <!-- Multiple Assignment -->
+    <div class="mb-6">
+        <h3 class="text-xl font-bold mb-3 text-blue-400">Advanced Assignment</h3>
+        <div class="bg-gray-800 p-4 rounded-lg">
+            <pre class="text-green-300">
+<span class="code-comment"># Tuple unpacking</span>
+coordinates  = (34.0522, -118.2437)
+lat, lon     = coordinates
+
+<span class="code-comment"># Swapping variables</span>
+a, b         = 10, 20
+a, b         = b, a          <span class="code-comment"># a=20, b=10</span>
+
+<span class="code-comment"># Starred assignment</span>
+first, *rest = [1, 2, 3, 4]  <span class="code-comment"># first=1, rest=[2, 3, 4]</span></pre>
+        </div>
+    </div>
+</section>
         <!-- Updated Type Conversion Section -->
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Type Conversion</h2>
