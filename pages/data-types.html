@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Data Types - Complete Guide</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from variables.html */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Data Types - Complete Guide</h1>
+
+        <!-- Core Data Types -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Fundamental Data Types</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic types</span>
+integer = 42            <span class="code-comment"># int</span>
+floating = 3.14         <span class="code-comment"># float</span>
+text = "Hello"          <span class="code-comment"># str</span>
+boolean = True          <span class="code-comment"># bool</span>
+nothing = None          <span class="code-comment"># NoneType</span>
+
+<span class="code-comment"># Collection types</span>
+numbers = [1, 2, 3]            <span class="code-comment"># list</span>
+coordinates = (4, 5)           <span class="code-comment"># tuple</span>
+person = {"name": "Alice"}      <span class="code-comment"># dict</span>
+unique_numbers = {1, 2, 3}      <span class="code-comment"># set</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Numeric Types -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Numeric Types</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Understanding Numeric Types</h3>
+                <p class="mb-4">
+                    Python supports three numeric types: integers, floating-point numbers, and complex numbers. 
+                    Integers can be arbitrarily large, floats follow IEEE 754 standard, and complex numbers have 
+                    real and imaginary parts.
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Integers: Whole numbers without decimal points</li>
+                    <li>Floats: Numbers with decimal points or scientific notation</li>
+                    <li>Complex: Written as a + bj where a is real and b is imaginary part</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Integer operations</span>
+print(10 + 3)   <span class="code-comment"># 13</span>
+print(10 // 3)  <span class="code-comment"># 3 (floor division)</span>
+print(2 ** 4)   <span class="code-comment"># 16 (exponentiation)</span>
+
+<span class="code-comment"># Integer subtypes</span>
+binary = 0b1010      <span class="code-comment"># Binary literal (10)</span>
+hex_num = 0x1a3      <span class="code-comment"># Hexadecimal literal (419)</span>
+octal = 0o777        <span class="code-comment"># Octal literal (511)</span>
+large_num = 1_000_000  <span class="code-comment"># Underscores for readability</span>
+
+<span class="code-comment"># Float precision</span>
+print(0.1 + 0.2)        <span class="code-comment"># 0.30000000000000004</span>
+print(round(0.1 + 0.2, 1))  <span class="code-comment"># 0.3</span>
+
+<span class="code-comment"># Floating-point precision</span>
+import math
+print(math.isclose(0.1 + 0.2, 0.3))  <span class="code-comment"># True (proper float comparison)</span>
+
+<span class="code-comment"># Type conversion</span>
+print(float(5))     <span class="code-comment"># 5.0</span>
+print(int(3.9))     <span class="code-comment"># 3 (truncates decimal)</span>
+
+<span class="code-comment"># Complex numbers</span>
+z = 3 + 4j
+print(z.real, z.imag)  <span class="code-comment"># 3.0 4.0</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strings -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Strings</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">String Fundamentals</h3>
+                <p class="mb-4">
+                    Strings in Python are immutable sequences of Unicode characters. They support various 
+                    operations including slicing, concatenation, and formatting. Python provides multiple 
+                    ways to write strings:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Single quotes: 'hello'</li>
+                    <li>Double quotes: "world"</li>
+                    <li>Triple quotes: '''multi-line strings'''</li>
+                    <li>f-strings: f"Hello {name}" (formatted strings)</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># String methods</span>
+s = "  Python  "
+print(s.strip().upper())   <span class="code-comment"># "PYTHON"</span>
+print("hello".capitalize()) <span class="code-comment"># "Hello"</span>
+
+<span class="code-comment"># String formatting</span>
+name = "Alice"
+print(f"Hello, {name}")  <span class="code-comment"># Hello, Alice</span>
+print("Value: {:.2f}".format(3.1415))  <span class="code-comment"># Value: 3.14</span>
+
+<span class="code-comment"># Raw strings and escape characters</span>
+path = r"C:\new_folder\file.txt"  <span class="code-comment"># Raw string ignores escapes</span>
+multiline = """Line 1
+Line 2"""                        <span class="code-comment"># Multiline string</span>
+
+<span class="code-comment"># String immutability example</span>
+s = "hello"
+<span class="code-comment"># s[0] = 'H'  # TypeError</span>
+s = 'H' + s[1:]  <span class="code-comment"># Creates new string</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Comparison -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Collection Types Comparison</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python's built-in collection types each serve different purposes. Understanding their 
+                    properties helps in choosing the right data structure:
+                </p>
+            </div>
+
+            <table class="w-full text-left text-gray-300 border border-gray-600 mb-6">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Type</th>
+                        <th class="px-4 py-2 border border-gray-600">Mutable</th>
+                        <th class="px-4 py-2 border border-gray-600">Ordered</th>
+                        <th class="px-4 py-2 border border-gray-600">Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">list</td>
+                        <td class="px-4 py-2 border border-gray-600">Yes</td>
+                        <td class="px-4 py-2 border border-gray-600">Yes</td>
+                        <td class="px-4 py-2 border border-gray-600">Modifiable sequences</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">tuple</td>
+                        <td class="px-4 py-2 border border-gray-600">No</td>
+                        <td class="px-4 py-2 border border-gray-600">Yes</td>
+                        <td class="px-4 py-2 border border-gray-600">Fixed data</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">dict</td>
+                        <td class="px-4 py-2 border border-gray-600">Yes</td>
+                        <td class="px-4 py-2 border border-gray-600">No</td>
+                        <td class="px-4 py-2 border border-gray-600">Key-value pairs</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">set</td>
+                        <td class="px-4 py-2 border border-gray-600">Yes</td>
+                        <td class="px-4 py-2 border border-gray-600">No</td>
+                        <td class="px-4 py-2 border border-gray-600">Unique elements</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="w-full text-left text-gray-300 border border-gray-600 mb-6">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Operation</th>
+                        <th class="px-4 py-2 border border-gray-600">List</th>
+                        <th class="px-4 py-2 border border-gray-600">Tuple</th>
+                        <th class="px-4 py-2 border border-gray-600">Set</th>
+                        <th class="px-4 py-2 border border-gray-600">Dict</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Indexing</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">❌</td>
+                        <td class="px-4 py-2 border border-gray-600">By key</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Mutable</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">❌</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Duplicates</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">❌</td>
+                        <td class="px-4 py-2 border border-gray-600">Unique keys</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Type Conversion -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Type Conversion</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Type Conversion Principles</h3>
+                <p class="mb-4">
+                    Type conversion in Python can be either explicit (using constructor functions) or 
+                    implicit (automatic by the interpreter). Key points:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Explicit: int(), float(), str(), list(), etc.</li>
+                    <li>Implicit: Automatic during operations (e.g., int + float → float)</li>
+                    <li>Lossy conversions: float to int truncates decimals</li>
+                    <li>String conversion: str() returns human-readable representation</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Explicit conversion</span>
+print(int("42"))         <span class="code-comment"># 42</span>
+print(str(3.14))         <span class="code-comment"># "3.14"</span>
+print(list("hello"))     <span class="code-comment"># ['h', 'e', 'l', 'l', 'o']</span>
+
+<span class="code-comment"># Implicit conversion</span>
+print(3 + 4.5)          <span class="code-comment"># 7.5 (int to float)</span>
+print(True + 5)          <span class="code-comment"># 6 (bool to int)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mutability -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Mutability in Python</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Mutable objects (can change)</span>
+lst = [1, 2, 3]
+lst[0] = 5       <span class="code-comment"># Valid</span>
+
+<span class="code-comment"># Immutable objects (cannot change)</span>
+s = "hello"
+<span class="code-comment"># s[0] = 'H'     # TypeError</span>
+s = "Hello"       <span class="code-comment"># Creates new string</span>
+
+<span class="code-comment"># Tuple with mutable element</span>
+mixed = (1, [2, 3])
+mixed[1].append(4)  <span class="code-comment"># Valid → (1, [2, 3, 4])</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Considerations -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Memory Management</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Memory Management Concepts</h3>
+                <p class="mb-4">
+                    Python handles memory automatically through reference counting and garbage collection. 
+                    Key concepts include:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Reference Counting: Tracks number of references to each object</li>
+                    <li>Garbage Collection: Reclaims memory from unreachable objects</li>
+                    <li>Interning: Reuse of small integers and strings</li>
+                    <li>Copying: Shallow vs deep copies for compound objects</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Object identity</span>
+a = [1, 2, 3]
+b = a
+print(a is b)       <span class="code-comment"># True (same object)</span>
+
+<span class="code-comment"># Copying objects</span>
+c = a.copy()
+print(a is c)       <span class="code-comment"># False (different object)</span>
+
+<span class="code-comment"># Memory optimization for small integers</span>
+x = 256
+y = 256
+print(x is y)       <span class="code-comment"># True (cached)</span>
+
+x = 257
+y = 257
+print(x is y)       <span class="code-comment"># False (new objects)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: Type Identification</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># For each value, write its type:</span>
+42, 3.14, True, [1, 2], {"name": "Alice"}, {1, 2}, (5,)</pre>
+
+                    <h3 class="text-xl font-bold mb-4 text-blue-400 mt-6">Exercise 2: Type Conversion</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Convert these values:</span>
+"123" → int
+15 → float
+[1, 2, 3] → tuple
+{"a": 1, "b": 2} → list of keys</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Advanced Types section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Data Types</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Bytes and Bytearray</span>
+data = b'ABCDE'          <span class="code-comment"># Immutable bytes</span>
+mutable_data = bytearray(b'12345')  <span class="code-comment"># Mutable</span>
+mutable_data[0] = 54     <span class="code-comment"># OK (ASCII '6')</span>
+
+<span class="code-comment"># Frozenset (immutable set)</span>
+fs = frozenset([1, 2, 3])
+<span class="code-comment"># fs.add(4)  # AttributeError</span>
+
+<span class="code-comment"># NoneType and identity checks</span>
+result = None
+print(result is None)  <span class="code-comment"># True (preferred over ==)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Type Checking section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Type Checking & Annotations</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Using isinstance()</span>
+value = 3.14
+if isinstance(value, (int, float)):
+    print("Valid number")
+
+<span class="code-comment"># Type annotations (Python 3.9+)</span>
+from typing import Union
+
+def square(n: Union[int, float]) -> float:
+    return n ** 2
+
+<span class="code-comment"># Accessing __annotations__</span>
+print(square.__annotations__)  <span class="code-comment"># See function type hints</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Collections Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Collection Type Characteristics</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python's built-in collection types each serve different purposes. Understanding their 
+                    properties helps in choosing the right data structure:
+                </p>
+            </div>
+
+            <table class="w-full text-left text-gray-300 border border-gray-600 mb-6">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Operation</th>
+                        <th class="px-4 py-2 border border-gray-600">List</th>
+                        <th class="px-4 py-2 border border-gray-600">Tuple</th>
+                        <th class="px-4 py-2 border border-gray-600">Set</th>
+                        <th class="px-4 py-2 border border-gray-600">Dict</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Indexing</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">❌</td>
+                        <td class="px-4 py-2 border border-gray-600">By key</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Mutable</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">❌</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Duplicates</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">✔️</td>
+                        <td class="px-4 py-2 border border-gray-600">❌</td>
+                        <td class="px-4 py-2 border border-gray-600">Unique keys</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('hidden');
+        } else {
+            backToTop.classList.add('hidden');
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html> 

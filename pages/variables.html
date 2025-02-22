@@ -39,8 +39,8 @@
         padding: 1.5rem;
         margin: 0;
         overflow-x: auto;
-        white-space: pre-wrap;
-        word-wrap: break-word;
+        white-space: pre;
+        word-wrap: normal;
     }
 
     @media (max-width: 767px) {
@@ -53,70 +53,95 @@
         .code-box pre {
             padding: 1rem;
             font-size: 14px;
-        }
-    }
-
-    /* Back to Top button matching index.html */
-    #backToTop {
-        bottom: 70px;
-        right: 20px;
-        padding: 12px;
-        z-index: 1000;
-        width: 48px;
-        height: 48px;
-    }
-
-    @media (max-width: 767px) {
-        #backToTop {
-            bottom: 80px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            padding: 10px;
-        }
-    }
-
-    /* Code boxes matching index.html */
-    pre {
-        white-space: pre !important;
-        overflow-x: auto !important;
-        max-width: none !important;
-        width: max-content !important;
-        min-width: 100% !important;
-        background: #1F2937;
-        padding: 1.5rem;
-        border-radius: 0.5rem;
-    }
-
-    /* Mobile adjustments matching index.html */
-    @media (max-width: 767px) {
-        pre {
-            margin: 0 -1rem;
-            width: calc(100% + 2rem);
-            border-radius: 0;
-            padding: 1rem;
-            font-size: 14px;
-        }
-        
-        .code-box {
+            white-space: pre;
             overflow-x: auto;
         }
     }
 
-    /* Scrollbar styling from index.html */
-    pre::-webkit-scrollbar {
-        height: 8px;
-    }
+    /* Back to Top Button */
+    #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
 
-    pre::-webkit-scrollbar-track {
-        background: #374151;
-        border-radius: 4px;
-    }
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
 
-    pre::-webkit-scrollbar-thumb {
-        background: #4B5563;
-        border-radius: 4px;
-    }
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            /* Page container */
+            .container {
+                overflow-x: hidden;
+            }
+
+            /* Tables */
+            table {
+                display: table;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Table cells */
+            td, th {
+                white-space: nowrap;
+                min-width: 120px;
+            }
+
+            /* Code comments alignment */
+            .code-comment {
+                white-space: normal;
+                display: inline-block;
+                max-width: 200px;
+                vertical-align: top;
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar,
+            table::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track,
+            table::-webkit-scrollbar-track {
+                background: #374151;
+            }
+            pre::-webkit-scrollbar-thumb,
+            table::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
     </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200">
@@ -821,9 +846,9 @@ outer_function()</pre>
     </main>
 
     <!-- Back to Top button -->
-    <button id="backToTop" class="fixed bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/>
+    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
         </svg>
     </button>
 
