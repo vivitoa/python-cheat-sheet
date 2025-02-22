@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Variables - In-Depth Guide</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <!-- Add breadcrumb navigation -->
+    <style>
+        .breadcrumb {
+            padding: 1rem;
+            background: #1F2937;
+        }
+    </style>
+
+    <!-- Add code comment style -->
+    <style>
+        .code-comment {
+            color: #6B7280;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Understanding Variables in Python</h1>
+        
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">What are Variables?</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    In Python, variables are fundamental building blocks that serve as containers for storing data. Think of variables as labeled boxes where you can store different types of information - numbers, text, lists, or more complex data structures.
+                </p>
+
+                <p class="mb-4">
+                    Unlike some other programming languages, Python makes working with variables straightforward and intuitive. You don't need to declare variable types explicitly - Python figures this out automatically, making it particularly friendly for beginners.
+                </p>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Real-World Analogy</h3>
+                <p class="mb-4">
+                    Imagine you're organizing your desk. You might have:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>A drawer labeled "supplies" containing pens and papers</li>
+                    <li>A container marked "important" holding crucial documents</li>
+                    <li>A spot designated "current work" for ongoing projects</li>
+                </ul>
+                <p class="mb-4">
+                    Variables in Python work similarly - they're labels that help you organize and access your data. Just as you can change what's in your desk drawer, you can change what's stored in a variable.
+                </p>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">Your First Variables</h3>
+                <pre class="text-green-300">
+<span class="code-comment"># Creating your first variables</span>
+message = "Hello, Python!"
+user_age = 25
+price = 19.99
+is_available = True
+
+<span class="code-comment"># Print them to see their values</span>
+print(message)       <span class="code-comment"># Shows: Hello, Python!</span>
+print(user_age)      <span class="code-comment"># Shows: 25</span>
+print(price)         <span class="code-comment"># Shows: 19.99</span>
+print(is_available)  <span class="code-comment"># Shows: True</span></pre>
+            </div>
+        </section>
+
+        <!-- Understanding Variable Assignment -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">How Variables Work in Python</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    When you create a variable in Python, three things happen:
+                </p>
+                <ol class="list-decimal list-inside mb-4 ml-4">
+                    <li class="mb-2">Python allocates memory to store your data</li>
+                    <li class="mb-2">The data is stored in that memory location</li>
+                    <li class="mb-2">The variable name becomes a reference to that memory location</li>
+                </ol>
+
+                <p class="mb-4">
+                    This process is different from languages like C++ or Java, where you need to declare the type of data a variable will hold. Python's approach is called "dynamic typing" - variables can hold different types of data, and you can change the type of data during program execution.
+                </p>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Variable Assignment in Action</h3>
+                <p class="mb-4">
+                    Let's break down what happens when you create and modify variables:
+                </p>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <pre class="text-green-300">
+<span class="code-comment"># Creating a variable</span>
+name = "Alice"   <span class="code-comment"># Python creates space in memory for "Alice"</span>
+                <span class="code-comment"># and 'name' points to it</span>
+
+<span class="code-comment"># Changing the value</span>
+name = "Bob"     <span class="code-comment"># The old value "Alice" is released</span>
+                <span class="code-comment"># 'name' now points to "Bob"</span>
+
+<span class="code-comment"># Changing the type</span>
+name = 42        <span class="code-comment"># Python allows this! The variable now holds a number</span>
+                <span class="code-comment"># This is dynamic typing in action</span></pre>
+            </div>
+
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    This flexibility is both powerful and requires careful attention. While convenient, it means you need to be aware of what type of data your variables are holding at any given time.
+                </p>
+            </div>
+        </section>
+
+        <!-- Variable Naming Conventions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Naming Your Variables</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Choosing good variable names is crucial for writing readable and maintainable code. While Python gives you a lot of freedom in naming variables, following these conventions will make your code more professional and easier to understand.
+                </p>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Rules for Variable Names</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li class="mb-2">Must start with a letter (a-z, A-Z) or underscore (_)</li>
+                    <li class="mb-2">Can contain letters, numbers, and underscores</li>
+                    <li class="mb-2">Cannot start with a number</li>
+                    <li class="mb-2">Cannot use Python keywords (like 'if', 'for', 'while')</li>
+                    <li class="mb-2">Case-sensitive (age, Age, and AGE are different variables)</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li class="mb-2">Use descriptive names that explain the variable's purpose</li>
+                    <li class="mb-2">Use snake_case for variable names (words separated by underscores)</li>
+                    <li class="mb-2">Keep names concise but meaningful</li>
+                    <li class="mb-2">Avoid single-letter names except for simple counters</li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">Good vs Bad Variable Names</h3>
+                <pre class="text-green-300">
+<span class="code-comment"># Good variable names</span>
+user_name = "John Smith"
+total_score = 95
+is_active = True
+items_in_cart = 5
+
+<span class="code-comment"># Poor variable names (avoid these)</span>
+a = "John Smith"      <span class="code-comment"># Too vague</span>
+un = "John Smith"     <span class="code-comment"># Unclear abbreviation</span>
+x1 = 95              <span class="code-comment"># Meaningless name</span>
+temp = True          <span class="code-comment"># Ambiguous purpose</span></pre>
+            </div>
+        </section>
+
+        <!-- Variable Types -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Understanding Data Types</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    While Python handles types automatically, understanding the basic data types is essential for effective programming. Here are the most common types you'll work with:
+                </p>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic Data Types</h3>
+                
+                <h4 class="text-lg font-semibold mb-2">1. Strings (str)</h4>
+                <p class="mb-4">
+                    Text data, enclosed in single or double quotes. Strings are immutable, meaning once created, they cannot be changed.
+                </p>
+
+                <h4 class="text-lg font-semibold mb-2">2. Numbers</h4>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Integers (int): Whole numbers without decimal points</li>
+                    <li>Floating-point (float): Numbers with decimal points</li>
+                    <li>Complex numbers (complex): Numbers with real and imaginary parts</li>
+                </ul>
+
+                <h4 class="text-lg font-semibold mb-2">3. Boolean (bool)</h4>
+                <p class="mb-4">
+                    Represents True or False values, used for logical operations and control flow.
+                </p>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">Working with Different Types</h3>
+                <pre class="text-green-300">
+<span class="code-comment"># Strings</span>
+name = "Alice"
+message = 'Hello, ' + name    <span class="code-comment"># String concatenation</span>
+print(message)               <span class="code-comment"># Output: Hello, Alice</span>
+
+<span class="code-comment"># Numbers</span>
+age = 25                    <span class="code-comment"># Integer</span>
+height = 1.75              <span class="code-comment"># Float</span>
+complex_num = 3 + 4j       <span class="code-comment"># Complex number</span>
+
+<span class="code-comment"># Boolean</span>
+is_student = True
+has_license = False
+
+<span class="code-comment"># Checking types</span>
+print(type(name))          <span class="code-comment"># &lt;class 'str'&gt;</span>
+print(type(age))           <span class="code-comment"># &lt;class 'int'&gt;</span>
+print(type(height))        <span class="code-comment"># &lt;class 'float'&gt;</span>
+print(type(is_student))    <span class="code-comment"># &lt;class 'bool'&gt;</span></pre>
+            </div>
+        </section>
+
+        <!-- Type Conversion -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Converting Between Types</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Often in programming, you'll need to convert data from one type to another. Python provides built-in functions for type conversion (also called type casting).
+                </p>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Common Type Conversions</h3>
+                <p class="mb-4">
+                    Here are the most frequently used type conversion functions:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>str(): Converts to string</li>
+                    <li>int(): Converts to integer</li>
+                    <li>float(): Converts to floating-point number</li>
+                    <li>bool(): Converts to boolean</li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">Type Conversion Examples</h3>
+                <pre class="text-green-300">
+<span class="code-comment"># String to number conversions</span>
+age_str = "25"
+age_int = int(age_str)      <span class="code-comment"># Convert string to integer</span>
+age_float = float(age_str)  <span class="code-comment"># Convert string to float</span>
+
+<span class="code-comment"># Number to string conversion</span>
+price = 19.99
+price_str = str(price)      <span class="code-comment"># Convert number to string</span>
+
+<span class="code-comment"># Common conversion scenarios</span>
+user_input = input("Enter a number: ")  <span class="code-comment"># input() always returns string</span>
+number = int(user_input)               <span class="code-comment"># Convert to integer for calculations</span>
+
+<span class="code-comment"># Boolean conversions</span>
+print(bool(1))        <span class="code-comment"># True</span>
+print(bool(0))        <span class="code-comment"># False</span>
+print(bool(""))       <span class="code-comment"># False (empty string)</span>
+print(bool("text"))   <span class="code-comment"># True (non-empty string)</span></pre>
+            </div>
+
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    <strong>Important Note:</strong> Type conversion can raise errors if the conversion isn't possible. Always validate your data or use try-except blocks when converting types.
+                </p>
+            </div>
+        </section>
+
+        <!-- Common Pitfalls -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Common Mistakes and How to Avoid Them</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    When working with variables, there are several common mistakes that beginners often make. Understanding these will help you write better code and avoid frustrating errors.
+                </p>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">1. Using Variables Before Assignment</h3>
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <pre class="text-green-300">
+<span class="code-comment"># This will raise an error</span>
+<span class="code-comment"># print(x)  # NameError: name 'x' is not defined</span>
+
+<span class="code-comment"># Correct way</span>
+x = 10
+print(x)  <span class="code-comment"># Works fine</span></pre>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">2. Case Sensitivity Issues</h3>
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <pre class="text-green-300">
+name = "Alice"
+<span class="code-comment"># print(Name)  # Error: Name is not defined</span>
+print(name)    <span class="code-comment"># Works: prints Alice</span></pre>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">3. Type Mismatch Operations</h3>
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <pre class="text-green-300">
+<span class="code-comment"># This will raise an error</span>
+number = "5"
+<span class="code-comment"># result = number + 10  # TypeError</span>
+
+<span class="code-comment"># Correct way</span>
+number = int("5")
+result = number + 10  <span class="code-comment"># Works: result = 15</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The best way to learn about variables is through practice. Try these exercises to reinforce your understanding:
+                </p>
+
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: Basic Variable Usage</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Create variables for:</span>
+<span class="code-comment"># 1. Your name</span>
+<span class="code-comment"># 2. Your age</span>
+<span class="code-comment"># 3. Your height in meters</span>
+<span class="code-comment"># 4. Whether you're a student (True/False)</span>
+
+<span class="code-comment"># Print all variables and their types</span></pre>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Type Conversion</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># 1. Convert "123" to an integer</span>
+<span class="code-comment"># 2. Convert 123 to a string</span>
+<span class="code-comment"># 3. Convert 12.34 to an integer</span>
+<span class="code-comment"># 4. Convert True to a string</span></pre>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: Variable Manipulation</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># 1. Create two number variables</span>
+<span class="code-comment"># 2. Perform basic arithmetic (+, -, *, /)</span>
+<span class="code-comment"># 3. Store results in new variables</span>
+<span class="code-comment"># 4. Print all results</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced String Formatting -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced String Formatting with Variables</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">1. F-Strings (Python 3.6+)</h3>
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <pre class="text-green-300">
+name = "Alice"
+age = 25
+<span class="code-comment"># Basic f-string</span>
+print(f"Name: {name}, Age: {age}")
+
+<span class="code-comment"># Expressions in f-strings</span>
+print(f"Age in 5 years: {age + 5}")
+
+<span class="code-comment"># Formatting specifiers</span>
+price = 19.99
+print(f"Price: ${price:.2f}")  <span class="code-comment"># Two decimal places</span>
+
+<span class="code-comment"># Date formatting</span>
+from datetime import datetime
+now = datetime.now()
+print(f"Date: {now:%Y-%m-%d}")</pre>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">2. Format Method</h3>
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic formatting</span>
+print("Hello, {}!".format(name))
+
+<span class="code-comment"># Multiple values</span>
+print("Name: {}, Age: {}".format(name, age))
+
+<span class="code-comment"># Named placeholders</span>
+print("Name: {n}, Age: {a}".format(n=name, a=age))</pre>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">3. % Operator (Legacy)</h3>
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <pre class="text-green-300">
+<span class="code-comment"># Old style formatting (still works but not recommended)</span>
+print("Name: %s, Age: %d" % (name, age))</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Variable Scope -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Variable Scope in Python</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Understanding variable scope is crucial for Python programming. It determines where variables can be accessed and modified.
+                </p>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">Scope Examples</h3>
+                <pre class="text-green-300">
+<span class="code-comment"># Global scope</span>
+global_var = "I'm accessible everywhere"
+
+def my_function():
+    <span class="code-comment"># Local scope</span>
+    local_var = "I'm only accessible inside this function"
+    print(local_var)
+    print(global_var)  <span class="code-comment"># Global variables are accessible</span>
+
+<span class="code-comment"># Modifying global variables</span>
+def modify_global():
+    global global_var
+    global_var = "Modified"  <span class="code-comment"># Changes the global variable</span>
+
+<span class="code-comment"># Nested scope (enclosing)</span>
+def outer():
+    outer_var = "I'm in outer function"
+    def inner():
+        print(outer_var)  <span class="code-comment"># Can access outer_var</span>
+    inner()</pre>
+            </div>
+        </section>
+
+        <!-- Memory Management -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Memory Management and Variables</h2>
+            
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <pre class="text-green-300">
+<span class="code-comment"># Variable assignment and memory</span>
+x = [1, 2, 3]
+y = x  <span class="code-comment"># Both variables point to the same list</span>
+
+<span class="code-comment"># Mutable vs Immutable types</span>
+string = "hello"
+string = string + " world"  <span class="code-comment"># Creates new string object</span>
+
+list_example = [1, 2]
+list_example.append(3)  <span class="code-comment"># Modifies existing list</span>
+
+<span class="code-comment"># Memory cleanup</span>
+import sys
+print(sys.getrefcount(x))  <span class="code-comment"># Check reference count</span>
+
+<span class="code-comment"># del statement</span>
+del x  <span class="code-comment"># Removes reference to object</span>
+<span class="code-comment"># Object may be garbage collected if no more references exist</span></pre>
+            </div>
+        </section>
+
+        <!-- Special Variables -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Special Variables in Python</h2>
+            
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <pre class="text-green-300">
+<span class="code-comment"># Built-in special variables</span>
+print(__name__)  <span class="code-comment"># '__main__' if run directly</span>
+
+<span class="code-comment"># Private variables (name mangling)</span>
+class MyClass:
+    def __init__(self):
+        self.__private = "Can't access easily"  <span class="code-comment"># Name mangling</span>
+        self._protected = "Convention only"     <span class="code-comment"># Convention for protected</span>
+
+<span class="code-comment"># Special method variables</span>
+def my_function():
+    print(f"Function name: {my_function.__name__}")
+    print(f"Doc string: {my_function.__doc__}")</pre>
+            </div>
+        </section>
+
+        <!-- Type Hints -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Type Hints and Annotations</h2>
+            
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <pre class="text-green-300">
+<span class="code-comment"># Basic type hints (Python 3.6+)</span>
+name: str = "Alice"
+age: int = 25
+height: float = 1.75
+
+<span class="code-comment"># Function type hints</span>
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+<span class="code-comment"># Complex type hints</span>
+from typing import List, Dict, Optional
+
+def process_users(users: List[str]) -> Dict[str, int]:
+    return {user: len(user) for user in users}
+
+<span class="code-comment"># Optional values</span>
+def find_user(id: int) -> Optional[str]:
+    users = {1: "Alice", 2: "Bob"}
+    return users.get(id)  <span class="code-comment"># Returns None if not found</span></pre>
+            </div>
+        </section>
+
+        <!-- Core Concepts of Variables -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Core Concepts of Variables</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Variables in Python act as symbolic names that reference values stored in memory. 
+                    Unlike lower-level languages like C, Python variables don't actually "contain" values 
+                    - they serve as labels pointing to objects in memory. This fundamental difference 
+                    leads to some unique behaviors that are crucial to understand for effective Python 
+                    programming.
+                </p>
+
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Variable Lifecycle Example</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Creation Phase</span>
+website_name = "PythonCheatSheet"  <span class="code-comment"># Python allocates memory for string</span>
+visitor_count = 0                 <span class="code-comment"># Creates integer object</span>
+
+<span class="code-comment"># Usage Phase</span>
+print(f"Welcome to {website_name}")  
+visitor_count += 1  <span class="code-comment"># Creates new integer object (immutability in action)</span>
+
+<span class="code-comment"># Reassignment Phase</span>
+website_name = 42  <span class="code-comment"># Dynamic typing allows type change</span>
+del visitor_count  <span class="code-comment"># Marks for garbage collection</span></pre>
+                </div>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Memory Management Deep Dive</h3>
+                <p class="mb-4">
+                    Python uses automatic memory management through reference counting and garbage collection. 
+                    When you create a variable, Python:
+                </p>
+                <ol class="list-decimal list-inside mb-4 ml-4">
+                    <li class="mb-2">Allocates memory for the object</li>
+                    <li class="mb-2">Sets the reference count to 1</li>
+                    <li class="mb-2">Binds the variable name to the object</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Updated Type Conversion Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Type Conversion</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    While basic type conversion is straightforward, understanding edge cases and potential 
+                    pitfalls is crucial for robust code. Python's conversion functions have specific 
+                    behaviors that vary by input type:
+                </p>
+
+                <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                    <pre class="text-green-300">
+<span class="code-comment"># String to Number Conversions</span>
+print(int("1010", 2))     <span class="code-comment"># Binary conversion: 10</span>
+print(float("inf"))       <span class="code-comment"># Special float value: infinity</span>
+print(int(" 42 "))        <span class="code-comment"># Handles whitespace: 42</span>
+
+<span class="code-comment"># Boolean Truth Testing</span>
+print(bool([]))           <span class="code-comment"># Empty list: False</span>
+print(bool("False"))      <span class="code-comment"># Non-empty string: True</span>
+print(bool(0.0))          <span class="code-comment"># Zero float: False</span>
+
+<span class="code-comment"># Complex Conversions</span>
+print(complex(3, 4))      <span class="code-comment"># (3+4j)</span>
+print(int(3.999))         <span class="code-comment"># Truncates to 3 (doesn't round)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Scope Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Variable Scope Hierarchy</h2>
+            
+            <div class="bg-gray-800 p-6 rounded-lg mb-6">
+                <pre class="text-green-300">
+<span class="code-comment"># LEGB Rule (Local -> Enclosing -> Global -> Built-in)</span>
+global_var = "I'm global"
+
+def outer_function():
+    enclosing_var = "I'm enclosing"
+    
+    def inner_function():
+        local_var = "I'm local"
+        print(local_var)        <span class="code-comment"># Local scope</span>
+        print(enclosing_var)    <span class="code-comment"># Enclosing scope</span>
+        print(global_var)       <span class="code-comment"># Global scope</span>
+        print(len)              <span class="code-comment"># Built-in scope</span>
+    
+    inner_function()
+
+<span class="code-comment"># Demonstrate scope hierarchy</span>
+outer_function()</pre>
+            </div>
+
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Best Practices for Scope Management</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li class="mb-2">Avoid modifying global variables inside functions</li>
+                    <li class="mb-2">Use closure variables for encapsulation</li>
+                    <li class="mb-2">Prefer class attributes over global state</li>
+                    <li class="mb-2">Use <code>nonlocal</code> keyword judiciously</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add this at the end of the file before closing </body> -->
+    <button id="backToTop" class="fixed bottom-4 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('hidden');
+        } else {
+            backToTop.classList.add('hidden');
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+
+    <style>
+    /* Mobile-friendly adjustments */
+    @media (max-width: 767px) {
+        #backToTop {
+            bottom: 70px; /* Above mobile menu */
+            right: 20px;
+            padding: 12px;
+        }
+    }
+    </style>
+</body>
+</html> 
