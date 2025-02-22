@@ -24,6 +24,58 @@
             font-style: italic;
         }
     </style>
+
+    <!-- Add this in the head section -->
+    <style>
+    /* Code boxes matching index.html */
+    .code-box {
+        background: #1F2937;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        margin: 1rem 0;
+    }
+
+    .code-box pre {
+        padding: 1.5rem;
+        margin: 0;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    @media (max-width: 767px) {
+        .code-box {
+            margin: 0 -1rem;
+            width: calc(100% + 2rem);
+            border-radius: 0;
+        }
+        
+        .code-box pre {
+            padding: 1rem;
+            font-size: 14px;
+        }
+    }
+
+    /* Back to Top button matching index.html */
+    #backToTop {
+        bottom: 70px;
+        right: 20px;
+        padding: 12px;
+        z-index: 1000;
+        width: 48px;
+        height: 48px;
+    }
+
+    @media (max-width: 767px) {
+        #backToTop {
+            bottom: 80px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+        }
+    }
+    </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200">
     <!-- Breadcrumb navigation -->
@@ -61,9 +113,10 @@
                 </p>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <h3 class="text-xl font-bold mb-4 text-blue-400">Your First Variables</h3>
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Your First Variables</h3>
+                    <pre class="text-green-300">
 <span class="code-comment"># Creating your first variables</span>
 message = "Hello, Python!"
 user_age = 25
@@ -75,6 +128,7 @@ print(message)       <span class="code-comment"># Shows: Hello, Python!</span>
 print(user_age)      <span class="code-comment"># Shows: 25</span>
 print(price)         <span class="code-comment"># Shows: 19.99</span>
 print(is_available)  <span class="code-comment"># Shows: True</span></pre>
+                </div>
             </div>
         </section>
 
@@ -102,8 +156,9 @@ print(is_available)  <span class="code-comment"># Shows: True</span></pre>
                 </p>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
 <span class="code-comment"># Creating a variable</span>
 name = "Alice"   <span class="code-comment"># Python creates space in memory for "Alice"</span>
                 <span class="code-comment"># and 'name' points to it</span>
@@ -115,6 +170,7 @@ name = "Bob"     <span class="code-comment"># The old value "Alice" is released<
 <span class="code-comment"># Changing the type</span>
 name = 42        <span class="code-comment"># Python allows this! The variable now holds a number</span>
                 <span class="code-comment"># This is dynamic typing in action</span></pre>
+                </div>
             </div>
 
             <div class="prose prose-invert max-w-none">
@@ -151,9 +207,10 @@ name = 42        <span class="code-comment"># Python allows this! The variable n
                 </ul>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <h3 class="text-xl font-bold mb-4 text-blue-400">Good vs Bad Variable Names</h3>
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Good vs Bad Variable Names</h3>
+                    <pre class="text-green-300">
 <span class="code-comment"># Good variable names</span>
 user_name = "John Smith"
 total_score = 95
@@ -165,6 +222,7 @@ a = "John Smith"      <span class="code-comment"># Too vague</span>
 un = "John Smith"     <span class="code-comment"># Unclear abbreviation</span>
 x1 = 95              <span class="code-comment"># Meaningless name</span>
 temp = True          <span class="code-comment"># Ambiguous purpose</span></pre>
+                </div>
             </div>
         </section>
 
@@ -197,9 +255,10 @@ temp = True          <span class="code-comment"># Ambiguous purpose</span></pre>
                 </p>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <h3 class="text-xl font-bold mb-4 text-blue-400">Working with Different Types</h3>
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Working with Different Types</h3>
+                    <pre class="text-green-300">
 <span class="code-comment"># Strings</span>
 name = "Alice"
 message = 'Hello, ' + name    <span class="code-comment"># String concatenation</span>
@@ -219,6 +278,7 @@ print(type(name))          <span class="code-comment"># &lt;class 'str'&gt;</spa
 print(type(age))           <span class="code-comment"># &lt;class 'int'&gt;</span>
 print(type(height))        <span class="code-comment"># &lt;class 'float'&gt;</span>
 print(type(is_student))    <span class="code-comment"># &lt;class 'bool'&gt;</span></pre>
+                </div>
             </div>
         </section>
 
@@ -243,9 +303,10 @@ print(type(is_student))    <span class="code-comment"># &lt;class 'bool'&gt;</sp
                 </ul>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <h3 class="text-xl font-bold mb-4 text-blue-400">Type Conversion Examples</h3>
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Type Conversion Examples</h3>
+                    <pre class="text-green-300">
 <span class="code-comment"># String to number conversions</span>
 age_str = "25"
 age_int = int(age_str)      <span class="code-comment"># Convert string to integer</span>
@@ -264,6 +325,7 @@ print(bool(1))        <span class="code-comment"># True</span>
 print(bool(0))        <span class="code-comment"># False</span>
 print(bool(""))       <span class="code-comment"># False (empty string)</span>
 print(bool("text"))   <span class="code-comment"># True (non-empty string)</span></pre>
+                </div>
             </div>
 
             <div class="prose prose-invert max-w-none">
@@ -283,27 +345,32 @@ print(bool("text"))   <span class="code-comment"># True (non-empty string)</span
                 </p>
 
                 <h3 class="text-xl font-bold mb-3 text-blue-400">1. Using Variables Before Assignment</h3>
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
 <span class="code-comment"># This will raise an error</span>
 <span class="code-comment"># print(x)  # NameError: name 'x' is not defined</span>
 
 <span class="code-comment"># Correct way</span>
 x = 10
 print(x)  <span class="code-comment"># Works fine</span></pre>
+                    </div>
                 </div>
 
                 <h3 class="text-xl font-bold mb-3 text-blue-400">2. Case Sensitivity Issues</h3>
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
 name = "Alice"
 <span class="code-comment"># print(Name)  # Error: Name is not defined</span>
 print(name)    <span class="code-comment"># Works: prints Alice</span></pre>
+                    </div>
                 </div>
 
                 <h3 class="text-xl font-bold mb-3 text-blue-400">3. Type Mismatch Operations</h3>
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
 <span class="code-comment"># This will raise an error</span>
 number = "5"
 <span class="code-comment"># result = number + 10  # TypeError</span>
@@ -311,6 +378,7 @@ number = "5"
 <span class="code-comment"># Correct way</span>
 number = int("5")
 result = number + 10  <span class="code-comment"># Works: result = 15</span></pre>
+                    </div>
                 </div>
             </div>
         </section>
@@ -324,9 +392,10 @@ result = number + 10  <span class="code-comment"># Works: result = 15</span></pr
                     The best way to learn about variables is through practice. Try these exercises to reinforce your understanding:
                 </p>
 
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: Basic Variable Usage</h3>
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: Basic Variable Usage</h3>
+                        <pre class="text-green-300">
 <span class="code-comment"># Create variables for:</span>
 <span class="code-comment"># 1. Your name</span>
 <span class="code-comment"># 2. Your age</span>
@@ -334,24 +403,29 @@ result = number + 10  <span class="code-comment"># Works: result = 15</span></pr
 <span class="code-comment"># 4. Whether you're a student (True/False)</span>
 
 <span class="code-comment"># Print all variables and their types</span></pre>
+                    </div>
                 </div>
 
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Type Conversion</h3>
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Type Conversion</h3>
+                        <pre class="text-green-300">
 <span class="code-comment"># 1. Convert "123" to an integer</span>
 <span class="code-comment"># 2. Convert 123 to a string</span>
 <span class="code-comment"># 3. Convert 12.34 to an integer</span>
 <span class="code-comment"># 4. Convert True to a string</span></pre>
+                    </div>
                 </div>
 
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: Variable Manipulation</h3>
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: Variable Manipulation</h3>
+                        <pre class="text-green-300">
 <span class="code-comment"># 1. Create two number variables</span>
 <span class="code-comment"># 2. Perform basic arithmetic (+, -, *, /)</span>
 <span class="code-comment"># 3. Store results in new variables</span>
 <span class="code-comment"># 4. Print all results</span></pre>
+                    </div>
                 </div>
             </div>
         </section>
@@ -362,8 +436,9 @@ result = number + 10  <span class="code-comment"># Works: result = 15</span></pr
             
             <div class="prose prose-invert max-w-none">
                 <h3 class="text-xl font-bold mb-3 text-blue-400">1. F-Strings (Python 3.6+)</h3>
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
 name = "Alice"
 age = 25
 <span class="code-comment"># Basic f-string</span>
@@ -380,11 +455,13 @@ print(f"Price: ${price:.2f}")  <span class="code-comment"># Two decimal places</
 from datetime import datetime
 now = datetime.now()
 print(f"Date: {now:%Y-%m-%d}")</pre>
+                    </div>
                 </div>
 
                 <h3 class="text-xl font-bold mb-3 text-blue-400">2. Format Method</h3>
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
 <span class="code-comment"># Basic formatting</span>
 print("Hello, {}!".format(name))
 
@@ -393,13 +470,16 @@ print("Name: {}, Age: {}".format(name, age))
 
 <span class="code-comment"># Named placeholders</span>
 print("Name: {n}, Age: {a}".format(n=name, a=age))</pre>
+                    </div>
                 </div>
 
                 <h3 class="text-xl font-bold mb-3 text-blue-400">3. % Operator (Legacy)</h3>
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
 <span class="code-comment"># Old style formatting (still works but not recommended)</span>
 print("Name: %s, Age: %d" % (name, age))</pre>
+                    </div>
                 </div>
             </div>
         </section>
@@ -414,9 +494,10 @@ print("Name: %s, Age: %d" % (name, age))</pre>
                 </p>
             </div>
 
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <h3 class="text-xl font-bold mb-4 text-blue-400">Scope Examples</h3>
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Scope Examples</h3>
+                    <pre class="text-green-300">
 <span class="code-comment"># Global scope</span>
 global_var = "I'm accessible everywhere"
 
@@ -437,6 +518,7 @@ def outer():
     def inner():
         print(outer_var)  <span class="code-comment"># Can access outer_var</span>
     inner()</pre>
+                </div>
             </div>
         </section>
 
@@ -444,8 +526,9 @@ def outer():
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-yellow-400">Memory Management and Variables</h2>
             
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
 <span class="code-comment"># Variable assignment and memory</span>
 x = [1, 2, 3]
 y = x  <span class="code-comment"># Both variables point to the same list</span>
@@ -464,6 +547,7 @@ print(sys.getrefcount(x))  <span class="code-comment"># Check reference count</s
 <span class="code-comment"># del statement</span>
 del x  <span class="code-comment"># Removes reference to object</span>
 <span class="code-comment"># Object may be garbage collected if no more references exist</span></pre>
+                </div>
             </div>
         </section>
 
@@ -471,8 +555,9 @@ del x  <span class="code-comment"># Removes reference to object</span>
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-yellow-400">Special Variables in Python</h2>
             
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
 <span class="code-comment"># Built-in special variables</span>
 print(__name__)  <span class="code-comment"># '__main__' if run directly</span>
 
@@ -486,6 +571,7 @@ class MyClass:
 def my_function():
     print(f"Function name: {my_function.__name__}")
     print(f"Doc string: {my_function.__doc__}")</pre>
+                </div>
             </div>
         </section>
 
@@ -493,8 +579,9 @@ def my_function():
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-yellow-400">Type Hints and Annotations</h2>
             
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
 <span class="code-comment"># Basic type hints (Python 3.6+)</span>
 name: str = "Alice"
 age: int = 25
@@ -514,6 +601,7 @@ def process_users(users: List[str]) -> Dict[str, int]:
 def find_user(id: int) -> Optional[str]:
     users = {1: "Alice", 2: "Bob"}
     return users.get(id)  <span class="code-comment"># Returns None if not found</span></pre>
+                </div>
             </div>
         </section>
 
@@ -530,9 +618,10 @@ def find_user(id: int) -> Optional[str]:
                     programming.
                 </p>
 
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Variable Lifecycle Example</h3>
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">Variable Lifecycle Example</h3>
+                        <pre class="text-green-300">
 <span class="code-comment"># Creation Phase</span>
 website_name = "PythonCheatSheet"  <span class="code-comment"># Python allocates memory for string</span>
 visitor_count = 0                 <span class="code-comment"># Creates integer object</span>
@@ -544,6 +633,7 @@ visitor_count += 1  <span class="code-comment"># Creates new integer object (imm
 <span class="code-comment"># Reassignment Phase</span>
 website_name = 42  <span class="code-comment"># Dynamic typing allows type change</span>
 del visitor_count  <span class="code-comment"># Marks for garbage collection</span></pre>
+                    </div>
                 </div>
 
                 <h3 class="text-xl font-bold mb-3 text-blue-400">Memory Management Deep Dive</h3>
@@ -570,8 +660,9 @@ del visitor_count  <span class="code-comment"># Marks for garbage collection</sp
                     behaviors that vary by input type:
                 </p>
 
-                <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                    <pre class="text-green-300">
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
 <span class="code-comment"># String to Number Conversions</span>
 print(int("1010", 2))     <span class="code-comment"># Binary conversion: 10</span>
 print(float("inf"))       <span class="code-comment"># Special float value: infinity</span>
@@ -585,6 +676,7 @@ print(bool(0.0))          <span class="code-comment"># Zero float: False</span>
 <span class="code-comment"># Complex Conversions</span>
 print(complex(3, 4))      <span class="code-comment"># (3+4j)</span>
 print(int(3.999))         <span class="code-comment"># Truncates to 3 (doesn't round)</span></pre>
+                    </div>
                 </div>
             </div>
         </section>
@@ -593,8 +685,9 @@ print(int(3.999))         <span class="code-comment"># Truncates to 3 (doesn't r
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-yellow-400">Variable Scope Hierarchy</h2>
             
-            <div class="bg-gray-800 p-6 rounded-lg mb-6">
-                <pre class="text-green-300">
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
 <span class="code-comment"># LEGB Rule (Local -> Enclosing -> Global -> Built-in)</span>
 global_var = "I'm global"
 
@@ -612,6 +705,7 @@ def outer_function():
 
 <span class="code-comment"># Demonstrate scope hierarchy</span>
 outer_function()</pre>
+                </div>
             </div>
 
             <div class="prose prose-invert max-w-none">
@@ -626,10 +720,10 @@ outer_function()</pre>
         </section>
     </main>
 
-    <!-- Add this at the end of the file before closing </body> -->
-    <button id="backToTop" class="fixed bottom-4 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/>
         </svg>
     </button>
 
@@ -652,16 +746,5 @@ outer_function()</pre>
         });
     });
     </script>
-
-    <style>
-    /* Mobile-friendly adjustments */
-    @media (max-width: 767px) {
-        #backToTop {
-            bottom: 70px; /* Above mobile menu */
-            right: 20px;
-            padding: 12px;
-        }
-    }
-    </style>
 </body>
 </html> 
