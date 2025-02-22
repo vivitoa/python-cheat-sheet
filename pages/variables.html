@@ -75,6 +75,48 @@
             padding: 10px;
         }
     }
+
+    /* Code boxes matching index.html */
+    pre {
+        white-space: pre !important;
+        overflow-x: auto !important;
+        max-width: none !important;
+        width: max-content !important;
+        min-width: 100% !important;
+        background: #1F2937;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+    }
+
+    /* Mobile adjustments matching index.html */
+    @media (max-width: 767px) {
+        pre {
+            margin: 0 -1rem;
+            width: calc(100% + 2rem);
+            border-radius: 0;
+            padding: 1rem;
+            font-size: 14px;
+        }
+        
+        .code-box {
+            overflow-x: auto;
+        }
+    }
+
+    /* Scrollbar styling from index.html */
+    pre::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    pre::-webkit-scrollbar-track {
+        background: #374151;
+        border-radius: 4px;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+        background: #4B5563;
+        border-radius: 4px;
+    }
     </style>
 </head>
 <body class="dark bg-gray-900 text-gray-200">
