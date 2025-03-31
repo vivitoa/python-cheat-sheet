@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Lists & Tuples - Complete Guide</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Lists & Tuples - Complete Guide</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Understanding Sequence Types</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Lists and tuples are fundamental sequence data types in Python. They both store ordered collections of items, 
+                    but with key differences in mutability, performance, and use cases.
+                </p>
+                <p class="mb-4">
+                    Both can contain elements of different data types, including other lists or tuples, and support indexing, 
+                    slicing, and iteration operations.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Lists use square brackets</span>
+fruits = ["apple", "banana", "cherry"]
+
+<span class="code-comment"># Tuples use parentheses</span>
+coordinates = (10, 20)
+
+<span class="code-comment"># Both allow indexing</span>
+print(fruits[0])       <span class="code-comment"># "apple"</span>
+print(coordinates[1])  <span class="code-comment"># 20</span>
+
+<span class="code-comment"># Both allow slicing</span>
+print(fruits[1:3])     <span class="code-comment"># ["banana", "cherry"]</span>
+
+<span class="code-comment"># Key difference: mutability</span>
+fruits[0] = "apricot"  <span class="code-comment"># Valid - lists are mutable</span>
+# coordinates[0] = 30  <span class="code-comment"># Invalid - tuples are immutable</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Lists -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Python Lists in Detail</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">List Creation and Basics</h3>
+                <p class="mb-4">
+                    Lists are mutable, ordered sequences of elements. Each element can be of any data type.
+                    They're created with square brackets or the <code>list()</code> constructor.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Ways to create lists</span>
+empty_list = []
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, "hello", 3.14, True, [1, 2, 3]]
+from_constructor = list("hello")  <span class="code-comment"># ['h', 'e', 'l', 'l', 'o']</span>
+range_list = list(range(5))      <span class="code-comment"># [0, 1, 2, 3, 4]</span>
+
+<span class="code-comment"># List size and membership</span>
+print(len(numbers))    <span class="code-comment"># 5</span>
+print(3 in numbers)    <span class="code-comment"># True</span>
+print(6 in numbers)    <span class="code-comment"># False</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">List Methods and Operations</h3>
+                <p class="mb-4">
+                    Lists provide numerous methods for adding, removing, and manipulating elements.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Adding elements</span>
+fruits = ["apple", "banana"]
+fruits.append("cherry")        <span class="code-comment"># Add to end: ['apple', 'banana', 'cherry']</span>
+fruits.insert(1, "orange")    <span class="code-comment"># Insert at index: ['apple', 'orange', 'banana', 'cherry']</span>
+fruits.extend(["mango", "kiwi"])  <span class="code-comment"># Add multiple items: ['apple', 'orange', 'banana', 'cherry', 'mango', 'kiwi']</span>
+
+<span class="code-comment"># Removing elements</span>
+fruits.remove("banana")       <span class="code-comment"># Remove by value</span>
+last_fruit = fruits.pop()     <span class="code-comment"># Remove and return last item: 'kiwi'</span>
+second_fruit = fruits.pop(1)  <span class="code-comment"># Remove by index: 'orange'</span>
+fruits.clear()                <span class="code-comment"># Remove all items: []</span>
+
+<span class="code-comment"># Finding elements</span>
+numbers = [10, 20, 30, 20, 40]
+print(numbers.index(20))      <span class="code-comment"># 1 (first occurrence)</span>
+print(numbers.count(20))      <span class="code-comment"># 2 (number of occurrences)</span>
+
+<span class="code-comment"># Sorting and reversing</span>
+names = ["Charlie", "Alice", "Bob"]
+names.sort()                  <span class="code-comment"># In-place sort: ['Alice', 'Bob', 'Charlie']</span>
+names.sort(reverse=True)      <span class="code-comment"># Descending sort: ['Charlie', 'Bob', 'Alice']</span>
+names.reverse()               <span class="code-comment"># In-place reverse: ['Alice', 'Bob', 'Charlie']</span>
+
+<span class="code-comment"># Sorted copy</span>
+sorted_copy = sorted(names)   <span class="code-comment"># Returns new list, doesn't modify original</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">List Slicing and Copying</h3>
+                <p class="mb-4">
+                    Slicing lets you extract portions of a list. It's a powerful feature for manipulating sequences.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Slicing syntax: list[start:stop:step]</span>
+numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(numbers[2:5])     <span class="code-comment"># [2, 3, 4]</span>
+print(numbers[:3])      <span class="code-comment"># [0, 1, 2]</span>
+print(numbers[7:])      <span class="code-comment"># [7, 8, 9]</span>
+print(numbers[1:8:2])   <span class="code-comment"># [1, 3, 5, 7]</span>
+print(numbers[::-1])    <span class="code-comment"># [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] (reversed)</span>
+
+<span class="code-comment"># Copying lists</span>
+shallow_copy1 = numbers[:]    <span class="code-comment"># Slice copy</span>
+shallow_copy2 = numbers.copy()  <span class="code-comment"># Method copy</span>
+shallow_copy3 = list(numbers)   <span class="code-comment"># Constructor copy</span>
+
+<span class="code-comment"># Deep copying (for nested lists)</span>
+import copy
+nested = [[1, 2], [3, 4]]
+deep_copy = copy.deepcopy(nested)</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">List Comprehensions</h3>
+                <p class="mb-4">
+                    List comprehensions provide a concise way to create lists based on existing lists or other iterables.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic list comprehension</span>
+squares = [x**2 for x in range(10)]
+print(squares)  <span class="code-comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+
+<span class="code-comment"># With condition</span>
+even_squares = [x**2 for x in range(10) if x % 2 == 0]
+print(even_squares)  <span class="code-comment"># [0, 4, 16, 36, 64]</span>
+
+<span class="code-comment"># Nested list comprehension</span>
+matrix = [[j for j in range(3)] for i in range(3)]
+print(matrix)  <span class="code-comment"># [[0, 1, 2], [0, 1, 2], [0, 1, 2]]</span>
+
+<span class="code-comment"># With if/else</span>
+values = [x if x % 2 == 0 else -x for x in range(10)]
+print(values)  <span class="code-comment"># [0, -1, 2, -3, 4, -5, 6, -7, 8, -9]</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Tuples -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Python Tuples in Detail</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Tuple Creation and Basics</h3>
+                <p class="mb-4">
+                    Tuples are immutable, ordered sequences of elements. Once created, their values cannot be changed.
+                    They're created with parentheses or the <code>tuple()</code> constructor.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Ways to create tuples</span>
+empty_tuple = ()
+single_item = (1,)  <span class="code-comment"># Note the comma! Without it, it's just an int in parentheses</span>
+coordinates = (10, 20, 30)
+mixed_tuple = (1, "hello", 3.14)
+from_constructor = tuple([1, 2, 3])  <span class="code-comment"># (1, 2, 3)</span>
+from_string = tuple("hello")  <span class="code-comment"># ('h', 'e', 'l', 'l', 'o')</span>
+
+<span class="code-comment"># Tuple size and membership</span>
+print(len(coordinates))  <span class="code-comment"># 3</span>
+print(20 in coordinates)  <span class="code-comment"># True</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Tuple Methods and Operations</h3>
+                <p class="mb-4">
+                    Since tuples are immutable, they have fewer methods than lists, but they still support many operations.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Accessing elements</span>
+coordinates = (10, 20, 30)
+print(coordinates[0])    <span class="code-comment"># 10</span>
+print(coordinates[-1])   <span class="code-comment"># 30</span>
+
+<span class="code-comment"># Slicing works like lists</span>
+print(coordinates[1:])   <span class="code-comment"># (20, 30)</span>
+
+<span class="code-comment"># Only two methods</span>
+values = (1, 2, 2, 3, 4, 2)
+print(values.count(2))   <span class="code-comment"># 3 (occurrences of 2)</span>
+print(values.index(3))   <span class="code-comment"># 3 (index of first 3)</span>
+
+<span class="code-comment"># Concatenation and repetition</span>
+tuple1 = (1, 2)
+tuple2 = (3, 4)
+combined = tuple1 + tuple2  <span class="code-comment"># (1, 2, 3, 4)</span>
+repeated = tuple1 * 3       <span class="code-comment"># (1, 2, 1, 2, 1, 2)</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Tuple Unpacking</h3>
+                <p class="mb-4">
+                    One of the most powerful features of tuples is their ability to be unpacked into multiple variables.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic unpacking</span>
+point = (10, 20, 30)
+x, y, z = point
+print(x, y, z)  <span class="code-comment"># 10 20 30</span>
+
+<span class="code-comment"># Unpacking with rest operator (*)</span>
+numbers = (1, 2, 3, 4, 5)
+first, *middle, last = numbers
+print(first)   <span class="code-comment"># 1</span>
+print(middle)  <span class="code-comment"># [2, 3, 4]</span>
+print(last)    <span class="code-comment"># 5</span>
+
+<span class="code-comment"># Swapping values</span>
+a, b = 5, 10
+a, b = b, a  <span class="code-comment"># Now a is 10, b is 5</span>
+
+<span class="code-comment"># Function returning multiple values (as a tuple)</span>
+def get_dimensions():
+    return 1920, 1080  <span class="code-comment"># Returns a tuple (1920, 1080)</span>
+
+width, height = get_dimensions()
+print(f"Width: {width}, Height: {height}")  <span class="code-comment"># Width: 1920, Height: 1080</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Named Tuples</h3>
+                <p class="mb-4">
+                    Named tuples enhance regular tuples by allowing you to access elements by name instead of just index.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Named tuples from collections module</span>
+from collections import namedtuple
+
+<span class="code-comment"># Define a new type</span>
+Point = namedtuple('Point', ['x', 'y', 'z'])
+
+<span class="code-comment"># Create an instance</span>
+point = Point(10, 20, 30)
+
+<span class="code-comment"># Access by name or index</span>
+print(point.x)    <span class="code-comment"># 10 (by name)</span>
+print(point[1])   <span class="code-comment"># 20 (by index)</span>
+print(point._asdict())  <span class="code-comment"># {'x': 10, 'y': 20, 'z': 30} (as dictionary)</span>
+
+<span class="code-comment"># Named tuples are immutable</span>
+# point.x = 100  <span class="code-comment"># AttributeError</span>
+
+<span class="code-comment"># But you can create a new one with _replace</span>
+new_point = point._replace(x=100)
+print(new_point)  <span class="code-comment"># Point(x=100, y=20, z=30)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lists vs Tuples -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Lists vs Tuples: When to Use Which</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Each has its strengths and ideal use cases. Understanding when to use each can lead to more efficient and maintainable code.
+                </p>
+            </div>
+
+            <table class="w-full text-left text-gray-300 border border-gray-600 mb-6">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Feature</th>
+                        <th class="px-4 py-2 border border-gray-600">List</th>
+                        <th class="px-4 py-2 border border-gray-600">Tuple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Mutability</td>
+                        <td class="px-4 py-2 border border-gray-600">Mutable (can change)</td>
+                        <td class="px-4 py-2 border border-gray-600">Immutable (fixed)</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Syntax</td>
+                        <td class="px-4 py-2 border border-gray-600">Square brackets `[]`</td>
+                        <td class="px-4 py-2 border border-gray-600">Parentheses `()`</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Size</td>
+                        <td class="px-4 py-2 border border-gray-600">Dynamic</td>
+                        <td class="px-4 py-2 border border-gray-600">Fixed</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Memory</td>
+                        <td class="px-4 py-2 border border-gray-600">More overhead</td>
+                        <td class="px-4 py-2 border border-gray-600">Less overhead</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Performance</td>
+                        <td class="px-4 py-2 border border-gray-600">Slower</td>
+                        <td class="px-4 py-2 border border-gray-600">Faster</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Methods</td>
+                        <td class="px-4 py-2 border border-gray-600">Many (append, remove, etc.)</td>
+                        <td class="px-4 py-2 border border-gray-600">Few (count, index)</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Use as Dictionary Key</td>
+                        <td class="px-4 py-2 border border-gray-600">No (not hashable)</td>
+                        <td class="px-4 py-2 border border-gray-600">Yes (hashable)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">When to Use Lists</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>When the collection needs to be modified (adding/removing elements)</li>
+                    <li>For homogeneous collections that may grow or shrink</li>
+                    <li>When you need to use methods like sort, reverse, etc.</li>
+                    <li>For data that represents a collection of similar items</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">When to Use Tuples</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>For fixed data that shouldn't change</li>
+                    <li>As dictionary keys (since they're hashable)</li>
+                    <li>For heterogeneous data that forms a single logical item</li>
+                    <li>For returning multiple values from a function</li>
+                    <li>For data that's meant to be unpacked</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Use a list when the collection will change</span>
+shopping_cart = ["apple", "milk", "bread"]
+shopping_cart.append("eggs")
+
+<span class="code-comment"># Use a tuple for fixed, structured data</span>
+person = ("John Doe", 35, "Developer")
+name, age, occupation = person
+
+<span class="code-comment"># Tuples can be used as dictionary keys</span>
+locations = {
+    (40.7128, -74.0060): "New York",
+    (34.0522, -118.2437): "Los Angeles"
+}
+print(locations[(40.7128, -74.0060)])  <span class="code-comment"># "New York"</span>
+
+<span class="code-comment"># Lists cannot be used as dictionary keys</span>
+# locations[[40.7128, -74.0060]] = "New York"  <span class="code-comment"># TypeError: unhashable type: 'list'</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: List Operations</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Create a list of numbers 1-10, then:
+# 1. Remove all even numbers
+# 2. Square the remaining numbers
+# 3. Add the number 25 to the end
+# 4. Find and print the average of all numbers in the list</span>
+
+# Your solution here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Tuple Unpacking</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Given this list of student tuples (name, grade, age):
+students = [
+    ("Alice", 92, 16),
+    ("Bob", 85, 17),
+    ("Charlie", 90, 15),
+    ("David", 80, 16)
+]
+
+# Use tuple unpacking to:
+# 1. Find the student with the highest grade
+# 2. Calculate the average age of all students
+# 3. Create a new list of students sorted by grade (highest first)</span>
+
+# Your solution here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: Named Tuples</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Create a named tuple for representing a car with make, model, year, and mpg
+# Then create a list of cars and write code to find:
+# 1. The newest car
+# 2. The car with the best fuel efficiency
+# 3. All cars of a specific make</span>
+
+# Your solution here</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('hidden');
+        } else {
+            backToTop.classList.add('hidden');
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html> 
