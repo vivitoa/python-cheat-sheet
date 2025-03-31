@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Lists & Tuples - Complete Guide</title>
+    <title>Python Lists & Tuples - Python Cheat Sheet</title>
     
     <!-- Same CSS/JS as main page -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -103,7 +103,7 @@
     </div>
 
     <main class="container mx-auto px-4 py-8 max-w-4xl">
-        <h1 class="text-4xl font-bold mb-8">Python Lists & Tuples - Complete Guide</h1>
+        <h1 class="text-4xl font-bold mb-8">Lists and Tuples in Python</h1>
 
         <!-- Introduction -->
         <section class="mb-12">
@@ -158,17 +158,21 @@ fruits[0] = "apricot"  <span class="code-comment"># Valid - lists are mutable</s
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
                     <pre class="text-green-300">
-<span class="code-comment"># Ways to create lists</span>
+<span class="code-comment"># Creating lists</span>
 empty_list = []
 numbers = [1, 2, 3, 4, 5]
-mixed = [1, "hello", 3.14, True, [1, 2, 3]]
-from_constructor = list("hello")  <span class="code-comment"># ['h', 'e', 'l', 'l', 'o']</span>
-range_list = list(range(5))      <span class="code-comment"># [0, 1, 2, 3, 4]</span>
+mixed = [1, "hello", 3.14, True]
+nested = [1, [2, 3], [4, [5, 6]]]
 
-<span class="code-comment"># List size and membership</span>
-print(len(numbers))    <span class="code-comment"># 5</span>
-print(3 in numbers)    <span class="code-comment"># True</span>
-print(6 in numbers)    <span class="code-comment"># False</span></pre>
+<span class="code-comment"># List constructor</span>
+from_range = list(range(5))  <span class="code-comment"># [0, 1, 2, 3, 4]</span>
+from_string = list("hello")  <span class="code-comment"># ['h', 'e', 'l', 'l', 'o']</span>
+from_tuple = list((1, 2, 3))  <span class="code-comment"># [1, 2, 3]</span>
+
+<span class="code-comment"># Accessing elements</span>
+first = numbers[0]  <span class="code-comment"># 1</span>
+last = numbers[-1]  <span class="code-comment"># 5</span>
+middle = numbers[1:4]  <span class="code-comment"># [2, 3, 4]</span></pre>
                 </div>
             </div>
 
@@ -498,86 +502,100 @@ print(locations[(40.7128, -74.0060)])  <span class="code-comment"># "New York"</
             </div>
         </section>
 
+        <!-- Comparison Table Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Comparison: Lists vs. Tuples</h2>
+            
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Feature</th>
+                        <th class="py-3 px-4 text-left">Lists</th>
+                        <th class="py-3 px-4 text-left">Tuples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Mutability</td>
+                        <td class="py-3 px-4">Mutable (can be changed)</td>
+                        <td class="py-3 px-4">Immutable (cannot be changed)</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Syntax</td>
+                        <td class="py-3 px-4">Square brackets <code>[]</code></td>
+                        <td class="py-3 px-4">Parentheses <code>()</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Size</td>
+                        <td class="py-3 px-4">More memory (resizable)</td>
+                        <td class="py-3 px-4">Less memory (fixed size)</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Memory usage</td>
+                        <td class="py-3 px-4">Higher (extra memory for resizing)</td>
+                        <td class="py-3 px-4">Lower (exactly what's needed)</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Performance</td>
+                        <td class="py-3 px-4">Slower</td>
+                        <td class="py-3 px-4">Faster</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Methods</td>
+                        <td class="py-3 px-4">Many (append, extend, insert, remove...)</td>
+                        <td class="py-3 px-4">Few (count, index)</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Dict keys</td>
+                        <td class="py-3 px-4">Cannot be dictionary keys</td>
+                        <td class="py-3 px-4">Can be dictionary keys</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
         <!-- Practice Exercises -->
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
             
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: List Operations</h3>
-                    <pre class="text-green-300">
-<span class="code-comment"># Create a list of numbers 1-10, then:
-# 1. Remove all even numbers
-# 2. Square the remaining numbers
-# 3. Add the number 25 to the end
-# 4. Find and print the average of all numbers in the list</span>
-
-# Your solution here</pre>
-                </div>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Tuple Unpacking</h3>
-                    <pre class="text-green-300">
-<span class="code-comment"># Given this list of student tuples (name, grade, age):
-students = [
-    ("Alice", 92, 16),
-    ("Bob", 85, 17),
-    ("Charlie", 90, 15),
-    ("David", 80, 16)
-]
-
-# Use tuple unpacking to:
-# 1. Find the student with the highest grade
-# 2. Calculate the average age of all students
-# 3. Create a new list of students sorted by grade (highest first)</span>
-
-# Your solution here</pre>
-                </div>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: Named Tuples</h3>
-                    <pre class="text-green-300">
-<span class="code-comment"># Create a named tuple for representing a car with make, model, year, and mpg
-# Then create a list of cars and write code to find:
-# 1. The newest car
-# 2. The car with the best fuel efficiency
-# 3. All cars of a specific make</span>
-
-# Your solution here</pre>
-                </div>
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Try These:</h3>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Create a function that takes a list and returns a new list with unique elements of the first list.</li>
+                    <li>Write a Python program to find the second largest number in a list.</li>
+                    <li>Create a function that counts the number of elements in a list without using len().</li>
+                    <li>Write a function to flatten a nested list into a single list.</li>
+                    <li>Create a named tuple for representing a 3D point and use it to calculate the distance between two points.</li>
+                </ol>
             </div>
         </section>
     </main>
 
-    <!-- Back to Top button -->
-    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
     </button>
 
     <script>
-    // Back to Top functionality
-    const backToTop = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTop.classList.remove('hidden');
-        } else {
-            backToTop.classList.add('hidden');
-        }
-    });
-
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
         });
-    });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
     </script>
 </body>
 </html> 

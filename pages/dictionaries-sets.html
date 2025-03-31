@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Dictionaries & Sets - Complete Guide</title>
+    <title>Python Dictionaries & Sets - Python Cheat Sheet</title>
     
     <!-- Same CSS/JS as main page -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -103,7 +103,7 @@
     </div>
 
     <main class="container mx-auto px-4 py-8 max-w-4xl">
-        <h1 class="text-4xl font-bold mb-8">Python Dictionaries & Sets - Complete Guide</h1>
+        <h1 class="text-4xl font-bold mb-8">Dictionaries and Sets in Python</h1>
 
         <!-- Introduction -->
         <section class="mb-12">
@@ -122,7 +122,7 @@
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Dictionary stores key-value pairs</span>
 person = {"name": "Alice", "age": 30, "city": "New York"}
 
@@ -150,7 +150,7 @@ print("banana" in fruits)  <span class="code-comment"># Membership test: True</s
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Ways to create dictionaries</span>
 empty_dict = {}
 person = {"name": "Alice", "age": 30}
@@ -180,7 +180,7 @@ squares = {x: x**2 for x in range(6)}  <span class="code-comment"># {0: 0, 1: 1,
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Accessing dictionary values</span>
 person = {"name": "Alice", "age": 30, "city": "New York"}
 
@@ -220,7 +220,7 @@ person.clear()  <span class="code-comment"># {}</span></pre>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Dictionary views</span>
 person = {"name": "Alice", "age": 30, "city": "New York"}
 
@@ -259,7 +259,7 @@ score = person.setdefault("score", 0)  <span class="code-comment"># Adds {"score
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Iterating through a dictionary</span>
 person = {"name": "Alice", "age": 30, "city": "New York"}
 
@@ -294,7 +294,7 @@ for key in sorted(person.keys()):
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Basic dictionary comprehension</span>
 squares = {x: x**2 for x in range(6)}
 print(squares)  <span class="code-comment"># {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</span>
@@ -325,7 +325,7 @@ print(fruit_prices)  <span class="code-comment"># {'apple': 1.2, 'banana': 0.9, 
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Nested dictionaries</span>
 users = {
     "alice": {
@@ -377,7 +377,7 @@ users_deep = copy.deepcopy(users)</pre>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Ways to create sets</span>
 empty_set = set()  <span class="code-comment"># Empty set (cannot use {} as that creates an empty dict)</span>
 fruits = {"apple", "banana", "cherry"}  <span class="code-comment"># Set with initial values</span>
@@ -406,7 +406,7 @@ even_numbers = {x for x in range(10) if x % 2 == 0}  <span class="code-comment">
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Adding elements</span>
 colors = {"red", "green"}
 colors.add("blue")  <span class="code-comment"># {"red", "green", "blue"}</span>
@@ -440,7 +440,7 @@ colors.clear()  <span class="code-comment"># {}</span></pre>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Set operations</span>
 A = {1, 2, 3, 4, 5}
 B = {4, 5, 6, 7, 8}
@@ -482,7 +482,7 @@ C.symmetric_difference_update(D)  <span class="code-comment"># Symmetric differe
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Subset and superset relationships</span>
 A = {1, 2, 3}
 B = {1, 2, 3, 4, 5}
@@ -518,7 +518,7 @@ print(A.isdisjoint(B))  <span class="code-comment"># False (they share elements)
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
-                    <pre class="text-green-300">
+                    <pre>
 <span class="code-comment"># Remove duplicates from a list</span>
 numbers = [1, 2, 2, 3, 4, 4, 5]
 unique_numbers = list(set(numbers))  <span class="code-comment"># [1, 2, 3, 4, 5] (order may vary)</span>
@@ -634,29 +634,29 @@ combinations = {(x, y) for x in dice1 for y in dice2}  <span class="code-comment
         </div>
     </main>
 
-    <!-- Back to Top button -->
-    <button id="backToTop" class="fixed hidden bottom-8 right-8 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-full shadow-lg transition duration-300">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
     </button>
 
     <script>
-        // Back to Top button functionality
-        const backToTopButton = document.getElementById('backToTop');
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
         
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
             if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('hidden');
+                backToTopButton.classList.remove("hidden");
             } else {
-                backToTopButton.classList.add('hidden');
+                backToTopButton.classList.add("hidden");
             }
         });
         
-        backToTopButton.addEventListener('click', () => {
+        backToTopButton.addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: "smooth"
             });
         });
     </script>

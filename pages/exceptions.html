@@ -1,75 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Exception Handling - Python Cheat Sheet</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js"></script>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
     <style>
-        body {
-            background-color: #1a202c;
-            color: #e2e8f0;
-        }
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
         .code-box {
+            background: #1F2937;
             border-radius: 0.5rem;
             overflow: hidden;
-            margin-bottom: 1.5rem;
+            margin: 1rem 0;
         }
-        .code-comment {
-            color: #9ae6b4;
-            opacity: 0.8;
-        }
-        /* Breadcrumb styles */
-        .breadcrumbs {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
+        .code-box pre {
+            padding: 1.5rem;
             margin: 0;
-            padding: 0;
-        }
-        .breadcrumbs li {
-            display: inline-flex;
-            align-items: center;
-        }
-        .breadcrumbs li:not(:last-child):after {
-            content: "/";
-            margin: 0 0.5rem;
-            color: #718096;
-        }
-        .breadcrumbs a {
-            color: #63b3ed;
-            text-decoration: none;
-        }
-        .breadcrumbs a:hover {
-            color: #4299e1;
-            text-decoration: underline;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
         }
         
-        @media (max-width: 640px) {
-            .prose {
-                font-size: 0.875rem;
-            }
+        @media (max-width: 767px) {
+            /* Code blocks */
             pre {
-                font-size: 0.75rem;
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
             }
         }
     </style>
 </head>
-<body class="min-h-screen pb-12">
-    <header class="bg-gray-800 py-4">
-        <div class="container mx-auto px-4">
-            <nav>
-                <ul class="breadcrumbs">
-                    <li><a href="../index.html">Python Cheat Sheet</a></li>
-                    <li>Exception Handling</li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
 
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-8 text-center text-blue-400">Exception Handling in Python</h1>
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Exception Handling in Python</h1>
         
         <section class="mb-12">
             <div class="prose prose-invert max-w-none">
@@ -628,28 +661,28 @@ except Exception as e:
     </main>
 
     <!-- Back to Top button -->
-    <button id="backToTop" class="fixed hidden bottom-8 right-8 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-full shadow-lg transition duration-300">
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
     </button>
 
     <script>
-        // Back to Top button functionality
-        const backToTopButton = document.getElementById('backToTop');
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
         
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
             if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('hidden');
+                backToTopButton.classList.remove("hidden");
             } else {
-                backToTopButton.classList.add('hidden');
+                backToTopButton.classList.add("hidden");
             }
         });
         
-        backToTopButton.addEventListener('click', () => {
+        backToTopButton.addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: "smooth"
             });
         });
     </script>
