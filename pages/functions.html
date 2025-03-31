@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Functions - Complete Guide</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Mobile-specific styles */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+        }
+
+        /* Back to Top button */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Functions - Complete Guide</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Understanding Python Functions</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Functions are one of the fundamental building blocks in Python. They allow you to encapsulate a block of code that can be reused throughout your program. Functions help make your code modular, maintainable, and easier to understand.
+                </p>
+                
+                <p class="mb-4">
+                    In Python, functions can be defined with the <code>def</code> keyword, followed by the function name, 
+                    a pair of parentheses which may include parameters, and a colon. The function body is indented.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic function definition</span>
+def greet():
+    print("Hello, World!")
+
+<span class="code-comment"># Calling the function</span>
+greet()  <span class="code-comment"># Output: Hello, World!</span>
+
+<span class="code-comment"># Function with parameters</span>
+def greet_person(name):
+    print(f"Hello, {name}!")
+
+greet_person("Alice")  <span class="code-comment"># Output: Hello, Alice!</span>
+
+<span class="code-comment"># Function with return value</span>
+def add_numbers(a, b):
+    return a + b
+
+result = add_numbers(5, 3)
+print(result)  <span class="code-comment"># Output: 8</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Function Parameters -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Function Parameters and Arguments</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python offers a flexible parameter system for functions, allowing various ways to pass data to your functions.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Required Parameters</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Function with required parameters</span>
+def calculate_rectangle_area(length, width):
+    return length * width
+
+<span class="code-comment"># Must provide all required arguments</span>
+area = calculate_rectangle_area(5, 3)
+print(area)  <span class="code-comment"># Output: 15</span></pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Default Parameters</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Function with default parameter values</span>
+def greet(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+
+<span class="code-comment"># Using the default value</span>
+print(greet("Alice"))  <span class="code-comment"># Output: Hello, Alice!</span>
+
+<span class="code-comment"># Overriding the default value</span>
+print(greet("Bob", "Hi"))  <span class="code-comment"># Output: Hi, Bob!</span></pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Keyword Arguments</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Using keyword arguments</span>
+def create_profile(name, age, occupation):
+    return f"{name} is {age} years old and works as a {occupation}."
+
+<span class="code-comment"># Calling with positional arguments</span>
+print(create_profile("Alice", 30, "Engineer"))
+
+<span class="code-comment"># Calling with keyword arguments (can be in any order)</span>
+print(create_profile(age=25, name="Bob", occupation="Designer"))
+
+<span class="code-comment"># Mixing positional and keyword arguments</span>
+<span class="code-comment"># Positional arguments must come before keyword arguments</span>
+print(create_profile("Charlie", occupation="Doctor", age=35))</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Variable-Length Arguments (*args and **kwargs)</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># *args: Variable number of positional arguments</span>
+def calculate_sum(*numbers):
+    return sum(numbers)
+
+print(calculate_sum(1, 2, 3))  <span class="code-comment"># Output: 6</span>
+print(calculate_sum(5, 10, 15, 20))  <span class="code-comment"># Output: 50</span>
+
+<span class="code-comment"># **kwargs: Variable number of keyword arguments</span>
+def print_person_details(**details):
+    for key, value in details.items():
+        print(f"{key}: {value}")
+
+print_person_details(name="Alice", age=30, city="New York", job="Engineer")
+
+<span class="code-comment"># Using both *args and **kwargs</span>
+def example_function(*args, **kwargs):
+    print(f"Args: {args}")
+    print(f"Kwargs: {kwargs}")
+
+example_function(1, 2, 3, name="Alice", age=30)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Return Values -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Return Values</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Functions can return values using the <code>return</code> statement. A function can return a single value, 
+                    multiple values, or nothing at all.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Function returning a single value</span>
+def square(x):
+    return x ** 2
+
+result = square(5)
+print(result)  <span class="code-comment"># Output: 25</span>
+
+<span class="code-comment"># Function returning multiple values</span>
+def get_coordinates():
+    x = 10
+    y = 20
+    return x, y  <span class="code-comment"># Returns a tuple</span>
+
+coords = get_coordinates()
+print(coords)  <span class="code-comment"># Output: (10, 20)</span>
+
+<span class="code-comment"># Unpacking multiple return values</span>
+x, y = get_coordinates()
+print(f"X: {x}, Y: {y}")  <span class="code-comment"># Output: X: 10, Y: 20</span>
+
+<span class="code-comment"># Early returns</span>
+def get_absolute(number):
+    if number < 0:
+        return -number
+    return number  <span class="code-comment"># This line executes only if number >= 0</span>
+
+<span class="code-comment"># Function with no return (returns None implicitly)</span>
+def say_hello():
+    print("Hello!")
+
+result = say_hello()
+print(result)  <span class="code-comment"># Output: None</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scope and Lifetime -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Variable Scope and Lifetime</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Variables in Python have different scopes (regions where they're accessible) and lifetimes (duration they exist in memory).
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Local and Global Scope</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Local variables</span>
+def function_with_local_var():
+    local_var = "I'm local"
+    print(local_var)  <span class="code-comment"># Works fine</span>
+
+function_with_local_var()
+<span class="code-comment"># print(local_var)  # NameError: local_var is not defined</span>
+
+<span class="code-comment"># Global variables</span>
+global_var = "I'm global"
+
+def function_using_global():
+    print(global_var)  <span class="code-comment"># Can access global variables</span>
+
+function_using_global()
+
+<span class="code-comment"># Modifying global variables</span>
+counter = 0
+
+def increment_counter():
+    global counter  <span class="code-comment"># Declare as global to modify</span>
+    counter += 1
+    print(counter)
+
+increment_counter()  <span class="code-comment"># Output: 1</span>
+increment_counter()  <span class="code-comment"># Output: 2</span></pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Nested Functions and Closures</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Nested function</span>
+def outer_function(x):
+    def inner_function(y):
+        return x + y  <span class="code-comment"># inner_function can access outer_function's variables</span>
+    return inner_function
+
+<span class="code-comment"># Creating a closure (a function that remembers its context)</span>
+add_five = outer_function(5)
+print(add_five(10))  <span class="code-comment"># Output: 15</span>
+print(add_five(20))  <span class="code-comment"># Output: 25</span>
+
+<span class="code-comment"># Using nonlocal for nested function variables</span>
+def counter_function():
+    count = 0
+    
+    def increment():
+        nonlocal count  <span class="code-comment"># Use nonlocal to modify outer function's variables</span>
+        count += 1
+        return count
+    
+    return increment
+
+counter = counter_function()
+print(counter())  <span class="code-comment"># Output: 1</span>
+print(counter())  <span class="code-comment"># Output: 2</span>
+print(counter())  <span class="code-comment"># Output: 3</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursive Functions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Recursive Functions</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Recursive functions are functions that call themselves. They can be powerful for solving problems
+                    that can be broken down into smaller, similar sub-problems.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Factorial calculation using recursion</span>
+def factorial(n):
+    if n <= 1:  <span class="code-comment"># Base case</span>
+        return 1
+    else:  <span class="code-comment"># Recursive case</span>
+        return n * factorial(n - 1)
+
+print(factorial(5))  <span class="code-comment"># Output: 120 (5 * 4 * 3 * 2 * 1)</span>
+
+<span class="code-comment"># Fibonacci sequence using recursion</span>
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+<span class="code-comment"># Print first 10 Fibonacci numbers</span>
+for i in range(10):
+    print(fibonacci(i), end=" ")  <span class="code-comment"># Output: 0 1 1 2 3 5 8 13 21 34</span></pre>
+                </div>
+            </div>
+            
+            <div class="prose prose-invert max-w-none mt-4">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Recursion Considerations</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Always have a base case to stop the recursion</li>
+                    <li>Python has a default recursion limit (typically 1000) to prevent stack overflow</li>
+                    <li>Recursive solutions can be less efficient than iterative ones due to function call overhead</li>
+                    <li>Consider using memoization for recursive functions with overlapping subproblems</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Lambda Functions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Lambda Functions</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Lambda functions (sometimes called anonymous functions) are small, one-line functions defined using 
+                    the <code>lambda</code> keyword. They're useful for simple functions that are used only once or as 
+                    function arguments.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic lambda function</span>
+square = lambda x: x ** 2
+print(square(5))  <span class="code-comment"># Output: 25</span>
+
+<span class="code-comment"># Multiple parameters</span>
+add = lambda x, y: x + y
+print(add(3, 4))  <span class="code-comment"># Output: 7</span>
+
+<span class="code-comment"># Using lambda with built-in functions</span>
+numbers = [5, 2, 8, 1, 9, 3]
+
+<span class="code-comment"># Sort a list using a custom key</span>
+sorted_numbers = sorted(numbers)
+print(sorted_numbers)  <span class="code-comment"># Output: [1, 2, 3, 5, 8, 9]</span>
+
+<span class="code-comment"># Filter to get only even numbers</span>
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print(even_numbers)  <span class="code-comment"># Output: [2, 8]</span>
+
+<span class="code-comment"># Map to square each number</span>
+squared = list(map(lambda x: x ** 2, numbers))
+print(squared)  <span class="code-comment"># Output: [25, 4, 64, 1, 81, 9]</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Decorators -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Function Decorators</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Decorators are a powerful feature that allow you to modify the behavior of functions.
+                    They are functions that take another function as an argument, extend its behavior,
+                    and return the modified function.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic decorator</span>
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()  <span class="code-comment"># Call the original function</span>
+        print("Something is happening after the function is called.")
+    return wrapper
+
+<span class="code-comment"># Using a decorator</span>
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+<span class="code-comment"># This is equivalent to: say_hello = my_decorator(say_hello)</span>
+
+say_hello()
+<span class="code-comment"># Output:
+# Something is happening before the function is called.
+# Hello!
+# Something is happening after the function is called.</span>
+
+<span class="code-comment"># Decorator for functions with arguments</span>
+def decorator_with_args(func):
+    def wrapper(*args, **kwargs):
+        print(f"Arguments passed: {args}, {kwargs}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@decorator_with_args
+def add(a, b):
+    return a + b
+
+result = add(5, b=3)
+<span class="code-comment"># Output: Arguments passed: (5,), {'b': 3}</span>
+print(result)  <span class="code-comment"># Output: 8</span></pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Practical Decorator Examples</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Timing decorator</span>
+import time
+
+def timer_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"Function {func.__name__} took {end_time - start_time:.6f} seconds to execute.")
+        return result
+    return wrapper
+
+@timer_decorator
+def slow_function():
+    time.sleep(1)  <span class="code-comment"># Simulating a time-consuming task</span>
+    return "Done!"
+
+print(slow_function())
+
+<span class="code-comment"># Decorator with parameters</span>
+def repeat(n):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            results = []
+            for _ in range(n):
+                results.append(func(*args, **kwargs))
+            return results
+        return wrapper
+    return decorator
+
+@repeat(3)
+def say_hi(name):
+    return f"Hi, {name}!"
+
+print(say_hi("Alice"))
+<span class="code-comment"># Output: ['Hi, Alice!', 'Hi, Alice!', 'Hi, Alice!']</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Function Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Function Design Principles</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Follow the Single Responsibility Principle: Functions should do one thing and do it well</li>
+                    <li>Keep functions small and focused</li>
+                    <li>Use descriptive function names (use verbs for functions that perform actions)</li>
+                    <li>Limit the number of parameters (consider using classes or dictionaries for many parameters)</li>
+                    <li>Minimize side effects (changes to variables outside the function)</li>
+                    <li>Include docstrings to document your functions</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Documentation with Docstrings</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Using docstrings to document functions</span>
+def calculate_area(radius):
+    """
+    Calculate the area of a circle.
+    
+    Args:
+        radius (float): The radius of the circle.
+        
+    Returns:
+        float: The area of the circle.
+        
+    Raises:
+        ValueError: If radius is negative.
+    """
+    if radius < 0:
+        raise ValueError("Radius cannot be negative")
+    return 3.14159 * radius ** 2
+
+<span class="code-comment"># Accessing the docstring</span>
+print(calculate_area.__doc__)
+
+<span class="code-comment"># Help function shows the docstring</span>
+help(calculate_area)</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Type Hints (Python 3.5+)</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Using type hints for better documentation and tooling support</span>
+def greet(name: str, times: int = 1) -> str:
+    """Greet a person multiple times."""
+    return f"Hello, {name}! " * times
+
+<span class="code-comment"># More complex type hints</span>
+from typing import List, Dict, Optional, Union
+
+def process_data(
+    items: List[int],
+    options: Dict[str, str] = {},
+    callback: Optional[callable] = None
+) -> Union[List[int], Dict[str, int]]:
+    """Process a list of integers."""
+    result = [item * 2 for item in items]
+    
+    if callback:
+        callback(result)
+    
+    if "format" in options and options["format"] == "dict":
+        return {f"item_{i}": item for i, item in enumerate(result)}
+    return result
+
+<span class="code-comment"># Type hints don't enforce types at runtime</span>
+<span class="code-comment"># This will still run (but static type checkers will warn)</span>
+print(greet(123))  <span class="code-comment"># Works: "Hello, 123!"</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Topics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Function Topics</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Function as First-Class Objects</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Functions as variables</span>
+def square(x):
+    return x ** 2
+
+def cube(x):
+    return x ** 3
+
+<span class="code-comment"># Assigning a function to a variable</span>
+operation = square
+print(operation(5))  <span class="code-comment"># Output: 25</span>
+
+<span class="code-comment"># Functions as arguments</span>
+def apply_operation(func, value):
+    return func(value)
+
+print(apply_operation(square, 5))  <span class="code-comment"># Output: 25</span>
+print(apply_operation(cube, 5))    <span class="code-comment"># Output: 125</span>
+
+<span class="code-comment"># Functions returning functions</span>
+def get_operation(opcode):
+    if opcode == "square":
+        return square
+    elif opcode == "cube":
+        return cube
+    else:
+        return lambda x: x  <span class="code-comment"># Identity function as default</span>
+
+operation = get_operation("cube")
+print(operation(5))  <span class="code-comment"># Output: 125</span></pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Function Caching with @lru_cache</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Using memoization to improve recursive functions</span>
+from functools import lru_cache
+
+<span class="code-comment"># Without caching (slow for larger values)</span>
+def fibonacci_slow(n):
+    if n <= 1:
+        return n
+    return fibonacci_slow(n-1) + fibonacci_slow(n-2)
+
+<span class="code-comment"># With caching (much faster)</span>
+@lru_cache(maxsize=None)
+def fibonacci_fast(n):
+    if n <= 1:
+        return n
+    return fibonacci_fast(n-1) + fibonacci_fast(n-2)
+
+<span class="code-comment"># Compare execution time for larger value</span>
+import time
+
+n = 30
+
+start = time.time()
+result_slow = fibonacci_slow(n)
+end = time.time()
+print(f"Slow: {end - start:.6f} seconds")
+
+start = time.time()
+result_fast = fibonacci_fast(n)
+end = time.time()
+print(f"Fast: {end - start:.6f} seconds")</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Partial Functions</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Creating new functions by fixing some parameters</span>
+from functools import partial
+
+<span class="code-comment"># Original function</span>
+def power(base, exponent):
+    return base ** exponent
+
+<span class="code-comment"># Create specialized functions</span>
+square = partial(power, exponent=2)
+cube = partial(power, exponent=3)
+
+print(square(5))  <span class="code-comment"># Output: 25</span>
+print(cube(5))    <span class="code-comment"># Output: 125</span>
+
+<span class="code-comment"># Another example with multiple arguments</span>
+def format_string(string, prefix, suffix):
+    return f"{prefix}{string}{suffix}"
+
+<span class="code-comment"># Create a HTML paragraph formatter</span>
+p_formatter = partial(format_string, prefix="<p>", suffix="</p>")
+
+print(p_formatter("Hello, World!"))  <span class="code-comment"># Output: <p>Hello, World!</p></span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: Function Basics</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Write a function called `calculate_average` that takes a list 
+# of numbers and returns their average.
+# Test it with different lists.</span>
+
+# Your code here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Recursive Function</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Write a recursive function called `sum_digits` that takes 
+# a positive integer and returns the sum of its digits.
+# For example, sum_digits(123) should return 6 (1+2+3).</span>
+
+# Your code here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: Decorator</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Create a decorator called `logger` that prints the name of the
+# function being called, the arguments it received, and its return value.</span>
+
+# Your code here</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('hidden');
+        } else {
+            backToTop.classList.add('hidden');
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html> 

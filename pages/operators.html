@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Operators - Complete Guide</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy styles from variables.html */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Operators - Complete Guide</h1>
+
+        <!-- Arithmetic Operators -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Arithmetic Operators</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic Mathematical Operations</h3>
+                <p class="mb-4">
+                    Python provides operators for all standard mathematical operations. These operators work on 
+                    numeric data types (integers, floats) and in some cases on other types like strings and lists.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic arithmetic</span>
+x = 10
+y = 3
+
+print(x + y)    <span class="code-comment"># Addition: 13</span>
+print(x - y)    <span class="code-comment"># Subtraction: 7</span>
+print(x * y)    <span class="code-comment"># Multiplication: 30</span>
+print(x / y)    <span class="code-comment"># Division: 3.3333... (returns float)</span>
+print(x // y)   <span class="code-comment"># Floor division: 3 (returns integer)</span>
+print(x % y)    <span class="code-comment"># Modulus: 1 (remainder)</span>
+print(x ** y)   <span class="code-comment"># Exponentiation: 1000 (x raised to power y)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Operators Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Comparison Operators</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Comparing Values</h3>
+                <p class="mb-4">
+                    Comparison operators are used to compare values and return Boolean results (True or False).
+                    These operators form the foundation for decision-making in Python programs.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Comparison operators</span>
+x = 10
+y = 5
+
+print(x == y)    <span class="code-comment"># Equal to: False</span>
+print(x != y)    <span class="code-comment"># Not equal to: True</span>
+print(x > y)     <span class="code-comment"># Greater than: True</span>
+print(x < y)     <span class="code-comment"># Less than: False</span>
+print(x >= y)    <span class="code-comment"># Greater than or equal to: True</span>
+print(x <= y)    <span class="code-comment"># Less than or equal to: False</span>
+
+<span class="code-comment"># Chained comparisons</span>
+age = 25
+print(18 <= age < 65)  <span class="code-comment"># Check if age is between 18 and 65: True</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assignment Operators -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Assignment Operators</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Efficient Variable Updates</h3>
+                <p class="mb-4">
+                    Assignment operators combine an arithmetic operation with assignment, providing a concise way to 
+                    update variables. They're both more readable and more efficient than writing the operation separately.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic assignment</span>
+x = 10
+
+<span class="code-comment"># Combined operators</span>
+x += 5      <span class="code-comment"># Same as: x = x + 5, Now x is 15</span>
+x -= 3      <span class="code-comment"># Same as: x = x - 3, Now x is 12</span>
+x *= 2      <span class="code-comment"># Same as: x = x * 2, Now x is 24</span>
+x /= 6      <span class="code-comment"># Same as: x = x / 6, Now x is 4.0 (note: becomes float)</span>
+x //= 2     <span class="code-comment"># Same as: x = x // 2, Now x is 2.0</span>
+x **= 3     <span class="code-comment"># Same as: x = x ** 3, Now x is 8.0</span>
+x %= 3      <span class="code-comment"># Same as: x = x % 3, Now x is 2.0</span>
+
+<span class="code-comment"># Works with strings too</span>
+message = "Hello"
+message += " World"  <span class="code-comment"># message becomes "Hello World"</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logical Operators -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Logical Operators</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Combining Conditions</h3>
+                <p class="mb-4">
+                    Logical operators allow you to combine multiple conditions to create complex expressions.
+                    Python uses the keywords <code>and</code>, <code>or</code>, and <code>not</code> instead of
+                    symbols used in some other languages.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Logical operators</span>
+x = 10
+y = 5
+
+<span class="code-comment"># and - True if both conditions are True</span>
+print(x > 5 and y < 10)    <span class="code-comment"># True (both conditions are True)</span>
+print(x < 5 and y < 10)    <span class="code-comment"># False (first condition is False)</span>
+
+<span class="code-comment"># or - True if at least one condition is True</span>
+print(x > 5 or y > 10)     <span class="code-comment"># True (first condition is True)</span>
+print(x < 5 or y > 10)     <span class="code-comment"># False (both conditions are False)</span>
+
+<span class="code-comment"># not - Inverts the boolean value</span>
+print(not x > 5)           <span class="code-comment"># False (inverts True to False)</span>
+print(not x < 5)           <span class="code-comment"># True (inverts False to True)</span>
+
+<span class="code-comment"># Short-circuit evaluation</span>
+result = x > 0 and (x / 0)  <span class="code-comment"># Would cause ZeroDivisionError, but second part is never evaluated</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bitwise Operators -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Bitwise Operators</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Working with Binary Representations</h3>
+                <p class="mb-4">
+                    Bitwise operators manipulate individual bits in integers. They're useful for working with flags,
+                    binary data, hardware interaction, and certain optimization techniques.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Bitwise operators</span>
+a = 60    <span class="code-comment"># Binary: 0011 1100</span>
+b = 13    <span class="code-comment"># Binary: 0000 1101</span>
+
+<span class="code-comment"># & (AND) - Sets bit to 1 if both bits are 1</span>
+print(a & b)       <span class="code-comment"># 12 (Binary: 0000 1100)</span>
+
+<span class="code-comment"># | (OR) - Sets bit to 1 if either bit is 1</span>
+print(a | b)       <span class="code-comment"># 61 (Binary: 0011 1101)</span>
+
+<span class="code-comment"># ^ (XOR) - Sets bit to 1 if only one bit is 1</span>
+print(a ^ b)       <span class="code-comment"># 49 (Binary: 0011 0001)</span>
+
+<span class="code-comment"># ~ (NOT) - Inverts all bits</span>
+print(~a)          <span class="code-comment"># -61 (Binary: 1100 0011 with 2's complement)</span>
+
+<span class="code-comment"># << (Left Shift) - Shifts bits left by specified number</span>
+print(a << 2)      <span class="code-comment"># 240 (Binary: 1111 0000)</span>
+
+<span class="code-comment"># >> (Right Shift) - Shifts bits right by specified number</span>
+print(a >> 2)      <span class="code-comment"># 15 (Binary: 0000 1111)</span>
+
+<span class="code-comment"># Practical example: Binary flags</span>
+READ = 1        <span class="code-comment"># 0001</span>
+WRITE = 2       <span class="code-comment"># 0010</span>
+EXECUTE = 4     <span class="code-comment"># 0100</span>
+
+<span class="code-comment"># Grant read and write permissions</span>
+permissions = READ | WRITE    <span class="code-comment"># 3 (0011)</span>
+
+<span class="code-comment"># Check if write permission exists</span>
+has_write = permissions & WRITE  <span class="code-comment"># 2 (non-zero means True)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Identity and Membership Operators -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Identity and Membership Operators</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Object Identity and Collection Membership</h3>
+                <p class="mb-4">
+                    Identity operators check if two variables reference the same object in memory, while
+                    membership operators test if a value exists within a sequence (like a list, tuple, or string).
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Identity operators: is, is not</span>
+x = [1, 2, 3]
+y = [1, 2, 3]
+z = x
+
+print(x is z)      <span class="code-comment"># True (x and z reference the same object)</span>
+print(x is y)      <span class="code-comment"># False (x and y are equal but different objects)</span>
+print(x is not y)  <span class="code-comment"># True (x and y are different objects)</span>
+
+<span class="code-comment"># Comparing with None should always use 'is'</span>
+value = None
+print(value is None)       <span class="code-comment"># True (correct way)</span>
+print(value == None)       <span class="code-comment"># True (works but not recommended)</span>
+
+<span class="code-comment"># Membership operators: in, not in</span>
+fruits = ["apple", "banana", "cherry"]
+print("apple" in fruits)        <span class="code-comment"># True</span>
+print("mango" in fruits)        <span class="code-comment"># False</span>
+print("mango" not in fruits)    <span class="code-comment"># True</span>
+
+<span class="code-comment"># Works with strings too</span>
+message = "Hello, World!"
+print("World" in message)       <span class="code-comment"># True</span>
+print("Python" in message)      <span class="code-comment"># False</span>
+
+<span class="code-comment"># And with dictionaries (checks keys)</span>
+person = {"name": "Alice", "age": 25}
+print("name" in person)         <span class="code-comment"># True</span>
+print("Alice" in person)        <span class="code-comment"># False (not a key)</span>
+print("Alice" in person.values()) <span class="code-comment"># True (in values)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Operator Precedence -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Operator Precedence</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Understanding Order of Operations</h3>
+                <p class="mb-4">
+                    When expressions contain multiple operators, Python follows a specific order of operations
+                    to determine which operations are performed first. Knowing this precedence is essential for
+                    writing and debugging complex expressions.
+                </p>
+            </div>
+
+            <table class="w-full text-left text-gray-300 border border-gray-600 mb-6">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Precedence</th>
+                        <th class="px-4 py-2 border border-gray-600">Operator</th>
+                        <th class="px-4 py-2 border border-gray-600">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">1</td>
+                        <td class="px-4 py-2 border border-gray-600">**</td>
+                        <td class="px-4 py-2 border border-gray-600">Exponentiation</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">2</td>
+                        <td class="px-4 py-2 border border-gray-600">+x, -x, ~x</td>
+                        <td class="px-4 py-2 border border-gray-600">Unary plus, minus, bitwise NOT</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">3</td>
+                        <td class="px-4 py-2 border border-gray-600">*, /, //, %</td>
+                        <td class="px-4 py-2 border border-gray-600">Multiplication, division, floor division, modulus</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">4</td>
+                        <td class="px-4 py-2 border border-gray-600">+, -</td>
+                        <td class="px-4 py-2 border border-gray-600">Addition, subtraction</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">5</td>
+                        <td class="px-4 py-2 border border-gray-600">>>, <<</td>
+                        <td class="px-4 py-2 border border-gray-600">Bitwise shifts</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">6</td>
+                        <td class="px-4 py-2 border border-gray-600">&</td>
+                        <td class="px-4 py-2 border border-gray-600">Bitwise AND</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">7</td>
+                        <td class="px-4 py-2 border border-gray-600">^</td>
+                        <td class="px-4 py-2 border border-gray-600">Bitwise XOR</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">8</td>
+                        <td class="px-4 py-2 border border-gray-600">|</td>
+                        <td class="px-4 py-2 border border-gray-600">Bitwise OR</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">9</td>
+                        <td class="px-4 py-2 border border-gray-600">==, !=, >, >=, <, <=, is, is not, in, not in</td>
+                        <td class="px-4 py-2 border border-gray-600">Comparisons, identity, membership</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">10</td>
+                        <td class="px-4 py-2 border border-gray-600">not</td>
+                        <td class="px-4 py-2 border border-gray-600">Logical NOT</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">11</td>
+                        <td class="px-4 py-2 border border-gray-600">and</td>
+                        <td class="px-4 py-2 border border-gray-600">Logical AND</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">12</td>
+                        <td class="px-4 py-2 border border-gray-600">or</td>
+                        <td class="px-4 py-2 border border-gray-600">Logical OR</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Operator precedence examples</span>
+result1 = 10 + 3 * 2       <span class="code-comment"># 16 (not 26) - multiplication before addition</span>
+result2 = (10 + 3) * 2     <span class="code-comment"># 26 - parentheses override precedence</span>
+
+<span class="code-comment"># Complex example</span>
+x = 5
+y = 10
+z = 2
+result3 = x + y * z / (x - 3)   <span class="code-comment"># 25.0 (evaluated as: 5 + ((10 * 2) / (5 - 3)))</span>
+
+<span class="code-comment"># Logical operators precedence</span>
+result4 = True or False and False  <span class="code-comment"># True (and has higher precedence than or)</span>
+result5 = (True or False) and False <span class="code-comment"># False (parentheses change the order)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Operator Behaviors -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Special Operator Behaviors</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Non-Standard Uses of Operators</h3>
+                <p class="mb-4">
+                    Python operators can behave differently depending on the data types they operate on.
+                    Understanding these behaviors helps write more pythonic and expressive code.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># String multiplication</span>
+print("Hello" * 3)    <span class="code-comment"># HelloHelloHello</span>
+
+<span class="code-comment"># List multiplication</span>
+print([1, 2] * 3)     <span class="code-comment"># [1, 2, 1, 2, 1, 2]</span>
+
+<span class="code-comment"># String concatenation with +</span>
+print("Hello" + " " + "World")  <span class="code-comment"># Hello World</span>
+
+<span class="code-comment"># List concatenation with +</span>
+print([1, 2] + [3, 4])          <span class="code-comment"># [1, 2, 3, 4]</span>
+
+<span class="code-comment"># in with strings checks for substring</span>
+print("py" in "python")         <span class="code-comment"># True</span>
+
+<span class="code-comment"># Ternary operator (conditional expression)</span>
+age = 20
+status = "adult" if age >= 18 else "minor"  <span class="code-comment"># "adult"</span>
+
+<span class="code-comment"># The 'walrus' operator := (Python 3.8+)</span>
+numbers = [1, 2, 3, 4, 5]
+if (n := len(numbers)) > 3:
+    print(f"List is long ({n} elements)")  <span class="code-comment"># Assigns and tests in one step</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Test Your Understanding</h3>
+                <p class="mb-4">
+                    Try these exercises to reinforce your knowledge of Python operators.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: Predict the Output</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># What will the following expressions evaluate to?</span>
+print(5 + 3 * 2)
+print(5 > 3 and 10 < 20)
+print(not True or False)
+print(3 in [1, 2, 3, 4] and 5 not in [1, 2, 3, 4])
+print(10 * "a" + 5 * "b")</pre>
+
+                    <h3 class="text-xl font-bold mb-4 text-blue-400 mt-6">Exercise 2: Fix the Expressions</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Each of these expressions has an error. Fix them:</span>
+# print(10 +* 5)
+# print(True and False or)
+# print(5 < > 3)
+# print(10 = 10)
+# print(5 in in [1, 2, 3, 4, 5])</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('hidden');
+        } else {
+            backToTop.classList.add('hidden');
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html> 

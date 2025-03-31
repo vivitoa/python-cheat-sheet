@@ -606,7 +606,12 @@ if value.replace('.', '', 1).isdigit():
 </section>
             <!-- Operators -->
 <section id="operators" class="mb-10">
-    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Operators & Expressions</h2>
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Operators in Python</h2>
+    <div class="mb-4">
+        <a href="pages/operators.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Operators →
+        </a>
+    </div>
     <p class="mb-3">Operators in Python allow you to perform calculations and logical comparisons.</p>
 
     <div class="space-y-6">
@@ -749,6 +754,11 @@ while (chunk := file.read(8192)):</pre>
 <!-- Conditional Statements -->
 <section id="conditions" class="mb-10">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Conditional Statements</h2>
+    <div class="mb-4">
+        <a href="pages/conditions.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Conditional Statements →
+        </a>
+    </div>
     <p class="mb-3">Python supports <code class="text-blue-300">if</code>, <code class="text-blue-300">elif</code>, and <code class="text-blue-300">else</code> statements for decision-making.</p>
 
     <div class="space-y-4">
@@ -808,6 +818,11 @@ print(status)  <span class="code-comment"># Adult</span></pre>
 <!-- Loops -->
 <section id="loops" class="mb-10">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Loops in Python</h2>
+    <div class="mb-4">
+        <a href="pages/loops.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Loops →
+        </a>
+    </div>
     <p class="mb-3">Loops help automate repetitive tasks.</p>
 
     <div class="space-y-4">
@@ -886,6 +901,11 @@ unique_lengths = {len(word) for word in ["hello", "world", "python"]}</pre>
 <!-- Functions -->
 <section id="functions" class="mb-10">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Functions in Python</h2>
+    <div class="mb-4">
+        <a href="pages/functions.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Functions →
+        </a>
+    </div>
     <p class="mb-3">Functions help organize code into reusable blocks.</p>
 
     <div class="space-y-4">
@@ -1025,6 +1045,11 @@ show_global()  <span class="code-comment"># Global count: 5</span></pre>
 <!-- Lists & Tuples -->
 <section id="lists-tuples" class="mb-10">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Lists & Tuples in Python</h2>
+    <div class="mb-4">
+        <a href="pages/lists-tuples.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Lists & Tuples →
+        </a>
+    </div>
 
     <div class="space-y-6">
         <!-- Lists Section -->
@@ -1161,6 +1186,11 @@ mixed[1].append(4)     <span class="code-comment"># Valid → (1, [2,3,4], "hell
 <!-- Dictionaries & Sets -->
 <section id="dictionaries-sets" class="mb-10">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Dictionaries & Sets</h2>
+    <div class="mb-4">
+        <a href="pages/dictionaries-sets.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Dictionaries & Sets →
+        </a>
+    </div>
 
     <div class="space-y-6">
         <!-- Dictionaries Section -->
@@ -1264,6 +1294,11 @@ even_squares = {x**2 for x in range(10) if x%2 == 0}</pre>
 <!-- OOP (Classes & Objects) -->
 <section id="oop" class="mb-10">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Object-Oriented Programming (OOP)</h2>
+    <div class="mb-4">
+        <a href="pages/oop.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python OOP →
+        </a>
+    </div>
 
     <div class="space-y-6">
         <!-- Existing Classes & Objects content... -->
@@ -3170,35 +3205,6 @@ response = requests.get("https://api.example.com", verify=True)
 context = ssl.create_default_context()
 context.check_hostname = True
 context.verify_mode = ssl.CERT_REQUIRED</pre>
-        </div>
-        <!-- Security Tools -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Security Utilities</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-<span class="code-comment"># Secure random generation</span>
-import secrets
-token = secrets.token_urlsafe(32)  <span class="code-comment"># 256-bit secure URL-safe token</span>
-<span class="code-comment"># Input validation</span>
-import re
-def sanitize_input(input_str):
-    return re.sub(r'[^a-zA-Z0-9]', '', input_str)
-<span class="code-comment"># Secret management</span>
-from getpass import getpass</pre>
-        </div>
-        <!-- Best Practices -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
-            <div class="text-gray-300 space-y-2">
-                <p>✓ Use bcrypt/argon2 for password storage</p>
-                <p>✓ Never store secrets in code</p>
-                <p>✓ Validate all user inputs</p>
-                <p>✓ Use HTTPS for network communication</p>
-                <p>✓ Rotate encryption keys regularly</p>
-                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-<span class="code-comment"># Dependency security check</span>
-<span class="code-comment"># pip install safety</span>
-<span class="code-comment"># safety check</span></pre>
-            </div>
         </div>
     </div>
 </section>

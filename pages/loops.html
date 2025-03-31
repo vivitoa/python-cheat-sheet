@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Loops - Complete Guide</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Loops - Complete Guide</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Understanding Loops in Python</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Loops in Python allow you to execute a block of code repeatedly. They are essential for automating repetitive tasks, processing collections of data, and creating iterative algorithms.
+                </p>
+                <p class="mb-4">
+                    Python supports two primary types of loops:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li><code>for</code> loops: Used for iterating over a sequence (list, tuple, string, etc.)</li>
+                    <li><code>while</code> loops: Used for executing code as long as a condition is true</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic for loop example</span>
+for i in range(5):
+    print(i)  <span class="code-comment"># Prints 0, 1, 2, 3, 4</span>
+
+<span class="code-comment"># Basic while loop example</span>
+count = 0
+while count < 5:
+    print(count)  <span class="code-comment"># Prints 0, 1, 2, 3, 4</span>
+    count += 1</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- For Loops -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">For Loops</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The <code>for</code> loop in Python is designed to iterate over a sequence (like a list, tuple, dictionary, set, or string).
+                    This makes it perfect for processing collections of data.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Basic For Loop Syntax</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Iterating over a list</span>
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+<span class="code-comment"># Iterating over a string</span>
+for char in "Python":
+    print(char)
+
+<span class="code-comment"># Iterating with range()</span>
+for i in range(5):  <span class="code-comment"># 0 to 4</span>
+    print(i)
+
+<span class="code-comment"># Range with start and stop</span>
+for i in range(2, 6):  <span class="code-comment"># 2 to 5</span>
+    print(i)
+
+<span class="code-comment"># Range with start, stop, and step</span>
+for i in range(1, 10, 2):  <span class="code-comment"># 1, 3, 5, 7, 9</span>
+    print(i)</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Iterating Over Collections</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Iterating over a dictionary</span>
+person = {"name": "Alice", "age": 30, "city": "New York"}
+
+<span class="code-comment"># Iterating over keys (default)</span>
+for key in person:
+    print(key, person[key])
+
+<span class="code-comment"># Iterating over key-value pairs</span>
+for key, value in person.items():
+    print(f"{key}: {value}")
+
+<span class="code-comment"># Iterating over values only</span>
+for value in person.values():
+    print(value)
+
+<span class="code-comment"># Iterating with index using enumerate()</span>
+fruits = ["apple", "banana", "cherry"]
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")  <span class="code-comment"># 0: apple, 1: banana, 2: cherry</span>
+
+<span class="code-comment"># Iterating over multiple lists with zip()</span>
+names = ["Alice", "Bob", "Charlie"]
+ages = [25, 30, 35]
+for name, age in zip(names, ages):
+    print(f"{name} is {age} years old")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- While Loops -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">While Loops</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The <code>while</code> loop executes a block of code as long as a specified condition is true. 
+                    It's useful when you don't know in advance how many times a loop needs to run.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Basic While Loop Syntax</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Simple countdown</span>
+count = 5
+while count > 0:
+    print(count)
+    count -= 1
+print("Blast off!")
+
+<span class="code-comment"># Loop with user input</span>
+user_input = ""
+while user_input.lower() != "quit":
+    user_input = input("Enter a command (type 'quit' to exit): ")
+    print(f"You entered: {user_input}")
+
+<span class="code-comment"># Infinite loop with break</span>
+while True:
+    user_input = input("Enter 'quit' to exit: ")
+    if user_input.lower() == "quit":
+        break
+    print(f"You entered: {user_input}")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Use Cases for While Loops</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>When the number of iterations is unknown</li>
+                    <li>When you need to continue until a specific condition is met</li>
+                    <li>For implementing retry logic or polling</li>
+                    <li>Game loops that run until the player quits</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Loop Control Statements -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Loop Control Statements</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python provides several statements to control the flow of loops:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li><code>break</code>: Exits the loop completely</li>
+                    <li><code>continue</code>: Skips the current iteration and moves to the next one</li>
+                    <li><code>else</code>: Executes when the loop completes normally (not after a break)</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Break Statement</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Break when a condition is met</span>
+for i in range(1, 11):
+    if i == 5:
+        print("Found 5! Breaking the loop.")
+        break
+    print(i)
+<span class="code-comment"># Output: 1, 2, 3, 4, Found 5! Breaking the loop.</span>
+
+<span class="code-comment"># Break in a while loop</span>
+number = 0
+while True:
+    number += 1
+    if number > 10:
+        break
+    print(number)</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Continue Statement</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Skip even numbers</span>
+for i in range(1, 11):
+    if i % 2 == 0:
+        continue  <span class="code-comment"># Skip the rest of the code and go to next iteration</span>
+    print(i)
+<span class="code-comment"># Output: 1, 3, 5, 7, 9</span>
+
+<span class="code-comment"># Skip specific values</span>
+fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+for fruit in fruits:
+    if fruit == "cherry":
+        continue
+    print(fruit)</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Else Clause in Loops</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Else clause executes after loop completes</span>
+for i in range(5):
+    print(i)
+else:
+    print("Loop completed successfully!")
+
+<span class="code-comment"># Else won't execute if loop is broken</span>
+for i in range(5):
+    print(i)
+    if i == 3:
+        break
+else:
+    print("This won't print because the loop was broken")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nested Loops -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Nested Loops</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Loops can be nested inside one another. This is useful for working with multi-dimensional data 
+                    or when you need to perform complex iterations.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Simple nested loop</span>
+for i in range(3):
+    for j in range(3):
+        print(f"({i}, {j})", end=" ")
+    print()  <span class="code-comment"># New line after inner loop</span>
+
+<span class="code-comment"># Multiplication table</span>
+for i in range(1, 6):
+    for j in range(1, 6):
+        print(f"{i * j:2d}", end=" ")
+    print()
+
+<span class="code-comment"># Nested loop with 2D list</span>
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for row in matrix:
+    for element in row:
+        print(element, end=" ")
+    print()</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-4">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Performance Considerations</h3>
+                <p class="mb-4">
+                    Nested loops can be computationally expensive. The time complexity is typically O(n²) 
+                    for doubly nested loops, where n is the number of iterations in each loop.
+                </p>
+            </div>
+        </section>
+
+        <!-- List Comprehensions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">List Comprehensions</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    List comprehensions provide a concise way to create lists based on existing lists or other iterable objects.
+                    They're a powerful Python feature that can replace certain types of for loops.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Basic List Comprehension</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Creating a list of squares</span>
+<span class="code-comment"># Regular for loop approach</span>
+squares = []
+for x in range(10):
+    squares.append(x**2)
+print(squares)  <span class="code-comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+
+<span class="code-comment"># Using list comprehension</span>
+squares = [x**2 for x in range(10)]
+print(squares)  <span class="code-comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+
+<span class="code-comment"># Filtering with list comprehension</span>
+even_squares = [x**2 for x in range(10) if x % 2 == 0]
+print(even_squares)  <span class="code-comment"># [0, 4, 16, 36, 64]</span></pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Advanced List Comprehensions</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Nested list comprehension</span>
+matrix = [[j for j in range(3)] for i in range(3)]
+print(matrix)  <span class="code-comment"># [[0, 1, 2], [0, 1, 2], [0, 1, 2]]</span>
+
+<span class="code-comment"># Multiple conditions</span>
+values = [x for x in range(100) if x % 2 == 0 if x % 5 == 0]
+print(values)  <span class="code-comment"># [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]</span>
+
+<span class="code-comment"># If-else in list comprehension</span>
+numbers = [-4, -2, 0, 2, 4]
+absolute = [x if x >= 0 else -x for x in numbers]
+print(absolute)  <span class="code-comment"># [4, 2, 0, 2, 4]</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Other Comprehensions</h3>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Dictionary comprehension</span>
+squares_dict = {x: x**2 for x in range(6)}
+print(squares_dict)  <span class="code-comment"># {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</span>
+
+<span class="code-comment"># Set comprehension</span>
+unique_lengths = {len(word) for word in ["hello", "world", "python", "code"]}
+print(unique_lengths)  <span class="code-comment"># {5, 4, 6}</span>
+
+<span class="code-comment"># Generator expression (parentheses instead of brackets)</span>
+numbers_gen = (x**2 for x in range(5))
+print(numbers_gen)  <span class="code-comment"># <generator object <genexpr> at 0x...></span>
+print(list(numbers_gen))  <span class="code-comment"># [0, 1, 4, 9, 16]</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loop Optimization -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Loop Optimization Techniques</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Loops can sometimes be performance bottlenecks. Here are techniques to optimize loops in Python.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Performance Tips</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># 1. Avoid expensive operations in loops</span>
+<span class="code-comment"># Poor performance</span>
+import time
+start = time.time()
+for i in range(1000000):
+    i / 2  # Performs division 1,000,000 times
+print(f"Time: {time.time() - start:.4f} seconds")
+
+<span class="code-comment"># 2. Use list comprehensions for simple loops</span>
+<span class="code-comment"># list comprehension is generally faster than for loop for creating lists</span>
+start = time.time()
+squares = [x**2 for x in range(1000000)]
+print(f"Comprehension time: {time.time() - start:.4f} seconds")
+
+start = time.time()
+squares = []
+for x in range(1000000):
+    squares.append(x**2)
+print(f"For loop time: {time.time() - start:.4f} seconds")
+
+<span class="code-comment"># 3. Move constant operations outside the loop</span>
+import math
+<span class="code-comment"># Inefficient</span>
+for i in range(1000):
+    result = i * math.pi  # math.pi calculated in each iteration
+
+<span class="code-comment"># More efficient</span>
+pi_value = math.pi
+for i in range(1000):
+    result = i * pi_value  # Constant value calculated once</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Using Specialized Tools</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Using NumPy for faster array operations</span>
+import numpy as np
+
+<span class="code-comment"># NumPy vectorization vs. loop</span>
+arr = np.array(range(1000000))
+
+<span class="code-comment"># Using loop (slower)</span>
+start = time.time()
+result = []
+for i in arr:
+    result.append(i**2)
+print(f"Loop time: {time.time() - start:.4f} seconds")
+
+<span class="code-comment"># Using NumPy vectorization (faster)</span>
+start = time.time()
+result = arr**2
+print(f"NumPy time: {time.time() - start:.4f} seconds")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Loop Patterns -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Common Loop Patterns</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Searching and Filtering</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Finding an element</span>
+numbers = [4, 7, 2, 9, 1, 5]
+target = 9
+found = False
+
+for num in numbers:
+    if num == target:
+        found = True
+        break
+
+print(f"Found: {found}")
+
+<span class="code-comment"># Filtering elements</span>
+numbers = [4, 7, 2, 9, 1, 5]
+even_numbers = []
+
+for num in numbers:
+    if num % 2 == 0:
+        even_numbers.append(num)
+
+print(f"Even numbers: {even_numbers}")
+
+<span class="code-comment"># More concise with list comprehension</span>
+even_numbers = [num for num in numbers if num % 2 == 0]</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Accumulating Results</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Sum of elements</span>
+numbers = [4, 7, 2, 9, 1, 5]
+total = 0
+
+for num in numbers:
+    total += num
+
+print(f"Sum: {total}")  <span class="code-comment"># 28</span>
+
+<span class="code-comment"># Building a new collection</span>
+words = ["hello", "world", "python"]
+capitalized = []
+
+for word in words:
+    capitalized.append(word.capitalize())
+
+print(capitalized)  <span class="code-comment"># ['Hello', 'World', 'Python']</span></pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Processing File Data</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Reading a file line by line</span>
+with open('example.txt', 'r') as file:
+    for line in file:
+        line = line.strip()  <span class="code-comment"># Remove leading/trailing whitespace</span>
+        print(line)
+
+<span class="code-comment"># Process CSV data</span>
+import csv
+with open('data.csv', 'r') as file:
+    csv_reader = csv.reader(file)
+    for row in csv_reader:
+        print(row)  <span class="code-comment"># row is a list of values</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: FizzBuzz</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Write a program that prints the numbers from 1 to 100.
+# But for multiples of three print "Fizz" instead of the number
+# and for the multiples of five print "Buzz".
+# For numbers which are multiples of both three and five print "FizzBuzz".</span>
+
+# Your code here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Nested Loop Pattern</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Write a program that prints the following pattern:
+# *
+# **
+# ***
+# ****
+# *****</span>
+
+# Your code here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: Prime Number Checker</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Write a function that checks whether a number is prime.
+# Then use it to find all prime numbers between 1 and 100.</span>
+
+# Your code here</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('hidden');
+        } else {
+            backToTop.classList.add('hidden');
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html> 

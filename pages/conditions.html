@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Conditional Statements - Complete Guide</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Conditional Statements - Complete Guide</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Understanding Conditional Statements</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Conditional statements in Python allow your program to make decisions based on certain conditions.
+                    They direct the flow of execution by evaluating conditions as either true or false.
+                </p>
+                <p class="mb-4">
+                    Python supports several conditional constructs, primarily:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>if statements</li>
+                    <li>if-else statements</li>
+                    <li>if-elif-else statements</li>
+                    <li>Nested conditions</li>
+                    <li>Conditional expressions (ternary operators)</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic conditional structure</span>
+temperature = 22
+
+if temperature > 30:
+    print("It's hot outside!")
+elif temperature > 20:
+    print("It's a nice day!")
+else:
+    print("It's cold outside!")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simple if statement -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Simple if Statement</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The simplest form of a conditional statement is the <code>if</code> statement.
+                    It executes a block of code only when the specified condition evaluates to <code>True</code>.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic if statement</span>
+age = 18
+
+if age >= 18:
+    print("You are an adult.")
+    print("You can vote.")
+
+<span class="code-comment"># If statement with multiple conditions (using logical operators)</span>
+age = 25
+has_license = True
+
+if age >= 18 and has_license:
+    print("You can drive.")
+
+<span class="code-comment"># If statement with a single line of code</span>
+if age > 65: print("Senior citizen discount applied.")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-4">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Truthy and Falsy Values</h3>
+                <p class="mb-4">
+                    In Python, all values have an inherent boolean value (true or false).
+                    Understanding "truthy" and "falsy" values is essential for writing effective conditions.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Falsy values in Python</span>
+if False:     print("This won't print")
+if None:      print("This won't print")
+if 0:         print("This won't print")
+if "":        print("This won't print")
+if []:        print("This won't print")
+if {}:        print("This won't print")
+if set():     print("This won't print")
+
+<span class="code-comment"># Truthy values in Python</span>
+if True:      print("This will print")
+if 42:        print("This will print")
+if "hello":   print("This will print")
+if [1, 2, 3]: print("This will print")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- if-else statement -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">if-else Statement</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The <code>if-else</code> statement provides an alternative execution path when the condition is <code>False</code>.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic if-else statement</span>
+age = 15
+
+if age >= 18:
+    print("You can vote!")
+else:
+    print("You cannot vote yet.")
+    years_left = 18 - age
+    print(f"Wait {years_left} more years.")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- if-elif-else statement -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">if-elif-else Statement</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    When you need to check multiple conditions, the <code>if-elif-else</code> chain allows you
+                    to evaluate them in sequence until one is true.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Multiple conditions with if-elif-else</span>
+score = 85
+
+if score >= 90:
+    grade = "A"
+elif score >= 80:
+    grade = "B"
+elif score >= 70:
+    grade = "C"
+elif score >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"Your grade: {grade}")
+
+<span class="code-comment"># you can have multiple elif blocks</span>
+day = "Monday"
+
+if day == "Saturday" or day == "Sunday":
+    print("It's the weekend!")
+elif day == "Monday":
+    print("Start of the workweek.")
+elif day == "Friday":
+    print("End of the workweek!")
+else:
+    print("It's a regular workday.")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-4">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Important Features</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Only the first true condition's block will execute</li>
+                    <li>The <code>else</code> block is optional</li>
+                    <li>You can have as many <code>elif</code> blocks as needed</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Nested Conditionals -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Nested Conditional Statements</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    You can place conditional statements inside other conditional statements to create more complex decision trees.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Nested conditional statements</span>
+age = 25
+income = 50000
+
+if age >= 18:
+    print("Adult")
+    
+    if income < 30000:
+        tax_rate = 0.15
+    elif income < 60000:
+        tax_rate = 0.2
+    else:
+        tax_rate = 0.25
+    
+    print(f"Tax rate: {tax_rate * 100}%")
+else:
+    print("Minor - no income tax")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-4">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Avoid deeply nested conditions (more than 2-3 levels) when possible</li>
+                    <li>Consider refactoring complex nested conditions into separate functions</li>
+                    <li>Use clear indentation to maintain readability</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Ternary Operator -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Conditional Expressions (Ternary Operator)</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python offers a compact way to write conditional statements in a single line using conditional expressions,
+                    also known as the ternary operator.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic ternary operator</span>
+age = 20
+status = "Adult" if age >= 18 else "Minor"
+
+<span class="code-comment"># Equivalent to:</span>
+# if age >= 18:
+#     status = "Adult"
+# else:
+#     status = "Minor"
+
+<span class="code-comment"># Nested ternary</span>
+age = 65
+category = "Senior" if age >= 65 else ("Adult" if age >= 18 else "Minor")
+
+<span class="code-comment"># Using ternary in a string</span>
+age = 15
+print(f"You are {'eligible' if age >= 18 else 'not eligible'} to vote.")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Topics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Conditional Techniques</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">1. Using match-case Statement (Python 3.10+)</h3>
+                <p class="mb-4">
+                    For Python 3.10 and above, the <code>match-case</code> statement provides pattern matching capabilities.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic match-case (Python 3.10+)</span>
+status_code = 404
+
+match status_code:
+    case 200:
+        print("OK")
+    case 404:
+        print("Not Found")
+    case 500:
+        print("Server Error")
+    case _:
+        print("Unknown Code")
+
+<span class="code-comment"># Pattern matching with guards</span>
+point = (3, 4)
+
+match point:
+    case (0, 0):
+        print("Origin")
+    case (0, y):
+        print(f"Y-axis at {y}")
+    case (x, 0):
+        print(f"X-axis at {x}")
+    case (x, y) if x == y:
+        print(f"Diagonal at {x}")
+    case (x, y):
+        print(f"Point at {x}, {y}")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">2. Conditional Assignment with Short-Circuit Evaluation</h3>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Using 'or' for default values</span>
+name = user_name or "Guest"  <span class="code-comment"># If user_name is falsy, use "Guest"</span>
+
+<span class="code-comment"># Using 'and' for conditional execution</span>
+is_admin and print("Admin panel access granted")  <span class="code-comment"># Only prints if is_admin is True</span>
+
+<span class="code-comment"># Combining 'and'/'or'</span>
+result = value if condition else default
+<span class="code-comment"># Can be rewritten as</span>
+result = condition and value or default  <span class="code-comment"># Be careful with this pattern!</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">3. Dictionary-Based Dispatch</h3>
+                <p class="mb-4">
+                    Instead of long if-elif chains, sometimes a dictionary dispatch table is cleaner and more efficient.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Instead of:</span>
+# if day == "Monday":
+#     schedule = "Meeting"
+# elif day == "Tuesday":
+#     schedule = "Project"
+# # ... etc
+
+<span class="code-comment"># Use dictionary-based dispatch:</span>
+day_schedule = {
+    "Monday": "Meeting",
+    "Tuesday": "Project",
+    "Wednesday": "Development",
+    "Thursday": "Testing",
+    "Friday": "Planning"
+}
+
+schedule = day_schedule.get(day, "No schedule found")
+
+<span class="code-comment"># Function dispatch table</span>
+def handle_login():
+    return "Login page"
+
+def handle_logout():
+    return "Logout page"
+
+def handle_profile():
+    return "Profile page"
+
+def handle_error():
+    return "Error page"
+
+handlers = {
+    "/login": handle_login,
+    "/logout": handle_logout,
+    "/profile": handle_profile
+}
+
+path = "/login"
+response = handlers.get(path, handle_error)()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Common Pitfalls</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4">
+                    <li>Keep conditions simple and readable</li>
+                    <li>Use descriptive variable names to make conditions self-explanatory</li>
+                    <li>For complex conditions, store parts in named variables</li>
+                    <li>Prefer positive conditions when possible</li>
+                    <li>Be careful with equality comparisons (== vs is)</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Complex condition - hard to read</span>
+if age >= 18 and (income > 30000 or has_scholarship) and not is_suspended:
+    grant_admission()
+
+<span class="code-comment"># Better approach - break it down</span>
+is_adult = age >= 18
+meets_financial_requirements = income > 30000 or has_scholarship
+is_in_good_standing = not is_suspended
+
+if is_adult and meets_financial_requirements and is_in_good_standing:
+    grant_admission()</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Common Pitfalls</h3>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Misusing '==' and 'is'</span>
+a = [1, 2, 3]
+b = [1, 2, 3]
+print(a == b)  <span class="code-comment"># True (values are equal)</span>
+print(a is b)  <span class="code-comment"># False (different objects)</span>
+
+<span class="code-comment"># Using assignment instead of comparison</span>
+<span class="code-comment"># This is a bug - assigns 10 to x and always evaluates to True</span>
+# if x = 10:  # SyntaxError in Python
+#     print("x is 10")
+
+<span class="code-comment"># Forgetting parentheses in complex conditions</span>
+if a > b or c and d:  <span class="code-comment"># Evaluated as: (a > b) or (c and d)</span>
+    print("Condition met")
+
+<span class="code-comment"># Checking None with equality</span>
+<span class="code-comment"># Not ideal</span>
+if x == None:
+    print("x is None")
+
+<span class="code-comment"># Better</span>
+if x is None:
+    print("x is None")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 1: Grade Calculator</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Write a program that takes a student's score (0-100)
+# and prints their letter grade according to:
+# A: 90-100
+# B: 80-89
+# C: 70-79
+# D: 60-69
+# F: 0-59</span>
+
+score = 85
+
+# Your code here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 2: Leap Year Checker</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Create a program that checks if a year is a leap year.
+# A leap year is:
+# - Divisible by 4
+# - Not divisible by 100 unless it's also divisible by 400</span>
+
+year = 2024
+
+# Your code here</pre>
+                </div>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">Exercise 3: BMI Calculator with Categories</h3>
+                    <pre class="text-green-300">
+<span class="code-comment"># Calculate BMI (weight in kg / height in meters squared)
+# and classify it according to:
+# - Underweight: < 18.5
+# - Normal: 18.5 - 24.9
+# - Overweight: 25 - 29.9
+# - Obese: >= 30</span>
+
+weight = 70  # kg
+height = 1.75  # meters
+
+# Your code here</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed bottom-2 right-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 transition-colors hidden z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+    // Back to Top functionality
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('hidden');
+        } else {
+            backToTop.classList.add('hidden');
+        }
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    </script>
+</body>
+</html> 
