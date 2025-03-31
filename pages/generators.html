@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Generators - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Generators in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Generators are a special type of iterator in Python that allow you to declare a function that behaves like an iterator.
+                    They generate values on-the-fly, one at a time, which makes them memory-efficient for handling large datasets
+                    or infinite sequences. Generators use the <code>yield</code> keyword to produce a sequence of values.
+                </p>
+            </div>
+        </section>
+
+        <!-- Generator Fundamentals -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Generator Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic Generator Function</h3>
+                <p class="mb-4">
+                    A generator function looks like a normal function but uses the <code>yield</code> statement instead of 
+                    <code>return</code> to provide a value. When called, it returns a generator object that can be iterated over.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Basic generator function</span>
+def count_up_to(max):
+    count = 1
+    while count <= max:
+        yield count
+        count += 1
+
+<span class="code-comment"># Using the generator</span>
+counter = count_up_to(5)
+print(counter)  <span class="code-comment"># <generator object count_up_to at 0x...></span>
+
+<span class="code-comment"># Consuming values one at a time with next()</span>
+print(next(counter))  <span class="code-comment"># 1</span>
+print(next(counter))  <span class="code-comment"># 2</span>
+print(next(counter))  <span class="code-comment"># 3</span>
+
+<span class="code-comment"># Iterate through remaining values</span>
+for num in counter:
+    print(num)  <span class="code-comment"># 4, 5</span>
+
+<span class="code-comment"># StopIteration is raised if next() is called again</span>
+# next(counter)  # This would raise StopIteration</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Understanding Yield</h3>
+                <p class="mb-4">
+                    When a generator function reaches a <code>yield</code> statement, it pauses execution, returns the yielded value, 
+                    and saves its state. The next time the generator is called, it resumes where it left off.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Generator that demonstrates state preservation</span>
+def state_demo():
+    print("First checkpoint")
+    yield 1
+    
+    print("Second checkpoint")
+    yield 2
+    
+    print("Third checkpoint")
+    yield 3
+    
+    print("Generator complete")
+
+<span class="code-comment"># Consuming the generator</span>
+gen = state_demo()
+
+value = next(gen)  <span class="code-comment"># Prints "First checkpoint" and returns 1</span>
+print(f"Got: {value}")
+
+value = next(gen)  <span class="code-comment"># Prints "Second checkpoint" and returns 2</span>
+print(f"Got: {value}")
+
+value = next(gen)  <span class="code-comment"># Prints "Third checkpoint" and returns 3</span>
+print(f"Got: {value}")
+
+<span class="code-comment"># The next call would print "Generator complete" and raise StopIteration</span>
+# next(gen)</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Generator Expressions</h3>
+                <p class="mb-4">
+                    Generator expressions provide a concise way to create generators, similar to list comprehensions but with 
+                    parentheses instead of square brackets.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># List comprehension - builds the entire list in memory</span>
+squares_list = [x**2 for x in range(1000000)]  <span class="code-comment"># Consumes lots of memory</span>
+
+<span class="code-comment"># Generator expression - creates values on demand</span>
+squares_gen = (x**2 for x in range(1000000))   <span class="code-comment"># Uses minimal memory</span>
+
+<span class="code-comment"># Both can be used with the sum function</span>
+total = sum(x**2 for x in range(10))  <span class="code-comment"># Generator expression without parentheses</span>
+print(total)  <span class="code-comment"># 285</span>
+
+<span class="code-comment"># Conditional generator expressions</span>
+even_squares = (x**2 for x in range(10) if x % 2 == 0)
+for num in even_squares:
+    print(num)  <span class="code-comment"># 0, 4, 16, 36, 64</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practical Applications -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practical Applications</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Working with Large Files</h3>
+                <p class="mb-4">
+                    Generators are ideal for processing large files line by line without loading the entire file into memory.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Process a large file efficiently</span>
+def read_large_file(file_path):
+    with open(file_path, 'r') as file:
+        for line in file:
+            yield line.strip()
+
+<span class="code-comment"># Count lines containing a specific word</span>
+def count_lines_with_word(file_path, word):
+    count = 0
+    for line in read_large_file(file_path):
+        if word in line:
+            count += 1
+    return count
+
+<span class="code-comment"># Usage example (pseudocode)</span>
+# count = count_lines_with_word('huge_log.txt', 'ERROR')
+# print(f"Found {count} error lines")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Infinite Sequences</h3>
+                <p class="mb-4">
+                    Generators can represent infinite sequences without consuming infinite memory.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Generate Fibonacci numbers infinitely</span>
+def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+<span class="code-comment"># Get the first 10 Fibonacci numbers</span>
+fib_gen = fibonacci()
+first_10 = [next(fib_gen) for _ in range(10)]
+print(first_10)  <span class="code-comment"># [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</span>
+
+<span class="code-comment"># Generate an infinite counter</span>
+def infinite_counter():
+    num = 0
+    while True:
+        yield num
+        num += 1
+
+<span class="code-comment"># Take the first 5 values</span>
+counter = infinite_counter()
+for _ in range(5):
+    print(next(counter))  <span class="code-comment"># 0, 1, 2, 3, 4</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Data Pipelines</h3>
+                <p class="mb-4">
+                    Generators can form the basis of efficient data processing pipelines.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Data processing pipeline using generators</span>
+def read_data(file_path):
+    with open(file_path, 'r') as f:
+        for line in f:
+            yield line.strip()
+
+def parse_data(lines):
+    for line in lines:
+        try:
+            # Assuming CSV with ID,NAME,VALUE format
+            id, name, value = line.split(',')
+            yield {'id': id, 'name': name, 'value': float(value)}
+        except (ValueError, IndexError):
+            continue  # Skip malformed lines
+
+def filter_data(records, min_value):
+    for record in records:
+        if record['value'] >= min_value:
+            yield record
+
+def transform_data(records):
+    for record in records:
+        # Add a calculated field
+        record['value_squared'] = record['value'] ** 2
+        yield record
+
+<span class="code-comment"># Usage as a pipeline (pseudocode)</span>
+# raw_data = read_data('data.csv')
+# parsed_data = parse_data(raw_data)
+# filtered_data = filter_data(parsed_data, 10.0)
+# final_data = transform_data(filtered_data)
+#
+# for item in final_data:
+#     print(item)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Generator Features -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Generator Features</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Sending Values to Generators</h3>
+                <p class="mb-4">
+                    Generators can receive values from the outside using the <code>send()</code> method, turning them into
+                    coroutines that can both produce and consume values.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Generator that can receive values</span>
+def echo():
+    value = yield "Ready to echo!"
+    while True:
+        value = yield f"You said: {value}"
+
+<span class="code-comment"># Create the generator and advance to first yield</span>
+echo_gen = echo()
+initial = next(echo_gen)  <span class="code-comment"># Primes the generator</span>
+print(initial)  <span class="code-comment"># "Ready to echo!"</span>
+
+<span class="code-comment"># Send values to the generator</span>
+response = echo_gen.send("Hello")
+print(response)  <span class="code-comment"># "You said: Hello"</span>
+
+response = echo_gen.send("World")
+print(response)  <span class="code-comment"># "You said: World"</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">yield from Expression</h3>
+                <p class="mb-4">
+                    The <code>yield from</code> expression allows a generator to delegate part of its operations to another generator.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Generator delegating to another generator</span>
+def gen1():
+    yield 'A'
+    yield 'B'
+    yield 'C'
+
+def gen2():
+    yield 'X'
+    yield 'Y'
+    yield 'Z'
+
+def combined():
+    yield from gen1()
+    yield from gen2()
+
+<span class="code-comment"># Using the combined generator</span>
+for item in combined():
+    print(item)  <span class="code-comment"># A, B, C, X, Y, Z</span>
+
+<span class="code-comment"># yield from can be used with any iterable</span>
+def flatten(nested_list):
+    for item in nested_list:
+        if isinstance(item, list):
+            yield from flatten(item)  <span class="code-comment"># Recursively flatten nested lists</span>
+        else:
+            yield item
+
+<span class="code-comment"># Flatten a nested list</span>
+nested = [1, [2, [3, 4], 5], 6]
+flat = list(flatten(nested))
+print(flat)  <span class="code-comment"># [1, 2, 3, 4, 5, 6]</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Generator Cleanup</h3>
+                <p class="mb-4">
+                    Generators can define cleanup code that runs when the generator is closed or garbage-collected.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Generator with cleanup code using try/finally</span>
+def generator_with_cleanup():
+    try:
+        yield 1
+        yield 2
+        yield 3
+    finally:
+        print("Generator cleanup performed")
+
+<span class="code-comment"># Using the generator</span>
+gen = generator_with_cleanup()
+print(next(gen))  <span class="code-comment"># 1</span>
+print(next(gen))  <span class="code-comment"># 2</span>
+
+<span class="code-comment"># Close the generator explicitly</span>
+gen.close()  <span class="code-comment"># Prints "Generator cleanup performed"</span>
+
+<span class="code-comment"># Resource management generator example</span>
+def file_reader(file_path):
+    file = open(file_path, 'r')
+    try:
+        for line in file:
+            yield line
+    finally:
+        file.close()
+        print(f"File {file_path} closed")
+
+<span class="code-comment"># Usage example (pseudocode)</span>
+# reader = file_reader('data.txt')
+# first_line = next(reader)
+# reader.close()  # File is properly closed</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Throwing Exceptions into Generators</h3>
+                <p class="mb-4">
+                    You can inject exceptions into a running generator using the <code>throw()</code> method.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Generator that can handle thrown exceptions</span>
+def exception_handler():
+    try:
+        while True:
+            try:
+                value = yield
+                print(f"Got value: {value}")
+            except ValueError:
+                print("Caught ValueError inside generator!")
+    finally:
+        print("Generator is exiting")
+
+<span class="code-comment"># Create and prime the generator</span>
+gen = exception_handler()
+next(gen)  <span class="code-comment"># Prime the generator</span>
+
+<span class="code-comment"># Send values normally</span>
+gen.send("Hello")  <span class="code-comment"># Prints "Got value: Hello"</span>
+
+<span class="code-comment"># Throw an exception into the generator</span>
+gen.throw(ValueError)  <span class="code-comment"># Prints "Caught ValueError inside generator!"</span>
+
+<span class="code-comment"># Continue using the generator</span>
+gen.send("Back to normal")  <span class="code-comment"># Prints "Got value: Back to normal"</span>
+
+<span class="code-comment"># Close the generator</span>
+gen.close()  <span class="code-comment"># Prints "Generator is exiting"</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Considerations -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Performance Considerations</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Memory Efficiency</h3>
+                <p class="mb-4">
+                    Generators are memory-efficient because they produce values on-the-fly instead of storing the entire sequence in memory.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Memory comparison: List vs Generator</span>
+import sys
+
+<span class="code-comment"># Creating a list of 10 million integers</span>
+def large_list():
+    return [i for i in range(10000000)]
+
+<span class="code-comment"># Creating a generator for 10 million integers</span>
+def large_gen():
+    return (i for i in range(10000000))
+
+<span class="code-comment"># Compare memory usage</span>
+print(f"List size: {sys.getsizeof(large_list())} bytes")
+print(f"Generator size: {sys.getsizeof(large_gen())} bytes")
+
+<span class="code-comment"># List size will be hundreds of megabytes
+# Generator size will be just a few hundred bytes</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Execution Time</h3>
+                <p class="mb-4">
+                    While generators save memory, there can be a small performance overhead for value generation.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Performance comparison for summing numbers</span>
+import time
+
+<span class="code-comment"># Using a list</span>
+def sum_with_list(n):
+    start = time.time()
+    result = sum([i for i in range(n)])
+    end = time.time()
+    return result, end - start
+
+<span class="code-comment"># Using a generator</span>
+def sum_with_generator(n):
+    start = time.time()
+    result = sum(i for i in range(n))
+    end = time.time()
+    return result, end - start
+
+<span class="code-comment"># For small collections (e.g., n=1000), the difference is negligible
+# For very large collections (e.g., n=10000000):
+# - Lists can be faster for repeated iteration (trade-off: memory usage)
+# - Generators are better when values are processed only once</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Reusability</h3>
+                <p class="mb-4">
+                    Unlike lists, generators are exhausted after a single iteration, which is important to consider in your design.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Reusability demonstration</span>
+def get_generator():
+    for i in range(3):
+        yield i
+
+<span class="code-comment"># First iteration</span>
+gen = get_generator()
+print(list(gen))  <span class="code-comment"># [0, 1, 2]</span>
+
+<span class="code-comment"># Second iteration - generator is already exhausted</span>
+print(list(gen))  <span class="code-comment"># [] (empty list)</span>
+
+<span class="code-comment"># To reuse, you need to create a new generator instance</span>
+gen = get_generator()
+print(list(gen))  <span class="code-comment"># [0, 1, 2] (works again)</span>
+
+<span class="code-comment"># Caching generator values if needed</span>
+def cached_generator():
+    cache = []
+    gen = get_generator()
+    for value in gen:
+        cache.append(value)
+        yield value
+    
+    <span class="code-comment"># Yield from cache for subsequent iterations</span>
+    while True:
+        for value in cache:
+            yield value</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">When to Use Generators</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Working with large datasets that would consume too much memory</li>
+                    <li>Processing streams of data (files, network streams)</li>
+                    <li>Creating data pipelines where values are processed one at a time</li>
+                    <li>Implementing infinite sequences or streams</li>
+                    <li>When lazy evaluation is desired (compute values only when needed)</li>
+                </ul>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Generator Design Tips</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Keep generator functions focused on a single responsibility</li>
+                    <li>Use proper error handling with try/except/finally blocks</li>
+                    <li>Document whether a generator is expected to be consumed once or multiple times</li>
+                    <li>Consider providing helper functions that recreate exhausted generators when needed</li>
+                    <li>Use generator expressions for simple cases, generator functions for complex logic</li>
+                    <li>Leverage the built-in <code>itertools</code> module for common generator patterns</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Useful patterns from itertools</span>
+import itertools
+
+<span class="code-comment"># Generate infinite sequences</span>
+counter = itertools.count(1, 2)  <span class="code-comment"># 1, 3, 5, 7, ...</span>
+repeater = itertools.repeat("A", 3)  <span class="code-comment"># A, A, A</span>
+cycler = itertools.cycle(["A", "B", "C"])  <span class="code-comment"># A, B, C, A, B, C, ...</span>
+
+<span class="code-comment"># Combine generators</span>
+chained = itertools.chain([1, 2], [3, 4])  <span class="code-comment"># 1, 2, 3, 4</span>
+zipped = itertools.zip_longest([1, 2], [3, 4, 5], fillvalue=0)  <span class="code-comment"># (1,3), (2,4), (0,5)</span>
+
+<span class="code-comment"># Filtering and transforming</span>
+filtered = filter(lambda x: x % 2 == 0, range(10))  <span class="code-comment"># 0, 2, 4, 6, 8</span>
+mapped = map(lambda x: x**2, range(5))  <span class="code-comment"># 0, 1, 4, 9, 16</span>
+
+<span class="code-comment"># Combinatorial generators</span>
+combos = itertools.combinations([1, 2, 3], 2)  <span class="code-comment"># (1,2), (1,3), (2,3)</span>
+perms = itertools.permutations([1, 2, 3], 2)  <span class="code-comment"># (1,2), (1,3), (2,1), (2,3), (3,1), (3,2)</span>
+products = itertools.product("AB", "12")  <span class="code-comment"># A1, A2, B1, B2</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Try These:</h3>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Create a generator that produces prime numbers up to a specified limit.</li>
+                    <li>Write a generator-based function to read a CSV file and yield dictionaries of rows.</li>
+                    <li>Implement a generator pipeline to process and transform data from one format to another.</li>
+                    <li>Build a coroutine-based generator that can receive commands and adjust its output accordingly.</li>
+                    <li>Write a recursive generator that traverses a directory structure and yields file paths.</li>
+                </ol>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Sample Solution</h3>
+                <p class="mb-4">Here's a solution for the prime number generator:</p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+def is_prime(n):
+    """Check if a number is prime."""
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def primes_up_to(limit):
+    """Generate prime numbers up to the given limit."""
+    for num in range(2, limit + 1):
+        if is_prime(num):
+            yield num
+
+<span class="code-comment"># Usage</span>
+for prime in primes_up_to(30):
+    print(prime)  <span class="code-comment"># 2, 3, 5, 7, 11, 13, 17, 19, 23, 29</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded transition duration-300">
+                Back to Cheat Sheet
+            </a>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
