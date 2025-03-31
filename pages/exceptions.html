@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Exception Handling - Python Cheat Sheet</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js"></script>
+    <style>
+        body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .code-box {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .code-comment {
+            color: #9ae6b4;
+            opacity: 0.8;
+        }
+        /* Breadcrumb styles */
+        .breadcrumbs {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .breadcrumbs li {
+            display: inline-flex;
+            align-items: center;
+        }
+        .breadcrumbs li:not(:last-child):after {
+            content: "/";
+            margin: 0 0.5rem;
+            color: #718096;
+        }
+        .breadcrumbs a {
+            color: #63b3ed;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: #4299e1;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 640px) {
+            .prose {
+                font-size: 0.875rem;
+            }
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+    <header class="bg-gray-800 py-4">
+        <div class="container mx-auto px-4">
+            <nav>
+                <ul class="breadcrumbs">
+                    <li><a href="../index.html">Python Cheat Sheet</a></li>
+                    <li>Exception Handling</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center text-blue-400">Exception Handling in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Exception handling is a crucial aspect of writing robust Python code. Exceptions are events that occur during 
+                    program execution that disrupt the normal flow. Instead of letting these events crash your program, 
+                    Python allows you to handle them gracefully, making your code more resilient and user-friendly.
+                </p>
+                <p class="mb-4">
+                    This guide covers the fundamentals of Python's exception handling system, including built-in exceptions, 
+                    handling techniques, custom exceptions, and best practices.
+                </p>
+            </div>
+        </section>
+
+        <!-- Understanding Exceptions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Understanding Exceptions</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">What Are Exceptions?</h3>
+                <p class="mb-4">
+                    Exceptions are objects that represent errors or unexpected conditions in your code. 
+                    When an exception occurs, Python creates an exception object and stops normal execution, 
+                    looking for exception handling code that can deal with it.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Common exceptions in Python</span>
+<span class="code-comment"># 1. SyntaxError - Invalid Python syntax</span>
+<span class="code-comment"># if True print("Hello")  # SyntaxError: invalid syntax</span>
+
+<span class="code-comment"># 2. TypeError - Operation/function applied to inappropriate type</span>
+<span class="code-comment"># "2" + 2  # TypeError: can only concatenate str (not "int") to str</span>
+
+<span class="code-comment"># 3. NameError - Name not defined</span>
+<span class="code-comment"># print(undefined_variable)  # NameError: name 'undefined_variable' is not defined</span>
+
+<span class="code-comment"># 4. IndexError - Index out of range</span>
+<span class="code-comment"># lst = [1, 2, 3]</span>
+<span class="code-comment"># print(lst[5])  # IndexError: list index out of range</span>
+
+<span class="code-comment"># 5. KeyError - Key not found in dictionary</span>
+<span class="code-comment"># d = {"a": 1}</span>
+<span class="code-comment"># print(d["b"])  # KeyError: 'b'</span>
+
+<span class="code-comment"># 6. ValueError - Value inappropriate for operation</span>
+<span class="code-comment"># int("abc")  # ValueError: invalid literal for int() with base 10: 'abc'</span>
+
+<span class="code-comment"># 7. AttributeError - Object has no attribute/method</span>
+<span class="code-comment"># "hello".append("world")  # AttributeError: 'str' object has no attribute 'append'</span>
+
+<span class="code-comment"># 8. ZeroDivisionError - Division by zero</span>
+<span class="code-comment"># 10 / 0  # ZeroDivisionError: division by zero</span>
+
+<span class="code-comment"># 9. FileNotFoundError - File doesn't exist</span>
+<span class="code-comment"># open("nonexistent_file.txt")  # FileNotFoundError</span>
+
+<span class="code-comment"># 10. ImportError - Module not found</span>
+<span class="code-comment"># import nonexistent_module  # ImportError: No module named 'nonexistent_module'</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Exception Hierarchy</h3>
+                <p class="mb-4">
+                    Python exceptions are organized in a hierarchy. All exceptions derive from the <code>BaseException</code> class.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Partial hierarchy of built-in exceptions</span>
+<span class="code-comment"># BaseException</span>
+<span class="code-comment">#  ├── SystemExit              # Raised by sys.exit()</span>
+<span class="code-comment">#  ├── KeyboardInterrupt        # Raised when the user presses Ctrl+C</span>
+<span class="code-comment">#  ├── GeneratorExit            # Raised when a generator is closed</span>
+<span class="code-comment">#  └── Exception                # Base class for most exceptions</span>
+<span class="code-comment">#       ├── StopIteration        # Raised when iterator has no more items</span>
+<span class="code-comment">#       ├── ArithmeticError      # Base for arithmetic errors</span>
+<span class="code-comment">#       │    ├── FloatingPointError</span>
+<span class="code-comment">#       │    ├── OverflowError</span>
+<span class="code-comment">#       │    └── ZeroDivisionError</span>
+<span class="code-comment">#       ├── AttributeError</span>
+<span class="code-comment">#       ├── ImportError</span>
+<span class="code-comment">#       │    └── ModuleNotFoundError</span>
+<span class="code-comment">#       ├── LookupError          # Base for lookup errors</span>
+<span class="code-comment">#       │    ├── IndexError</span>
+<span class="code-comment">#       │    └── KeyError</span>
+<span class="code-comment">#       ├── NameError</span>
+<span class="code-comment">#       ├── SyntaxError</span>
+<span class="code-comment">#       ├── TypeError</span>
+<span class="code-comment">#       ├── ValueError</span>
+<span class="code-comment">#       └── ... many more</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic Exception Handling -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Basic Exception Handling</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Try-Except Blocks</h3>
+                <p class="mb-4">
+                    The basic mechanism for handling exceptions in Python is the try-except block.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic try-except block</span>
+try:
+    <span class="code-comment"># Code that might raise an exception</span>
+    result = 10 / 0
+except ZeroDivisionError:
+    <span class="code-comment"># Code to handle the exception</span>
+    print("Cannot divide by zero!")
+
+<span class="code-comment"># Handling multiple exceptions</span>
+try:
+    number = int(input("Enter a number: "))
+    result = 10 / number
+except ValueError:
+    print("That's not a valid number!")
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+
+<span class="code-comment"># Handling multiple exceptions with the same handler</span>
+try:
+    <span class="code-comment"># Some code that might raise different exceptions</span>
+    with open("file.txt") as f:
+        content = f.read()
+        number = int(content)
+except (FileNotFoundError, ValueError) as e:
+    print(f"An error occurred: {e}")
+
+<span class="code-comment"># Using the exception object</span>
+try:
+    numbers = [1, 2, 3]
+    print(numbers[5])
+except IndexError as e:
+    print(f"Error: {e}")  <span class="code-comment"># Error: list index out of range</span>
+
+<span class="code-comment"># Catching any exception (not recommended for production code)</span>
+try:
+    <span class="code-comment"># Risky operation</span>
+    result = eval(input("Enter an expression: "))
+except Exception as e:
+    print(f"An error occurred: {e}")
+    <span class="code-comment"># Perhaps log the error for debugging</span>
+
+<span class="code-comment"># When to use general exception handling</span>
+def sample_function():
+    try:
+        <span class="code-comment"># Try specific exceptions first</span>
+        <span class="code-comment"># Complex operations...</span>
+        pass
+    except ValueError:
+        <span class="code-comment"># Handle ValueError specifically</span>
+        pass
+    except TypeError:
+        <span class="code-comment"># Handle TypeError specifically</span>
+        pass
+    except Exception as e:
+        <span class="code-comment"># Handle any other exceptions</span>
+        <span class="code-comment"># Log error details for debugging</span>
+        import logging
+        logging.error(f"Unexpected error: {e}", exc_info=True)
+        raise  <span class="code-comment"># Re-raise the exception after logging</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">The Else and Finally Clauses</h3>
+                <p class="mb-4">
+                    Python's exception handling includes optional <code>else</code> and <code>finally</code> clauses that 
+                    provide additional control.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Using else clause (runs if no exception is raised)</span>
+try:
+    number = int(input("Enter a number: "))
+    result = 100 / number
+except ValueError:
+    print("That's not a valid number!")
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+else:
+    <span class="code-comment"># This runs only if no exceptions occurred</span>
+    print(f"The result is: {result}")
+
+<span class="code-comment"># Using finally clause (always runs, regardless of exceptions)</span>
+try:
+    file = open("example.txt", "r")
+    content = file.read()
+except FileNotFoundError:
+    print("File not found!")
+finally:
+    <span class="code-comment"># This code always executes, even if an exception occurred</span>
+    <span class="code-comment"># Good for cleanup operations</span>
+    if 'file' in locals() and not file.closed:
+        file.close()
+        print("File closed.")
+
+<span class="code-comment"># Complete try-except-else-finally example</span>
+try:
+    <span class="code-comment"># Attempt to perform an operation</span>
+    file = open("data.txt", "r")
+    data = file.read()
+    parsed_data = int(data)
+except FileNotFoundError:
+    print("The file was not found.")
+    <span class="code-comment"># Create a file with default data</span>
+    with open("data.txt", "w") as f:
+        f.write("0")
+    parsed_data = 0
+except ValueError:
+    print("The file doesn't contain a valid number.")
+    parsed_data = 0
+else:
+    <span class="code-comment"># This runs if no exceptions were raised</span>
+    print(f"Successfully read data: {parsed_data}")
+finally:
+    <span class="code-comment"># This always runs for cleanup</span>
+    if 'file' in locals() and not file.closed:
+        file.close()
+        print("File closed.")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Exception Handling -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Exception Handling</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Raising Exceptions</h3>
+                <p class="mb-4">
+                    You can raise exceptions in your code using the <code>raise</code> statement.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Raising exceptions</span>
+def divide(a, b):
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero")
+    return a / b
+
+<span class="code-comment"># Raising with a message</span>
+def withdraw(account, amount):
+    if amount > account.balance:
+        raise ValueError(f"Insufficient funds: balance is {account.balance}, trying to withdraw {amount}")
+    account.balance -= amount
+    return account.balance
+
+<span class="code-comment"># Re-raising exceptions</span>
+try:
+    <span class="code-comment"># Some code that might raise an exception</span>
+    result = int("abc")
+except ValueError:
+    print("Invalid integer, handling and re-raising...")
+    raise  <span class="code-comment"># Re-raises the last exception</span>
+
+<span class="code-comment"># Transforming exceptions</span>
+def get_user_data(user_id):
+    try:
+        <span class="code-comment"># Try to retrieve user from database</span>
+        <span class="code-comment"># This might raise various exceptions</span>
+        db = connect_to_database()
+        user = db.query(f"SELECT * FROM users WHERE id = {user_id}")
+        return user
+    except Exception as e:
+        <span class="code-comment"># Transform into a more appropriate exception for the caller</span>
+        raise ValueError(f"Could not retrieve user {user_id}: {str(e)}") from e</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Custom Exceptions</h3>
+                <p class="mb-4">
+                    You can create your own exception classes for more specific error handling.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Defining custom exceptions</span>
+class CustomError(Exception):
+    """Base class for custom exceptions in this module."""
+    pass
+
+class ValueTooSmallError(CustomError):
+    """Raised when the input value is too small."""
+    def __init__(self, value, min_value, message="Value is too small"):
+        self.value = value
+        self.min_value = min_value
+        self.message = f"{message}: {value} (minimum: {min_value})"
+        super().__init__(self.message)
+
+class ValueTooLargeError(CustomError):
+    """Raised when the input value is too large."""
+    def __init__(self, value, max_value, message="Value is too large"):
+        self.value = value
+        self.max_value = max_value
+        self.message = f"{message}: {value} (maximum: {max_value})"
+        super().__init__(self.message)
+
+<span class="code-comment"># Using custom exceptions</span>
+def validate_age(age):
+    if age < 0:
+        raise ValueTooSmallError(age, 0, "Age cannot be negative")
+    if age > 150:
+        raise ValueTooLargeError(age, 150, "Age is unrealistically high")
+    return age
+
+<span class="code-comment"># Handling custom exceptions</span>
+try:
+    user_age = int(input("Enter your age: "))
+    validated_age = validate_age(user_age)
+    print(f"Your age is {validated_age}")
+except ValueTooSmallError as e:
+    print(f"Error: {e}")
+except ValueTooLargeError as e:
+    print(f"Error: {e}")
+except ValueError:
+    print("Please enter a valid number.")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Context Managers and Exception Handling</h3>
+                <p class="mb-4">
+                    Context managers (using the <code>with</code> statement) provide a way to handle exceptions and resource management.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Context managers for exception handling</span>
+<span class="code-comment"># Built-in examples</span>
+with open("file.txt", "r") as file:
+    <span class="code-comment"># File is automatically closed even if an exception occurs</span>
+    content = file.read()
+
+<span class="code-comment"># Custom context manager using a class</span>
+class DatabaseConnection:
+    def __init__(self, connection_string):
+        self.connection_string = connection_string
+        self.connection = None
+    
+    def __enter__(self):
+        <span class="code-comment"># Set up resource (open connection)</span>
+        print(f"Connecting to database: {self.connection_string}")
+        self.connection = {"connected": True, "cursor": "db_cursor"}
+        return self.connection
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        <span class="code-comment"># Clean up resource (close connection)</span>
+        if self.connection:
+            print("Closing database connection")
+            self.connection["connected"] = False
+            self.connection = None
+        
+        <span class="code-comment"># Handle specific exceptions if desired</span>
+        if exc_type is not None:
+            print(f"An exception occurred: {exc_val}")
+            <span class="code-comment"># Return True to suppress the exception</span>
+            <span class="code-comment"># Return False (or None) to let the exception propagate</span>
+            return False
+
+<span class="code-comment"># Using the custom context manager</span>
+try:
+    with DatabaseConnection("mysql://localhost/mydb") as conn:
+        <span class="code-comment"># Use the database connection</span>
+        print(f"Connected: {conn['connected']}")
+        <span class="code-comment"># If an exception occurs here, __exit__ will be called</span>
+        <span class="code-comment"># raise ValueError("Database query failed")</span>
+except Exception as e:
+    print(f"Error caught outside context manager: {e}")
+
+<span class="code-comment"># Context manager using contextlib</span>
+from contextlib import contextmanager
+
+@contextmanager
+def file_manager(filename, mode):
+    try:
+        <span class="code-comment"># Setup - open the file</span>
+        file = open(filename, mode)
+        <span class="code-comment"># Yield the resource</span>
+        yield file
+    finally:
+        <span class="code-comment"># Cleanup - close the file</span>
+        file.close()
+
+<span class="code-comment"># Using the contextlib-based manager</span>
+try:
+    with file_manager("example.txt", "r") as file:
+        content = file.read()
+except FileNotFoundError:
+    print("File not found!")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exception Handling Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Exception Handling Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Following are some best practices for effective exception handling in Python.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># 1. Be specific with exception types</span>
+<span class="code-comment"># Bad (too broad)</span>
+try:
+    <span class="code-comment"># Some code</span>
+    pass
+except Exception:  <span class="code-comment"># Catches everything - might hide bugs</span>
+    pass
+
+<span class="code-comment"># Good (specific)</span>
+try:
+    <span class="code-comment"># Some code</span>
+    pass
+except ValueError:
+    <span class="code-comment"># Handle specifically</span>
+    pass
+except ZeroDivisionError:
+    <span class="code-comment"># Handle specifically</span>
+    pass
+
+<span class="code-comment"># 2. Keep try blocks focused</span>
+<span class="code-comment"># Bad (too broad)</span>
+try:
+    file = open("data.txt")
+    data = file.read()
+    processed_data = process_data(data)
+    result = calculate_result(processed_data)
+    save_result(result)
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+<span class="code-comment"># Good (focused)</span>
+try:
+    file = open("data.txt")
+except FileNotFoundError:
+    print("File not found")
+    return
+
+try:
+    data = file.read()
+except IOError:
+    print("Error reading file")
+    file.close()
+    return
+
+<span class="code-comment"># Process data, handle other specific exceptions...</span>
+<span class="code-comment"># Remember to close the file</span>
+
+<span class="code-comment"># 3. Use context managers for resource cleanup</span>
+<span class="code-comment"># Bad</span>
+file = open("data.txt")
+try:
+    data = file.read()
+except Exception:
+    <span class="code-comment"># Handle exception</span>
+    pass
+<span class="code-comment"># What if we forget to close the file?</span>
+file.close()
+
+<span class="code-comment"># Good</span>
+with open("data.txt") as file:
+    data = file.read()
+<span class="code-comment"># File is automatically closed</span>
+
+<span class="code-comment"># 4. Don't suppress exceptions without good reason</span>
+<span class="code-comment"># Bad</span>
+try:
+    result = risky_operation()
+except Exception:
+    <span class="code-comment"># Silent failure is dangerous</span>
+    pass
+
+<span class="code-comment"># Good</span>
+try:
+    result = risky_operation()
+except Exception as e:
+    <span class="code-comment"># Log the error</span>
+    logger.error(f"Error in risky_operation: {e}")
+    <span class="code-comment"># Possibly re-raise or handle gracefully</span>
+    raise
+
+<span class="code-comment"># 5. Use exceptions for exceptional conditions, not flow control</span>
+<span class="code-comment"># Bad (using exceptions for control flow)</span>
+def find_value(dictionary, key):
+    try:
+        return dictionary[key]
+    except KeyError:
+        return None
+
+<span class="code-comment"># Good (check conditions without exceptions)</span>
+def find_value(dictionary, key):
+    if key in dictionary:
+        return dictionary[key]
+    return None
+
+<span class="code-comment"># 6. Include helpful information in custom exceptions</span>
+<span class="code-comment"># Bad</span>
+if value < 0:
+    raise ValueError("Invalid value")
+
+<span class="code-comment"># Good</span>
+if value < 0:
+    raise ValueError(f"Value must be positive, got: {value}")
+
+<span class="code-comment"># 7. Use logging for debugging exceptions</span>
+import logging
+
+try:
+    <span class="code-comment"># Some complex operation</span>
+    result = complex_operation()
+except Exception as e:
+    <span class="code-comment"># Log with traceback for debugging</span>
+    logging.error("Error in complex_operation", exc_info=True)
+    <span class="code-comment"># Display user-friendly message</span>
+    print("An error occurred. Please check the logs.")</pre>
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded transition duration-300">
+                Back to Cheat Sheet
+            </a>
+        </div>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed hidden bottom-8 right-8 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-full shadow-lg transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to Top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html> 
