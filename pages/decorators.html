@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Decorators - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Decorators in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Decorators are a powerful feature in Python that allows you to modify or enhance functions and methods 
+                    without changing their core implementation. They work by wrapping a function within another function, 
+                    enabling you to execute code before and after the wrapped function runs.
+                </p>
+            </div>
+        </section>
+
+        <!-- Decorator Fundamentals -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Decorator Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic Decorator Structure</h3>
+                <p class="mb-4">
+                    At its core, a decorator is a function that takes another function as an argument and returns a new function that usually extends the behavior of the original function.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Basic decorator pattern</span>
+def my_decorator(func):
+    def wrapper():
+        print("Something happens before the function is called.")
+        func()
+        print("Something happens after the function is called.")
+    return wrapper
+
+<span class="code-comment"># Applying the decorator manually</span>
+def say_hello():
+    print("Hello!")
+
+<span class="code-comment"># This is what happens behind the scenes with the @ syntax</span>
+say_hello = my_decorator(say_hello)
+say_hello()
+<span class="code-comment"># Output:
+# Something happens before the function is called.
+# Hello!
+# Something happens after the function is called.</span>
+
+<span class="code-comment"># The same using decorator syntax</span>
+@my_decorator
+def say_goodbye():
+    print("Goodbye!")
+
+say_goodbye()
+<span class="code-comment"># Output is the same pattern as above</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Decorators with Arguments</h3>
+                <p class="mb-4">
+                    You can create decorators that handle functions with arguments by using *args and **kwargs.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Decorator for functions with arguments</span>
+def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print(f"Function {func.__name__} is about to be called with {args} and {kwargs}")
+        result = func(*args, **kwargs)
+        print(f"Function {func.__name__} returned {result}")
+        return result
+    return wrapper
+
+@my_decorator
+def add(a, b):
+    return a + b
+
+result = add(3, 5)
+<span class="code-comment"># Output:
+# Function add is about to be called with (3, 5) and {}
+# Function add returned 8</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Preserving Metadata</h3>
+                <p class="mb-4">
+                    When you decorate a function, the metadata of the original function (like name, docstring) is lost. 
+                    Use the <code>@functools.wraps</code> decorator to preserve this information.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Without wraps, metadata is lost</span>
+def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        """Wrapper function"""
+        return func(*args, **kwargs)
+    return wrapper
+
+@my_decorator
+def greet(name):
+    """Greet a person by name"""
+    return f"Hello, {name}!"
+
+print(greet.__name__)  <span class="code-comment"># Output: 'wrapper'</span>
+print(greet.__doc__)   <span class="code-comment"># Output: 'Wrapper function'</span>
+
+<span class="code-comment"># Using functools.wraps to preserve metadata</span>
+import functools
+
+def better_decorator(func):
+    @functools.wraps(func)  # Preserves metadata
+    def wrapper(*args, **kwargs):
+        """Wrapper function"""
+        return func(*args, **kwargs)
+    return wrapper
+
+@better_decorator
+def greet_better(name):
+    """Greet a person by name"""
+    return f"Hello, {name}!"
+
+print(greet_better.__name__)  <span class="code-comment"># Output: 'greet_better'</span>
+print(greet_better.__doc__)   <span class="code-comment"># Output: 'Greet a person by name'</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Use Cases -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Common Use Cases</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Timing Functions</h3>
+                <p class="mb-4">
+                    A common use for decorators is to measure the execution time of functions.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import time
+import functools
+
+def timer(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        print(f"{func.__name__} ran in {end_time - start_time:.6f} seconds")
+        return result
+    return wrapper
+
+@timer
+def slow_function(delay=1.0):
+    """Simulates a slow function"""
+    time.sleep(delay)
+    return "Function executed"
+
+slow_function(0.5)
+<span class="code-comment"># Output: slow_function ran in 0.500123 seconds</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Logging and Debugging</h3>
+                <p class="mb-4">
+                    Decorators can be used to add logging behavior to functions without cluttering the function's core logic.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import functools
+import logging
+
+<span class="code-comment"># Set up basic logging</span>
+logging.basicConfig(level=logging.INFO)
+
+def log_function_call(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        args_repr = [repr(a) for a in args]
+        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
+        signature = ", ".join(args_repr + kwargs_repr)
+        
+        logging.info(f"Calling {func.__name__}({signature})")
+        result = func(*args, **kwargs)
+        logging.info(f"{func.__name__} returned {result!r}")
+        return result
+    return wrapper
+
+@log_function_call
+def calculate_area(length, width):
+    area = length * width
+    return area
+
+result = calculate_area(10, width=5)
+<span class="code-comment"># Logs:
+# INFO:root:Calling calculate_area(10, width=5)
+# INFO:root:calculate_area returned 50</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Authentication and Authorization</h3>
+                <p class="mb-4">
+                    Decorators can enforce authentication and authorization checks before executing a function.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+def require_auth(func):
+    @functools.wraps(func)
+    def wrapper(user, *args, **kwargs):
+        if not user.is_authenticated:
+            raise PermissionError("Authentication required")
+        return func(user, *args, **kwargs)
+    return wrapper
+
+<span class="code-comment"># Simulated User class</span>
+class User:
+    def __init__(self, name, is_authenticated=False, is_admin=False):
+        self.name = name
+        self.is_authenticated = is_authenticated
+        self.is_admin = is_admin
+
+<span class="code-comment"># Decorator for admin permissions</span>
+def admin_only(func):
+    @functools.wraps(func)
+    def wrapper(user, *args, **kwargs):
+        if not user.is_admin:
+            raise PermissionError("Admin privileges required")
+        return func(user, *args, **kwargs)
+    return wrapper
+
+<span class="code-comment"># Using both decorators</span>
+@require_auth
+@admin_only
+def delete_user(current_user, user_to_delete):
+    print(f"{current_user.name} deleted user {user_to_delete}")
+    return True
+
+<span class="code-comment"># Try with different users</span>
+admin_user = User("Admin", is_authenticated=True, is_admin=True)
+regular_user = User("Regular", is_authenticated=True, is_admin=False)
+guest_user = User("Guest", is_authenticated=False)
+
+<span class="code-comment"># This will work</span>
+delete_user(admin_user, "John")
+
+<span class="code-comment"># This will raise PermissionError: Admin privileges required</span>
+# delete_user(regular_user, "John")
+
+<span class="code-comment"># This will raise PermissionError: Authentication required</span>
+# delete_user(guest_user, "John")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Caching and Memoization</h3>
+                <p class="mb-4">
+                    Decorators can add caching functionality to avoid redundant computations.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import functools
+
+def memoize(func):
+    """Cache the results of a function based on its arguments"""
+    cache = {}
+    
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        <span class="code-comment"># Create a key that uniquely identifies the function call</span>
+        key = str(args) + str(kwargs)
+        
+        if key not in cache:
+            cache[key] = func(*args, **kwargs)
+            print(f"Calculated result for {key}: {cache[key]}")
+        else:
+            print(f"Using cached result for {key}: {cache[key]}")
+            
+        return cache[key]
+    
+    return wrapper
+
+@memoize
+def fibonacci(n):
+    """Calculate the Fibonacci number recursively"""
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+<span class="code-comment"># First call - computes and caches results</span>
+print(fibonacci(5))
+
+<span class="code-comment"># Second call - uses cached results</span>
+print(fibonacci(5))</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Decorators -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Decorator Patterns</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Decorators with Parameters</h3>
+                <p class="mb-4">
+                    You can create decorators that accept their own parameters by adding another layer of nesting.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+def repeat(num_times):
+    """Decorator that repeats the function call `num_times` times"""
+    def decorator_repeat(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            results = []
+            for _ in range(num_times):
+                results.append(func(*args, **kwargs))
+            return results
+        return wrapper
+    return decorator_repeat
+
+@repeat(3)
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("World"))
+<span class="code-comment"># Output: ['Hello, World!', 'Hello, World!', 'Hello, World!']</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Class-based Decorators</h3>
+                <p class="mb-4">
+                    Decorators can also be implemented as classes, using the <code>__call__</code> method to make the class instance callable.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+class CountCalls:
+    """Class decorator that counts how many times a function has been called"""
+    
+    def __init__(self, func):
+        functools.update_wrapper(self, func)
+        self.func = func
+        self.count = 0
+    
+    def __call__(self, *args, **kwargs):
+        self.count += 1
+        print(f"{self.func.__name__} has been called {self.count} times")
+        return self.func(*args, **kwargs)
+
+@CountCalls
+def say_hello():
+    return "Hello!"
+
+<span class="code-comment"># Call the function multiple times</span>
+say_hello()  <span class="code-comment"># Output: say_hello has been called 1 times</span>
+say_hello()  <span class="code-comment"># Output: say_hello has been called 2 times</span>
+say_hello()  <span class="code-comment"># Output: say_hello has been called 3 times</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Stateful Decorators</h3>
+                <p class="mb-4">
+                    Decorators can maintain state between function calls.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+def rate_limiter(max_calls, period):
+    """Limit function calls to max_calls per period seconds"""
+    calls = []
+    
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            current_time = time.time()
+            
+            <span class="code-comment"># Remove old calls outside the period</span>
+            while calls and current_time - calls[0] > period:
+                calls.pop(0)
+            
+            <span class="code-comment"># Check if we've hit the rate limit</span>
+            if len(calls) >= max_calls:
+                time_to_wait = period - (current_time - calls[0])
+                print(f"Rate limit exceeded. Try again in {time_to_wait:.2f} seconds.")
+                return None
+            
+            <span class="code-comment"># Add current call timestamp</span>
+            calls.append(current_time)
+            return func(*args, **kwargs)
+        
+        return wrapper
+    
+    return decorator
+
+<span class="code-comment"># Allow 2 calls per 5 seconds</span>
+@rate_limiter(max_calls=2, period=5)
+def fetch_data():
+    return "Data fetched successfully"
+
+<span class="code-comment"># Try calling multiple times in quick succession</span>
+print(fetch_data())  <span class="code-comment"># Works</span>
+print(fetch_data())  <span class="code-comment"># Works</span>
+print(fetch_data())  <span class="code-comment"># Rate limit message</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Decorator Stacking</h3>
+                <p class="mb-4">
+                    Multiple decorators can be stacked on a single function, executing from the innermost to the outermost.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+def uppercase(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result.upper()
+    return wrapper
+
+def split_words(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result.split()
+    return wrapper
+
+<span class="code-comment"># Decorators are applied from bottom to top</span>
+@uppercase
+@split_words
+def greet(name):
+    return f"hello {name}"
+
+print(greet("world"))
+<span class="code-comment"># First 'hello world' is split into ['hello', 'world']
+# Then uppercase is applied: ['HELLO', 'WORLD']</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Patterns</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Decorator Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Always use <code>functools.wraps</code> to preserve the original function's metadata</li>
+                    <li>Make decorators robust by handling *args and **kwargs</li>
+                    <li>Keep decorators focused on a single responsibility</li>
+                    <li>Document how the decorator modifies the function's behavior</li>
+                    <li>Consider making decorators optional with sensible defaults</li>
+                    <li>Be careful with stateful decorators in multi-threaded environments</li>
+                </ul>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Common Patterns</h3>
+                <table class="min-w-full bg-gray-800 text-white rounded-md overflow-hidden mb-6">
+                    <thead class="bg-gray-700">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Pattern</th>
+                            <th class="py-3 px-4 text-left">Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-3 px-4">Pre/Post Processing</td>
+                            <td class="py-3 px-4">Run code before/after a function (logging, validation)</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-3 px-4">Function Registration</td>
+                            <td class="py-3 px-4">Register functions in a registry (routes in web frameworks)</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-3 px-4">Result Modification</td>
+                            <td class="py-3 px-4">Transform the result of a function (caching, formatting)</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-3 px-4">Retry Logic</td>
+                            <td class="py-3 px-4">Retry a function call on failure with backoff</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">Context Management</td>
+                            <td class="py-3 px-4">Set up and tear down resources around function calls</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Example: Retry Decorator</h3>
+                <p class="mb-4">
+                    Here's a practical example of a retry decorator with exponential backoff:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import time
+import random
+import functools
+
+def retry(max_tries=3, delay_seconds=1, backoff=2, exceptions=(Exception,)):
+    """Retry decorator with exponential backoff"""
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            mtries, mdelay = max_tries, delay_seconds
+            while mtries > 0:
+                try:
+                    return func(*args, **kwargs)
+                except exceptions as e:
+                    mtries -= 1
+                    if mtries == 0:
+                        raise
+                    
+                    print(f"Function {func.__name__} failed with {e}. Retrying in {mdelay} seconds...")
+                    time.sleep(mdelay)
+                    mdelay *= backoff
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+<span class="code-comment"># Example usage with a flaky function</span>
+@retry(max_tries=3, delay_seconds=1, backoff=2, exceptions=(ValueError,))
+def flaky_function():
+    """This function randomly fails"""
+    if random.random() < 0.7:  # 70% chance of failure
+        raise ValueError("Random failure!")
+    return "Success!"
+
+<span class="code-comment"># Try calling the flaky function</span>
+try:
+    result = flaky_function()
+    print(result)
+except ValueError as e:
+    print(f"Function failed after retries: {e}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Examples -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Real-World Examples</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Python Standard Library Decorators</h3>
+                <p class="mb-4">
+                    The Python standard library includes useful decorators that you can use in your code:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li><code>@classmethod</code> - Defines a method that operates on the class rather than instances</li>
+                    <li><code>@staticmethod</code> - Defines a method that doesn't require access to the class or instance</li>
+                    <li><code>@property</code> - Creates a getter method for an attribute, enabling property-like access</li>
+                    <li><code>@functools.lru_cache</code> - Adds least-recently-used caching to functions</li>
+                    <li><code>@functools.singledispatch</code> - Enables function overloading based on argument types</li>
+                    <li><code>@contextlib.contextmanager</code> - Creates a context manager from a generator function</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example of @property decorator</span>
+class Circle:
+    def __init__(self, radius):
+        self._radius = radius
+    
+    @property
+    def radius(self):
+        """Get the radius of the circle"""
+        return self._radius
+    
+    @radius.setter
+    def radius(self, value):
+        """Set the radius of the circle"""
+        if value < 0:
+            raise ValueError("Radius cannot be negative")
+        self._radius = value
+    
+    @property
+    def area(self):
+        """Calculate the area of the circle"""
+        import math
+        return math.pi * self._radius ** 2
+
+<span class="code-comment"># Usage</span>
+circle = Circle(5)
+print(circle.radius)  <span class="code-comment"># 5</span>
+print(circle.area)    <span class="code-comment"># 78.54...</span>
+
+circle.radius = 10
+print(circle.radius)  <span class="code-comment"># 10</span>
+print(circle.area)    <span class="code-comment"># 314.16...</span>
+
+<span class="code-comment"># This will raise a ValueError</span>
+# circle.radius = -1</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Decorators in Web Frameworks</h3>
+                <p class="mb-4">
+                    Web frameworks like Flask and Django make heavy use of decorators for route definitions, authentication, and more:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example of Flask route decorators</span>
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+<span class="code-comment"># Route decorator defines URL patterns</span>
+@app.route('/api/items', methods=['GET'])
+def get_items():
+    return jsonify({"items": ["item1", "item2"]})
+
+<span class="code-comment"># Authentication decorator</span>
+def login_required(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        auth_header = request.headers.get('Authorization')
+        if not auth_header:
+            return jsonify({"error": "Authentication required"}), 401
+        
+        <span class="code-comment"># Here you would validate the token</span>
+        <span class="code-comment"># For this example, we just check if the token is "valid_token"</span>
+        token = auth_header.split(" ")[1] if len(auth_header.split(" ")) > 1 else ""
+        if token != "valid_token":
+            return jsonify({"error": "Invalid token"}), 401
+            
+        return func(*args, **kwargs)
+    return wrapper
+
+<span class="code-comment"># Using both decorators</span>
+@app.route('/api/protected', methods=['GET'])
+@login_required
+def protected_endpoint():
+    return jsonify({"message": "You've accessed the protected endpoint"})</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Try These:</h3>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Create a decorator that measures and prints the execution time of a function.</li>
+                    <li>Write a decorator that validates that all arguments to a function are of a specific type (e.g., strings).</li>
+                    <li>Implement a decorator that limits the rate at which a function can be called (e.g., only once per second).</li>
+                    <li>Create a caching decorator that saves function results to a file and loads them on subsequent calls.</li>
+                    <li>Build a decorator that retries a function with exponential backoff if it raises specific exceptions.</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded transition duration-300">
+                Back to Cheat Sheet
+            </a>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
