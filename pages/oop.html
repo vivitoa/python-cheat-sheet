@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python OOP - Python Cheat Sheet</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.min.js"></script>
+    <style>
+        body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .code-box {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .code-comment {
+            color: #9ae6b4;
+            opacity: 0.8;
+        }
+        /* Breadcrumb styles */
+        .breadcrumbs {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .breadcrumbs li {
+            display: inline-flex;
+            align-items: center;
+        }
+        .breadcrumbs li:not(:last-child):after {
+            content: "/";
+            margin: 0 0.5rem;
+            color: #718096;
+        }
+        .breadcrumbs a {
+            color: #63b3ed;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            color: #4299e1;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 640px) {
+            .prose {
+                font-size: 0.875rem;
+            }
+            pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+    <header class="bg-gray-800 py-4">
+        <div class="container mx-auto px-4">
+            <nav>
+                <ul class="breadcrumbs">
+                    <li><a href="../index.html">Python Cheat Sheet</a></li>
+                    <li>Object-Oriented Programming</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center text-blue-400">Object-Oriented Programming in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Object-Oriented Programming (OOP) is a programming paradigm that uses objects and classes to organize code 
+                    for designing applications and computer programs. Python is a multi-paradigm programming language that
+                    fully supports OOP principles while remaining simple and flexible.
+                </p>
+                <p class="mb-4">
+                    This guide explores Python's OOP features, including classes, objects, inheritance, encapsulation, 
+                    polymorphism, and more. Whether you're new to OOP or looking to deepen your understanding, 
+                    this guide will help you master OOP concepts in Python.
+                </p>
+            </div>
+        </section>
+
+        <!-- Classes and Objects -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Classes and Objects Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Defining Classes</h3>
+                <p class="mb-4">
+                    A class is a blueprint for creating objects, providing initial values for state (attributes) 
+                    and implementations of behavior (methods). In Python, classes are defined using the <code>class</code> keyword.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Basic class definition</span>
+class Person:
+    <span class="code-comment"># Class attribute (shared by all instances)</span>
+    species = "Homo sapiens"
+    
+    <span class="code-comment"># Initialize method (constructor)</span>
+    def __init__(self, name, age):
+        <span class="code-comment"># Instance attributes (unique to each instance)</span>
+        self.name = name
+        self.age = age
+    
+    <span class="code-comment"># Instance method</span>
+    def introduce(self):
+        return f"Hello, my name is {self.name} and I am {self.age} years old."
+    
+    <span class="code-comment"># Instance method with parameters</span>
+    def celebrate_birthday(self):
+        self.age += 1
+        return f"Happy birthday! Now I'm {self.age} years old."
+        
+    <span class="code-comment"># Class method (operates on the class itself)</span>
+    @classmethod
+    def from_birth_year(cls, name, birth_year):
+        import datetime
+        current_year = datetime.datetime.now().year
+        age = current_year - birth_year
+        return cls(name, age)
+    
+    <span class="code-comment"># Static method (doesn't access class or instance)</span>
+    @staticmethod
+    def is_adult(age):
+        return age >= 18</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Creating and Using Objects</h3>
+                <p class="mb-4">
+                    Objects are instances of classes. When you create an object, you're creating a specific instance 
+                    based on the class blueprint.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Creating instances (objects)</span>
+person1 = Person("Alice", 30)
+person2 = Person("Bob", 25)
+
+<span class="code-comment"># Accessing instance attributes</span>
+print(person1.name)  <span class="code-comment"># Alice</span>
+print(person2.age)   <span class="code-comment"># 25</span>
+
+<span class="code-comment"># Accessing class attributes (via instance or class)</span>
+print(person1.species)  <span class="code-comment"># Homo sapiens</span>
+print(Person.species)   <span class="code-comment"># Homo sapiens</span>
+
+<span class="code-comment"># Calling instance methods</span>
+print(person1.introduce())  <span class="code-comment"># Hello, my name is Alice and I am 30 years old.</span>
+print(person1.celebrate_birthday())  <span class="code-comment"># Happy birthday! Now I'm 31 years old.</span>
+
+<span class="code-comment"># Using a class method</span>
+person3 = Person.from_birth_year("Charlie", 1995)
+print(person3.age)  <span class="code-comment"># Current age based on birth year</span>
+
+<span class="code-comment"># Using a static method</span>
+print(Person.is_adult(20))  <span class="code-comment"># True</span>
+print(person1.is_adult(15))  <span class="code-comment"># False (can also be called from instance)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inheritance and Polymorphism -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Inheritance and Polymorphism</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Inheritance</h3>
+                <p class="mb-4">
+                    Inheritance allows a class to inherit attributes and methods from another class. 
+                    The class that inherits is called a subclass (or derived class), and the class from 
+                    which it inherits is called the superclass (or base class).
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Base class</span>
+class Animal:
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+        
+    def make_sound(self):
+        return "Some generic animal sound"
+    
+    def __str__(self):
+        return f"{self.name} is a {self.species}"
+
+<span class="code-comment"># Derived class inheriting from Animal</span>
+class Dog(Animal):
+    def __init__(self, name, breed):
+        <span class="code-comment"># Call to parent class constructor</span>
+        super().__init__(name, species="Dog")
+        self.breed = breed
+        
+    <span class="code-comment"># Override method from parent class</span>
+    def make_sound(self):
+        return "Woof!"
+    
+    <span class="code-comment"># Add new method</span>
+    def fetch(self, item):
+        return f"{self.name} fetched the {item}!"
+
+<span class="code-comment"># Another derived class</span>
+class Cat(Animal):
+    def __init__(self, name, color):
+        super().__init__(name, species="Cat")
+        self.color = color
+        
+    def make_sound(self):
+        return "Meow!"
+    
+    def scratch(self):
+        return f"{self.name} scratches the furniture!"
+
+<span class="code-comment"># Creating and using derived objects</span>
+dog = Dog("Rex", "German Shepherd")
+cat = Cat("Whiskers", "Tabby")
+
+print(dog)  <span class="code-comment"># Rex is a Dog</span>
+print(dog.make_sound())  <span class="code-comment"># Woof!</span>
+print(dog.fetch("ball"))  <span class="code-comment"># Rex fetched the ball!</span>
+
+print(cat)  <span class="code-comment"># Whiskers is a Cat</span>
+print(cat.make_sound())  <span class="code-comment"># Meow!</span>
+print(cat.scratch())  <span class="code-comment"># Whiskers scratches the furniture!</span>
+
+<span class="code-comment"># Testing inheritance</span>
+print(isinstance(dog, Dog))     <span class="code-comment"># True</span>
+print(isinstance(dog, Animal))  <span class="code-comment"># True</span>
+print(isinstance(dog, Cat))     <span class="code-comment"># False</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Polymorphism</h3>
+                <p class="mb-4">
+                    Polymorphism allows objects of different classes to be treated as objects of a common superclass. 
+                    The most common use of polymorphism in OOP is when a parent class reference is used to refer to a child class object.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Using polymorphism with inheritance</span>
+def animal_sound(animal):
+    return animal.make_sound()
+
+<span class="code-comment"># Function works for any class that inherits from Animal</span>
+print(animal_sound(dog))  <span class="code-comment"># Woof!</span>
+print(animal_sound(cat))  <span class="code-comment"># Meow!</span>
+
+<span class="code-comment"># Polymorphism with a collection</span>
+animals = [
+    Animal("Generic Animal", "Unknown"),
+    Dog("Buddy", "Golden Retriever"),
+    Cat("Felix", "Black")
+]
+
+for animal in animals:
+    <span class="code-comment"># Same method call works for all classes</span>
+    print(f"{animal.name} says: {animal.make_sound()}")
+
+<span class="code-comment"># Duck typing: Python doesn't care about type, only behavior</span>
+class Duck:
+    def make_sound(self):
+        return "Quack!"
+        
+duck = Duck()
+print(animal_sound(duck))  <span class="code-comment"># Quack! (works even though Duck doesn't inherit from Animal)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Encapsulation -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Encapsulation</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Encapsulation is the bundling of data and the methods that operate on that data into a single unit 
+                    (the class) and restricting access to some of the object's components. In Python, encapsulation is 
+                    more about convention than strict enforcement.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Python's encapsulation conventions</span>
+class BankAccount:
+    def __init__(self, account_holder, balance=0):
+        <span class="code-comment"># Public attribute (accessible directly)</span>
+        self.account_holder = account_holder
+        
+        <span class="code-comment"># Protected attribute (convention: single underscore)</span>
+        <span class="code-comment"># Indicates it shouldn't be accessed directly outside the class</span>
+        <span class="code-comment"># But can be accessed if needed</span>
+        self._balance = balance
+        
+        <span class="code-comment"># Private attribute (convention: double underscore)</span>
+        <span class="code-comment"># Name mangling makes it harder to access outside the class</span>
+        self.__account_number = self.__generate_account_number()
+        
+    <span class="code-comment"># Private method</span>
+    def __generate_account_number(self):
+        import random
+        return random.randint(10000000, 99999999)
+    
+    <span class="code-comment"># Public methods - interface to interact with the object</span>
+    def deposit(self, amount):
+        if amount > 0:
+            self._balance += amount
+            return f"Deposited ${amount}. New balance: ${self._balance}"
+        return "Amount must be positive"
+    
+    def withdraw(self, amount):
+        if 0 < amount <= self._balance:
+            self._balance -= amount
+            return f"Withdrew ${amount}. New balance: ${self._balance}"
+        return "Insufficient funds or invalid amount"
+    
+    def get_balance(self):
+        return self._balance
+    
+    def get_account_details(self):
+        <span class="code-comment"># Last 4 digits of account number for security</span>
+        return f"Account Holder: {self.account_holder}, Account: XXXX{str(self.__account_number)[-4:]}"
+
+<span class="code-comment"># Using the encapsulated class</span>
+account = BankAccount("John Smith", 1000)
+
+<span class="code-comment"># Accessing public attribute and methods</span>
+print(account.account_holder)  <span class="code-comment"># John Smith</span>
+print(account.deposit(500))    <span class="code-comment"># Deposited $500. New balance: $1500</span>
+print(account.get_balance())   <span class="code-comment"># 1500</span>
+
+<span class="code-comment"># Accessing protected attribute (not recommended but possible)</span>
+print(account._balance)  <span class="code-comment"># 1500</span>
+
+<span class="code-comment"># Trying to access private attribute</span>
+<span class="code-comment"># print(account.__account_number)  # AttributeError</span>
+
+<span class="code-comment"># Name mangling: Python renames private attributes to _ClassName__attribute</span>
+print(account._BankAccount__account_number)  <span class="code-comment"># Can access but not recommended</span>
+
+<span class="code-comment"># The intended way to access private information</span>
+print(account.get_account_details())</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Property Decorators</h3>
+                <p class="mb-4">
+                    Python's property decorators provide a powerful way to implement encapsulation, 
+                    allowing controlled access to attributes.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Using property decorators for controlled attribute access</span>
+class Person:
+    def __init__(self, name, age):
+        self._name = name
+        self._age = age
+    
+    <span class="code-comment"># Getter property</span>
+    @property
+    def name(self):
+        return self._name
+    
+    <span class="code-comment"># Setter property</span>
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            raise TypeError("Name must be a string")
+        if len(value) < 2:
+            raise ValueError("Name must be at least 2 characters")
+        self._name = value
+    
+    <span class="code-comment"># Getter property</span>
+    @property
+    def age(self):
+        return self._age
+    
+    <span class="code-comment"># Setter property with validation</span>
+    @age.setter
+    def age(self, value):
+        if not isinstance(value, int):
+            raise TypeError("Age must be an integer")
+        if value < 0 or value > 120:
+            raise ValueError("Age must be between 0 and 120")
+        self._age = value
+    
+    <span class="code-comment"># Read-only property (no setter)</span>
+    @property
+    def is_adult(self):
+        return self._age >= 18
+
+<span class="code-comment"># Using properties</span>
+person = Person("Alice", 30)
+
+<span class="code-comment"># Access attributes through properties</span>
+print(person.name)  <span class="code-comment"># Alice</span>
+print(person.age)   <span class="code-comment"># 30</span>
+
+<span class="code-comment"># Modify attributes through properties (using setters)</span>
+person.name = "Alicia"
+person.age = 31
+
+<span class="code-comment"># Validation will raise exceptions</span>
+<span class="code-comment"># person.name = ""       # ValueError: Name must be at least 2 characters</span>
+<span class="code-comment"># person.age = 150      # ValueError: Age must be between 0 and 120</span>
+<span class="code-comment"># person.age = "thirty" # TypeError: Age must be an integer</span>
+
+<span class="code-comment"># Read-only property</span>
+print(person.is_adult)  <span class="code-comment"># True</span>
+<span class="code-comment"># person.is_adult = False  # AttributeError: can't set attribute</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Inheritance -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Inheritance Concepts</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Multiple Inheritance</h3>
+                <p class="mb-4">
+                    Python supports multiple inheritance, allowing a class to inherit from more than one parent class.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Multiple inheritance example</span>
+class Employee:
+    def __init__(self, name, employee_id):
+        self.name = name
+        self.employee_id = employee_id
+    
+    def display_employee_info(self):
+        return f"Employee: {self.name}, ID: {self.employee_id}"
+
+class Developer:
+    def __init__(self, programming_languages):
+        self.programming_languages = programming_languages
+    
+    def code(self):
+        return f"Coding in {', '.join(self.programming_languages)}"
+
+<span class="code-comment"># Class inheriting from both Employee and Developer</span>
+class SoftwareEngineer(Employee, Developer):
+    def __init__(self, name, employee_id, programming_languages, team):
+        <span class="code-comment"># Call both parent constructors</span>
+        Employee.__init__(self, name, employee_id)
+        Developer.__init__(self, programming_languages)
+        self.team = team
+    
+    def display_info(self):
+        employee_info = self.display_employee_info()
+        coding_info = self.code()
+        return f"{employee_info}. {coding_info}. Team: {self.team}"
+
+<span class="code-comment"># Using multiple inheritance</span>
+engineer = SoftwareEngineer("Alice", "E12345", ["Python", "JavaScript", "Rust"], "Backend")
+print(engineer.display_info())
+
+<span class="code-comment"># Method Resolution Order (MRO)</span>
+print(SoftwareEngineer.__mro__)</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Abstract Base Classes</h3>
+                <p class="mb-4">
+                    Abstract Base Classes (ABCs) define a common interface for derived classes, enforcing certain methods to be implemented.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Abstract Base Classes</span>
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        <span class="code-comment"># Abstract method must be implemented by all non-abstract derived classes</span>
+        pass
+    
+    @abstractmethod
+    def perimeter(self):
+        pass
+    
+    <span class="code-comment"># Concrete method (already implemented)</span>
+    def description(self):
+        return f"A shape with area {self.area()} and perimeter {self.perimeter()}"
+
+<span class="code-comment"># Cannot instantiate abstract class</span>
+<span class="code-comment"># shape = Shape()  # TypeError: Can't instantiate abstract class</span>
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    <span class="code-comment"># Implementation of abstract method</span>
+    def area(self):
+        return self.width * self.height
+    
+    <span class="code-comment"># Implementation of abstract method</span>
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        import math
+        return math.pi * self.radius ** 2
+    
+    def perimeter(self):
+        import math
+        return 2 * math.pi * self.radius
+
+<span class="code-comment"># Using concrete implementations</span>
+rectangle = Rectangle(5, 4)
+circle = Circle(3)
+
+for shape in [rectangle, circle]:
+    print(shape.description())</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Mixins</h3>
+                <p class="mb-4">
+                    Mixins are classes designed to provide additional functionality that can be "mixed in" to other classes.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Mixin example</span>
+class SerializationMixin:
+    def to_dict(self):
+        <span class="code-comment"># Convert object attributes to dictionary</span>
+        return {key: value for key, value in self.__dict__.items()
+                if not key.startswith('_')}
+    
+    def to_json(self):
+        import json
+        return json.dumps(self.to_dict())
+
+class LoggingMixin:
+    def log(self, message):
+        import datetime
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"[{timestamp}] {self.__class__.__name__}: {message}")
+
+<span class="code-comment"># Using mixins with a class</span>
+class Product(SerializationMixin, LoggingMixin):
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+    
+    def total_value(self):
+        return self.price * self.quantity
+
+<span class="code-comment"># Using the functionality from mixins</span>
+product = Product("Laptop", 999.99, 5)
+product.log("Product initialized")
+print(product.to_dict())
+print(product.to_json())</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Methods -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Special Methods and Operator Overloading</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Special methods (also called dunder methods for "double underscore") allow classes to emulate 
+                    built-in types or implement operator overloading.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Class with special methods for operator overloading</span>
+class Vector:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+    
+    <span class="code-comment"># String representation</span>
+    def __str__(self):
+        return f"Vector({self.x}, {self.y}, {self.z})"
+    
+    <span class="code-comment"># Formal representation</span>
+    def __repr__(self):
+        return f"Vector(x={self.x}, y={self.y}, z={self.z})"
+    
+    <span class="code-comment"># Vector addition</span>
+    def __add__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
+        raise TypeError("Can only add Vector objects")
+    
+    <span class="code-comment"># Vector subtraction</span>
+    def __sub__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
+        raise TypeError("Can only subtract Vector objects")
+    
+    <span class="code-comment"># Scalar multiplication</span>
+    def __mul__(self, scalar):
+        if isinstance(scalar, (int, float)):
+            return Vector(self.x * scalar, self.y * scalar, self.z * scalar)
+        raise TypeError("Scalar must be a number")
+    
+    <span class="code-comment"># Right scalar multiplication (for expressions like 2 * vector)</span>
+    def __rmul__(self, scalar):
+        return self.__mul__(scalar)
+    
+    <span class="code-comment"># Vector magnitude (length)</span>
+    def __abs__(self):
+        return (self.x**2 + self.y**2 + self.z**2) ** 0.5
+    
+    <span class="code-comment"># Equality comparison</span>
+    def __eq__(self, other):
+        if isinstance(other, Vector):
+            return self.x == other.x and self.y == other.y and self.z == other.z
+        return False
+    
+    <span class="code-comment"># Length (returns the vector's dimension, not magnitude)</span>
+    def __len__(self):
+        return 3  # 3D vector
+    
+    <span class="code-comment"># Make the object iterable</span>
+    def __iter__(self):
+        return iter([self.x, self.y, self.z])
+    
+    <span class="code-comment"># Get item (vector[0] returns x, etc.)</span>
+    def __getitem__(self, key):
+        if key == 0 or key == 'x':
+            return self.x
+        elif key == 1 or key == 'y':
+            return self.y
+        elif key == 2 or key == 'z':
+            return self.z
+        raise IndexError("Vector index out of range")
+
+<span class="code-comment"># Using the Vector class with operator overloading</span>
+v1 = Vector(1, 2, 3)
+v2 = Vector(4, 5, 6)
+
+<span class="code-comment"># String representation</span>
+print(str(v1))    <span class="code-comment"># Vector(1, 2, 3)</span>
+print(repr(v1))   <span class="code-comment"># Vector(x=1, y=2, z=3)</span>
+
+<span class="code-comment"># Operator overloading</span>
+v3 = v1 + v2      <span class="code-comment"># Vector(5, 7, 9)</span>
+v4 = v2 - v1      <span class="code-comment"># Vector(3, 3, 3)</span>
+v5 = v1 * 2       <span class="code-comment"># Vector(2, 4, 6)</span>
+v6 = 3 * v2       <span class="code-comment"># Vector(12, 15, 18)</span>
+
+<span class="code-comment"># Magnitude</span>
+mag = abs(v1)     <span class="code-comment"># 3.7416573867739413</span>
+
+<span class="code-comment"># Equality</span>
+print(v1 == Vector(1, 2, 3))  <span class="code-comment"># True</span>
+print(v1 == v2)               <span class="code-comment"># False</span>
+
+<span class="code-comment"># Length</span>
+print(len(v1))    <span class="code-comment"># 3</span>
+
+<span class="code-comment"># Iteration</span>
+for component in v1:
+    print(component)  <span class="code-comment"># Prints 1, 2, 3 on separate lines</span>
+
+<span class="code-comment"># Indexing</span>
+print(v1[0])      <span class="code-comment"># 1</span>
+print(v1['y'])    <span class="code-comment"># 2</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Context Managers</h3>
+                <p class="mb-4">
+                    Context managers implement the context management protocol using <code>__enter__</code> and <code>__exit__</code> 
+                    methods, commonly used with the <code>with</code> statement for resource management.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre class="text-green-300">
+<span class="code-comment"># Implementing a context manager</span>
+class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+        self.file = None
+    
+    <span class="code-comment"># Called when entering the with block</span>
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+    
+    <span class="code-comment"># Called when exiting the with block (even if an exception occurs)</span>
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.file:
+            self.file.close()
+        <span class="code-comment"># Return True to suppress exceptions, False to propagate them</span>
+        return False
+
+<span class="code-comment"># Using the context manager</span>
+<span class="code-comment"># with FileManager('example.txt', 'w') as f:</span>
+<span class="code-comment">#     f.write('Hello, World!')</span>
+<span class="code-comment"># # File is automatically closed when exiting the with block</span>
+
+<span class="code-comment"># Another example with error handling</span>
+class DatabaseConnection:
+    def __init__(self, host, user, password):
+        self.host = host
+        self.user = user
+        self.password = password
+        self.connection = None
+    
+    def __enter__(self):
+        print(f"Connecting to database at {self.host}")
+        <span class="code-comment"># Simulate connection</span>
+        self.connection = {"host": self.host, "user": self.user, "connected": True}
+        return self.connection
+    
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("Closing database connection")
+        if self.connection:
+            self.connection["connected"] = False
+            self.connection = None
+        
+        if exc_type is not None:
+            print(f"An error occurred: {exc_val}")
+            <span class="code-comment"># Handle specific exceptions if needed</span>
+            return False  <span class="code-comment"># Propagate the exception</span>
+
+<span class="code-comment"># Using the context manager</span>
+<span class="code-comment"># try:</span>
+<span class="code-comment">#     with DatabaseConnection("localhost", "admin", "password") as conn:</span>
+<span class="code-comment">#         print(f"Connected: {conn['connected']}")</span>
+<span class="code-comment">#         # Simulate an operation</span>
+<span class="code-comment">#         print("Performing database operations")</span>
+<span class="code-comment">#         # Optionally raise an exception to test error handling</span>
+<span class="code-comment">#         # raise ValueError("Database query failed")</span>
+<span class="code-comment"># except Exception as e:</span>
+<span class="code-comment">#     print(f"Error caught outside context manager: {e}")</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded transition duration-300">
+                Back to Cheat Sheet
+            </a>
+        </div>
+    </main>
+
+    <!-- Back to Top button -->
+    <button id="backToTop" class="fixed hidden bottom-8 right-8 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-full shadow-lg transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to Top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html> 
