@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Lambda Functions - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Lambda Functions in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Lambda functions, also known as anonymous functions, are a concise way to create small, one-line functions 
+                    in Python without formally defining them using the <code>def</code> keyword. They are typically used for 
+                    short operations that are passed as arguments to higher-order functions like <code>map()</code>, 
+                    <code>filter()</code>, and <code>sorted()</code>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Lambda Fundamentals -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Lambda Function Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic Syntax</h3>
+                <p class="mb-4">
+                    A lambda function is defined using the <code>lambda</code> keyword, followed by parameters and an expression 
+                    that is automatically returned.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Basic lambda syntax</span>
+lambda arguments: expression
+
+<span class="code-comment"># Equivalent function definition using def</span>
+def function_name(arguments):
+    return expression
+
+<span class="code-comment"># Simple example: squaring a number</span>
+square = lambda x: x ** 2
+print(square(5))  <span class="code-comment"># 25</span>
+
+<span class="code-comment"># Multiple arguments</span>
+add = lambda a, b: a + b
+print(add(3, 5))  <span class="code-comment"># 8</span>
+
+<span class="code-comment"># No arguments</span>
+greet = lambda: "Hello, World!"
+print(greet())  <span class="code-comment"># "Hello, World!"</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">When to Use Lambda Functions</h3>
+                <p class="mb-4">
+                    Lambda functions are best used in situations where a small, throwaway function is needed for a short time,
+                    particularly when passed as an argument to another function.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Good use cases for lambda functions:</span>
+
+<span class="code-comment"># 1. As a function argument</span>
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+print(squared)  <span class="code-comment"># [1, 4, 9, 16, 25]</span>
+
+<span class="code-comment"># 2. For simple key functions</span>
+students = [
+    {'name': 'Alice', 'grade': 88},
+    {'name': 'Bob', 'grade': 75},
+    {'name': 'Charlie', 'grade': 93}
+]
+sorted_students = sorted(students, key=lambda student: student['grade'], reverse=True)
+print(sorted_students[0]['name'])  <span class="code-comment"># 'Charlie' (highest grade)</span>
+
+<span class="code-comment"># 3. For one-off, simple functions</span>
+result = (lambda x, y: x if x > y else y)(10, 20)
+print(result)  <span class="code-comment"># 20 (the greater value)</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Limitations</h3>
+                <p class="mb-4">
+                    Lambda functions have several limitations compared to normal functions:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>They can only contain expressions, not statements</li>
+                    <li>They can only span a single line</li>
+                    <li>They have no name (making debugging more difficult)</li>
+                    <li>They can't use documentation strings</li>
+                    <li>They can't use type annotations</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># What you CAN'T do in a lambda</span>
+
+<span class="code-comment"># Can't use statements like 'if-else' statements (only if-else expressions)</span>
+# lambda x: if x > 0: return x  # SyntaxError
+
+<span class="code-comment"># Can't use multiple lines</span>
+# lambda x: (
+#     temp = x * 2,
+#     temp + 10
+# )  # SyntaxError
+
+<span class="code-comment"># Can't include docstrings</span>
+# lambda x: """Square a number.""" x ** 2  # SyntaxError
+
+<span class="code-comment"># Can't assign variables</span>
+# lambda x: y = x + 1; y * 2  # SyntaxError</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Use Cases -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Common Use Cases for Lambda Functions</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">With Sorting Functions</h3>
+                <p class="mb-4">
+                    Lambda functions are frequently used with <code>sorted()</code>, <code>min()</code>, <code>max()</code> and list's <code>sort()</code> method 
+                    to customize the sorting criteria.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Sorting a list of tuples by the second element</span>
+pairs = [(1, 'b'), (3, 'a'), (2, 'c')]
+sorted_pairs = sorted(pairs, key=lambda pair: pair[1])
+print(sorted_pairs)  <span class="code-comment"># [(3, 'a'), (1, 'b'), (2, 'c')]</span>
+
+<span class="code-comment"># Sorting a list of dictionaries</span>
+books = [
+    {'title': 'Python Crash Course', 'price': 29.99, 'pages': 544},
+    {'title': 'Automate the Boring Stuff', 'price': 35.50, 'pages': 450},
+    {'title': 'Fluent Python', 'price': 49.99, 'pages': 770}
+]
+
+<span class="code-comment"># Sort by price</span>
+by_price = sorted(books, key=lambda book: book['price'])
+
+<span class="code-comment"># Sort by title length</span>
+by_title_length = sorted(books, key=lambda book: len(book['title']))
+
+<span class="code-comment"># Find book with most pages</span>
+longest_book = max(books, key=lambda book: book['pages'])
+print(longest_book['title'])  <span class="code-comment"># 'Fluent Python'</span>
+
+<span class="code-comment"># Custom sort order with multiple criteria</span>
+<span class="code-comment"># Sort by pages (descending) and then by price (ascending) if pages are equal</span>
+complex_sort = sorted(
+    books, 
+    key=lambda book: (-book['pages'], book['price'])
+)</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">With map(), filter(), and reduce()</h3>
+                <p class="mb-4">
+                    Lambda functions pair well with these functional programming tools:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># map() - Apply a function to each item in an iterable</span>
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+print(squared)  <span class="code-comment"># [1, 4, 9, 16, 25]</span>
+
+<span class="code-comment"># Multiple iterables with map()</span>
+list1 = [1, 2, 3]
+list2 = [10, 20, 30]
+sums = list(map(lambda x, y: x + y, list1, list2))
+print(sums)  <span class="code-comment"># [11, 22, 33]</span>
+
+<span class="code-comment"># filter() - Filter items based on a condition</span>
+numbers = range(-5, 5)
+positive = list(filter(lambda x: x > 0, numbers))
+print(positive)  <span class="code-comment"># [1, 2, 3, 4]</span>
+
+<span class="code-comment"># filter() with complex conditions</span>
+data = [
+    {'name': 'Alice', 'age': 25, 'active': True},
+    {'name': 'Bob', 'age': 17, 'active': False},
+    {'name': 'Charlie', 'age': 30, 'active': True},
+    {'name': 'Dave', 'age': 22, 'active': False}
+]
+<span class="code-comment"># Get active users who are at least 18</span>
+adults = list(filter(lambda user: user['age'] >= 18 and user['active'], data))
+print(len(adults))  <span class="code-comment"># 2 (Alice and Charlie)</span>
+
+<span class="code-comment"># reduce() - Apply a function cumulatively to items</span>
+from functools import reduce
+numbers = [1, 2, 3, 4]
+product = reduce(lambda x, y: x * y, numbers)
+print(product)  <span class="code-comment"># 24 (1*2*3*4)</span>
+
+<span class="code-comment"># reduce() with an initial value</span>
+sum_squared = reduce(lambda acc, x: acc + x**2, numbers, 0)
+print(sum_squared)  <span class="code-comment"># 30 (0 + 1² + 2² + 3² + 4²)</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Immediately Invoked Lambda Functions</h3>
+                <p class="mb-4">
+                    You can define and call a lambda function in a single line, creating an "immediately invoked function expression" (IIFE).
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Immediately invoking a lambda function</span>
+result = (lambda x: x * 10)(5)
+print(result)  <span class="code-comment"># 50</span>
+
+<span class="code-comment"># Useful for conditional initialization</span>
+value = (lambda: "even" if (some_value := 24) % 2 == 0 else "odd")()
+print(value)  <span class="code-comment"># "even"</span>
+
+<span class="code-comment"># Creating a scope for temporary variables</span>
+result = (lambda: (
+    (lambda data: sum(x**2 for x in data))([1, 2, 3, 4, 5])
+))()
+print(result)  <span class="code-comment"># 55</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">With GUI Event Handlers</h3>
+                <p class="mb-4">
+                    Lambda functions are useful in GUI programming to create simple callback functions for event handlers.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example with Tkinter</span>
+import tkinter as tk
+
+def create_buttons():
+    window = tk.Tk()
+    window.title("Lambda Demo")
+    
+    <span class="code-comment"># Creating multiple buttons with different messages</span>
+    for i in range(3):
+        <span class="code-comment"># Using lambda to capture the current value of i</span>
+        button = tk.Button(
+            window, 
+            text=f"Button {i}", 
+            command=lambda num=i: print(f"Button {num} clicked!")
+        )
+        button.pack()
+    
+    window.mainloop()
+
+<span class="code-comment"># Note: You would run create_buttons() to see this in action</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Lambda Techniques -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Lambda Techniques</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Conditional Expressions in Lambda</h3>
+                <p class="mb-4">
+                    While lambda functions cannot contain statements like <code>if/else</code> statements, they can use conditional 
+                    expressions (the ternary operator).
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Conditional expression in lambda</span>
+grade = lambda score: 'Pass' if score >= 60 else 'Fail'
+print(grade(75))  <span class="code-comment"># 'Pass'</span>
+print(grade(45))  <span class="code-comment"># 'Fail'</span>
+
+<span class="code-comment"># Multiple conditions using nested ternary operators</span>
+letter_grade = lambda score: 'A' if score >= 90 else ('B' if score >= 80 else ('C' if score >= 70 else ('D' if score >= 60 else 'F')))
+print(letter_grade(85))  <span class="code-comment"># 'B'</span>
+
+<span class="code-comment"># Choosing between expressions</span>
+choose_calc = lambda x, y, operation: x + y if operation == 'add' else (x - y if operation == 'subtract' else (x * y if operation == 'multiply' else (x / y if operation == 'divide' and y != 0 else 'Error')))
+
+print(choose_calc(10, 5, 'add'))       <span class="code-comment"># 15</span>
+print(choose_calc(10, 5, 'multiply'))  <span class="code-comment"># 50</span>
+print(choose_calc(10, 0, 'divide'))    <span class="code-comment"># 'Error'</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Lambda Functions in Higher-Order Functions</h3>
+                <p class="mb-4">
+                    A higher-order function is a function that takes a function as an argument or returns a function.
+                    Lambda functions are often used in this context.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Function that returns a lambda</span>
+def multiplier(factor):
+    return lambda x: x * factor
+
+double = multiplier(2)
+triple = multiplier(3)
+
+print(double(5))  <span class="code-comment"># 10</span>
+print(triple(5))  <span class="code-comment"># 15</span>
+
+<span class="code-comment"># Function that takes multiple lambda functions</span>
+def process_number(num, *operations):
+    result = num
+    for operation in operations:
+        result = operation(result)
+    return result
+
+<span class="code-comment"># Apply a series of operations</span>
+result = process_number(
+    5,
+    lambda x: x * 2,    <span class="code-comment"># Double: 5 -> 10</span>
+    lambda x: x + 3,    <span class="code-comment"># Add 3: 10 -> 13</span>
+    lambda x: x ** 2    <span class="code-comment"># Square: 13 -> 169</span>
+)
+print(result)  <span class="code-comment"># 169</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Lambda with Default Arguments</h3>
+                <p class="mb-4">
+                    Lambda functions can have default argument values, just like regular functions.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Lambda with default arguments</span>
+greet = lambda name="World", greeting="Hello": f"{greeting}, {name}!"
+print(greet())                  <span class="code-comment"># "Hello, World!"</span>
+print(greet("Alice"))           <span class="code-comment"># "Hello, Alice!"</span>
+print(greet("Bob", "Welcome"))  <span class="code-comment"># "Welcome, Bob!"</span>
+
+<span class="code-comment"># Lambda with keyword arguments</span>
+format_name = lambda first, last, middle="": f"{last}, {first}{' ' + middle if middle else ''}"
+print(format_name("John", "Doe"))             <span class="code-comment"># "Doe, John"</span>
+print(format_name("Jane", "Smith", "Marie"))  <span class="code-comment"># "Smith, Jane Marie"</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lambda vs Regular Functions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Lambda vs Regular Functions</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">When to Choose Lambda Functions</h3>
+                <p class="mb-4">
+                    Although lambda functions can be powerful, they're not always the best choice. Here's a guide to help you decide:
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 text-white rounded-md overflow-hidden mb-6">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="py-3 px-4 text-left">Use Lambda Functions When</th>
+                        <th class="py-3 px-4 text-left">Use Regular Functions When</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">The function is simple and short</td>
+                        <td class="py-3 px-4">The function is complex or long</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">The function is only needed once</td>
+                        <td class="py-3 px-4">The function is reused multiple times</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">The function is passed as an argument</td>
+                        <td class="py-3 px-4">You need documentation or type hints</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">The function only needs an expression</td>
+                        <td class="py-3 px-4">The function requires statements</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Readability isn't diminished</td>
+                        <td class="py-3 px-4">Debugging and readability are important</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Refactoring Between Lambda and Regular Functions</h3>
+                <p class="mb-4">
+                    It's easy to convert between lambda and regular functions:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Lambda function</span>
+square_lambda = lambda x: x ** 2
+
+<span class="code-comment"># Equivalent regular function</span>
+def square_regular(x):
+    return x ** 2
+
+<span class="code-comment"># When a lambda gets too complex, convert it to a regular function</span>
+
+<span class="code-comment"># Hard to read lambda</span>
+complex_lambda = lambda x: 'Category A' if x > 90 else ('Category B' if x > 75 else ('Category C' if x > 50 else 'Category D'))
+
+<span class="code-comment"># More readable as a regular function</span>
+def categorize(x):
+    if x > 90:
+        return 'Category A'
+    elif x > 75:
+        return 'Category B'
+    elif x > 50:
+        return 'Category C'
+    else:
+        return 'Category D'</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Optimization</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Keep lambda functions short and simple</li>
+                    <li>Avoid deeply nested lambda functions</li>
+                    <li>Use descriptive names when assigning lambda to variables</li>
+                    <li>Prefer regular functions for complex operations</li>
+                    <li>Use lambda mainly for throwaway functions passed to other functions</li>
+                    <li>Don't sacrifice readability for brevity</li>
+                </ul>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Common Pitfalls</h3>
+                <p class="mb-4">
+                    Watch out for these common mistakes when using lambda functions:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Pitfall 1: Capturing loop variables</span>
+funcs = []
+for x in range(5):
+    funcs.append(lambda: x)  <span class="code-comment"># x is captured by reference</span>
+
+<span class="code-comment"># All functions will return the last value of x</span>
+print([f() for f in funcs])  <span class="code-comment"># [4, 4, 4, 4, 4]</span>
+
+<span class="code-comment"># Solution: Capture the current value</span>
+funcs = []
+for x in range(5):
+    funcs.append(lambda x=x: x)  <span class="code-comment"># Create a default parameter</span>
+
+print([f() for f in funcs])  <span class="code-comment"># [0, 1, 2, 3, 4]</span>
+
+<span class="code-comment"># Pitfall 2: Using lambda when a simpler approach exists</span>
+<span class="code-comment"># Unnecessarily complex</span>
+sum_squares = lambda numbers: sum(map(lambda x: x**2, numbers))
+
+<span class="code-comment"># Simpler with list comprehension</span>
+sum_squares_better = lambda numbers: sum(x**2 for x in numbers)
+
+<span class="code-comment"># Even better as a regular function</span>
+def sum_squares_best(numbers):
+    return sum(x**2 for x in numbers)
+
+<span class="code-comment"># Pitfall 3: Overusing lambda</span>
+<span class="code-comment"># Complex, hard-to-read lambda</span>
+process = lambda data: {k: v for k, v in [(str(i), i * i) for i in data if i % 2 == 0]}
+
+<span class="code-comment"># More readable regular function</span>
+def process_data(data):
+    result = {}
+    for i in data:
+        if i % 2 == 0:
+            result[str(i)] = i * i
+    return result</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Alternatives to Lambda Functions</h3>
+                <p class="mb-4">
+                    In many cases, there are more readable alternatives to using lambda functions:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Using lambda with map</span>
+numbers = [1, 2, 3, 4, 5]
+squares_lambda = list(map(lambda x: x**2, numbers))
+
+<span class="code-comment"># Better: List comprehension</span>
+squares_comp = [x**2 for x in numbers]
+
+<span class="code-comment"># Using lambda with filter</span>
+evens_lambda = list(filter(lambda x: x % 2 == 0, numbers))
+
+<span class="code-comment"># Better: List comprehension with condition</span>
+evens_comp = [x for x in numbers if x % 2 == 0]
+
+<span class="code-comment"># Using lambda for attribute access</span>
+people = [{'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 30}]
+names_lambda = list(map(lambda person: person['name'], people))
+
+<span class="code-comment"># Better: Using operator.itemgetter</span>
+from operator import itemgetter
+names_getter = list(map(itemgetter('name'), people))
+
+<span class="code-comment"># Using lambda for methods</span>
+strings = ['  hello  ', '  world  ']
+trimmed_lambda = list(map(lambda s: s.strip(), strings))
+
+<span class="code-comment"># Better: Using method references</span>
+trimmed_method = list(map(str.strip, strings))</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Try These:</h3>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Write a lambda function that takes a string and returns True if it's a palindrome (reads the same forward and backward).</li>
+                    <li>Use a lambda function with <code>sorted()</code> to sort a list of tuples based on the second element.</li>
+                    <li>Create a lambda function that takes a list of numbers and returns the product of all elements.</li>
+                    <li>Use a lambda function with <code>filter()</code> to filter out words shorter than 4 characters from a list of strings.</li>
+                    <li>Create a higher-order function that returns a lambda which applies a specific mathematical operation to a number.</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded transition duration-300">
+                Back to Cheat Sheet
+            </a>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
