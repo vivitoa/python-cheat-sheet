@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Machine Learning & Deep Learning - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Machine Learning & Deep Learning</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Python has become the dominant language for machine learning and deep learning, offering a rich ecosystem 
+                    of libraries and frameworks. This guide covers the essential concepts, libraries, and techniques for 
+                    implementing machine learning and deep learning solutions in Python.
+                </p>
+            </div>
+        </section>
+
+        <!-- Machine Learning Fundamentals -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Machine Learning Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Getting Started with Scikit-learn</h3>
+                <p class="mb-4">
+                    Scikit-learn is Python's most popular machine learning library, offering implementations of many 
+                    algorithms with a consistent, easy-to-use API.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install scikit-learn</span>
+<span class="code-comment"># pip install scikit-learn</span>
+
+<span class="code-comment"># Basic workflow with scikit-learn</span>
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+
+<span class="code-comment"># Sample data (X: features, y: target labels)</span>
+X = np.array([[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7]])
+y = np.array([0, 0, 0, 1, 1, 1])
+
+<span class="code-comment"># Split data into training and testing sets</span>
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+<span class="code-comment"># Standardize features</span>
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span class="code-comment"># Create and train the model</span>
+model = LogisticRegression()
+model.fit(X_train_scaled, y_train)
+
+<span class="code-comment"># Make predictions</span>
+y_pred = model.predict(X_test_scaled)
+
+<span class="code-comment"># Evaluate the model</span>
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common ML Algorithms -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Common Machine Learning Algorithms</h2>
+            
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-8">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Algorithm</th>
+                        <th class="py-3 px-4 text-left">Type</th>
+                        <th class="py-3 px-4 text-left">Use Case</th>
+                        <th class="py-3 px-4 text-left">scikit-learn Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Linear Regression</td>
+                        <td class="py-3 px-4">Supervised / Regression</td>
+                        <td class="py-3 px-4">Predicting numeric values</td>
+                        <td class="py-3 px-4"><code>LinearRegression</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Logistic Regression</td>
+                        <td class="py-3 px-4">Supervised / Classification</td>
+                        <td class="py-3 px-4">Binary classification</td>
+                        <td class="py-3 px-4"><code>LogisticRegression</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Decision Trees</td>
+                        <td class="py-3 px-4">Supervised / Both</td>
+                        <td class="py-3 px-4">Classification/Regression</td>
+                        <td class="py-3 px-4"><code>DecisionTreeClassifier</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Random Forest</td>
+                        <td class="py-3 px-4">Supervised / Both</td>
+                        <td class="py-3 px-4">Ensemble learning</td>
+                        <td class="py-3 px-4"><code>RandomForestClassifier</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">SVM</td>
+                        <td class="py-3 px-4">Supervised / Both</td>
+                        <td class="py-3 px-4">High-dimensional data</td>
+                        <td class="py-3 px-4"><code>SVC</code>, <code>SVR</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">K-Means</td>
+                        <td class="py-3 px-4">Unsupervised / Clustering</td>
+                        <td class="py-3 px-4">Grouping similar data</td>
+                        <td class="py-3 px-4"><code>KMeans</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">PCA</td>
+                        <td class="py-3 px-4">Unsupervised / Dim. Reduction</td>
+                        <td class="py-3 px-4">Feature reduction</td>
+                        <td class="py-3 px-4"><code>PCA</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Examples of different algorithms in scikit-learn</span>
+
+<span class="code-comment"># Decision Tree example</span>
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import datasets
+
+<span class="code-comment"># Load a built-in dataset</span>
+iris = datasets.load_iris()
+X, y = iris.data, iris.target
+
+<span class="code-comment"># Train the model</span>
+tree_model = DecisionTreeClassifier(max_depth=3, random_state=42)
+tree_model.fit(X, y)
+
+<span class="code-comment"># Random Forest example</span>
+from sklearn.ensemble import RandomForestClassifier
+
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+rf_model.fit(X_train, y_train)
+rf_pred = rf_model.predict(X_test)
+
+<span class="code-comment"># K-Means Clustering example</span>
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+<span class="code-comment"># Create a model with 3 clusters</span>
+kmeans = KMeans(n_clusters=3, random_state=42)
+clusters = kmeans.fit_predict(X)
+
+<span class="code-comment"># Visualize the clusters (if 2D data)</span>
+<span class="code-comment"># plt.scatter(X[:, 0], X[:, 1], c=clusters)
+# plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], s=300, c='red')
+# plt.show()</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deep Learning with TensorFlow/Keras -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Deep Learning with TensorFlow/Keras</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    TensorFlow is a powerful deep learning framework, and Keras is the high-level API that makes it easy to 
+                    build and train neural networks.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install TensorFlow</span>
+<span class="code-comment"># pip install tensorflow</span>
+
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+import numpy as np
+
+<span class="code-comment"># Example: Building a simple neural network</span>
+<span class="code-comment"># 1. Define the model</span>
+model = keras.Sequential([
+    layers.Dense(128, activation='relu', input_shape=(784,)),
+    layers.Dropout(0.2),
+    layers.Dense(64, activation='relu'),
+    layers.Dropout(0.2),
+    layers.Dense(10, activation='softmax')
+])
+
+<span class="code-comment"># 2. Compile the model</span>
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+<span class="code-comment"># 3. Load and prepare data (e.g., MNIST)</span>
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+x_train = x_train.reshape(-1, 784).astype('float32') / 255
+x_test = x_test.reshape(-1, 784).astype('float32') / 255
+
+<span class="code-comment"># 4. Train the model</span>
+model.fit(
+    x_train, y_train,
+    batch_size=64,
+    epochs=5,
+    validation_split=0.2
+)
+
+<span class="code-comment"># 5. Evaluate the model</span>
+test_loss, test_acc = model.evaluate(x_test, y_test)
+print(f'Test accuracy: {test_acc:.3f}')</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- CNN Example -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Convolutional Neural Networks (CNNs)</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    CNNs are specialized neural networks designed for processing grid-like data, such as images.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Building a CNN for image classification</span>
+from tensorflow.keras import layers, models
+from tensorflow.keras.datasets import cifar10
+
+<span class="code-comment"># Load dataset</span>
+(train_images, train_labels), (test_images, test_labels) = cifar10.load_data()
+
+<span class="code-comment"># Normalize pixel values to be between 0 and 1</span>
+train_images = train_images.astype('float32') / 255
+test_images = test_images.astype('float32') / 255
+
+<span class="code-comment"># Define the model architecture</span>
+model = models.Sequential()
+model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.Flatten())
+model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(10))
+
+<span class="code-comment"># Compile the model</span>
+model.compile(
+    optimizer='adam',
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    metrics=['accuracy']
+)
+
+<span class="code-comment"># Train the model</span>
+history = model.fit(
+    train_images, train_labels, 
+    epochs=10, 
+    validation_data=(test_images, test_labels)
+)
+
+<span class="code-comment"># Evaluate the model</span>
+test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
+print(f'Test accuracy: {test_acc:.3f}')</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- NLP and Transfer Learning -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">NLP and Transfer Learning</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Transfer learning leverages pre-trained models to achieve excellent results with less data and training time.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Text classification with pre-trained BERT</span>
+<span class="code-comment"># pip install transformers tensorflow</span>
+
+from transformers import BertTokenizer, TFBertForSequenceClassification
+import tensorflow as tf
+
+<span class="code-comment"># Load pre-trained model and tokenizer</span>
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = TFBertForSequenceClassification.from_pretrained('bert-base-uncased')
+
+<span class="code-comment"># Example text for sentiment analysis</span>
+texts = ["I love this product!", "This was a terrible experience."]
+labels = [1, 0]  # 1 for positive, 0 for negative
+
+<span class="code-comment"># Tokenize and prepare inputs</span>
+encoded_inputs = tokenizer(
+    texts,
+    padding=True,
+    truncation=True,
+    return_tensors="tf"
+)
+
+<span class="code-comment"># Convert labels to tensors</span>
+tf_labels = tf.convert_to_tensor(labels)
+
+<span class="code-comment"># Fine-tune the model</span>
+optimizer = tf.keras.optimizers.Adam(learning_rate=5e-5)
+loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+metric = tf.keras.metrics.SparseCategoricalAccuracy('accuracy')
+
+model.compile(optimizer=optimizer, loss=loss, metrics=[metric])
+model.fit(
+    {k: v for k, v in encoded_inputs.items()},
+    tf_labels,
+    epochs=3
+)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ML Model Evaluation -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Model Evaluation and Hyperparameter Tuning</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Proper evaluation and tuning are essential for developing effective machine learning models.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Cross-validation and hyperparameter tuning</span>
+from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import datasets
+
+<span class="code-comment"># Load dataset</span>
+iris = datasets.load_iris()
+X, y = iris.data, iris.target
+
+<span class="code-comment"># Cross-validation</span>
+model = RandomForestClassifier(random_state=42)
+scores = cross_val_score(model, X, y, cv=5)  # 5-fold cross-validation
+print(f"Cross-validation scores: {scores}")
+print(f"Mean accuracy: {scores.mean():.3f}")
+
+<span class="code-comment"># Grid search for hyperparameter tuning</span>
+param_grid = {
+    'n_estimators': [10, 50, 100],
+    'max_depth': [None, 10, 20],
+    'min_samples_split': [2, 5, 10]
+}
+
+grid_search = GridSearchCV(
+    RandomForestClassifier(random_state=42),
+    param_grid,
+    cv=5,
+    scoring='accuracy',
+    verbose=1
+)
+
+grid_search.fit(X, y)
+
+print(f"Best parameters: {grid_search.best_params_}")
+print(f"Best cross-validation score: {grid_search.best_score_:.3f}")
+
+<span class="code-comment"># Feature importance</span>
+best_model = grid_search.best_estimator_
+importances = best_model.feature_importances_
+feature_names = iris.feature_names
+
+for feature, importance in zip(feature_names, importances):
+    print(f"{feature}: {importance:.4f}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices and Tips -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Tips</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">General Best Practices</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Always split your data into training, validation, and test sets</li>
+                    <li>Preprocess your data (normalization, handling missing values, encoding)</li>
+                    <li>Start with simple models before moving to complex ones</li>
+                    <li>Use cross-validation to evaluate model performance</li>
+                    <li>Watch for overfitting and use techniques like regularization when needed</li>
+                    <li>Perform hyperparameter tuning to optimize your model</li>
+                    <li>Create reproducible experiments (set random_state/seed)</li>
+                    <li>Build a proper data pipeline for consistency</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 text-blue-400">Deep Learning Tips</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Use GPU acceleration when possible</li>
+                    <li>Apply data augmentation for image tasks</li>
+                    <li>Consider transfer learning for faster results</li>
+                    <li>Use learning rate schedulers</li>
+                    <li>Monitor training with tools like TensorBoard</li>
+                    <li>Implement early stopping to prevent overfitting</li>
+                    <li>Save checkpoints during training</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Build a regression model to predict house prices using the Boston Housing dataset</li>
+                    <li>Create a classification model for the MNIST dataset using scikit-learn</li>
+                    <li>Implement a CNN for image classification using the CIFAR-10 dataset</li>
+                    <li>Build an LSTM model for sentiment analysis on the IMDB dataset</li>
+                    <li>Train a model using transfer learning for your own image classification task</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
