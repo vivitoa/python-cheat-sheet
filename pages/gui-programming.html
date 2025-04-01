@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python GUI Programming - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python GUI Programming</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    GUI (Graphical User Interface) programming in Python allows you to create desktop applications with interactive visual elements. 
+                    Python offers several libraries for GUI development, ranging from simple to complex, with different feature sets and platform compatibility.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tkinter -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Tkinter - Python's Standard GUI Library</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Tkinter is Python's standard GUI library and comes bundled with most Python installations. It's a wrapper around the Tk GUI toolkit 
+                    and provides a simple and straightforward way to create desktop applications.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Basic Tkinter application structure</span>
+import tkinter as tk
+from tkinter import ttk, messagebox
+
+<span class="code-comment"># Create the main window</span>
+root = tk.Tk()
+root.title("Tkinter Application")
+root.geometry("400x300")  <span class="code-comment"># Width x Height</span>
+
+<span class="code-comment"># Add a label widget</span>
+label = ttk.Label(root, text="Hello, Tkinter!")
+label.pack(pady=20)
+
+<span class="code-comment"># Add an entry (text input) widget</span>
+entry = ttk.Entry(root, width=30)
+entry.pack(pady=10)
+entry.insert(0, "Type something here...")
+
+<span class="code-comment"># Function to handle button click</span>
+def on_button_click():
+    name = entry.get()
+    if name:
+        messagebox.showinfo("Greeting", f"Hello, {name}!")
+    else:
+        messagebox.showwarning("Warning", "Please enter your name")
+
+<span class="code-comment"># Add a button widget</span>
+button = ttk.Button(root, text="Greet", command=on_button_click)
+button.pack(pady=10)
+
+<span class="code-comment"># Start the main event loop</span>
+root.mainloop()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Layout Managers in Tkinter</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Tkinter provides three layout managers to organize widgets: pack, grid, and place.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import tkinter as tk
+from tkinter import ttk
+
+root = tk.Tk()
+root.title("Tkinter Layout Managers")
+
+<span class="code-comment"># Pack Layout (organizes widgets in blocks)</span>
+frame1 = ttk.LabelFrame(root, text="Pack Layout")
+frame1.pack(side="left", padx=10, pady=10, fill="both", expand=True)
+
+ttk.Button(frame1, text="Button 1").pack(pady=5)
+ttk.Button(frame1, text="Button 2").pack(pady=5)
+ttk.Button(frame1, text="Button 3").pack(pady=5)
+
+<span class="code-comment"># Grid Layout (organizes widgets in rows and columns)</span>
+frame2 = ttk.LabelFrame(root, text="Grid Layout")
+frame2.pack(side="right", padx=10, pady=10, fill="both", expand=True)
+
+ttk.Label(frame2, text="Username:").grid(row=0, column=0, sticky="w", padx=5, pady=5)
+ttk.Entry(frame2).grid(row=0, column=1, padx=5, pady=5)
+
+ttk.Label(frame2, text="Password:").grid(row=1, column=0, sticky="w", padx=5, pady=5)
+ttk.Entry(frame2, show="*").grid(row=1, column=1, padx=5, pady=5)
+
+ttk.Button(frame2, text="Login").grid(row=2, column=0, columnspan=2, pady=10)
+
+<span class="code-comment"># Place Layout (absolute positioning)</span>
+frame3 = ttk.LabelFrame(root, text="Place Layout")
+frame3.pack(padx=10, pady=10, fill="both", expand=True)
+
+<span class="code-comment"># Position elements using coordinates (x, y) and relative sizing</span>
+button1 = ttk.Button(frame3, text="Absolute")
+button1.place(x=10, y=10)
+
+button2 = ttk.Button(frame3, text="Relative")
+button2.place(relx=0.5, rely=0.5, anchor="center")
+
+root.mainloop()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Common Tkinter Widgets</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Tkinter provides a variety of widgets for building interactive GUIs.
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-8">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Widget</th>
+                        <th class="py-3 px-4 text-left">Description</th>
+                        <th class="py-3 px-4 text-left">Example</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-600">
+                    <tr>
+                        <td class="py-3 px-4">Label</td>
+                        <td class="py-3 px-4">Display text or images</td>
+                        <td class="py-3 px-4"><code>ttk.Label(root, text="Hello")</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Button</td>
+                        <td class="py-3 px-4">Clickable button</td>
+                        <td class="py-3 px-4"><code>ttk.Button(root, text="Click Me", command=function)</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Entry</td>
+                        <td class="py-3 px-4">Single-line text input</td>
+                        <td class="py-3 px-4"><code>ttk.Entry(root, width=30)</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Text</td>
+                        <td class="py-3 px-4">Multi-line text input</td>
+                        <td class="py-3 px-4"><code>tk.Text(root, width=40, height=10)</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Checkbutton</td>
+                        <td class="py-3 px-4">Checkbox for on/off options</td>
+                        <td class="py-3 px-4"><code>ttk.Checkbutton(root, text="Enable")</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Radiobutton</td>
+                        <td class="py-3 px-4">Single selection among options</td>
+                        <td class="py-3 px-4"><code>ttk.Radiobutton(root, text="Option 1", variable=var, value=1)</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Combobox</td>
+                        <td class="py-3 px-4">Dropdown selection list</td>
+                        <td class="py-3 px-4"><code>ttk.Combobox(root, values=["Option 1", "Option 2"])</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Frame</td>
+                        <td class="py-3 px-4">Container for other widgets</td>
+                        <td class="py-3 px-4"><code>ttk.Frame(root, padding="10")</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Canvas</td>
+                        <td class="py-3 px-4">Drawing and graphics</td>
+                        <td class="py-3 px-4"><code>tk.Canvas(root, width=300, height=200)</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Listbox</td>
+                        <td class="py-3 px-4">List of selectable items</td>
+                        <td class="py-3 px-4"><code>tk.Listbox(root, height=5)</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Advanced Tkinter Example - A Simple To-Do App</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import tkinter as tk
+from tkinter import ttk, messagebox
+
+class TodoApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Tkinter To-Do App")
+        self.root.geometry("500x400")
+        
+        <span class="code-comment"># Task storage</span>
+        self.tasks = []
+        
+        <span class="code-comment"># Create main frame</span>
+        main_frame = ttk.Frame(root, padding="20")
+        main_frame.pack(fill="both", expand=True)
+        
+        <span class="code-comment"># App title</span>
+        title_label = ttk.Label(main_frame, text="To-Do List App", font=("Arial", 16, "bold"))
+        title_label.pack(pady=(0, 20))
+        
+        <span class="code-comment"># Task entry</span>
+        entry_frame = ttk.Frame(main_frame)
+        entry_frame.pack(fill="x", pady=10)
+        
+        self.task_entry = ttk.Entry(entry_frame, width=40)
+        self.task_entry.pack(side="left", padx=(0, 10))
+        
+        add_button = ttk.Button(entry_frame, text="Add Task", command=self.add_task)
+        add_button.pack(side="left")
+        
+        <span class="code-comment"># Task listbox</span>
+        list_frame = ttk.Frame(main_frame)
+        list_frame.pack(fill="both", expand=True, pady=10)
+        
+        self.task_listbox = tk.Listbox(list_frame, height=10, width=50, selectmode=tk.SINGLE)
+        self.task_listbox.pack(side="left", fill="both", expand=True)
+        
+        <span class="code-comment"># Scrollbar for listbox</span>
+        scrollbar = ttk.Scrollbar(list_frame, orient="vertical", command=self.task_listbox.yview)
+        scrollbar.pack(side="right", fill="y")
+        self.task_listbox.config(yscrollcommand=scrollbar.set)
+        
+        <span class="code-comment"># Buttons frame</span>
+        buttons_frame = ttk.Frame(main_frame)
+        buttons_frame.pack(fill="x", pady=10)
+        
+        complete_button = ttk.Button(buttons_frame, text="Mark Complete", command=self.mark_complete)
+        complete_button.pack(side="left", padx=(0, 10))
+        
+        delete_button = ttk.Button(buttons_frame, text="Delete Task", command=self.delete_task)
+        delete_button.pack(side="left")
+        
+        <span class="code-comment"># Bind Enter key to add task</span>
+        self.task_entry.bind("<Return>", lambda event: self.add_task())
+        
+        <span class="code-comment"># Focus on entry</span>
+        self.task_entry.focus()
+    
+    def add_task(self):
+        task = self.task_entry.get().strip()
+        if task:
+            self.tasks.append(task)
+            self.task_listbox.insert(tk.END, task)
+            self.task_entry.delete(0, tk.END)
+        else:
+            messagebox.showwarning("Warning", "Please enter a task")
+    
+    def mark_complete(self):
+        try:
+            index = self.task_listbox.curselection()[0]
+            task = self.task_listbox.get(index)
+            self.task_listbox.delete(index)
+            self.task_listbox.insert(index, f"✓ {task}")
+        except IndexError:
+            messagebox.showwarning("Warning", "Please select a task")
+    
+    def delete_task(self):
+        try:
+            index = self.task_listbox.curselection()[0]
+            self.task_listbox.delete(index)
+            self.tasks.pop(index)
+        except IndexError:
+            messagebox.showwarning("Warning", "Please select a task")
+
+<span class="code-comment"># Create and run the app</span>
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = TodoApp(root)
+    root.mainloop()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- PyQt -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">PyQt/PySide - Qt Framework for Python</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    PyQt and PySide are Python bindings for the Qt framework, a powerful cross-platform GUI toolkit. 
+                    They provide more advanced features than Tkinter and have a modern look and feel.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install PyQt5</span>
+<span class="code-comment"># or</span>
+<span class="code-comment"># pip install PySide6</span>
+
+<span class="code-comment"># Basic PyQt application structure</span>
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QPushButton, QVBoxLayout, QWidget
+from PyQt5.QtCore import Qt
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        
+        <span class="code-comment"># Set window properties</span>
+        self.setWindowTitle("PyQt Application")
+        self.setGeometry(100, 100, 400, 300)  <span class="code-comment"># x, y, width, height</span>
+        
+        <span class="code-comment"># Create central widget</span>
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        
+        <span class="code-comment"># Create layout</span>
+        layout = QVBoxLayout(central_widget)
+        
+        <span class="code-comment"># Add a label</span>
+        self.label = QLabel("Hello, PyQt!")
+        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setStyleSheet("font-size: 18px;")
+        layout.addWidget(self.label)
+        
+        <span class="code-comment"># Add a button</span>
+        self.button = QPushButton("Click Me")
+        self.button.clicked.connect(self.on_button_click)
+        layout.addWidget(self.button)
+        
+    def on_button_click(self):
+        <span class="code-comment"># Update label text when button is clicked</span>
+        self.label.setText("Button was clicked!")
+
+<span class="code-comment"># Create application instance and run</span>
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Layouts in PyQt</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    PyQt provides several layout classes to organize widgets in a flexible way.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># PyQt layouts example</span>
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
+                            QHBoxLayout, QGridLayout, QFormLayout, QPushButton,
+                            QLabel, QLineEdit, QGroupBox)
+
+class LayoutDemo(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("PyQt Layouts")
+        self.setGeometry(100, 100, 600, 400)
+        
+        <span class="code-comment"># Central widget</span>
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        
+        <span class="code-comment"># Main layout (vertical)</span>
+        main_layout = QVBoxLayout(central_widget)
+        
+        <span class="code-comment"># Horizontal layout example</span>
+        h_group = QGroupBox("Horizontal Layout (QHBoxLayout)")
+        h_layout = QHBoxLayout()
+        for i in range(1, 4):
+            button = QPushButton(f"Button {i}")
+            h_layout.addWidget(button)
+        h_group.setLayout(h_layout)
+        main_layout.addWidget(h_group)
+        
+        <span class="code-comment"># Grid layout example</span>
+        g_group = QGroupBox("Grid Layout (QGridLayout)")
+        g_layout = QGridLayout()
+        
+        for row in range(3):
+            for col in range(3):
+                button = QPushButton(f"({row},{col})")
+                g_layout.addWidget(button, row, col)
+        
+        g_group.setLayout(g_layout)
+        main_layout.addWidget(g_group)
+        
+        <span class="code-comment"># Form layout example</span>
+        f_group = QGroupBox("Form Layout (QFormLayout)")
+        f_layout = QFormLayout()
+        
+        f_layout.addRow("Name:", QLineEdit())
+        f_layout.addRow("Email:", QLineEdit())
+        f_layout.addRow("Password:", QLineEdit())
+        
+        f_group.setLayout(f_layout)
+        main_layout.addWidget(f_group)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Signals and Slots</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    PyQt uses a signals and slots mechanism for communication between objects. When a signal is emitted, 
+                    the slot connected to it is executed.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Signals and slots example</span>
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLabel, QVBoxLayout
+from PyQt5.QtCore import pyqtSignal, QObject
+
+<span class="code-comment"># Custom class with custom signal</span>
+class Counter(QObject):
+    <span class="code-comment"># Define a custom signal with int parameter</span>
+    valueChanged = pyqtSignal(int)
+    
+    def __init__(self):
+        super().__init__()
+        self._value = 0
+    
+    def increment(self):
+        self._value += 1
+        <span class="code-comment"># Emit the signal with the new value</span>
+        self.valueChanged.emit(self._value)
+
+class SignalSlotDemo(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Signals and Slots")
+        self.setGeometry(100, 100, 300, 200)
+        
+        <span class="code-comment"># Create counter instance</span>
+        self.counter = Counter()
+        
+        <span class="code-comment"># Create UI</span>
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        
+        layout = QVBoxLayout(central_widget)
+        
+        <span class="code-comment"># Create label to display counter value</span>
+        self.label = QLabel("Count: 0")
+        layout.addWidget(self.label)
+        
+        <span class="code-comment"># Create button to increment counter</span>
+        button = QPushButton("Increment")
+        layout.addWidget(button)
+        
+        <span class="code-comment"># Connect button click to counter's increment method</span>
+        button.clicked.connect(self.counter.increment)
+        
+        <span class="code-comment"># Connect counter's valueChanged signal to update_label slot</span>
+        self.counter.valueChanged.connect(self.update_label)
+    
+    <span class="code-comment"># Slot to update label with new counter value</span>
+    def update_label(self, value):
+        self.label.setText(f"Count: {value}")</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Advanced PyQt Example - A Note Taking App</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import sys
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
+                            QHBoxLayout, QPushButton, QTextEdit, QListWidget,
+                            QInputDialog, QMessageBox, QSplitter)
+from PyQt5.QtCore import Qt
+
+class NoteApp(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("PyQt Note Taking App")
+        self.setGeometry(100, 100, 800, 600)
+        
+        <span class="code-comment"># Note storage</span>
+        self.notes = {}
+        
+        <span class="code-comment"># Create central widget</span>
+        central_widget = QWidget()
+        self.setCentralWidget(central_widget)
+        
+        <span class="code-comment"># Main layout</span>
+        layout = QVBoxLayout(central_widget)
+        
+        <span class="code-comment"># Create splitter for resizable panes</span>
+        splitter = QSplitter(Qt.Horizontal)
+        layout.addWidget(splitter)
+        
+        <span class="code-comment"># Left side - note list and buttons</span>
+        left_widget = QWidget()
+        left_layout = QVBoxLayout(left_widget)
+        
+        <span class="code-comment"># Note list</span>
+        self.note_list = QListWidget()
+        self.note_list.currentRowChanged.connect(self.display_note)
+        left_layout.addWidget(self.note_list)
+        
+        <span class="code-comment"># Buttons</span>
+        button_layout = QHBoxLayout()
+        
+        self.add_btn = QPushButton("Add Note")
+        self.add_btn.clicked.connect(self.add_note)
+        button_layout.addWidget(self.add_btn)
+        
+        self.delete_btn = QPushButton("Delete Note")
+        self.delete_btn.clicked.connect(self.delete_note)
+        button_layout.addWidget(self.delete_btn)
+        
+        left_layout.addLayout(button_layout)
+        
+        <span class="code-comment"># Right side - note editor</span>
+        right_widget = QWidget()
+        right_layout = QVBoxLayout(right_widget)
+        
+        self.note_editor = QTextEdit()
+        self.note_editor.textChanged.connect(self.save_current_note)
+        right_layout.addWidget(self.note_editor)
+        
+        <span class="code-comment"># Add widgets to splitter</span>
+        splitter.addWidget(left_widget)
+        splitter.addWidget(right_widget)
+        
+        <span class="code-comment"># Set initial splitter sizes</span>
+        splitter.setSizes([200, 600])
+        
+        <span class="code-comment"># Add sample notes</span>
+        self.notes["Welcome"] = "Welcome to the Note Taking App!"
+        self.notes["Usage"] = "Add and edit notes using the buttons on the left."
+        self.update_note_list()
+    
+    def update_note_list(self):
+        <span class="code-comment"># Update the note list widget</span>
+        self.note_list.clear()
+        self.note_list.addItems(self.notes.keys())
+    
+    def display_note(self, index):
+        <span class="code-comment"># Display the selected note</span>
+        if index >= 0 and self.note_list.count() > 0:
+            title = self.note_list.item(index).text()
+            self.note_editor.setText(self.notes.get(title, ""))
+        else:
+            self.note_editor.clear()
+    
+    def save_current_note(self):
+        <span class="code-comment"># Save the current note</span>
+        if self.note_list.currentRow() >= 0:
+            title = self.note_list.currentItem().text()
+            self.notes[title] = self.note_editor.toPlainText()
+    
+    def add_note(self):
+        <span class="code-comment"># Add a new note</span>
+        title, ok = QInputDialog.getText(self, "Add Note", "Enter note title:")
+        
+        if ok and title:
+            if title in self.notes:
+                QMessageBox.warning(self, "Warning", "Note title already exists!")
+                return
+            
+            self.notes[title] = ""
+            self.update_note_list()
+            
+            <span class="code-comment"># Select the new note</span>
+            items = self.note_list.findItems(title, Qt.MatchExactly)
+            if items:
+                self.note_list.setCurrentItem(items[0])
+    
+    def delete_note(self):
+        <span class="code-comment"># Delete the selected note</span>
+        current_row = self.note_list.currentRow()
+        if current_row >= 0:
+            title = self.note_list.item(current_row).text()
+            
+            confirm = QMessageBox.question(
+                self, "Confirm Delete",
+                f"Are you sure you want to delete '{title}'?",
+                QMessageBox.Yes | QMessageBox.No
+            )
+            
+            if confirm == QMessageBox.Yes:
+                del self.notes[title]
+                self.update_note_list()
+
+<span class="code-comment"># Create and run the app</span>
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = NoteApp()
+    window.show()
+    sys.exit(app.exec_())</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other GUI Libraries -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Other Python GUI Libraries</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Besides Tkinter and PyQt/PySide, Python offers several other GUI libraries, each with its own strengths and use cases.
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Kivy - Cross-platform and Mobile-friendly</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Kivy is a Python framework for developing multi-touch applications. It's particularly useful for creating 
+                    applications that need to run on mobile devices (Android, iOS) as well as desktop platforms.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install kivy</span>
+
+<span class="code-comment"># Basic Kivy application</span>
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+
+class MyKivyApp(App):
+    def build(self):
+        <span class="code-comment"># Create a vertical layout</span>
+        layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        
+        <span class="code-comment"># Add a label</span>
+        label = Label(text="Hello, Kivy!", font_size=24)
+        layout.add_widget(label)
+        
+        <span class="code-comment"># Add a button</span>
+        button = Button(text="Click Me", size_hint=(1, 0.5))
+        button.bind(on_press=self.on_button_press)
+        layout.add_widget(button)
+        
+        return layout
+    
+    def on_button_press(self, instance):
+        <span class="code-comment"># Change button text when pressed</span>
+        instance.text = "Button Pressed!"
+
+<span class="code-comment"># Run the app</span>
+if __name__ == "__main__":
+    MyKivyApp().run()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">PySimpleGUI - Simplified GUI Development</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    PySimpleGUI simplifies GUI development by providing a wrapper for multiple GUI frameworks 
+                    (Tkinter, Qt, WxPython, Remi). It allows for rapid development with minimal code.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install PySimpleGUI</span>
+
+import PySimpleGUI as sg
+
+<span class="code-comment"># Define the window layout</span>
+layout = [
+    [sg.Text("Enter your name:")],
+    [sg.Input(key="-NAME-")],
+    [sg.Text("Choose your favorite color:")],
+    [sg.Combo(['Red', 'Green', 'Blue', 'Yellow'], key="-COLOR-")],
+    [sg.Checkbox("Would you like to receive emails?", key="-EMAIL-")],
+    [sg.Button("Submit"), sg.Button("Cancel")]
+]
+
+<span class="code-comment"># Create the window</span>
+window = sg.Window("PySimpleGUI Example", layout, font=("Helvetica", 12))
+
+<span class="code-comment"># Event loop</span>
+while True:
+    event, values = window.read()
+    
+    <span class="code-comment"># End program if user closes window or clicks Cancel</span>
+    if event == sg.WINDOW_CLOSED or event == "Cancel":
+        break
+    
+    <span class="code-comment"># Process form submission</span>
+    if event == "Submit":
+        name = values["-NAME-"]
+        color = values["-COLOR-"]
+        receive_emails = values["-EMAIL-"]
+        
+        result = f"Name: {name}\nColor: {color}\nEmails: {'Yes' if receive_emails else 'No'}"
+        sg.popup("Form Submitted", result)
+        
+<span class="code-comment"># Close the window</span>
+window.close()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">wxPython - Native Look and Feel</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    wxPython is a wrapper for the wxWidgets C++ library, providing native look and feel on different platforms.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install wxPython</span>
+
+import wx
+
+class MyFrame(wx.Frame):
+    def __init__(self):
+        super().__init__(parent=None, title='wxPython Example', size=(400, 300))
+        
+        <span class="code-comment"># Create a panel</span>
+        panel = wx.Panel(self)
+        
+        <span class="code-comment"># Create a main sizer</span>
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        
+        <span class="code-comment"># Add a text label</span>
+        text = wx.StaticText(panel, label="Hello, wxPython!")
+        font = text.GetFont()
+        font.SetPointSize(14)
+        text.SetFont(font)
+        sizer.Add(text, 0, wx.ALL | wx.CENTER, 10)
+        
+        <span class="code-comment"># Add a button</span>
+        button = wx.Button(panel, label="Click Me")
+        button.Bind(wx.EVT_BUTTON, self.on_button)
+        sizer.Add(button, 0, wx.ALL | wx.CENTER, 10)
+        
+        <span class="code-comment"># Set the sizer</span>
+        panel.SetSizer(sizer)
+        
+        <span class="code-comment"># Show the frame</span>
+        self.Show()
+    
+    def on_button(self, event):
+        <span class="code-comment"># Show a message dialog when button is clicked</span>
+        wx.MessageBox("Button was clicked!", "Info", wx.OK | wx.ICON_INFORMATION)
+
+<span class="code-comment"># Create the application</span>
+if __name__ == "__main__":
+    app = wx.App()
+    frame = MyFrame()
+    app.MainLoop()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices and Tips -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Tips for GUI Development</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    When developing GUI applications in Python, following these best practices will help create more maintainable and user-friendly software.
+                </p>
+            </div>
+
+            <div class="bg-gray-800 rounded-md p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">Architecture and Code Organization</h3>
+                <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                    <li>Separate UI code from business logic (Model-View-Controller or Model-View-ViewModel patterns).</li>
+                    <li>Use object-oriented programming concepts to structure your application.</li>
+                    <li>Organize code into modules and packages for maintainability.</li>
+                    <li>Use configuration files for customizable settings.</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Performance and Responsiveness</h3>
+                <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                    <li>Use threading or asynchronous programming for long-running tasks to prevent UI freezing.</li>
+                    <li>Implement proper event handling to respond to user interactions promptly.</li>
+                    <li>Optimize resource usage, especially for applications with large datasets or complex visualizations.</li>
+                    <li>Consider using caching techniques for frequently accessed data.</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">User Experience (UX)</h3>
+                <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                    <li>Follow platform-specific design guidelines for a native look and feel.</li>
+                    <li>Implement keyboard shortcuts and accessibility features.</li>
+                    <li>Provide clear feedback for user actions and errors.</li>
+                    <li>Make the UI intuitive and consistent throughout the application.</li>
+                    <li>Consider implementing dark/light themes for user comfort.</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Testing and Debugging</h3>
+                <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                    <li>Write unit tests for both business logic and UI components.</li>
+                    <li>Use logging to track application behavior and diagnose issues.</li>
+                    <li>Test on multiple platforms if your application is cross-platform.</li>
+                    <li>Implement proper error handling and display user-friendly error messages.</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Threading example in Tkinter to prevent UI freezing</span>
+import tkinter as tk
+from tkinter import ttk
+import threading
+import time
+
+class ThreadingExample:
+    def __init__(self, root):
+        self.root = root
+        root.title("Threading Example")
+        
+        <span class="code-comment"># Create widgets</span>
+        self.progress = ttk.Progressbar(root, length=300, mode="determinate")
+        self.progress.pack(pady=10)
+        
+        self.button = ttk.Button(root, text="Start Long Task", command=self.start_task)
+        self.button.pack(pady=10)
+        
+        self.status_label = ttk.Label(root, text="Ready")
+        self.status_label.pack(pady=10)
+    
+    def start_task(self):
+        <span class="code-comment"># Disable button during task</span>
+        self.button.config(state="disabled")
+        self.status_label.config(text="Running task...")
+        self.progress["value"] = 0
+        
+        <span class="code-comment"># Create and start a new thread for the long-running task</span>
+        task_thread = threading.Thread(target=self.perform_long_task)
+        task_thread.daemon = True  <span class="code-comment"># Thread will exit when main program exits</span>
+        task_thread.start()
+    
+    def perform_long_task(self):
+        <span class="code-comment"># Simulate a long-running task</span>
+        for i in range(10):
+            <span class="code-comment"># Update progress bar (needs to be done from main thread)</span>
+            self.root.after(0, self.update_progress, (i+1)*10)
+            time.sleep(0.5)  <span class="code-comment"># Simulate work being done</span>
+        
+        <span class="code-comment"># Task complete - update UI from main thread</span>
+        self.root.after(0, self.task_completed)
+    
+    def update_progress(self, value):
+        self.progress["value"] = value
+    
+    def task_completed(self):
+        self.status_label.config(text="Task completed!")
+        self.button.config(state="normal")
+
+<span class="code-comment"># Create and run the app</span>
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ThreadingExample(root)
+    root.mainloop()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Try these exercises to improve your Python GUI development skills:
+                </p>
+                
+                <ol class="list-decimal pl-6 space-y-3">
+                    <li>
+                        <strong>Basic Calculator App:</strong> Create a simple calculator with buttons for numbers and basic operations.
+                        Implement addition, subtraction, multiplication, and division functionality.
+                    </li>
+                    <li>
+                        <strong>Image Viewer:</strong> Build an application that allows users to browse and view images from a directory.
+                        Include features like zooming, rotating, and navigation between images.
+                    </li>
+                    <li>
+                        <strong>Weather App:</strong> Create an app that fetches and displays weather data from a public API.
+                        Show current conditions, forecasts, and allow users to search for different locations.
+                    </li>
+                    <li>
+                        <strong>Task/Project Manager:</strong> Build a more complex version of the to-do app, with features like due dates,
+                        categories, priorities, and data persistence (saving to a file or database).
+                    </li>
+                    <li>
+                        <strong>Text Editor:</strong> Create a basic text editor with features like open, save, cut, copy, paste,
+                        find/replace, and simple formatting options.
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-500 hover:bg-blue-600 text-white rounded-full p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to Top Button Script
+        const backToTopButton = document.getElementById('backToTop');
+        
+        // Show the button when user scrolls down 300px
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        // Smooth scroll to top when button is clicked
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html> 
