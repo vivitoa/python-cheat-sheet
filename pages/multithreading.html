@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Multithreading - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Multithreading in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Multithreading in Python allows you to execute multiple threads (smaller units of a process) concurrently, 
+                    making your programs more efficient, especially when dealing with I/O-bound operations. Python provides 
+                    built-in modules like <code>threading</code> and <code>concurrent.futures</code> to implement multithreading.
+                </p>
+            </div>
+        </section>
+
+        <!-- Threading Basics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Threading Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Understanding Threads</h3>
+                <p class="mb-4">
+                    A thread is the smallest unit of execution within a process. Multiple threads in the same process share memory space,
+                    which allows them to access the same data, but can also lead to issues like race conditions and deadlocks if not managed properly.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Basic thread creation</span>
+import threading
+import time
+
+def task(name, delay):
+    print(f"Task {name} started")
+    time.sleep(delay)  # Simulate work
+    print(f"Task {name} completed")
+
+# Create threads
+thread1 = threading.Thread(target=task, args=("A", 2))
+thread2 = threading.Thread(target=task, args=("B", 1))
+
+# Start threads
+thread1.start()
+thread2.start()
+
+# Wait for threads to complete
+thread1.join()
+thread2.join()
+
+print("All tasks completed")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">The Global Interpreter Lock (GIL)</h3>
+                <p class="mb-4">
+                    Python's Global Interpreter Lock (GIL) prevents multiple native threads from executing Python bytecode simultaneously.
+                    This means that threading in Python is best suited for I/O-bound tasks rather than CPU-bound tasks.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># I/O-bound task (good for threading)</span>
+import threading
+import requests
+import time
+
+def download_site(url):
+    response = requests.get(url)
+    print(f"Downloaded {url}: {len(response.text)} bytes")
+
+urls = ["https://example.com", "https://python.org", "https://github.com"] * 3
+
+<span class="code-comment"># Sequential download</span>
+start_time = time.time()
+for url in urls:
+    download_site(url)
+print(f"Sequential time: {time.time() - start_time:.2f} seconds")
+
+<span class="code-comment"># Threaded download</span>
+start_time = time.time()
+threads = []
+for url in urls:
+    thread = threading.Thread(target=download_site, args=(url,))
+    threads.append(thread)
+    thread.start()
+
+for thread in threads:
+    thread.join()
+print(f"Threaded time: {time.time() - start_time:.2f} seconds")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">When to Use Threading</h3>
+                <table class="min-w-full bg-gray-800 rounded-md overflow-hidden">
+                    <thead>
+                        <tr class="bg-gray-700">
+                            <th class="py-3 px-4 text-left">Good Use Cases</th>
+                            <th class="py-3 px-4 text-left">Not Ideal For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-3 px-4">Network I/O operations</td>
+                            <td class="py-3 px-4">CPU-intensive calculations</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-3 px-4">File I/O operations</td>
+                            <td class="py-3 px-4">Numerical processing</td>
+                        </tr>
+                        <tr class="border-b border-gray-700">
+                            <td class="py-3 px-4">User interface responsiveness</td>
+                            <td class="py-3 px-4">Parallel data processing</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">Waiting for external resources</td>
+                            <td class="py-3 px-4">Heavy computational tasks</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Thread Synchronization -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Thread Synchronization</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Locks (Mutexes)</h3>
+                <p class="mb-4">
+                    When multiple threads access shared resources, locks help prevent race conditions by allowing only one thread to access the resource at a time.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+
+<span class="code-comment"># Shared resource without lock (problematic)</span>
+counter = 0
+
+def increment_without_lock():
+    global counter
+    for _ in range(100000):
+        current = counter
+        counter = current + 1  # Race condition can occur here
+
+<span class="code-comment"># Shared resource with lock (safe)</span>
+counter_with_lock = 0
+lock = threading.Lock()
+
+def increment_with_lock():
+    global counter_with_lock
+    for _ in range(100000):
+        with lock:  # Acquire and release the lock automatically
+            current = counter_with_lock
+            counter_with_lock = current + 1
+
+<span class="code-comment"># Test without lock</span>
+threads = [threading.Thread(target=increment_without_lock) for _ in range(5)]
+for thread in threads:
+    thread.start()
+for thread in threads:
+    thread.join()
+print(f"Without lock: {counter}")  # Often less than 500,000
+
+<span class="code-comment"># Test with lock</span>
+threads = [threading.Thread(target=increment_with_lock) for _ in range(5)]
+for thread in threads:
+    thread.start()
+for thread in threads:
+    thread.join()
+print(f"With lock: {counter_with_lock}")  # Always 500,000</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">RLock (Reentrant Lock)</h3>
+                <p class="mb-4">
+                    A reentrant lock can be acquired multiple times by the same thread, which is useful for recursive functions or nested lock usage.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+
+<span class="code-comment"># Regular Lock would cause deadlock in this scenario</span>
+class RecursiveTask:
+    def __init__(self):
+        self.lock = threading.RLock()  # Use RLock instead of Lock
+        self.data = {}
+        
+    def update_recursive(self, key, value, depth=3):
+        with self.lock:  # First acquisition of the lock
+            self.data[key] = value
+            print(f"Updated {key} to {value}")
+            
+            if depth > 0:
+                # Second acquisition of the lock by the same thread
+                # A regular Lock would deadlock here
+                with self.lock:
+                    self.update_recursive(key + "_sub", value + 1, depth - 1)
+
+task = RecursiveTask()
+task.update_recursive("key", 1)  # Works with RLock, would deadlock with Lock</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Semaphore</h3>
+                <p class="mb-4">
+                    Semaphores limit the number of threads that can access a resource simultaneously, which is useful for controlling access to limited resources.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+import time
+import random
+
+<span class="code-comment"># Semaphore for limiting concurrent access</span>
+pool_semaphore = threading.Semaphore(3)  # Allow only 3 concurrent threads
+
+def worker(name):
+    with pool_semaphore:  # Acquire the semaphore (blocks if already at limit)
+        print(f"Worker {name} is accessing the pool")
+        time.sleep(random.uniform(1, 3))  # Simulate work
+        print(f"Worker {name} is releasing the pool")
+
+<span class="code-comment"># Create and start 10 worker threads</span>
+workers = []
+for i in range(10):
+    thread = threading.Thread(target=worker, args=(f"Worker-{i}",))
+    workers.append(thread)
+    thread.start()
+
+<span class="code-comment"># Wait for all threads to complete</span>
+for thread in workers:
+    thread.join()</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Events</h3>
+                <p class="mb-4">
+                    Events provide a simple way to communicate between threads, allowing one thread to signal to others that something has occurred.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+import time
+
+<span class="code-comment"># Event for thread communication</span>
+data_ready = threading.Event()
+
+def producer():
+    print("Producer: Preparing data...")
+    time.sleep(2)  # Simulate data preparation
+    print("Producer: Data is ready")
+    data_ready.set()  # Signal that data is ready
+
+def consumer():
+    print("Consumer: Waiting for data...")
+    data_ready.wait()  # Wait until data is ready
+    print("Consumer: Consuming data")
+
+<span class="code-comment"># Create and start threads</span>
+producer_thread = threading.Thread(target=producer)
+consumer_thread = threading.Thread(target=consumer)
+
+producer_thread.start()
+consumer_thread.start()
+
+producer_thread.join()
+consumer_thread.join()</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Condition Variables</h3>
+                <p class="mb-4">
+                    Condition variables provide a more complex synchronization mechanism that allows threads to wait for specific conditions.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+import time
+import random
+
+<span class="code-comment"># Producer-consumer pattern with condition variables</span>
+class Buffer:
+    def __init__(self, size):
+        self.buffer = []
+        self.size = size
+        self.condition = threading.Condition()
+        
+    def add_item(self, item):
+        with self.condition:
+            while len(self.buffer) >= self.size:
+                print(f"Buffer full, producer waiting...")
+                self.condition.wait()  # Wait until there's space
+                
+            self.buffer.append(item)
+            print(f"Produced: {item}, Buffer: {self.buffer}")
+            
+            self.condition.notify()  # Notify a waiting consumer
+            
+    def get_item(self):
+        with self.condition:
+            while not self.buffer:
+                print(f"Buffer empty, consumer waiting...")
+                self.condition.wait()  # Wait until there's an item
+                
+            item = self.buffer.pop(0)
+            print(f"Consumed: {item}, Buffer: {self.buffer}")
+            
+            self.condition.notify()  # Notify a waiting producer
+            return item
+
+<span class="code-comment"># Create a shared buffer</span>
+buffer = Buffer(size=3)
+
+<span class="code-comment"># Producer function</span>
+def producer():
+    for i in range(10):
+        time.sleep(random.uniform(0.1, 0.5))  # Simulate production time
+        buffer.add_item(i)
+
+<span class="code-comment"># Consumer function</span>
+def consumer():
+    for _ in range(10):
+        time.sleep(random.uniform(0.2, 0.6))  # Simulate consumption time
+        buffer.get_item()
+
+<span class="code-comment"># Create and start threads</span>
+producer_thread = threading.Thread(target=producer)
+consumer_thread = threading.Thread(target=consumer)
+
+producer_thread.start()
+consumer_thread.start()
+
+producer_thread.join()
+consumer_thread.join()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thread Pools -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Thread Pools</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">ThreadPoolExecutor</h3>
+                <p class="mb-4">
+                    Thread pools manage a set of worker threads for executing tasks, which is more efficient than creating and destroying threads for each task.
+                    Python's <code>concurrent.futures</code> module provides a high-level interface for thread pools.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+from concurrent.futures import ThreadPoolExecutor
+import time
+
+<span class="code-comment"># Function to be executed in parallel</span>
+def process_item(item):
+    print(f"Processing {item}")
+    time.sleep(1)  # Simulate processing time
+    return item * item
+
+<span class="code-comment"># Using ThreadPoolExecutor</span>
+with ThreadPoolExecutor(max_workers=4) as executor:
+    <span class="code-comment"># Method 1: Submit individual tasks</span>
+    future1 = executor.submit(process_item, 1)
+    future2 = executor.submit(process_item, 2)
+    future3 = executor.submit(process_item, 3)
+    
+    print(f"Result 1: {future1.result()}")
+    print(f"Result 2: {future2.result()}")
+    print(f"Result 3: {future3.result()}")
+    
+    <span class="code-comment"># Method 2: Process a collection of items</span>
+    items = [4, 5, 6, 7, 8]
+    results = list(executor.map(process_item, items))
+    print(f"Batch results: {results}")
+    
+    <span class="code-comment"># Method 3: Process tasks asynchronously</span>
+    futures = [executor.submit(process_item, i) for i in range(9, 12)]
+    
+    for future in futures:
+        result = future.result()
+        print(f"Async result: {result}")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Waiting for Results</h3>
+                <p class="mb-4">
+                    When using thread pools, you can wait for results in different ways.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+import random
+
+<span class="code-comment"># Function with varying completion times</span>
+def task_with_random_delay(name):
+    delay = random.uniform(0.5, 3)
+    time.sleep(delay)
+    return f"Task {name} completed in {delay:.2f} seconds"
+
+<span class="code-comment"># Submit multiple tasks</span>
+with ThreadPoolExecutor(max_workers=5) as executor:
+    <span class="code-comment"># Submit tasks and store futures</span>
+    futures = {executor.submit(task_with_random_delay, f"Task-{i}"): i for i in range(10)}
+    
+    <span class="code-comment"># Process results as they complete (not in submission order)</span>
+    print("Results as they complete:")
+    for future in as_completed(futures):
+        task_id = futures[future]
+        try:
+            result = future.result()
+            print(f"Task ID {task_id}: {result}")
+        except Exception as e:
+            print(f"Task ID {task_id} generated an exception: {e}")
+            
+    <span class="code-comment"># Process all results when all tasks are done</span>
+    print("\nAll results after completion:")
+    for task_id, future in sorted([(task_id, future) for future, task_id in futures.items()]):
+        print(f"Task ID {task_id}: {future.result()}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daemon Threads -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Daemon Threads</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Understanding Daemon Threads</h3>
+                <p class="mb-4">
+                    Daemon threads run in the background and do not prevent the program from exiting when all non-daemon threads have finished.
+                    They are useful for tasks that don't need to complete, like monitoring or cleanup.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+import time
+
+<span class="code-comment"># Background task (daemon thread)</span>
+def background_task():
+    count = 0
+    while True:
+        count += 1
+        print(f"Background task running... Count: {count}")
+        time.sleep(1)
+
+<span class="code-comment"># Main task (non-daemon thread)</span>
+def main_task():
+    for i in range(3):
+        print(f"Main task step {i}")
+        time.sleep(0.5)
+    print("Main task completed")
+
+<span class="code-comment"># Create and start threads</span>
+background_thread = threading.Thread(target=background_task, daemon=True)
+main_thread = threading.Thread(target=main_task)
+
+background_thread.start()
+main_thread.start()
+
+<span class="code-comment"># Wait only for the main thread to complete</span>
+main_thread.join()
+print("Program exit - daemon thread will be terminated")
+
+<span class="code-comment"># If we wanted to wait for the background thread too (which would never end):
+# background_thread.join()
+# This would prevent the program from exiting</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Use Cases for Daemon Threads</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Monitoring services</li>
+                    <li>Periodic cleanup operations</li>
+                    <li>Heartbeat signals</li>
+                    <li>Background logging</li>
+                    <li>Watchdog processes</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+import time
+import queue
+
+<span class="code-comment"># Simple background logger using a daemon thread</span>
+class BackgroundLogger:
+    def __init__(self):
+        self.log_queue = queue.Queue()
+        self.daemon_thread = threading.Thread(target=self._process_logs, daemon=True)
+        self.daemon_thread.start()
+        
+    def _process_logs(self):
+        while True:
+            log_entry = self.log_queue.get()
+            if log_entry is None:  # Sentinel value to stop
+                break
+                
+            timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+            print(f"[{timestamp}] {log_entry}")
+            time.sleep(0.1)  # Simulate I/O operation
+            
+            self.log_queue.task_done()
+            
+    def log(self, message):
+        self.log_queue.put(message)
+        
+    def stop(self):
+        self.log_queue.put(None)
+        if self.daemon_thread.is_alive():
+            self.daemon_thread.join()
+
+<span class="code-comment"># Usage</span>
+logger = BackgroundLogger()
+
+<span class="code-comment"># Main application logic</span>
+for i in range(5):
+    logger.log(f"Processing item {i}")
+    time.sleep(0.5)
+
+<span class="code-comment"># Since it's a daemon thread, we can just exit without calling stop()
+# But for a clean shutdown, we can do:</span>
+logger.stop()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Thread Safety Principles</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Always use proper synchronization mechanisms when accessing shared resources</li>
+                    <li>Minimize the critical section (the code protected by locks)</li>
+                    <li>Prefer thread-safe data structures or methods when available</li>
+                    <li>Be aware of the Global Interpreter Lock (GIL) limitations</li>
+                    <li>Use thread-local storage for thread-specific data</li>
+                    <li>Avoid creating too many threads (they have overhead)</li>
+                    <li>Prefer thread pools for managing multiple concurrent tasks</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Thread-local storage example</span>
+import threading
+
+<span class="code-comment"># Create thread-local data</span>
+thread_local = threading.local()
+
+def process_request(request_id):
+    <span class="code-comment"># Store thread-specific data</span>
+    thread_local.request_id = request_id
+    
+    <span class="code-comment"># Process the request</span>
+    print(f"Processing request {thread_local.request_id} in thread {threading.current_thread().name}")
+    
+    <span class="code-comment"># Log something</span>
+    log_message(f"Request completed")
+    
+def log_message(message):
+    <span class="code-comment"># Access thread-specific data without passing it explicitly</span>
+    if hasattr(thread_local, 'request_id'):
+        print(f"[Request {thread_local.request_id}] {message}")
+    else:
+        print(f"[Unknown request] {message}")
+
+<span class="code-comment"># Create and start threads</span>
+threads = []
+for i in range(3):
+    thread = threading.Thread(target=process_request, args=(f"REQ-{i}",))
+    threads.append(thread)
+    thread.start()
+
+for thread in threads:
+    thread.join()</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Avoiding Common Pitfalls</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li><strong>Race Conditions:</strong> Use locks or other synchronization mechanisms</li>
+                    <li><strong>Deadlocks:</strong> Acquire locks in a consistent order</li>
+                    <li><strong>Thread Starvation:</strong> Don't hold locks for too long</li>
+                    <li><strong>Resource Exhaustion:</strong> Limit the number of threads</li>
+                    <li><strong>Thread Safety:</strong> Use thread-safe containers and operations</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import threading
+import time
+from queue import Queue
+
+<span class="code-comment"># Thread-safe counter with Queue</span>
+def safe_counter():
+    counter_queue = Queue()
+    counter_queue.put(0)  # Initialize counter
+    
+    def increment():
+        value = counter_queue.get()
+        time.sleep(0.001)  # Simulate work
+        counter_queue.put(value + 1)
+    
+    def get_value():
+        value = counter_queue.get()
+        counter_queue.put(value)  # Put it back
+        return value
+    
+    return increment, get_value
+
+increment, get_value = safe_counter()
+
+<span class="code-comment"># Use the counter in multiple threads</span>
+threads = []
+for _ in range(100):
+    thread = threading.Thread(target=increment)
+    threads.append(thread)
+    thread.start()
+
+for thread in threads:
+    thread.join()
+
+print(f"Final counter value: {get_value()}")  # Always 100</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Try These:</h3>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Create a multithreaded web scraper that downloads multiple pages concurrently.</li>
+                    <li>Implement a thread-safe cache for expensive function calls.</li>
+                    <li>Build a producer-consumer system with multiple producer and consumer threads.</li>
+                    <li>Create a thread pool that processes a large set of data in parallel.</li>
+                    <li>Implement a daemon thread that monitors changes to a directory.</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded transition duration-300">
+                Back to Cheat Sheet
+            </a>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
