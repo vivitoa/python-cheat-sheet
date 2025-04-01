@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Regular Expressions - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Regular Expressions in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Regular expressions (regex) are powerful patterns used to match character combinations in strings. 
+                    Python's <code>re</code> module provides full support for Perl-like regular expressions, 
+                    enabling you to search, extract, and manipulate text with complex pattern matching.
+                </p>
+            </div>
+        </section>
+
+        <!-- Regex Fundamentals -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Regex Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic Patterns</h3>
+                <p class="mb-4">
+                    Regular expressions consist of ordinary characters and special metacharacters that define search patterns.
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-6">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Character</th>
+                        <th class="py-3 px-4 text-left">Meaning</th>
+                        <th class="py-3 px-4 text-left">Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">.</td>
+                        <td class="py-3 px-4">Any character except newline</td>
+                        <td class="py-3 px-4"><code>a.b</code> matches "acb", "adb", etc.</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">^</td>
+                        <td class="py-3 px-4">Start of string</td>
+                        <td class="py-3 px-4"><code>^hello</code> matches "hello world"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">$</td>
+                        <td class="py-3 px-4">End of string</td>
+                        <td class="py-3 px-4"><code>world$</code> matches "hello world"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">*</td>
+                        <td class="py-3 px-4">0 or more repetitions</td>
+                        <td class="py-3 px-4"><code>ab*c</code> matches "ac", "abc", "abbc"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">+</td>
+                        <td class="py-3 px-4">1 or more repetitions</td>
+                        <td class="py-3 px-4"><code>ab+c</code> matches "abc", "abbc"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">?</td>
+                        <td class="py-3 px-4">0 or 1 repetition</td>
+                        <td class="py-3 px-4"><code>ab?c</code> matches "ac", "abc"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">{m,n}</td>
+                        <td class="py-3 px-4">m to n repetitions</td>
+                        <td class="py-3 px-4"><code>a{2,4}</code> matches "aa", "aaa", "aaaa"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">[]</td>
+                        <td class="py-3 px-4">Character set</td>
+                        <td class="py-3 px-4"><code>[abc]</code> matches "a", "b", or "c"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">[^]</td>
+                        <td class="py-3 px-4">Negated character set</td>
+                        <td class="py-3 px-4"><code>[^abc]</code> matches any char except a, b, c</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">|</td>
+                        <td class="py-3 px-4">Alternation (OR)</td>
+                        <td class="py-3 px-4"><code>a|b</code> matches "a" or "b"</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">()</td>
+                        <td class="py-3 px-4">Grouping</td>
+                        <td class="py-3 px-4"><code>(abc)+</code> matches "abc", "abcabc"</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import re
+
+<span class="code-comment"># Basic matching</span>
+pattern = r"python"
+text = "I love python programming"
+match = re.search(pattern, text)
+print(match.group())  <span class="code-comment"># Outputs: python</span>
+
+<span class="code-comment"># Using metacharacters</span>
+pattern = r"py.*n"
+text = "python is fun"
+match = re.search(pattern, text)
+print(match.group())  <span class="code-comment"># Outputs: python</span>
+
+<span class="code-comment"># Character classes</span>
+pattern = r"[aeiou]"
+text = "python"
+matches = re.findall(pattern, text)
+print(matches)  <span class="code-comment"># Outputs: ['o']</span>
+
+<span class="code-comment"># Anchors</span>
+pattern = r"^py"
+text = "python starts with py"
+match = re.search(pattern, text)
+print(match.group())  <span class="code-comment"># Outputs: py</span></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Special Character Sequences</h3>
+                <p class="mb-4">
+                    Python's <code>re</code> module supports special character sequences for common pattern matching tasks.
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-6">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Sequence</th>
+                        <th class="py-3 px-4 text-left">Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\d</td>
+                        <td class="py-3 px-4">Any digit (equivalent to [0-9])</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\D</td>
+                        <td class="py-3 px-4">Any non-digit (equivalent to [^0-9])</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\w</td>
+                        <td class="py-3 px-4">Any word character (equivalent to [a-zA-Z0-9_])</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\W</td>
+                        <td class="py-3 px-4">Any non-word character</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\s</td>
+                        <td class="py-3 px-4">Any whitespace character (space, tab, newline, etc.)</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\S</td>
+                        <td class="py-3 px-4">Any non-whitespace character</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\b</td>
+                        <td class="py-3 px-4">Word boundary</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">\B</td>
+                        <td class="py-3 px-4">Non-word boundary</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import re
+
+<span class="code-comment"># Match digits</span>
+pattern = r"\d+"  <span class="code-comment"># One or more digits</span>
+text = "I have 3 apples and 2 oranges"
+matches = re.findall(pattern, text)
+print(matches)  <span class="code-comment"># Outputs: ['3', '2']</span>
+
+<span class="code-comment"># Match word characters</span>
+pattern = r"\w{5,}"  <span class="code-comment"># Words with 5 or more characters</span>
+text = "Python is an amazing programming language"
+matches = re.findall(pattern, text)
+print(matches)  <span class="code-comment"># Outputs: ['Python', 'amazing', 'programming', 'language']</span>
+
+<span class="code-comment"># Word boundaries</span>
+pattern = r"\bpy\w*\b"  <span class="code-comment"># Words starting with 'py'</span>
+text = "python and pygame are both python-based"
+matches = re.findall(pattern, text, re.IGNORECASE)
+print(matches)  <span class="code-comment"># Outputs: ['python', 'pygame', 'python']</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regex Functions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Regex Functions in Python</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The <code>re</code> module provides several functions to work with regular expressions in Python.
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-6">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Function</th>
+                        <th class="py-3 px-4 text-left">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.search()</td>
+                        <td class="py-3 px-4">Searches for the first match anywhere in the string</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.match()</td>
+                        <td class="py-3 px-4">Searches for a match only at the beginning of the string</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.fullmatch()</td>
+                        <td class="py-3 px-4">Searches for a match over the entire string</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.findall()</td>
+                        <td class="py-3 px-4">Returns a list of all non-overlapping matches</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.finditer()</td>
+                        <td class="py-3 px-4">Returns an iterator of all non-overlapping matches</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.sub()</td>
+                        <td class="py-3 px-4">Replaces matches with a string or function result</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.split()</td>
+                        <td class="py-3 px-4">Splits the string by the occurrences of the pattern</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 font-mono">re.compile()</td>
+                        <td class="py-3 px-4">Compiles a regex pattern for reuse</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import re
+
+text = "Python was created in 1991 by Guido van Rossum"
+
+<span class="code-comment"># re.search() - Find the first match</span>
+match = re.search(r"\d+", text)
+print(match.group())  <span class="code-comment"># '1991'</span>
+
+<span class="code-comment"># re.match() - Match only at the beginning</span>
+match = re.match(r"Python", text)
+print(match.group() if match else "No match")  <span class="code-comment"># 'Python'</span>
+
+<span class="code-comment"># re.fullmatch() - Match the entire string</span>
+match = re.fullmatch(r"Python.*", text)
+print(match.group() if match else "No match")  <span class="code-comment"># Entire string</span>
+
+<span class="code-comment"># re.findall() - Find all matches</span>
+matches = re.findall(r"\b\w{6}\b", text)  <span class="code-comment"># Words with exactly 6 letters</span>
+print(matches)  <span class="code-comment"># ['Python', 'Rossum']</span>
+
+<span class="code-comment"># re.finditer() - Find all matches with details</span>
+for match in re.finditer(r"\b\w{6}\b", text):
+    print(f"Match '{match.group()}' at position {match.start()}-{match.end()}")
+
+<span class="code-comment"># re.sub() - Replace matches</span>
+result = re.sub(r"\d+", "YEAR", text)
+print(result)  <span class="code-comment"># "Python was created in YEAR by Guido van Rossum"</span>
+
+<span class="code-comment"># re.split() - Split by pattern</span>
+parts = re.split(r"\s+", text)  <span class="code-comment"># Split by whitespace</span>
+print(parts)  <span class="code-comment"># ['Python', 'was', 'created', 'in', '1991', 'by', 'Guido', 'van', 'Rossum']</span>
+
+<span class="code-comment"># re.compile() - Compile pattern for reuse</span>
+word_pattern = re.compile(r"\b\w+\b")
+words = word_pattern.findall(text)
+print(len(words))  <span class="code-comment"># 9</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capturing Groups & Patterns -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Capturing Groups & Common Patterns</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Capturing groups let you extract specific parts of matched text and are defined with parentheses.
+                </p>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-3 text-yellow-200">Working with Groups</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import re
+
+<span class="code-comment"># Basic capturing groups</span>
+text = "Python 3.9 was released on October 5, 2020"
+match = re.search(r"Python (\d+\.\d+).*?(\d{4})", text)
+
+if match:
+    version = match.group(1)  <span class="code-comment"># Access first group</span>
+    year = match.group(2)     <span class="code-comment"># Access second group</span>
+    full = match.group(0)     <span class="code-comment"># The entire match</span>
+    all_groups = match.groups()  <span class="code-comment"># All groups as tuple: ('3.9', '2020')</span>
+    
+    print(f"Version: {version}, Year: {year}")
+    print(f"Full match: {full}")
+
+<span class="code-comment"># Named groups</span>
+pattern = r"(?P<language>Python) (?P<version>\d+\.\d+).*?(?P<year>\d{4})"
+match = re.search(pattern, text)
+
+if match:
+    <span class="code-comment"># Access by name</span>
+    print(f"Language: {match.group('language')}")
+    print(f"Version: {match.group('version')}")
+    print(f"Year: {match.group('year')}")
+    
+    <span class="code-comment"># Get all as dictionary</span>
+    info = match.groupdict()
+    print(info)  <span class="code-comment"># {'language': 'Python', 'version': '3.9', 'year': '2020'}</span>
+
+<span class="code-comment"># Non-capturing groups (?:...)</span>
+<span class="code-comment"># Useful for grouping without capturing</span>
+pattern = r"Python (\d+\.\d+) (?:was released on) (.*)"
+match = re.search(pattern, text)
+if match:
+    print(match.groups())  <span class="code-comment"># ('3.9', 'October 5, 2020')</span></pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">Common Regex Patterns</h3>
+            
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-6">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Pattern</th>
+                        <th class="py-3 px-4 text-left">Matches</th>
+                        <th class="py-3 px-4 text-left">Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">r"^\w+@\w+\.\w+$"</td>
+                        <td class="py-3 px-4">Basic email</td>
+                        <td class="py-3 px-4">user@example.com</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"</td>
+                        <td class="py-3 px-4">IPv4 address</td>
+                        <td class="py-3 px-4">192.168.1.1</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">r"^https?://[\w\-\.]+\.\w+(/\S*)?$"</td>
+                        <td class="py-3 px-4">URL</td>
+                        <td class="py-3 px-4">https://example.com/path</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">r"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"</td>
+                        <td class="py-3 px-4">US Phone number</td>
+                        <td class="py-3 px-4">(123) 456-7890</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">r"^[a-zA-Z0-9]{8,12}$"</td>
+                        <td class="py-3 px-4">Username</td>
+                        <td class="py-3 px-4">User123</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"</td>
+                        <td class="py-3 px-4">Strong password</td>
+                        <td class="py-3 px-4">Password123</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 font-mono">r"^\d{4}-\d{2}-\d{2}$"</td>
+                        <td class="py-3 px-4">Date (YYYY-MM-DD)</td>
+                        <td class="py-3 px-4">2023-12-31</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import re
+
+<span class="code-comment"># Validate email</span>
+def is_valid_email(email):
+    pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"  <span class="code-comment"># More comprehensive than basic pattern</span>
+    return bool(re.match(pattern, email))
+
+print(is_valid_email("user@example.com"))  <span class="code-comment"># True</span>
+print(is_valid_email("invalid-email"))     <span class="code-comment"># False</span>
+
+<span class="code-comment"># Extract data from text</span>
+log_line = "192.168.1.1 - - [27/Oct/2023:10:45:29 +0000] \"GET /index.html HTTP/1.1\" 200 1234"
+
+<span class="code-comment"># Extract IP, date, URL, and status code</span>
+pattern = r'([\d\.]+).*\[([^\]]+)\].*"([A-Z]+) ([^ ]+).*" (\d+)'
+match = re.search(pattern, log_line)
+
+if match:
+    ip = match.group(1)
+    date = match.group(2)
+    method = match.group(3)
+    url = match.group(4)
+    status = match.group(5)
+    
+    print(f"IP: {ip}")
+    print(f"Date: {date}")
+    print(f"Method: {method}")
+    print(f"URL: {url}")
+    print(f"Status: {status}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regex Flags -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Regex Flags</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Regex flags modify how patterns match. In Python, they can be specified as an optional second parameter to regex functions or inline as part of the pattern.
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-6">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Flag</th>
+                        <th class="py-3 px-4 text-left">Inline</th>
+                        <th class="py-3 px-4 text-left">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.I or re.IGNORECASE</td>
+                        <td class="py-3 px-4 font-mono">(?i)</td>
+                        <td class="py-3 px-4">Case-insensitive matching</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.M or re.MULTILINE</td>
+                        <td class="py-3 px-4 font-mono">(?m)</td>
+                        <td class="py-3 px-4">^ and $ match start/end of each line</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.S or re.DOTALL</td>
+                        <td class="py-3 px-4 font-mono">(?s)</td>
+                        <td class="py-3 px-4">Dot (.) matches newline character</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.X or re.VERBOSE</td>
+                        <td class="py-3 px-4 font-mono">(?x)</td>
+                        <td class="py-3 px-4">Allows whitespace and comments in pattern</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4 font-mono">re.A or re.ASCII</td>
+                        <td class="py-3 px-4 font-mono">(?a)</td>
+                        <td class="py-3 px-4">Makes \w, \W, \b, \B, \d, \D match ASCII only</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4 font-mono">re.U or re.UNICODE</td>
+                        <td class="py-3 px-4 font-mono">(?u)</td>
+                        <td class="py-3 px-4">Makes pattern Unicode aware (default in Python 3)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import re
+
+text = """Python is awesome.
+PYTHON is powerful.
+python is fast."""
+
+<span class="code-comment"># Case-insensitive flag</span>
+matches = re.findall(r"python", text, re.IGNORECASE)
+print(matches)  <span class="code-comment"># ['Python', 'PYTHON', 'python']</span>
+
+<span class="code-comment"># Using inline flag (?i)</span>
+matches = re.findall(r"(?i)python", text)
+print(matches)  <span class="code-comment"># ['Python', 'PYTHON', 'python']</span>
+
+<span class="code-comment"># Multiline flag</span>
+<span class="code-comment"># ^ matches beginning of each line</span>
+multiline_text = """First line
+Second line
+Third line"""
+
+<span class="code-comment"># Without multiline flag - only matches start of string</span>
+matches = re.findall(r"^.*line", multiline_text)
+print(matches)  <span class="code-comment"># ['First line']</span>
+
+<span class="code-comment"># With multiline flag - matches start of each line</span>
+matches = re.findall(r"^.*line", multiline_text, re.MULTILINE)
+print(matches)  <span class="code-comment"># ['First line', 'Second line', 'Third line']</span>
+
+<span class="code-comment"># Verbose flag for readable patterns</span>
+phone_pattern = re.compile(r"""
+    \(?\d{3}\)?     # Area code (optional parentheses)
+    [-.\s]?         # Optional separator
+    \d{3}           # First 3 digits
+    [-.\s]?         # Optional separator
+    \d{4}           # Last 4 digits
+    """, re.VERBOSE)
+
+print(phone_pattern.match("(123) 456-7890"))  <span class="code-comment"># Match object</span>
+print(phone_pattern.match("123.456.7890"))    <span class="code-comment"># Match object</span>
+print(phone_pattern.match("1234567890"))      <span class="code-comment"># Match object</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices & Performance Tips -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices & Performance Tips</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <ul class="list-disc pl-6 space-y-2 mb-6">
+                    <li><strong>Compile Patterns:</strong> If you use the same pattern multiple times, compile it with <code>re.compile()</code> for better performance.</li>
+                    <li><strong>Be Specific:</strong> Make patterns as specific as possible to avoid unnecessary backtracking, which can cause performance issues.</li>
+                    <li><strong>Use Raw Strings:</strong> Always use raw strings (r"...") for regex patterns to avoid issues with backslashes.</li>
+                    <li><strong>Test Thoroughly:</strong> Test your patterns against various inputs, including edge cases.</li>
+                    <li><strong>Use Non-Capturing Groups:</strong> When you don't need to extract grouped content, use non-capturing groups <code>(?:...)</code> for better performance.</li>
+                    <li><strong>Avoid Catastrophic Backtracking:</strong> Be cautious with nested repetition quantifiers (<code>*</code>, <code>+</code>, <code>{m,n}</code>) which can cause exponential time complexity.</li>
+                    <li><strong>Readability:</strong> Use the verbose flag (<code>re.VERBOSE</code>) for complex patterns to improve readability and maintainability.</li>
+                </ul>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4 text-yellow-200">Common Pitfalls</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import re
+import time
+
+<span class="code-comment"># Pitfall 1: Catastrophic backtracking</span>
+bad_pattern = r"(a+)+"
+text = "a" * 30 + "b"  <span class="code-comment"># 30 'a's followed by 'b'</span>
+
+<span class="code-comment"># This will take exponential time</span>
+<span class="code-comment"># start = time.time()
+# re.match(bad_pattern, text)
+# print(f"Time: {time.time() - start} seconds")  # Could take very long</span>
+
+<span class="code-comment"># Better pattern for matching repeated 'a's</span>
+good_pattern = r"a+b"
+start = time.time()
+re.match(good_pattern, text)
+print(f"Time: {time.time() - start} seconds")  <span class="code-comment"># Very fast</span>
+
+<span class="code-comment"># Pitfall 2: Greedy vs non-greedy quantifiers</span>
+html = "<div>First div</div><div>Second div</div>"
+
+<span class="code-comment"># Greedy - matches as much as possible</span>
+greedy = re.search(r"<div>.*</div>", html)
+print(greedy.group())  <span class="code-comment"># "<div>First div</div><div>Second div</div>"</span>
+
+<span class="code-comment"># Non-greedy - matches as little as possible</span>
+non_greedy = re.search(r"<div>.*?</div>", html)
+print(non_greedy.group())  <span class="code-comment"># "<div>First div</div>"</span>
+
+<span class="code-comment"># Pitfall 3: Not escaping special characters</span>
+<span class="code-comment"># This fails because . is a special character</span>
+print(re.search(r"domain.com", "domain.com"))  <span class="code-comment"># Works but for wrong reasons</span>
+print(re.search(r"domain.com", "domainXcom"))  <span class="code-comment"># Still matches!</span>
+
+<span class="code-comment"># Correct way - escape the dot</span>
+print(re.search(r"domain\.com", "domain.com"))  <span class="code-comment"># Matches</span>
+print(re.search(r"domain\.com", "domainXcom"))  <span class="code-comment"># No match</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>Try solving these regex challenges to strengthen your understanding:</p>
+                <ol class="list-decimal pl-6 space-y-2 mt-2">
+                    <li>Write a regex to validate email addresses (covering common formats).</li>
+                    <li>Create a pattern to extract all the hashtags from a social media post.</li>
+                    <li>Write a pattern to validate a date in the format YYYY-MM-DD.</li>
+                    <li>Create a regex to extract all URLs from a text.</li>
+                    <li>Write a pattern to mask credit card numbers, showing only the last 4 digits.</li>
+                </ol>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-md mb-10">
+                <h3 class="text-lg font-semibold mb-2 text-yellow-200">Example Solution (Extracting Hashtags)</h3>
+                <pre>
+import re
+
+text = "I love #Python and #RegularExpressions #programming #coding"
+
+<span class="code-comment"># Extract all hashtags</span>
+hashtags = re.findall(r"#\w+", text)
+print(hashtags)  <span class="code-comment"># ['#Python', '#RegularExpressions', '#programming', '#coding']</span>
+
+<span class="code-comment"># If you want the text without the # character</span>
+hashtag_text = [tag[1:] for tag in hashtags]
+print(hashtag_text)  <span class="code-comment"># ['Python', 'RegularExpressions', 'programming', 'coding']</span>
+                </pre>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 
