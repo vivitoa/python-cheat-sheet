@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python CSV & JSON Handling - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">CSV & JSON Handling in Python</h1>
+        
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Python provides built-in modules for working with CSV and JSON data formats, making it easy to read, write, and manipulate structured data.
+                    These formats are commonly used for data exchange, configuration, and storage in modern applications.
+                </p>
+            </div>
+        </section>
+
+        <!-- CSV Basics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">CSV Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Introduction to CSV</h3>
+                <p class="mb-4">
+                    CSV (Comma-Separated Values) is a simple file format used to store tabular data, such as a spreadsheet or database.
+                    Each line of the file is a data record, and each record consists of fields separated by commas (or other delimiters).
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example CSV data</span>
+"""
+name,age,city
+Alice,30,New York
+Bob,25,San Francisco
+Charlie,35,Seattle
+"""</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic CSV Reading</h3>
+                <p class="mb-4">
+                    Python's <code>csv</code> module provides tools for working with CSV files. The basic reader creates lists for each row.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import csv
+
+<span class="code-comment"># Reading CSV with basic reader</span>
+with open('data.csv', 'r', newline='') as file:
+    reader = csv.reader(file)
+    header = next(reader)  # Get header row
+    
+    for row in reader:
+        print(f"Name: {row[0]}, Age: {row[1]}, City: {row[2]}")
+        
+<span class="code-comment"># Reading CSV with named columns (DictReader)</span>
+with open('data.csv', 'r', newline='') as file:
+    reader = csv.DictReader(file)
+    
+    for row in reader:
+        print(f"Name: {row['name']}, Age: {row['age']}, City: {row['city']}")</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic CSV Writing</h3>
+                <p class="mb-4">
+                    Writing CSV files is equally straightforward, using either the basic writer or DictWriter.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import csv
+
+<span class="code-comment"># Writing CSV with basic writer</span>
+with open('output.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['name', 'age', 'city'])  # Header
+    writer.writerow(['Alice', 30, 'New York'])
+    writer.writerow(['Bob', 25, 'San Francisco'])
+    
+    <span class="code-comment"># Write multiple rows at once</span>
+    more_data = [
+        ['Charlie', 35, 'Seattle'],
+        ['David', 28, 'Boston']
+    ]
+    writer.writerows(more_data)
+    
+<span class="code-comment"># Writing CSV with named columns (DictWriter)</span>
+with open('output_dict.csv', 'w', newline='') as file:
+    fieldnames = ['name', 'age', 'city']
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+    
+    writer.writeheader()  # Write header row
+    writer.writerow({'name': 'Alice', 'age': 30, 'city': 'New York'})
+    writer.writerow({'name': 'Bob', 'age': 25, 'city': 'San Francisco'})</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced CSV Handling -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced CSV Techniques</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Custom Delimiters and Formats</h3>
+                <p class="mb-4">
+                    While CSV files traditionally use commas as delimiters, the CSV module can handle various separators and formats.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import csv
+
+<span class="code-comment"># Reading TSV (Tab-Separated Values)</span>
+with open('data.tsv', 'r', newline='') as file:
+    reader = csv.reader(file, delimiter='\t')
+    for row in reader:
+        print(row)
+        
+<span class="code-comment"># Writing with semicolon delimiter</span>
+with open('data_euro.csv', 'w', newline='') as file:
+    writer = csv.writer(file, delimiter=';')
+    writer.writerow(['name', 'age', 'city'])
+    writer.writerow(['Alice', 30, 'Paris'])
+    
+<span class="code-comment"># CSV dialect for custom formatting</span>
+csv.register_dialect('pipes', delimiter='|', quoting=csv.QUOTE_NONE, escapechar='\\')
+
+with open('data_pipes.csv', 'w', newline='') as file:
+    writer = csv.writer(file, dialect='pipes')
+    writer.writerow(['name', 'age', 'city'])
+    writer.writerow(['Alice', 30, 'New York|City'])  # Escapes the pipe in the city name</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Handling Complex Data</h3>
+                <p class="mb-4">
+                    CSV files can contain quotes, special characters, and multi-line fields.
+                    The CSV module provides options for handling these cases.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import csv
+
+<span class="code-comment"># Handling quoted fields and special characters</span>
+with open('complex_data.csv', 'w', newline='') as file:
+    writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC)
+    writer.writerow(['name', 'description', 'price'])
+    writer.writerow(['Product A', 'Best item, "highly rated"', 19.99])
+    writer.writerow(['Product B', 'Includes special characters: %, $, &', 24.50])
+    
+<span class="code-comment"># Reading with different quoting options</span>
+with open('complex_data.csv', 'r', newline='') as file:
+    reader = csv.reader(file, quoting=csv.QUOTE_NONNUMERIC)
+    for row in reader:
+        print(row)</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Error Handling and Validation</h3>
+                <p class="mb-4">
+                    Real-world CSV files can contain errors or inconsistencies that need to be handled gracefully.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import csv
+
+<span class="code-comment"># Handling errors when reading CSV</span>
+try:
+    with open('data.csv', 'r', newline='') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if len(row) < 3:  # Check if row has all expected fields
+                print(f"Warning: Incomplete row: {row}")
+                continue
+                
+            try:
+                age = int(row[1])  # Try to convert age to integer
+            except ValueError:
+                print(f"Warning: Invalid age in row: {row}")
+                continue
+                
+            print(f"Valid row: {row}")
+except FileNotFoundError:
+    print("CSV file not found")
+except csv.Error as e:
+    print(f"CSV parsing error: {e}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- JSON Basics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">JSON Fundamentals</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Introduction to JSON</h3>
+                <p class="mb-4">
+                    JSON (JavaScript Object Notation) is a lightweight data interchange format that is easy for humans to read and write,
+                    and easy for machines to parse and generate. It's widely used for APIs, configuration files, and data storage.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example JSON data</span>
+"""
+{
+  "name": "Alice",
+  "age": 30,
+  "is_student": false,
+  "courses": ["Python", "Data Science", "Machine Learning"],
+  "address": {
+    "city": "New York",
+    "zip": "10001"
+  }
+}
+"""</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic JSON Operations</h3>
+                <p class="mb-4">
+                    Python's <code>json</code> module provides methods to encode (dump) Python objects to JSON strings
+                    and decode (load) JSON strings back to Python objects.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import json
+
+<span class="code-comment"># Creating JSON from Python objects</span>
+data = {
+    "name": "Alice",
+    "age": 30,
+    "is_student": False,
+    "courses": ["Python", "Data Science", "Machine Learning"],
+    "address": {
+        "city": "New York",
+        "zip": "10001"
+    }
+}
+
+<span class="code-comment"># Convert Python object to JSON string</span>
+json_string = json.dumps(data)
+print(json_string)
+
+<span class="code-comment"># Convert Python object to JSON string with pretty formatting</span>
+json_pretty = json.dumps(data, indent=2, sort_keys=True)
+print(json_pretty)
+
+<span class="code-comment"># Write JSON to a file</span>
+with open("data.json", "w") as file:
+    json.dump(data, file, indent=4)
+
+<span class="code-comment"># Parse JSON string to Python object</span>
+parsed_data = json.loads(json_string)
+print(parsed_data["name"])  # Alice
+print(parsed_data["courses"][0])  # Python
+
+<span class="code-comment"># Read JSON from a file</span>
+with open("data.json", "r") as file:
+    loaded_data = json.load(file)
+    print(loaded_data["address"]["city"])  # New York</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced JSON Handling -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced JSON Techniques</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Custom Encoders and Decoders</h3>
+                <p class="mb-4">
+                    JSON natively supports only certain Python types (dict, list, str, int, float, bool, None).
+                    For custom objects or unsupported types, you need custom encoders and decoders.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import json
+from datetime import datetime, date
+
+<span class="code-comment"># Custom JSON encoder</span>
+class CustomEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        elif isinstance(obj, date):
+            return obj.isoformat()
+        elif hasattr(obj, '__dict__'):  # For custom classes
+            return obj.__dict__
+        return super().default(obj)
+
+<span class="code-comment"># Data with datetime</span>
+data_with_dates = {
+    "name": "Alice",
+    "created_at": datetime.now(),
+    "birthdate": date(1990, 5, 15)
+}
+
+<span class="code-comment"># Use custom encoder</span>
+json_string = json.dumps(data_with_dates, cls=CustomEncoder)
+print(json_string)
+
+<span class="code-comment"># Custom JSON decoder (for dates)</span>
+def date_decoder(dct):
+    for key, value in dct.items():
+        if isinstance(value, str):
+            try:
+                # Try to parse as datetime
+                dct[key] = datetime.fromisoformat(value)
+            except ValueError:
+                try:
+                    # Try to parse as date
+                    dct[key] = date.fromisoformat(value)
+                except ValueError:
+                    pass
+    return dct
+
+<span class="code-comment"># Decode JSON with custom handler</span>
+parsed_data = json.loads(json_string, object_hook=date_decoder)
+print(type(parsed_data["created_at"]))  # <class 'datetime.datetime'></pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Working with Complex JSON</h3>
+                <p class="mb-4">
+                    Real-world JSON data can be deeply nested and complex. Python's dict and list comprehensions
+                    are useful for transforming and extracting data.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import json
+
+<span class="code-comment"># Example complex JSON</span>
+complex_json = '''
+{
+  "company": {
+    "name": "TechCorp",
+    "employees": [
+      {
+        "id": 1,
+        "name": "Alice",
+        "department": "Engineering",
+        "skills": ["Python", "SQL", "AWS"]
+      },
+      {
+        "id": 2,
+        "name": "Bob",
+        "department": "Design",
+        "skills": ["UI/UX", "Figma", "CSS"]
+      },
+      {
+        "id": 3,
+        "name": "Charlie",
+        "department": "Engineering",
+        "skills": ["Java", "Kubernetes", "Go"]
+      }
+    ]
+  }
+}
+'''
+
+<span class="code-comment"># Parse the JSON</span>
+data = json.loads(complex_json)
+
+<span class="code-comment"># Extract specific information</span>
+company_name = data["company"]["name"]
+all_employees = data["company"]["employees"]
+
+<span class="code-comment"># Find employees in Engineering department</span>
+engineers = [emp for emp in all_employees if emp["department"] == "Engineering"]
+
+<span class="code-comment"># Extract all unique skills across employees</span>
+all_skills = set(skill for emp in all_employees for skill in emp["skills"])
+
+<span class="code-comment"># Create a new structure: dictionary of employees by ID</span>
+employees_by_id = {emp["id"]: emp for emp in all_employees}
+
+<span class="code-comment"># Modify and create new JSON</span>
+for emp in all_employees:
+    emp["fulltime"] = True  # Add a new field
+    
+modified_json = json.dumps(data, indent=2)
+print(modified_json)</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Error Handling and Validation</h3>
+                <p class="mb-4">
+                    When working with external JSON data, it's important to handle errors and validate the structure.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import json
+
+<span class="code-comment"># Error handling for invalid JSON</span>
+invalid_json = '{"name": "Alice", "age": 30,'  # Missing closing brace
+
+try:
+    parsed = json.loads(invalid_json)
+except json.JSONDecodeError as e:
+    print(f"Error parsing JSON: {e}")
+    print(f"Error at position {e.pos}: {invalid_json[e.pos-10:e.pos+10]}")
+    
+<span class="code-comment"># JSON validation function</span>
+def validate_user_json(json_data):
+    required_fields = ["name", "email", "age"]
+    
+    try:
+        data = json.loads(json_data) if isinstance(json_data, str) else json_data
+    except json.JSONDecodeError:
+        return False, "Invalid JSON format"
+        
+    if not isinstance(data, dict):
+        return False, "JSON root must be an object"
+        
+    # Check required fields
+    missing = [field for field in required_fields if field not in data]
+    if missing:
+        return False, f"Missing required fields: {', '.join(missing)}"
+        
+    # Validate field types
+    if not isinstance(data.get("name"), str):
+        return False, "Name must be a string"
+        
+    if not isinstance(data.get("email"), str):
+        return False, "Email must be a string"
+        
+    if not isinstance(data.get("age"), (int, float)):
+        return False, "Age must be a number"
+        
+    return True, "Valid user JSON"</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pandas Integration -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">CSV & JSON with Pandas</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Using Pandas for Tabular Data</h3>
+                <p class="mb-4">
+                    Pandas is a powerful data analysis library that provides more advanced functions for working with CSV and JSON data,
+                    especially for larger datasets and analytical tasks.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import pandas as pd
+
+<span class="code-comment"># Reading CSV with pandas</span>
+df = pd.read_csv('data.csv')
+print(df.head())  # View first few rows
+
+<span class="code-comment"># Reading CSV with custom options</span>
+df = pd.read_csv('data.csv',
+                 skiprows=2,  # Skip first 2 rows
+                 usecols=['name', 'age'],  # Select specific columns
+                 dtype={'age': float},  # Set column data types
+                 na_values=['N/A', 'unknown'])  # Handle missing values
+
+<span class="code-comment"># Writing CSV with pandas</span>
+df.to_csv('output.csv', 
+          index=False,  # Don't write row indices
+          columns=['name', 'age', 'city'],  # Select columns to write
+          float_format='%.2f')  # Format floats to 2 decimal places
+
+<span class="code-comment"># Reading JSON with pandas</span>
+df = pd.read_json('data.json')
+
+<span class="code-comment"># Reading JSON with specific options</span>
+df = pd.read_json('data.json',
+                  orient='records',  # JSON format style
+                  lines=True)  # For JSON Lines format (one object per line)
+
+<span class="code-comment"># Writing JSON with pandas</span>
+df.to_json('output.json',
+           orient='records',  # Array of objects
+           date_format='iso')  # Format dates as ISO strings</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Data Transformation with Pandas</h3>
+                <p class="mb-4">
+                    Pandas excels at data transformation, making it a great tool for processing CSV and JSON data.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import pandas as pd
+
+<span class="code-comment"># Load CSV data</span>
+df = pd.read_csv('data.csv')
+
+<span class="code-comment"># Basic filtering</span>
+adults = df[df['age'] >= 18]
+
+<span class="code-comment"># Group by and aggregate</span>
+city_stats = df.groupby('city').agg({
+    'age': ['mean', 'min', 'max', 'count'],
+    'salary': ['mean', 'sum']
+})
+
+<span class="code-comment"># Reshape data: from wide to long format</span>
+df_long = pd.melt(df, 
+                 id_vars=['name', 'city'],  # Fields to keep as identifier variables
+                 value_vars=['age', 'salary'],  # Fields to unpivot
+                 var_name='metric',  # Name for the new "variable" column
+                 value_name='value')  # Name for the new "value" column
+
+<span class="code-comment"># Converting between formats</span>
+df = pd.read_csv('data.csv')
+df.to_json('data.json', orient='records')
+
+<span class="code-comment"># Working with large files in chunks</span>
+chunks = []
+for chunk in pd.read_csv('large_data.csv', chunksize=10000):
+    # Process each chunk
+    filtered_chunk = chunk[chunk['value'] > 100]
+    chunks.append(filtered_chunk)
+
+# Combine all processed chunks
+result = pd.concat(chunks, ignore_index=True)
+result.to_csv('filtered_data.csv', index=False)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">CSV Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Always use the <code>newline=''</code> parameter when opening CSV files to ensure consistent behavior across platforms</li>
+                    <li>Use <code>DictReader</code> and <code>DictWriter</code> for more readable code when handling named columns</li>
+                    <li>Consider using pandas for large CSV files or complex data transformations</li>
+                    <li>Explicitly specify encoding when dealing with international data (e.g., <code>encoding='utf-8'</code>)</li>
+                    <li>Be cautious with file paths - use <code>os.path</code> for cross-platform compatibility</li>
+                    <li>Implement proper error handling for file operations and data validation</li>
+                </ul>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">JSON Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Use <code>indent</code> parameter for human-readable JSON output in files, logs, or debugging</li>
+                    <li>Implement custom encoders/decoders for non-JSON types like datetime</li>
+                    <li>Always handle JSON parsing errors, especially with external data</li>
+                    <li>Validate JSON against an expected schema when working with user input or APIs</li>
+                    <li>Consider using <code>ujson</code> or <code>orjson</code> libraries for performance-critical applications</li>
+                    <li>Be careful with large JSON files - consider streaming techniques or specialized libraries</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example of robust CSV reading</span>
+import csv
+import os
+
+def read_csv_safely(filepath, encoding='utf-8'):
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"CSV file not found: {filepath}")
+        
+    try:
+        with open(filepath, 'r', newline='', encoding=encoding) as file:
+            reader = csv.DictReader(file)
+            return list(reader)
+    except UnicodeDecodeError:
+        print(f"Encoding error. Trying with 'latin-1' encoding...")
+        with open(filepath, 'r', newline='', encoding='latin-1') as file:
+            reader = csv.DictReader(file)
+            return list(reader)
+    except Exception as e:
+        print(f"Error reading CSV: {e}")
+        return []
+
+<span class="code-comment"># Example of robust JSON handling</span>
+import json
+
+def save_json_safely(data, filepath, indent=2):
+    # Ensure directory exists
+    directory = os.path.dirname(filepath)
+    if directory and not os.path.exists(directory):
+        os.makedirs(directory)
+        
+    try:
+        with open(filepath, 'w', encoding='utf-8') as file:
+            json.dump(data, file, indent=indent, ensure_ascii=False)
+        return True
+    except Exception as e:
+        print(f"Error saving JSON: {e}")
+        return False</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Try These:</h3>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Create a program that converts a CSV file to JSON format and vice versa.</li>
+                    <li>Write a script that processes a CSV file of product data, calculates statistics (average price, total inventory), and writes the results to a new CSV file.</li>
+                    <li>Create a custom JSON encoder and decoder for handling Python sets and complex numbers.</li>
+                    <li>Build a data validation function that checks CSV files for missing or incorrect data before processing.</li>
+                    <li>Write a function that merges data from multiple JSON files while maintaining a specific nested structure.</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="mt-12 text-center">
+            <a href="../index.html" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded transition duration-300">
+                Back to Cheat Sheet
+            </a>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
