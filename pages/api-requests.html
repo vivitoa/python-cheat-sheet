@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python API & Requests - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        body {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        
+        .breadcrumb { 
+            padding: 1rem; 
+            background: #1F2937; 
+        }
+        
+        .code-comment { 
+            color: #6B7280; 
+            font-style: italic; 
+        }
+        
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Title Section -->
+        <h1 class="text-4xl font-bold mb-8">Python API & Requests</h1>
+        <p class="text-xl text-gray-300 mb-8">Working with APIs and making HTTP requests in Python</p>
+        
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The Python <code>requests</code> library is a powerful tool for making HTTP requests to web services and APIs. 
+                    It simplifies working with HTTP methods, handling responses, and managing authentication.
+                </p>
+                <p class="mb-4">
+                    This guide covers the basics of making HTTP requests, working with APIs, handling responses,
+                    authentication methods, and best practices for API consumption.
+                </p>
+            </div>
+        </section>
+
+        <!-- Installation and Setup -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Installation and Setup</h2>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>
+                    The <code>requests</code> library is not part of the Python standard library, so you'll need to install it:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+pip install requests
+
+<span class="code-comment"># Import the library</span>
+import requests</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic HTTP Requests -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Basic HTTP Requests</h2>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>
+                    The <code>requests</code> library provides simple methods for different HTTP methods:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+
+<span class="code-comment"># GET request</span>
+response = requests.get('https://api.example.com/data')
+
+<span class="code-comment"># POST request</span>
+response = requests.post('https://api.example.com/submit', data={'key': 'value'})
+
+<span class="code-comment"># PUT request</span>
+response = requests.put('https://api.example.com/update', data={'key': 'new_value'})
+
+<span class="code-comment"># DELETE request</span>
+response = requests.delete('https://api.example.com/delete')
+
+<span class="code-comment"># HEAD request (only get headers)</span>
+response = requests.head('https://api.example.com/data')
+
+<span class="code-comment"># OPTIONS request</span>
+response = requests.options('https://api.example.com')</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">URL Parameters</h3>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>
+                    You can pass URL parameters (query string) in several ways:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Method 1: Add parameters directly to URL</span>
+response = requests.get('https://api.example.com/search?q=python&page=1')
+
+<span class="code-comment"># Method 2: Use the params parameter (recommended)</span>
+payload = {
+    'q': 'python',
+    'page': 1,
+    'sort': 'relevance'
+}
+response = requests.get('https://api.example.com/search', params=payload)
+
+<span class="code-comment"># The URL becomes: https://api.example.com/search?q=python&page=1&sort=relevance</span>
+print(response.url)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Working with Responses -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Working with Responses</h2>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>
+                    After making a request, you can access various properties of the response:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+
+response = requests.get('https://api.github.com/users/python')
+
+<span class="code-comment"># Status code</span>
+print(f"Status code: {response.status_code}")  <span class="code-comment"># e.g., 200, 404, 500</span>
+
+<span class="code-comment"># Check if request was successful</span>
+if response.status_code == 200:
+    print("Success!")
+elif response.status_code == 404:
+    print("Not found!")
+
+<span class="code-comment"># Alternative way to check for success</span>
+if response.ok:  <span class="code-comment"># True if status_code is less than 400</span>
+    print("Request was successful")
+
+<span class="code-comment"># Response content</span>
+print(response.text)  <span class="code-comment"># Raw text response</span>
+
+<span class="code-comment"># JSON response</span>
+data = response.json()  <span class="code-comment"># Parse JSON response into a Python dictionary</span>
+print(data['name'])
+
+<span class="code-comment"># Response headers</span>
+print(response.headers)
+print(response.headers['Content-Type'])
+
+<span class="code-comment"># Response encoding</span>
+print(response.encoding)
+
+<span class="code-comment"># Response cookies</span>
+print(response.cookies)
+
+<span class="code-comment"># Response URL (useful for redirects)</span>
+print(response.url)
+
+<span class="code-comment"># Response history (list of redirects)</span>
+print(response.history)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">Error Handling</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+
+try:
+    response = requests.get('https://api.example.com/data', timeout=5)
+    
+    <span class="code-comment"># Raise an exception if response was unsuccessful</span>
+    response.raise_for_status()
+    
+    <span class="code-comment"># Process the successful response</span>
+    data = response.json()
+    print(data)
+    
+except requests.exceptions.HTTPError as errh:
+    print(f"HTTP Error: {errh}")
+except requests.exceptions.ConnectionError as errc:
+    print(f"Connection Error: {errc}")
+except requests.exceptions.Timeout as errt:
+    print(f"Timeout Error: {errt}")
+except requests.exceptions.RequestException as err:
+    print(f"Request Error: {err}")
+except ValueError as ve:
+    print(f"JSON parsing failed: {ve}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sending Data -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Sending Data</h2>
+            
+            <h3 class="text-xl font-semibold mb-3 text-yellow-200">Form Data</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Send form data (application/x-www-form-urlencoded)</span>
+form_data = {
+    'username': 'user123',
+    'password': 'securepassword',
+    'remember': True
+}
+response = requests.post('https://api.example.com/login', data=form_data)
+
+<span class="code-comment"># Send multipart/form-data (for file uploads)</span>
+files = {
+    'profile_image': open('image.jpg', 'rb')
+}
+form_data = {
+    'username': 'user123'
+}
+response = requests.post('https://api.example.com/upload', 
+                         files=files, 
+                         data=form_data)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">JSON Data</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Send JSON data</span>
+json_data = {
+    'name': 'John Doe',
+    'age': 30,
+    'hobbies': ['coding', 'reading'],
+    'is_active': True
+}
+response = requests.post('https://api.example.com/users', json=json_data)
+
+<span class="code-comment"># Alternative: manually converting to JSON</span>
+import json
+json_string = json.dumps(json_data)
+headers = {'Content-Type': 'application/json'}
+response = requests.post('https://api.example.com/users', 
+                         data=json_string, 
+                         headers=headers)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- HTTP Headers -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">HTTP Headers</h2>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>
+                    Customize HTTP headers for your requests:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Custom headers</span>
+headers = {
+    'User-Agent': 'Python Requests Client/1.0',
+    'Authorization': 'Bearer your_access_token',
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'X-Custom-Header': 'custom-value'
+}
+
+response = requests.get('https://api.example.com/data', headers=headers)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Authentication Methods</h2>
+            
+            <h3 class="text-xl font-semibold mb-3 text-yellow-200">Basic Authentication</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Method 1: Using auth parameter</span>
+response = requests.get('https://api.example.com/private', 
+                       auth=('username', 'password'))
+
+<span class="code-comment"># Method 2: Using the HTTPBasicAuth</span>
+from requests.auth import HTTPBasicAuth
+response = requests.get('https://api.example.com/private',
+                       auth=HTTPBasicAuth('username', 'password'))</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">Token Authentication</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Bearer token authentication</span>
+token = "your_access_token"
+headers = {
+    'Authorization': f'Bearer {token}'
+}
+response = requests.get('https://api.example.com/data', headers=headers)
+
+<span class="code-comment"># API key in query parameters</span>
+params = {
+    'api_key': 'your_api_key',
+    'q': 'search_term'
+}
+response = requests.get('https://api.example.com/search', params=params)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">OAuth 2.0</h3>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>
+                    For OAuth 2.0, you can use the <code>requests-oauthlib</code> library:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># pip install requests-oauthlib</span>
+from requests_oauthlib import OAuth2Session
+
+client_id = "your_client_id"
+client_secret = "your_client_secret"
+authorization_base_url = 'https://example.com/oauth/authorize'
+token_url = 'https://example.com/oauth/token'
+redirect_uri = 'https://your-app.com/callback'
+
+<span class="code-comment"># Create OAuth session</span>
+oauth = OAuth2Session(client_id, redirect_uri=redirect_uri)
+
+<span class="code-comment"># Authorization URL</span>
+authorization_url, state = oauth.authorization_url(authorization_base_url)
+print(f'Please go to {authorization_url} and authorize access')
+
+<span class="code-comment"># Get authorization code from callback</span>
+authorization_response = input('Enter the full callback URL: ')
+
+<span class="code-comment"># Fetch token</span>
+token = oauth.fetch_token(token_url, 
+                         authorization_response=authorization_response,
+                         client_secret=client_secret)
+
+<span class="code-comment"># Use the token to access protected resources</span>
+response = oauth.get('https://example.com/api/resource')</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sessions -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Using Sessions</h2>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>
+                    Sessions allow you to persist certain parameters across requests:
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+
+<span class="code-comment"># Create a session</span>
+session = requests.Session()
+
+<span class="code-comment"># Set persistent headers and cookies</span>
+session.headers.update({
+    'User-Agent': 'Python Requests Client/1.0',
+    'Accept': 'application/json'
+})
+
+<span class="code-comment"># Session automatically manages cookies across requests</span>
+<span class="code-comment"># Login and get cookies</span>
+session.post('https://api.example.com/login', 
+            data={'username': 'user', 'password': 'pass'})
+
+<span class="code-comment"># All subsequent requests will include cookies and headers</span>
+response = session.get('https://api.example.com/dashboard')
+
+<span class="code-comment"># Add auth to the session</span>
+session.auth = ('username', 'password')
+
+<span class="code-comment"># Make authenticated requests</span>
+response = session.get('https://api.example.com/protected')
+
+<span class="code-comment"># Close the session when done</span>
+session.close()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Features -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Features</h2>
+            
+            <h3 class="text-xl font-semibold mb-3 text-yellow-200">Timeouts</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Set timeout in seconds (connection timeout, read timeout)</span>
+response = requests.get('https://api.example.com/data', timeout=5)  <span class="code-comment"># 5 seconds</span>
+
+<span class="code-comment"># Different timeouts for connection and read</span>
+response = requests.get('https://api.example.com/data', timeout=(3, 10))  
+<span class="code-comment"># 3 seconds for connection, 10 seconds for reading</span></pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">Streaming Responses</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># For large files, use streaming to avoid loading the entire file into memory</span>
+with requests.get('https://example.com/large-file.zip', stream=True) as response:
+    <span class="code-comment"># Check if the request was successful</span>
+    response.raise_for_status()
+    
+    <span class="code-comment"># Write response to file in chunks</span>
+    with open('large-file.zip', 'wb') as f:
+        for chunk in response.iter_content(chunk_size=8192): 
+            f.write(chunk)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">Proxies</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Using proxies</span>
+proxies = {
+    'http': 'http://10.10.10.10:8000',
+    'https': 'http://10.10.10.10:8000',
+}
+response = requests.get('https://api.example.com/data', proxies=proxies)
+
+<span class="code-comment"># With authentication</span>
+proxies = {
+    'http': 'http://user:pass@10.10.10.10:8000',
+    'https': 'http://user:pass@10.10.10.10:8000',
+}</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">SSL Verification</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Disable SSL verification (not recommended for production)</span>
+response = requests.get('https://api.example.com/data', verify=False)
+
+<span class="code-comment"># Specify a local cert</span>
+response = requests.get('https://api.example.com/data', 
+                       verify='/path/to/certfile')
+
+<span class="code-comment"># Client-side certificates</span>
+response = requests.get('https://api.example.com/data', 
+                       cert=('/path/to/client.cert', '/path/to/client.key'))</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <ul class="list-disc pl-6 space-y-2 mb-6">
+                    <li><strong>Always use timeouts</strong> to prevent your application from hanging indefinitely.</li>
+                    <li><strong>Handle errors properly</strong> using try/except blocks and response.raise_for_status().</li>
+                    <li><strong>Use sessions</strong> for multiple requests to the same site.</li>
+                    <li><strong>Secure sensitive data</strong> like API keys and tokens using environment variables or secure storage.</li>
+                    <li><strong>Respect rate limits</strong> by implementing proper backoff strategies.</li>
+                    <li><strong>Stream large responses</strong> to avoid memory issues.</li>
+                    <li><strong>Keep SSL verification enabled</strong> in production environments.</li>
+                    <li><strong>Add user agents</strong> to identify your application to the API provider.</li>
+                </ul>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">Rate Limiting Example</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+import time
+from requests.exceptions import RequestException
+
+def make_api_request(url, max_retries=3, backoff_factor=1):
+    """Make API request with exponential backoff retry logic"""
+    retries = 0
+    
+    while retries <= max_retries:
+        try:
+            response = requests.get(url, timeout=10)
+            
+            <span class="code-comment"># If we get a 429 Too Many Requests, back off and retry</span>
+            if response.status_code == 429:
+                wait_time = backoff_factor * (2 ** retries)
+                print(f"Rate limited. Retrying in {wait_time} seconds...")
+                time.sleep(wait_time)
+                retries += 1
+                continue
+                
+            <span class="code-comment"># For other status codes, raise for status as usual</span>
+            response.raise_for_status()
+            return response
+            
+        except RequestException as e:
+            print(f"Request failed: {e}")
+            
+            if retries >= max_retries:
+                print("Maximum retries exceeded.")
+                raise
+                
+            wait_time = backoff_factor * (2 ** retries)
+            print(f"Retrying in {wait_time} seconds...")
+            time.sleep(wait_time)
+            retries += 1
+    
+    return None  <span class="code-comment"># Should not reach here due to raise above</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Examples -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Real-World Examples</h2>
+            
+            <h3 class="text-xl font-semibold mb-3 text-yellow-200">GitHub API</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+
+<span class="code-comment"># Get user information from GitHub API</span>
+def get_github_user(username):
+    url = f"https://api.github.com/users/{username}"
+    headers = {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'PythonRequestsExample/1.0'
+    }
+    
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        return response.json()
+    elif response.status_code == 404:
+        return {"error": "User not found"}
+    else:
+        response.raise_for_status()
+
+<span class="code-comment"># Get list of repositories for a user</span>
+def get_user_repos(username):
+    url = f"https://api.github.com/users/{username}/repos"
+    headers = {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'PythonRequestsExample/1.0'
+    }
+    
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    
+    return response.json()
+
+<span class="code-comment"># Example usage</span>
+try:
+    user = get_github_user('python')
+    print(f"User: {user['name']}")
+    print(f"Bio: {user['bio']}")
+    print(f"Followers: {user['followers']}")
+    
+    repos = get_user_repos('python')
+    print(f"\nTotal repos: {len(repos)}")
+    
+    print("\nTop 5 repositories:")
+    for repo in sorted(repos, key=lambda r: r['stargazers_count'], reverse=True)[:5]:
+        print(f"- {repo['name']}: {repo['stargazers_count']} stars")
+        
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-3 text-yellow-200">Weather API</h3>
+            
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+import os
+
+<span class="code-comment"># Get weather information from OpenWeatherMap API</span>
+def get_weather(city, api_key):
+    base_url = "https://api.openweathermap.org/data/2.5/weather"
+    
+    params = {
+        'q': city,
+        'appid': api_key,
+        'units': 'metric'  <span class="code-comment"># Use metric units (Celsius)</span>
+    }
+    
+    response = requests.get(base_url, params=params)
+    response.raise_for_status()
+    
+    return response.json()
+
+<span class="code-comment"># Example usage</span>
+try:
+    <span class="code-comment"># Get API key from environment variable (best practice)</span>
+    api_key = os.getenv('OPENWEATHERMAP_API_KEY')
+    
+    if not api_key:
+        print("Please set the OPENWEATHERMAP_API_KEY environment variable")
+        exit(1)
+    
+    city = "London"
+    weather_data = get_weather(city, api_key)
+    
+    temp = weather_data['main']['temp']
+    humidity = weather_data['main']['humidity']
+    description = weather_data['weather'][0]['description']
+    
+    print(f"Weather in {city}:")
+    print(f"Temperature: {temp}°C")
+    print(f"Humidity: {humidity}%")
+    print(f"Conditions: {description}")
+    
+except requests.exceptions.RequestException as e:
+    print(f"Error fetching weather data: {e}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none mb-6">
+                <p>Try these exercises to strengthen your API and requests skills:</p>
+                <ol class="list-decimal pl-6 space-y-2 mt-2">
+                    <li>Create a function to search for books using the Google Books API</li>
+                    <li>Build a simple command-line weather app using a weather API</li>
+                    <li>Write a script to download and save images from an image API</li>
+                    <li>Create a program that fetches and displays cryptocurrency prices</li>
+                    <li>Build a function to post updates to a social media platform API</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
