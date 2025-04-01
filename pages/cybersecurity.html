@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Cybersecurity & Ethical Hacking - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Cybersecurity & Ethical Hacking</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Python has become an essential language for cybersecurity professionals and ethical hackers due to its 
+                    simplicity, flexibility, and the vast ecosystem of security-focused libraries. This guide covers fundamental 
+                    techniques, tools, and best practices for using Python in cybersecurity and ethical hacking.
+                </p>
+                <div class="bg-red-900 p-4 rounded-md mb-6">
+                    <p class="font-bold">⚠️ Important Disclaimer:</p>
+                    <p>The techniques described in this guide should only be used on systems you own or have explicit 
+                    permission to test. Unauthorized hacking is illegal and unethical. Always practice responsible 
+                    disclosure and follow legal and ethical guidelines.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Network Scanning and Reconnaissance -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Network Scanning and Reconnaissance</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Network Scanning with Scapy</h3>
+                <p class="mb-4">
+                    Scapy is a powerful packet manipulation library that allows you to create, send, and analyze 
+                    network packets. It's widely used for network scanning, probing, and building custom network tools.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install scapy</span>
+<span class="code-comment"># pip install scapy</span>
+
+from scapy.all import *
+
+<span class="code-comment"># Basic ping scan (ICMP Echo Request)</span>
+def ping_scan(target_ip):
+    """Simple ping scan to check if host is alive"""
+    
+    # Create ICMP Echo Request packet
+    packet = IP(dst=target_ip)/ICMP()
+    
+    # Send packet and wait for response
+    response = sr1(packet, timeout=2, verbose=0)
+    
+    if response:
+        print(f"Host {target_ip} is up!")
+        return True
+    else:
+        print(f"No response from {target_ip}")
+        return False
+
+<span class="code-comment"># TCP SYN scan (half-open scan)</span>
+def syn_scan(target_ip, ports):
+    """SYN scan to check for open ports"""
+    
+    open_ports = []
+    
+    for port in ports:
+        <span class="code-comment"># Create SYN packet</span>
+        packet = IP(dst=target_ip)/TCP(dport=port, flags="S")
+        
+        <span class="code-comment"># Send packet and wait for response</span>
+        response = sr1(packet, timeout=1, verbose=0)
+        
+        if response and response.haslayer(TCP):
+            <span class="code-comment"># Check for SYN-ACK response (flag 0x12)</span>
+            if response.getlayer(TCP).flags == 0x12:
+                <span class="code-comment"># Send RST packet to close connection</span>
+                rst_packet = IP(dst=target_ip)/TCP(dport=port, flags="R")
+                send(rst_packet, verbose=0)
+                
+                open_ports.append(port)
+                print(f"Port {port} is open on {target_ip}")
+    
+    return open_ports
+
+<span class="code-comment"># Example usage</span>
+target = "192.168.1.1"  <span class="code-comment"># Replace with your target IP</span>
+
+<span class="code-comment"># First check if host is alive</span>
+if ping_scan(target):
+    <span class="code-comment"># Then scan common ports</span>
+    common_ports = [21, 22, 23, 25, 53, 80, 443, 445, 3389]
+    open_ports = syn_scan(target, common_ports)
+    
+    if open_ports:
+        print(f"Found {len(open_ports)} open ports: {open_ports}")
+    else:
+        print("No open ports found")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Application Security -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Web Application Security</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Web Application Testing</h3>
+                <p class="mb-4">
+                    Python offers several libraries for testing web application security, including requests for 
+                    basic HTTP interactions and more specialized tools for vulnerability scanning.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install requests beautifulsoup4</span>
+
+import requests
+from bs4 import BeautifulSoup
+import re
+import urllib.parse
+
+<span class="code-comment"># Function to find potential XSS vulnerabilities</span>
+def scan_for_xss(url):
+    """Basic scanner to identify potential XSS vulnerabilities in forms"""
+    
+    print(f"Scanning {url} for potential XSS vulnerabilities...")
+    
+    try:
+        <span class="code-comment"># Request the page</span>
+        response = requests.get(url)
+        response.raise_for_status()
+        
+        <span class="code-comment"># Parse HTML</span>
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        <span class="code-comment"># Find all forms</span>
+        forms = soup.find_all('form')
+        print(f"Found {len(forms)} forms on the page")
+        
+        for i, form in enumerate(forms, 1):
+            print(f"\nAnalyzing form #{i}:")
+            
+            <span class="code-comment"># Get form action</span>
+            action = form.get('action', '')
+            method = form.get('method', 'get').lower()
+            
+            <span class="code-comment"># Resolve relative URL</span>
+            if action.startswith('/'):
+                parsed_url = urllib.parse.urlparse(url)
+                base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+                form_url = base_url + action
+            elif action.startswith('http'):
+                form_url = action
+            else:
+                form_url = url + '/' + action
+            
+            print(f"Form action: {form_url}")
+            print(f"Form method: {method}")
+            
+            <span class="code-comment"># Find input fields</span>
+            inputs = form.find_all(['input', 'textarea'])
+            print(f"Input fields found: {len(inputs)}")
+            
+            for input_field in inputs:
+                field_type = input_field.get('type', 'text')
+                field_name = input_field.get('name', '')
+                
+                if field_type.lower() in ['text', 'search', 'url', 'textarea', 'password']:
+                    print(f"  Potential XSS point: {field_name} (type: {field_type})")
+        
+        <span class="code-comment"># Check for URL parameters</span>
+        parsed_url = urllib.parse.urlparse(url)
+        if parsed_url.query:
+            print("\nURL parameters detected (potential XSS points):")
+            params = urllib.parse.parse_qs(parsed_url.query)
+            for param, value in params.items():
+                print(f"  Parameter: {param}")
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error scanning {url}: {e}")
+
+<span class="code-comment"># Function to test for SQL injection vulnerabilities</span>
+def test_sql_injection(url, params=None):
+    """Basic test for SQL injection by adding a single quote to parameters"""
+    
+    print(f"Testing {url} for SQL injection vulnerabilities...")
+    
+    <span class="code-comment"># SQL error patterns to look for</span>
+    sql_errors = [
+        "SQL syntax", "mysql_fetch", "ORA-", "Oracle", 
+        "SQLSTATE", "PostgreSQL", "SQLite3::", "Microsoft SQL"
+    ]
+    
+    try:
+        <span class="code-comment"># If no params provided, try to extract from URL</span>
+        if not params:
+            parsed_url = urllib.parse.urlparse(url)
+            params = dict(urllib.parse.parse_qsl(parsed_url.query))
+        
+        if not params:
+            print("No parameters found to test")
+            return
+        
+        <span class="code-comment"># Test each parameter</span>
+        for param in params:
+            <span class="code-comment"># Create a copy and modify the parameter value with a single quote</span>
+            test_params = params.copy()
+            test_params[param] = params[param] + "'"
+            
+            response = requests.get(url, params=test_params)
+            
+            <span class="code-comment"># Check for SQL error messages</span>
+            for error in sql_errors:
+                if error in response.text:
+                    print(f"Potential SQL injection found in parameter: {param}")
+                    print(f"Error pattern matched: {error}")
+                    print(f"Test URL: {response.url}")
+                    return
+        
+        print("No obvious SQL injection vulnerabilities detected")
+    
+    except requests.exceptions.RequestException as e:
+        print(f"Error testing {url}: {e}")
+
+<span class="code-comment"># Example usage</span>
+target_url = "http://example.com/login"  <span class="code-comment"># Replace with your target URL</span>
+scan_for_xss(target_url)
+
+<span class="code-comment"># Test SQL injection on a URL with parameters</span>
+sql_test_url = "http://example.com/search"
+test_params = {"q": "test", "page": "1"}
+test_sql_injection(sql_test_url, test_params)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Password Cracking and Hash Analysis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Password Cracking and Hash Analysis</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python can be used for password cracking, hash generation, and cryptographic analysis.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install hashlib passlib</span>
+
+import hashlib
+import string
+import itertools
+import time
+from passlib.hash import bcrypt
+
+<span class="code-comment"># Function to generate MD5 hash</span>
+def md5_hash(text):
+    """Generate MD5 hash for a given string"""
+    return hashlib.md5(text.encode()).hexdigest()
+
+<span class="code-comment"># Function to verify bcrypt hash</span>
+def verify_bcrypt(password, hashed):
+    """Verify if a password matches a bcrypt hash"""
+    return bcrypt.verify(password, hashed)
+
+<span class="code-comment"># Dictionary attack</span>
+def dictionary_attack(hash_to_crack, dictionary_file, hash_function=md5_hash):
+    """Perform a dictionary attack on a hash"""
+    
+    start_time = time.time()
+    attempts = 0
+    
+    print(f"Starting dictionary attack on hash: {hash_to_crack}")
+    
+    try:
+        with open(dictionary_file, 'r', encoding='utf-8', errors='ignore') as file:
+            for line in file:
+                password = line.strip()
+                attempts += 1
+                
+                <span class="code-comment"># Calculate hash</span>
+                password_hash = hash_function(password)
+                
+                <span class="code-comment"># Check if hashes match</span>
+                if password_hash == hash_to_crack:
+                    elapsed_time = time.time() - start_time
+                    print(f"Password found: {password}")
+                    print(f"Attempts: {attempts}")
+                    print(f"Time elapsed: {elapsed_time:.2f} seconds")
+                    return password
+                
+                <span class="code-comment"># Progress update every 100,000 attempts</span>
+                if attempts % 100000 == 0:
+                    print(f"Tried {attempts} passwords...")
+        
+        elapsed_time = time.time() - start_time
+        print(f"Password not found after {attempts} attempts")
+        print(f"Time elapsed: {elapsed_time:.2f} seconds")
+        return None
+        
+    except FileNotFoundError:
+        print(f"Dictionary file not found: {dictionary_file}")
+        return None
+
+<span class="code-comment"># Brute force attack (for demonstration - very inefficient for longer passwords)</span>
+def brute_force(hash_to_crack, charset=string.ascii_lowercase, max_length=4, hash_function=md5_hash):
+    """Perform a brute force attack on a hash"""
+    
+    start_time = time.time()
+    attempts = 0
+    
+    print(f"Starting brute force attack on hash: {hash_to_crack}")
+    print(f"Character set: {charset}")
+    print(f"Maximum password length: {max_length}")
+    
+    <span class="code-comment"># Try different password lengths</span>
+    for length in range(1, max_length + 1):
+        print(f"Trying passwords of length {length}...")
+        
+        <span class="code-comment"># Generate all possible combinations</span>
+        for password_tuple in itertools.product(charset, repeat=length):
+            password = ''.join(password_tuple)
+            attempts += 1
+            
+            <span class="code-comment"># Calculate hash</span>
+            password_hash = hash_function(password)
+            
+            <span class="code-comment"># Check if hashes match</span>
+            if password_hash == hash_to_crack:
+                elapsed_time = time.time() - start_time
+                print(f"Password found: {password}")
+                print(f"Attempts: {attempts}")
+                print(f"Time elapsed: {elapsed_time:.2f} seconds")
+                return password
+            
+            <span class="code-comment"># Progress update every 1,000,000 attempts</span>
+            if attempts % 1000000 == 0:
+                print(f"Tried {attempts} passwords...")
+    
+    elapsed_time = time.time() - start_time
+    print(f"Password not found after {attempts} attempts")
+    print(f"Time elapsed: {elapsed_time:.2f} seconds")
+    return None
+
+<span class="code-comment"># Example usage</span>
+<span class="code-comment"># hash_to_crack = "5f4dcc3b5aa765d61d8327deb882cf99"  # MD5 hash of "password"</span>
+<span class="code-comment"># dictionary_file = "wordlist.txt"  # Replace with path to your wordlist</span>
+<span class="code-comment"># recovered_password = dictionary_attack(hash_to_crack, dictionary_file)</span>
+
+<span class="code-comment"># For very short passwords, you might use brute force</span>
+<span class="code-comment"># simple_hash = "900150983cd24fb0d6963f7d28e17f72"  # MD5 hash of "abc"</span>
+<span class="code-comment"># brute_force(simple_hash, max_length=3)</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Security and Privilege Escalation -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">System Security and Privilege Escalation</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python provides tools for system security analysis and privilege escalation testing.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># System security analysis tools</span>
+import os
+import platform
+import subprocess
+import psutil
+import pwd
+import grp
+
+<span class="code-comment"># Function to gather system information</span>
+def system_info():
+    """Gather basic system information"""
+    
+    info = {
+        "System": platform.system(),
+        "Node": platform.node(),
+        "Release": platform.release(),
+        "Version": platform.version(),
+        "Machine": platform.machine(),
+        "Processor": platform.processor()
+    }
+    
+    print("System Information:")
+    for key, value in info.items():
+        print(f"  {key}: {value}")
+    
+    return info
+
+<span class="code-comment"># Function to check for SUID binaries (Linux only)</span>
+def find_suid_binaries():
+    """Find SUID binaries that might be used for privilege escalation"""
+    
+    if platform.system() != "Linux":
+        print("This function is only supported on Linux systems")
+        return []
+    
+    try:
+        <span class="code-comment"># Find SUID binaries</span>
+        command = "find /usr /bin /sbin /var -type f -perm -4000 2>/dev/null"
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        
+        suid_binaries = result.stdout.strip().split('\n')
+        
+        print(f"Found {len(suid_binaries)} SUID binaries:")
+        for binary in suid_binaries:
+            if binary:  <span class="code-comment"># Skip empty lines</span>
+                print(f"  {binary}")
+        
+        return suid_binaries
+        
+    except subprocess.SubprocessError as e:
+        print(f"Error executing command: {e}")
+        return []
+
+<span class="code-comment"># Function to check for writable directories</span>
+def find_writable_dirs():
+    """Find world-writable directories"""
+    
+    try:
+        if platform.system() == "Linux" or platform.system() == "Darwin":
+            command = "find / -type d -perm -o+w 2>/dev/null"
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            
+            writable_dirs = result.stdout.strip().split('\n')
+            
+            print(f"Found {len(writable_dirs)} world-writable directories:")
+            for directory in writable_dirs[:10]:  <span class="code-comment"># Show only first 10</span>
+                if directory:  <span class="code-comment"># Skip empty lines</span>
+                    print(f"  {directory}")
+            
+            if len(writable_dirs) > 10:
+                print(f"  ... and {len(writable_dirs) - 10} more")
+            
+            return writable_dirs
+        else:
+            print("This function is best supported on Linux/Unix systems")
+            return []
+            
+    except subprocess.SubprocessError as e:
+        print(f"Error executing command: {e}")
+        return []
+
+<span class="code-comment"># Example usage</span>
+<span class="code-comment"># system_info()</span>
+<span class="code-comment"># find_suid_binaries()</span>
+<span class="code-comment"># find_writable_dirs()</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Encryption and Secure Communications -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Encryption and Secure Communications</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python provides libraries for encryption, decryption, and establishing secure communications.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install cryptography</span>
+
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.primitives import serialization, hashes
+
+<span class="code-comment"># Symmetric encryption with Fernet</span>
+def symmetric_encryption_example():
+    """Example of symmetric encryption using Fernet"""
+    
+    <span class="code-comment"># Generate a key</span>
+    key = Fernet.generate_key()
+    print(f"Symmetric Key: {key.decode()}")
+    
+    <span class="code-comment"># Create a Fernet instance</span>
+    cipher = Fernet(key)
+    
+    <span class="code-comment"># Message to encrypt</span>
+    message = b"Sensitive information that needs to be encrypted"
+    
+    <span class="code-comment"># Encrypt the message</span>
+    encrypted = cipher.encrypt(message)
+    print(f"Encrypted: {encrypted.decode()}")
+    
+    <span class="code-comment"># Decrypt the message</span>
+    decrypted = cipher.decrypt(encrypted)
+    print(f"Decrypted: {decrypted.decode()}")
+    
+    return key, encrypted, decrypted
+
+<span class="code-comment"># Asymmetric encryption with RSA</span>
+def asymmetric_encryption_example():
+    """Example of asymmetric encryption using RSA"""
+    
+    <span class="code-comment"># Generate private key</span>
+    private_key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=2048
+    )
+    
+    <span class="code-comment"># Extract public key</span>
+    public_key = private_key.public_key()
+    
+    <span class="code-comment"># Serialize keys to PEM format</span>
+    private_pem = private_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption()
+    )
+    
+    public_pem = public_key.public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PublicFormat.SubjectPublicKeyInfo
+    )
+    
+    print("RSA Key Pair Generated:")
+    print(f"Private Key: {private_pem.decode()[:64]}...")
+    print(f"Public Key: {public_pem.decode()[:64]}...")
+    
+    <span class="code-comment"># Message to encrypt</span>
+    message = b"Secret message for asymmetric encryption"
+    
+    <span class="code-comment"># Encrypt with public key</span>
+    encrypted = public_key.encrypt(
+        message,
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+    
+    print(f"Encrypted: {encrypted[:20]}...")
+    
+    <span class="code-comment"># Decrypt with private key</span>
+    decrypted = private_key.decrypt(
+        encrypted,
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+    
+    print(f"Decrypted: {decrypted.decode()}")
+    
+    return private_key, public_key, encrypted, decrypted
+
+<span class="code-comment"># Example usage</span>
+<span class="code-comment"># symmetric_encryption_example()</span>
+<span class="code-comment"># asymmetric_encryption_example()</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ethical Hacking Tools and Frameworks -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Ethical Hacking Tools and Frameworks</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python provides several specialized frameworks and libraries for ethical hacking and security testing.
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden mb-8">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Tool/Framework</th>
+                        <th class="py-3 px-4 text-left">Purpose</th>
+                        <th class="py-3 px-4 text-left">Installation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Scapy</td>
+                        <td class="py-3 px-4">Network packet crafting and analysis</td>
+                        <td class="py-3 px-4"><code>pip install scapy</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Nmap-Python</td>
+                        <td class="py-3 px-4">Network discovery and security auditing</td>
+                        <td class="py-3 px-4"><code>pip install python-nmap</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Impacket</td>
+                        <td class="py-3 px-4">Network protocols implementation</td>
+                        <td class="py-3 px-4"><code>pip install impacket</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">Requests</td>
+                        <td class="py-3 px-4">HTTP library for web testing</td>
+                        <td class="py-3 px-4"><code>pip install requests</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">BeautifulSoup</td>
+                        <td class="py-3 px-4">HTML parsing for web scraping</td>
+                        <td class="py-3 px-4"><code>pip install beautifulsoup4</code></td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4">PyCryptodome</td>
+                        <td class="py-3 px-4">Cryptographic toolkit</td>
+                        <td class="py-3 px-4"><code>pip install pycryptodome</code></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4">Paramiko</td>
+                        <td class="py-3 px-4">SSH implementation</td>
+                        <td class="py-3 px-4"><code>pip install paramiko</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example using python-nmap for port scanning</span>
+<span class="code-comment"># pip install python-nmap</span>
+
+import nmap
+
+<span class="code-comment"># Initialize scanner</span>
+scanner = nmap.PortScanner()
+
+<span class="code-comment"># Function to perform a comprehensive scan</span>
+def nmap_scan(target, scan_type='-sV'):
+    """
+    Perform an nmap scan on the target
+    scan_type options:
+        -sV: Version detection
+        -sS: SYN scan
+        -A: OS detection, version detection, script scanning, and traceroute
+        -T4: Faster execution
+    """
+    
+    print(f"Starting Nmap scan of {target} with options: {scan_type}")
+    
+    try:
+        <span class="code-comment"># Perform the scan</span>
+        scanner.scan(target, '22-443', arguments=scan_type)
+        
+        <span class="code-comment"># Print scan info</span>
+        print(f"Nmap version: {scanner.nmap_version()}")
+        print(f"Scan info: {scanner.scaninfo()}")
+        
+        <span class="code-comment"># Print results for each host</span>
+        for host in scanner.all_hosts():
+            print(f"\nHost: {host}")
+            print(f"State: {scanner[host].state()}")
+            
+            <span class="code-comment"># Print protocols</span>
+            for proto in scanner[host].all_protocols():
+                print(f"\nProtocol: {proto}")
+                
+                <span class="code-comment"># Get all open ports</span>
+                ports = sorted(scanner[host][proto].keys())
+                
+                for port in ports:
+                    service = scanner[host][proto][port]
+                    print(f"Port {port}: {service['state']}")
+                    
+                    <span class="code-comment"># Print service details if available</span>
+                    if 'product' in service:
+                        print(f"  Service: {service['product']}")
+                    if 'version' in service:
+                        print(f"  Version: {service['version']}")
+        
+        return scanner
+        
+    except nmap.PortScannerError as e:
+        print(f"Scan failed: {e}")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+<span class="code-comment"># Example usage</span>
+<span class="code-comment"># target_ip = "192.168.1.1"  # Replace with your target IP</span>
+<span class="code-comment"># nmap_scan(target_ip, '-sV -T4')</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices and Ethics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Ethics</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Ethical Guidelines</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Always obtain proper authorization before testing any system</li>
+                    <li>Define the scope of your testing clearly and stay within boundaries</li>
+                    <li>Document all activities and findings thoroughly</li>
+                    <li>Practice responsible disclosure of vulnerabilities</li>
+                    <li>Never damage or disrupt systems during testing</li>
+                    <li>Protect sensitive data discovered during testing</li>
+                    <li>Follow all applicable laws and regulations</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 text-blue-400">Technical Best Practices</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Use dedicated test environments whenever possible</li>
+                    <li>Implement rate limiting in your scripts to avoid DoS</li>
+                    <li>Secure your own tools and ensure they can't be weaponized</li>
+                    <li>Keep comprehensive logs of all security testing</li>
+                    <li>Test during off-peak hours to minimize impact</li>
+                    <li>Have a rollback plan in case of unexpected issues</li>
+                    <li>Use secure channels for communicating findings</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Practice your cybersecurity skills in controlled environments:
+                </p>
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Create a basic port scanner with Scapy or python-nmap</li>
+                    <li>Build a tool to detect common web vulnerabilities in a test environment</li>
+                    <li>Implement a basic encryption and decryption program</li>
+                    <li>Create a password strength checker</li>
+                    <li>Set up a controlled environment using virtual machines to practice ethical hacking</li>
+                </ol>
+                
+                <h3 class="text-xl font-bold mb-3 mt-6 text-blue-400">Legal Training Environments</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>OWASP WebGoat: Deliberately vulnerable web application for learning</li>
+                    <li>Hack The Box: Online platform for testing and advancing cybersecurity skills</li>
+                    <li>TryHackMe: Hands-on cybersecurity training platform</li>
+                    <li>VulnHub: Provides vulnerable VMs for practice</li>
+                    <li>Capture The Flag (CTF) competitions: Practice in competitive environments</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
