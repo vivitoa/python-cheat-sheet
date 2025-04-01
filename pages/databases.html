@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Database Operations - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Database Operations</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Python offers several ways to interact with databases, from simple file-based options like 
+                    SQLite to enterprise-level solutions. This guide covers the most common database operations 
+                    in Python, focusing on SQL and NoSQL databases.
+                </p>
+            </div>
+        </section>
+
+        <!-- SQLite -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">SQLite Database</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    SQLite is a lightweight, file-based, serverless SQL database engine that comes built-in with Python.
+                    It's perfect for small applications, prototyping, and testing.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import sqlite3
+
+<span class="code-comment"># Connect to a database (creates it if it doesn't exist)</span>
+connection = sqlite3.connect('example.db')
+
+<span class="code-comment"># Create a cursor object to execute SQL commands</span>
+cursor = connection.cursor()
+
+<span class="code-comment"># Create a table</span>
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE,
+    age INTEGER
+)
+''')
+
+<span class="code-comment"># Insert data</span>
+cursor.execute('''
+INSERT INTO users (name, email, age) VALUES (?, ?, ?)
+''', ('John Doe', 'john@example.com', 30))
+
+<span class="code-comment"># Insert multiple rows</span>
+users_data = [
+    ('Jane Smith', 'jane@example.com', 25),
+    ('Bob Johnson', 'bob@example.com', 35)
+]
+cursor.executemany('INSERT INTO users (name, email, age) VALUES (?, ?, ?)', users_data)
+
+<span class="code-comment"># Commit changes</span>
+connection.commit()
+
+<span class="code-comment"># Query data</span>
+cursor.execute('SELECT * FROM users')
+all_users = cursor.fetchall()
+print("All users:", all_users)
+
+<span class="code-comment"># Query with filtering</span>
+cursor.execute('SELECT name, email FROM users WHERE age > ?', (25,))
+older_users = cursor.fetchall()
+print("Older users:", older_users)
+
+<span class="code-comment"># Update data</span>
+cursor.execute('UPDATE users SET age = ? WHERE name = ?', (31, 'John Doe'))
+connection.commit()
+
+<span class="code-comment"># Delete data</span>
+cursor.execute('DELETE FROM users WHERE name = ?', ('Bob Johnson',))
+connection.commit()
+
+<span class="code-comment"># Close the connection</span>
+connection.close()</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Using Context Managers</h3>
+                <p class="mb-4">
+                    Using context managers is the recommended way to handle database connections to ensure proper cleanup.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import sqlite3
+
+<span class="code-comment"># Using with statement for automatic cleanup</span>
+with sqlite3.connect('example.db') as connection:
+    cursor = connection.cursor()
+    
+    <span class="code-comment"># Execute queries</span>
+    cursor.execute('SELECT * FROM users')
+    users = cursor.fetchall()
+    
+    <span class="code-comment"># No need to commit explicitly or close connection</span>
+    <span class="code-comment"># when using context manager</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- MySQL/PostgreSQL -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">MySQL and PostgreSQL</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    For more robust applications, you might want to use MySQL or PostgreSQL. 
+                    These require additional libraries to interact with Python.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># For MySQL</span>
+<span class="code-comment"># pip install mysql-connector-python</span>
+import mysql.connector
+
+<span class="code-comment"># Connect to MySQL</span>
+connection = mysql.connector.connect(
+    host="localhost",
+    user="username",
+    password="password",
+    database="mydatabase"
+)
+
+cursor = connection.cursor()
+
+<span class="code-comment"># Create a table</span>
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2),
+    category VARCHAR(100)
+)
+''')
+
+<span class="code-comment"># Insert data</span>
+cursor.execute('''
+INSERT INTO products (name, price, category) VALUES (%s, %s, %s)
+''', ('Laptop', 999.99, 'Electronics'))
+
+<span class="code-comment"># Commit changes</span>
+connection.commit()
+
+<span class="code-comment"># Close connections</span>
+cursor.close()
+connection.close()</pre>
+                </div>
+            </div>
+
+            <div class="code-box mt-6">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># For PostgreSQL</span>
+<span class="code-comment"># pip install psycopg2</span>
+import psycopg2
+
+<span class="code-comment"># Connect to PostgreSQL</span>
+connection = psycopg2.connect(
+    host="localhost",
+    database="mydatabase",
+    user="postgres",
+    password="password"
+)
+
+cursor = connection.cursor()
+
+<span class="code-comment"># Create a table</span>
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS orders (
+    id SERIAL PRIMARY KEY,
+    customer_id INTEGER,
+    order_date DATE,
+    total_amount DECIMAL(10, 2)
+)
+''')
+
+<span class="code-comment"># Insert data</span>
+cursor.execute('''
+INSERT INTO orders (customer_id, order_date, total_amount) VALUES (%s, %s, %s)
+''', (101, '2023-01-15', 299.99))
+
+<span class="code-comment"># Commit changes</span>
+connection.commit()
+
+<span class="code-comment"># Close connections</span>
+cursor.close()
+connection.close()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQLAlchemy -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">SQLAlchemy ORM</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    SQLAlchemy is a powerful Object-Relational Mapping (ORM) library that allows you to 
+                    interact with databases using Python objects instead of raw SQL.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># pip install sqlalchemy</span>
+from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship
+
+<span class="code-comment"># Create an engine</span>
+engine = create_engine('sqlite:///sqlalchemy_example.db')
+
+<span class="code-comment"># Create a base class for declarative models</span>
+Base = declarative_base()
+
+<span class="code-comment"># Define models</span>
+class Customer(Base):
+    __tablename__ = 'customers'
+    
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    email = Column(String, unique=True)
+    orders = relationship("Order", back_populates="customer")
+    
+    def __repr__(self):
+        return f"Customer(id={self.id}, name='{self.name}')"
+
+class Order(Base):
+    __tablename__ = 'orders'
+    
+    id = Column(Integer, primary_key=True)
+    customer_id = Column(Integer, ForeignKey('customers.id'))
+    product = Column(String, nullable=False)
+    price = Column(Float)
+    customer = relationship("Customer", back_populates="orders")
+    
+    def __repr__(self):
+        return f"Order(id={self.id}, product='{self.product}', price={self.price})"
+
+<span class="code-comment"># Create tables</span>
+Base.metadata.create_all(engine)
+
+<span class="code-comment"># Create a session</span>
+Session = sessionmaker(bind=engine)
+session = Session()
+
+<span class="code-comment"># Add data</span>
+new_customer = Customer(name="Alice Smith", email="alice@example.com")
+session.add(new_customer)
+session.commit()
+
+<span class="code-comment"># Add related data</span>
+new_order = Order(customer_id=new_customer.id, product="Headphones", price=89.99)
+session.add(new_order)
+session.commit()
+
+<span class="code-comment"># Query data</span>
+customers = session.query(Customer).all()
+print("All customers:", customers)
+
+<span class="code-comment"># Filter queries</span>
+alice = session.query(Customer).filter_by(name="Alice Smith").first()
+print("Alice's orders:", alice.orders)
+
+<span class="code-comment"># Update data</span>
+customer_to_update = session.query(Customer).filter_by(name="Alice Smith").first()
+customer_to_update.email = "alice.smith@example.com"
+session.commit()
+
+<span class="code-comment"># Delete data</span>
+order_to_delete = session.query(Order).filter_by(product="Headphones").first()
+if order_to_delete:
+    session.delete(order_to_delete)
+    session.commit()
+
+<span class="code-comment"># Close session</span>
+session.close()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- MongoDB -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">MongoDB (NoSQL)</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    MongoDB is a popular NoSQL document database that stores data in JSON-like format. 
+                    PyMongo is the Python driver for MongoDB.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># pip install pymongo</span>
+import pymongo
+from pymongo import MongoClient
+
+<span class="code-comment"># Connect to MongoDB</span>
+client = MongoClient('mongodb://localhost:27017/')
+
+<span class="code-comment"># Create or access a database</span>
+db = client['my_database']
+
+<span class="code-comment"># Create or access a collection (similar to a table in SQL)</span>
+collection = db['users']
+
+<span class="code-comment"># Insert a document</span>
+user = {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "age": 30,
+    "interests": ["coding", "reading", "hiking"]
+}
+result = collection.insert_one(user)
+print(f"Inserted document ID: {result.inserted_id}")
+
+<span class="code-comment"># Insert multiple documents</span>
+more_users = [
+    {"name": "Jane Smith", "email": "jane@example.com", "age": 25},
+    {"name": "Bob Johnson", "email": "bob@example.com", "age": 35}
+]
+results = collection.insert_many(more_users)
+print(f"Inserted document IDs: {results.inserted_ids}")
+
+<span class="code-comment"># Find documents</span>
+user = collection.find_one({"name": "John Doe"})
+print("Found user:", user)
+
+<span class="code-comment"># Find multiple documents</span>
+users_over_25 = collection.find({"age": {"$gt": 25}})
+for user in users_over_25:
+    print(user)
+
+<span class="code-comment"># Update a document</span>
+update_result = collection.update_one(
+    {"name": "John Doe"},
+    {"$set": {"age": 31, "interests": ["coding", "reading", "hiking", "gaming"]}}
+)
+print(f"Modified {update_result.modified_count} document(s)")
+
+<span class="code-comment"># Delete a document</span>
+delete_result = collection.delete_one({"name": "Bob Johnson"})
+print(f"Deleted {delete_result.deleted_count} document(s)")
+
+<span class="code-comment"># Close connection</span>
+client.close()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Redis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Redis (Key-Value Store)</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Redis is an in-memory key-value data store, commonly used for caching, real-time analytics, 
+                    and messaging queues. Python interacts with Redis using the redis-py library.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># pip install redis</span>
+import redis
+
+<span class="code-comment"># Connect to Redis</span>
+r = redis.Redis(host='localhost', port=6379, db=0)
+
+<span class="code-comment"># String operations</span>
+r.set('username', 'john_doe')
+username = r.get('username')
+print(f"Username: {username.decode('utf-8')}")
+
+<span class="code-comment"># Set expiration</span>
+r.setex('session_token', 3600, 'abc123')  <span class="code-comment"># expires in 1 hour</span>
+
+<span class="code-comment"># Increment values</span>
+r.set('counter', 0)
+r.incr('counter')
+r.incr('counter', 5)
+counter = r.get('counter')
+print(f"Counter: {counter.decode('utf-8')}")
+
+<span class="code-comment"># Lists</span>
+r.rpush('tasks', 'task1', 'task2')
+r.lpush('tasks', 'urgent_task')
+tasks = r.lrange('tasks', 0, -1)
+print("Tasks:", [task.decode('utf-8') for task in tasks])
+
+<span class="code-comment"># Sets</span>
+r.sadd('tags', 'python', 'redis', 'database')
+r.sadd('tags', 'python')  <span class="code-comment"># won't add duplicate</span>
+tags = r.smembers('tags')
+print("Tags:", [tag.decode('utf-8') for tag in tags])
+
+<span class="code-comment"># Hashes (dictionaries)</span>
+r.hset('user:1000', mapping={
+    'username': 'john_doe',
+    'email': 'john@example.com',
+    'visits': 10
+})
+r.hincrby('user:1000', 'visits', 1)
+email = r.hget('user:1000', 'email')
+print(f"Email: {email.decode('utf-8')}")
+user_data = r.hgetall('user:1000')
+print("User data:", {k.decode('utf-8'): v.decode('utf-8') for k, v in user_data.items()})
+
+<span class="code-comment"># Delete keys</span>
+r.delete('counter')
+
+<span class="code-comment"># Check if key exists</span>
+exists = r.exists('username')
+print(f"Username key exists: {exists}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Database Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Security</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Always use parameterized queries to prevent SQL injection</li>
+                    <li>Never store database credentials in code; use environment variables or config files</li>
+                    <li>Implement proper access controls and user permissions</li>
+                    <li>Encrypt sensitive data before storing it</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 text-blue-400">Performance</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Use database indexes for frequently queried fields</li>
+                    <li>Implement connection pooling for multi-user applications</li>
+                    <li>Keep connections open only as long as necessary</li>
+                    <li>Batch inserts and updates when possible</li>
+                    <li>Use appropriate data types and normalization</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mb-3 mt-6 text-blue-400">Error Handling</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Always handle database exceptions</li>
+                    <li>Implement proper retry mechanisms for transient errors</li>
+                    <li>Use transactions for related operations</li>
+                    <li>Implement proper logging for database operations</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example of proper error handling and transactions</span>
+import sqlite3
+
+def add_user_with_profile(name, email, profile_bio):
+    connection = None
+    try:
+        connection = sqlite3.connect('database.db')
+        connection.execute('PRAGMA foreign_keys = 1')  <span class="code-comment"># Enable foreign key constraints</span>
+        
+        <span class="code-comment"># Start transaction</span>
+        with connection:
+            cursor = connection.cursor()
+            
+            <span class="code-comment"># Insert user</span>
+            cursor.execute(
+                'INSERT INTO users (name, email) VALUES (?, ?)',
+                (name, email)
+            )
+            user_id = cursor.lastrowid
+            
+            <span class="code-comment"># Insert profile</span>
+            cursor.execute(
+                'INSERT INTO profiles (user_id, bio) VALUES (?, ?)',
+                (user_id, profile_bio)
+            )
+            
+            <span class="code-comment"># Transaction will automatically commit if no exceptions</span>
+            return user_id
+            
+    except sqlite3.IntegrityError as e:
+        print(f"Database integrity error: {e}")
+        return None
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return None
+    finally:
+        if connection:
+            connection.close()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database Migration -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Database Migrations</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Database migrations are a way to manage changes to your database schema over time. 
+                    Several Python tools can help with this:
+                </p>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li><strong>Alembic</strong>: Used with SQLAlchemy for schema migrations</li>
+                    <li><strong>Django Migrations</strong>: Built into Django for managing database changes</li>
+                    <li><strong>Flask-Migrate</strong>: Extension for Flask applications using SQLAlchemy</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example using Alembic with SQLAlchemy</span>
+<span class="code-comment"># pip install alembic</span>
+
+<span class="code-comment"># Initialize Alembic</span>
+<span class="code-comment"># $ alembic init migrations</span>
+
+<span class="code-comment"># Create a migration</span>
+<span class="code-comment"># $ alembic revision -m "Create users table"</span>
+
+<span class="code-comment"># Edit the migration file (example)</span>
+"""
+from alembic import op
+import sqlalchemy as sa
+
+def upgrade():
+    op.create_table(
+        'users',
+        sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('name', sa.String(50), nullable=False),
+        sa.Column('email', sa.String(100), unique=True),
+        sa.Column('created_at', sa.DateTime, server_default=sa.func.now())
+    )
+
+def downgrade():
+    op.drop_table('users')
+"""
+
+<span class="code-comment"># Apply the migration</span>
+<span class="code-comment"># $ alembic upgrade head</span>
+
+<span class="code-comment"># Roll back the migration</span>
+<span class="code-comment"># $ alembic downgrade -1</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Create a SQLite database for a library with tables for books, authors, and borrowers.</li>
+                    <li>Implement a simple address book application using SQLAlchemy ORM.</li>
+                    <li>Build a caching system using Redis to store and retrieve API response data.</li>
+                    <li>Create a MongoDB database for a blog application with posts, comments, and users.</li>
+                    <li>Implement database migrations for an existing SQLite database using Alembic.</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
