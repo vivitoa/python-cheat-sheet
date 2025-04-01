@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Web Scraping - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Web Scraping</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Web scraping is the process of extracting data from websites. Python offers several libraries 
+                    that make web scraping straightforward, allowing you to collect data for analysis, monitoring, 
+                    research, or integration with other applications.
+                </p>
+            </div>
+        </section>
+
+        <!-- Basic Web Scraping with Requests and BeautifulSoup -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Basic Web Scraping with Requests and BeautifulSoup</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    The most common approach to web scraping in Python uses the Requests library to fetch web pages and 
+                    BeautifulSoup to parse and extract data from the HTML.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install required packages</span>
+<span class="code-comment"># pip install requests beautifulsoup4</span>
+
+import requests
+from bs4 import BeautifulSoup
+
+<span class="code-comment"># Fetch a web page</span>
+url = "https://example.com"
+response = requests.get(url)
+
+<span class="code-comment"># Check if the request was successful</span>
+if response.status_code == 200:
+    <span class="code-comment"># Parse the HTML content</span>
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    <span class="code-comment"># Find elements by tag</span>
+    all_paragraphs = soup.find_all('p')
+    for p in all_paragraphs:
+        print(p.text.strip())
+    
+    <span class="code-comment"># Find elements by CSS selector</span>
+    main_heading = soup.select_one('h1')
+    print(f"Main heading: {main_heading.text if main_heading else 'Not found'}")
+    
+    <span class="code-comment"># Find element by ID</span>
+    main_content = soup.find(id="main")
+    
+    <span class="code-comment"># Find elements by class</span>
+    navigation_links = soup.find_all('a', class_='nav-link')
+    
+    <span class="code-comment"># Find elements with specific attributes</span>
+    external_links = soup.find_all('a', attrs={'rel': 'external'})
+    
+    <span class="code-comment"># Extract attribute values</span>
+    for link in soup.find_all('a'):
+        href = link.get('href')
+        print(f"Link: {href}")
+else:
+    print(f"Failed to retrieve the page: {response.status_code}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigating and Searching with BeautifulSoup -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Navigating and Searching with BeautifulSoup</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    BeautifulSoup offers multiple ways to navigate and search through HTML documents.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+from bs4 import BeautifulSoup
+
+html_doc = """
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Sample Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="content"&gt;
+      &lt;h1 class="title"&gt;Welcome to the Page&lt;/h1&gt;
+      &lt;p class="intro"&gt;This is an introduction paragraph.&lt;/p&gt;
+      &lt;div class="section"&gt;
+        &lt;h2&gt;Section 1&lt;/h2&gt;
+        &lt;p&gt;Content for section 1.&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="https://example.com/1"&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="https://example.com/2"&gt;Link 2&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class="section"&gt;
+        &lt;h2&gt;Section 2&lt;/h2&gt;
+        &lt;p&gt;Content for section 2.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;
+      &lt;p&gt;Copyright 2023&lt;/p&gt;
+    &lt;/footer&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+"""
+
+soup = BeautifulSoup(html_doc, 'html.parser')
+
+<span class="code-comment"># Navigating down the tree</span>
+content_div = soup.find(id="content")
+sections = content_div.find_all("div", class_="section")
+print(f"Found {len(sections)} sections")
+
+<span class="code-comment"># Navigating up the tree</span>
+first_link = soup.find('a')
+parent_li = first_link.parent
+parent_ul = parent_li.parent
+print(f"Parent of link: {parent_li.name}")
+print(f"Parent of list item: {parent_ul.name}")
+
+<span class="code-comment"># Navigating sideways</span>
+first_section = soup.find("div", class_="section")
+next_section = first_section.find_next_sibling("div", class_="section")
+print(f"Next section heading: {next_section.h2.text}")
+
+<span class="code-comment"># Complex navigation</span>
+<span class="code-comment"># Find all links in the first section</span>
+links_in_first_section = first_section.find_all('a')
+print("Links in first section:")
+for link in links_in_first_section:
+    print(f"- {link.text}: {link['href']}")
+
+<span class="code-comment"># Using CSS selectors</span>
+<span class="code-comment"># Find all paragraphs inside section divs</span>
+section_paragraphs = soup.select("div.section p")
+print("Section paragraphs:")
+for p in section_paragraphs:
+    print(f"- {p.text}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Advanced Techniques -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">More Advanced Techniques</h2>
+
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Handling JavaScript</h3>
+                <p class="mb-4">
+                    Many modern websites use JavaScript to load content dynamically. For these sites, you might need 
+                    to use a headless browser like Selenium or Playwright.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># pip install selenium</span>
+<span class="code-comment"># Also need to install a webdriver like chromedriver</span>
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+
+<span class="code-comment"># Set up Chrome options</span>
+chrome_options = Options()
+chrome_options.add_argument("--headless")  <span class="code-comment"># Run in headless mode (no browser UI)</span>
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox")
+
+<span class="code-comment"># Initialize the WebDriver</span>
+driver = webdriver.Chrome(
+    service=Service(ChromeDriverManager().install()),
+    options=chrome_options
+)
+
+<span class="code-comment"># Navigate to a webpage</span>
+url = "https://example.com"
+driver.get(url)
+
+<span class="code-comment"># Wait for JavaScript to load content</span>
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+<span class="code-comment"># Wait up to 10 seconds for the element to be present</span>
+element = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, "dynamically-loaded-element"))
+)
+
+<span class="code-comment"># Find elements by various methods</span>
+<span class="code-comment"># By ID</span>
+element_by_id = driver.find_element(By.ID, "element-id")
+
+<span class="code-comment"># By class name</span>
+elements_by_class = driver.find_elements(By.CLASS_NAME, "element-class")
+
+<span class="code-comment"># By CSS selector</span>
+element_by_css = driver.find_element(By.CSS_SELECTOR, "div#main > p.intro")
+
+<span class="code-comment"># By XPath</span>
+element_by_xpath = driver.find_element(By.XPATH, "//div[@id='main']/p")
+
+<span class="code-comment"># Extract text and attributes</span>
+text = element_by_id.text
+attribute = element_by_id.get_attribute("href")
+
+<span class="code-comment"># Interacting with elements</span>
+<span class="code-comment"># Click a button</span>
+button = driver.find_element(By.ID, "submit-button")
+button.click()
+
+<span class="code-comment"># Fill a form</span>
+input_field = driver.find_element(By.NAME, "username")
+input_field.send_keys("my_username")
+
+<span class="code-comment"># Clean up</span>
+driver.quit()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Extraction and Storage -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Data Extraction and Storage</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    After scraping, you'll typically want to structure and store the data.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+from bs4 import BeautifulSoup
+import csv
+import json
+import pandas as pd
+
+url = "https://example.com/products"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+
+<span class="code-comment"># Extract product information</span>
+products = []
+for product_div in soup.find_all('div', class_='product'):
+    product = {
+        'name': product_div.find('h3', class_='product-name').text.strip(),
+        'price': product_div.find('span', class_='price').text.strip(),
+        'rating': float(product_div.find('div', class_='rating').get('data-rating', 0)),
+        'url': product_div.find('a', class_='product-link')['href']
+    }
+    products.append(product)
+
+<span class="code-comment"># Save to CSV</span>
+with open('products.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    fieldnames = ['name', 'price', 'rating', 'url']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    
+    writer.writeheader()
+    for product in products:
+        writer.writerow(product)
+
+<span class="code-comment"># Save to JSON</span>
+with open('products.json', 'w', encoding='utf-8') as jsonfile:
+    json.dump(products, jsonfile, indent=4)
+
+<span class="code-comment"># Using pandas</span>
+df = pd.DataFrame(products)
+print(df.head())
+
+<span class="code-comment"># Save to Excel</span>
+df.to_excel('products.xlsx', index=False)
+
+<span class="code-comment"># Save to SQLite database</span>
+import sqlite3
+
+conn = sqlite3.connect('products.db')
+df.to_sql('products', conn, if_exists='replace', index=False)
+conn.close()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices and Ethics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Ethics</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Ethical Considerations</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Always review the website's Terms of Service and robots.txt</li>
+                    <li>Respect rate limits and consider adding delays between requests</li>
+                    <li>Don't overload servers with excessive requests</li>
+                    <li>Consider using official APIs if available</li>
+                    <li>Don't scrape personal information or protected content</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Technical Best Practices</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Use proper error handling for resilient scraping</li>
+                    <li>Set appropriate timeouts and retries</li>
+                    <li>Use a rotating IP or proxy if necessary</li>
+                    <li>Implement user agents to identify your scraper</li>
+                    <li>Cache responses to reduce requests</li>
+                    <li>Implement incremental scraping for large datasets</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import requests
+import time
+from bs4 import BeautifulSoup
+import random
+from fake_useragent import UserAgent
+
+<span class="code-comment"># Create a session for maintaining cookies and headers</span>
+session = requests.Session()
+
+<span class="code-comment"># Set a random user agent</span>
+ua = UserAgent()
+session.headers.update({'User-Agent': ua.random})
+
+<span class="code-comment"># Function to scrape with rate limiting and error handling</span>
+def scrape_page(url, max_retries=3):
+    retries = 0
+    while retries < max_retries:
+        try:
+            <span class="code-comment"># Random delay to be polite (1-3 seconds)</span>
+            time.sleep(random.uniform(1, 3))
+            
+            <span class="code-comment"># Make the request</span>
+            response = session.get(url, timeout=10)
+            
+            <span class="code-comment"># Check for common HTTP errors</span>
+            response.raise_for_status()
+            
+            <span class="code-comment"># Return soup object if successful</span>
+            return BeautifulSoup(response.text, 'html.parser')
+            
+        except requests.RequestException as e:
+            print(f"Error scraping {url}: {e}")
+            retries += 1
+            <span class="code-comment"># Exponential backoff</span>
+            time.sleep(2 ** retries)
+    
+    <span class="code-comment"># If all retries fail</span>
+    print(f"Failed to scrape {url} after {max_retries} attempts")
+    return None
+
+<span class="code-comment"># Function to check robots.txt</span>
+def is_allowed(url, user_agent="*"):
+    import urllib.robotparser
+    
+    <span class="code-comment"># Parse the URL to get the base domain</span>
+    from urllib.parse import urlparse
+    parsed_url = urlparse(url)
+    base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+    
+    <span class="code-comment"># Initialize the RobotFileParser</span>
+    rp = urllib.robotparser.RobotFileParser()
+    rp.set_url(f"{base_url}/robots.txt")
+    
+    try:
+        rp.read()
+        return rp.can_fetch(user_agent, url)
+    except:
+        <span class="code-comment"># If robots.txt can't be read, assume scraping is allowed</span>
+        return True
+
+<span class="code-comment"># Example usage</span>
+url_to_scrape = "https://example.com/products"
+
+if is_allowed(url_to_scrape, session.headers['User-Agent']):
+    soup = scrape_page(url_to_scrape)
+    if soup:
+        <span class="code-comment"># Process the page</span>
+        print("Successfully scraped the page")
+else:
+    print("Scraping this URL is not allowed by robots.txt")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <ol class="list-decimal pl-6 space-y-2">
+                    <li>Build a scraper to extract article titles and summaries from a news website.</li>
+                    <li>Create a price monitoring tool for a product across multiple e-commerce websites.</li>
+                    <li>Develop a script to download and organize images from a gallery website.</li>
+                    <li>Build a scraper to extract job listings from a job board.</li>
+                    <li>Create a weather data collector that scrapes forecast information.</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
