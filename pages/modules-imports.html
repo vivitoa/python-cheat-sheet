@@ -108,713 +108,404 @@
         <section class="mb-12">
             <div class="prose prose-invert max-w-none">
                 <p class="text-lg mb-6">
-                    Modules are at the heart of Python's "batteries included" philosophy. The module system allows you to 
-                    organize code into reusable files and packages, import functionality from Python's extensive standard 
-                    library, and structure larger applications. Understanding how Python's import system works is essential 
-                    for building maintainable code.
+                    Modules are files containing Python code that can be imported and used in other Python programs. 
+                    They help organize code into reusable components and enable code sharing across multiple projects. 
+                    Python's import system makes it easy to incorporate functionality from the standard library, 
+                    third-party packages, or your own custom modules.
                 </p>
             </div>
         </section>
 
-        <!-- Import Basics -->
+        <!-- Import Fundamentals -->
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-yellow-400">Import Fundamentals</h2>
             
             <div class="prose prose-invert max-w-none">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">What is a Module?</h3>
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Basic Import Types</h3>
                 <p class="mb-4">
-                    A module is a file containing Python definitions and statements. The file name is the module name with the 
-                    suffix <code>.py</code>. Modules help organize related code and avoid naming conflicts through namespace separation.
+                    Python offers several ways to import modules or specific objects from modules.
                 </p>
             </div>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
                     <pre>
-<span class="code-comment"># math_operations.py</span>
-def add(a, b):
-    return a + b
-
-def subtract(a, b):
-    return a - b
-
-PI = 3.14159
-
-<span class="code-comment"># In another file, import the module:</span>
-import math_operations
-
-result = math_operations.add(5, 3)  <span class="code-comment"># 8</span>
-print(math_operations.PI)           <span class="code-comment"># 3.14159</span></pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Import Styles</h3>
-                <p class="mb-4">
-                    Python offers multiple ways to import modules, each with different effects on the namespace.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># 1. Standard import</span>
+<span class="code-comment"># Standard import</span>
 import math
-print(math.pi)         <span class="code-comment"># Access via module namespace</span>
+print(math.sqrt(16))  <span class="code-comment"># 4.0</span>
 
-<span class="code-comment"># 2. Import with alias</span>
-import numpy as np     <span class="code-comment"># Creates a shorter name</span>
-print(np.array([1, 2, 3]))
+<span class="code-comment"># Import with alias</span>
+import math as m
+print(m.sqrt(16))  <span class="code-comment"># 4.0</span>
 
-<span class="code-comment"># 3. From-import (selective imports)</span>
-from datetime import datetime, timedelta
-print(datetime.now())  <span class="code-comment"># No module prefix needed</span>
+<span class="code-comment"># Import specific objects from a module</span>
+from math import sqrt, pi
+print(sqrt(16))  <span class="code-comment"># 4.0</span>
+print(pi)        <span class="code-comment"># 3.141592653589793</span>
 
-<span class="code-comment"># 4. Import all (not recommended)</span>
-from random import *   <span class="code-comment"># Imports everything into current namespace</span>
-print(randint(1, 10))  <span class="code-comment"># Could cause naming conflicts</span></pre>
-                </div>
-            </div>
+<span class="code-comment"># Import specific objects with aliases</span>
+from math import sqrt as square_root
+print(square_root(16))  <span class="code-comment"># 4.0</span>
 
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Import Best Practices</h3>
-                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
-                    <li>Group and organize imports at the top of your file</li>
-                    <li>Use standard imports for clarity unless names are very long</li>
-                    <li>Avoid wildcard imports (<code>from module import *</code>) in production code</li>
-                    <li>Group imports in the order: standard library, third-party, local application imports</li>
-                    <li>Use absolute imports over relative imports for clarity</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Module System Details -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Module System Details</h2>
-            
-            <div class="prose prose-invert max-w-none">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Module Search Path</h3>
-                <p class="mb-4">
-                    Python searches for modules in directories listed in <code>sys.path</code>. Understanding this search path 
-                    helps diagnose import errors and properly structure your projects.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Python's module search order:</span>
-<span class="code-comment"># 1. Built-in modules</span>
-<span class="code-comment"># 2. Current directory or script directory</span>
-<span class="code-comment"># 3. PYTHONPATH environment variable directories</span>
-<span class="code-comment"># 4. Installation-dependent default directories</span>
-
-import sys
-print(sys.path)  <span class="code-comment"># View the current search path</span>
-
-<span class="code-comment"># Adding a new directory to the path</span>
-sys.path.append('/path/to/my/modules')
-
-<span class="code-comment"># Import module from the newly added path</span>
-import my_custom_module</pre>
+<span class="code-comment"># Import all objects from a module (not recommended)</span>
+from math import *
+print(sqrt(16))  <span class="code-comment"># 4.0</span>
+print(cos(0))    <span class="code-comment"># 1.0</span></pre>
                 </div>
             </div>
 
             <div class="prose prose-invert max-w-none mt-6">
                 <h3 class="text-xl font-bold mb-3 text-blue-400">Module Attributes</h3>
                 <p class="mb-4">
-                    Modules in Python have special attributes that provide metadata and functionality.
+                    Modules have special attributes that provide information about them.
                 </p>
             </div>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
                     <pre>
-<span class="code-comment"># example_module.py</span>
-"""This is an example module docstring."""
-
-__version__ = "1.0.0"
-__author__ = "Your Name"
-
-def hello():
-    return "Hello, World!"
-
-if __name__ == "__main__":
-    print("Running directly")
-else:
-    print("Imported as a module")</pre>
-                </div>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Accessing module attributes</span>
-import example_module
-
-print(example_module.__name__)      <span class="code-comment"># 'example_module'</span>
-print(example_module.__doc__)       <span class="code-comment"># 'This is an example module docstring.'</span>
-print(example_module.__file__)      <span class="code-comment"># Full path to the module file</span>
-print(example_module.__version__)   <span class="code-comment"># '1.0.0'</span>
-print(example_module.__author__)    <span class="code-comment"># 'Your Name'</span>
-
-<span class="code-comment"># The __name__ == "__main__" pattern</span>
-<span class="code-comment"># This block only runs when the module is executed directly</span>
-<span class="code-comment"># Useful for creating modules that can be both imported and run as scripts</span>
-if __name__ == "__main__":
-    print("Running script directly")
-    example_module.hello()</pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Reloading Modules</h3>
-                <p class="mb-4">
-                    By default, Python imports a module only once per interpreter session. If you need to reload a module 
-                    (for example, during development), you can use <code>importlib.reload()</code>.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
+<span class="code-comment"># Common module attributes</span>
 import math
-import importlib
 
-<span class="code-comment"># Update the module file externally</span>
-<span class="code-comment"># Then reload it in the current session</span>
-importlib.reload(math)
+print(math.__name__)      <span class="code-comment"># 'math' - The module's name</span>
+print(math.__file__)      <span class="code-comment"># Path to the module file</span>
+print(math.__doc__)       <span class="code-comment"># Module's docstring</span>
+print(dir(math))          <span class="code-comment"># List of names defined in the module</span>
 
-<span class="code-comment"># Note: Reloading has limitations</span>
-<span class="code-comment"># - References to old objects may persist</span>
-<span class="code-comment"># - Classes and instances aren't updated</span>
-<span class="code-comment"># - Dependencies aren't automatically reloaded</span></pre>
-                </div>
-            </div>
-        </section>
-
-        <!-- Packages -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Working with Packages</h2>
-            
-            <div class="prose prose-invert max-w-none">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Package Structure</h3>
-                <p class="mb-4">
-                    A package is a directory containing Python files and an <code>__init__.py</code> file. Packages allow you to 
-                    organize related modules into a hierarchy.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Basic package structure</span>
-my_package/
-├── __init__.py         <span class="code-comment"># Makes directory a package</span>
-├── module1.py          <span class="code-comment"># Module in the package</span>
-├── module2.py          <span class="code-comment"># Another module</span>
-└── subpackage/         <span class="code-comment"># Nested package</span>
-    ├── __init__.py
-    └── module3.py</pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Using __init__.py</h3>
-                <p class="mb-4">
-                    The <code>__init__.py</code> file is executed when a package is imported. It can be empty or contain 
-                    initialization code, define what is exported, and manage namespace organization.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># my_package/__init__.py</span>
-"""My amazing package."""
-
-__version__ = '0.1.0'
-
-<span class="code-comment"># Import and expose specific modules or functions</span>
-from .module1 import function1, function2
-from .module2 import Class1
-
-<span class="code-comment"># Define __all__ to control what's imported with 'from package import *'</span>
-__all__ = ['function1', 'function2', 'Class1']</pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Importing from Packages</h3>
-                <p class="mb-4">
-                    There are multiple ways to import modules from packages, each with different implications for namespace and readability.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Absolute imports (preferred)</span>
-import my_package.module1
-my_package.module1.function1()
-
-import my_package.subpackage.module3
-my_package.subpackage.module3.function3()
-
-<span class="code-comment"># More concise absolute imports</span>
-from my_package import module1
-module1.function1()
-
-from my_package.subpackage import module3
-module3.function3()
-
-<span class="code-comment"># Direct function imports</span>
-from my_package.module1 import function1
-function1()
-
-<span class="code-comment"># Relative imports (within the package)</span>
-<span class="code-comment"># Only work inside the package, not in main script</span>
-
-<span class="code-comment"># In my_package/module2.py</span>
-from . import module1             <span class="code-comment"># Import sibling module</span>
-from .module1 import function1    <span class="code-comment"># Import from sibling module</span>
-from .subpackage import module3   <span class="code-comment"># Import from subpackage</span>
-
-<span class="code-comment"># In my_package/subpackage/module3.py</span>
-from .. import module1            <span class="code-comment"># Import from parent package</span>
-from ..module1 import function1   <span class="code-comment"># Import from parent module</span></pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Namespace Packages (Python 3.3+)</h3>
-                <p class="mb-4">
-                    Namespace packages allow splitting a package across multiple directories without requiring <code>__init__.py</code> files.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Directory structure for a namespace package</span>
-path1/
-└── my_namespace/
-    └── module1.py
-
-path2/
-└── my_namespace/
-    └── module2.py
-
-<span class="code-comment"># Adding both directories to Python path</span>
-import sys
-sys.path.extend(['path1', 'path2'])
-
-<span class="code-comment"># Now you can import from either location</span>
-from my_namespace import module1, module2</pre>
-                </div>
-            </div>
-        </section>
-
-        <!-- Standard Library and Virtual Environments -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Standard Library and Module Management</h2>
-            
-            <div class="prose prose-invert max-w-none">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Essential Standard Library Modules</h3>
-                <p class="mb-4">
-                    Python's standard library provides a wealth of modules for common tasks.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div class="bg-gray-800 p-4 rounded-md">
-                    <h4 class="font-semibold text-blue-400 mb-2">System and OS</h4>
-                    <ul class="space-y-1 text-gray-300">
-                        <li><code>os</code> - Operating system interface</li>
-                        <li><code>sys</code> - System-specific parameters and functions</li>
-                        <li><code>argparse</code> - Command-line argument parsing</li>
-                        <li><code>pathlib</code> - Object-oriented filesystem paths</li>
-                        <li><code>subprocess</code> - Run external commands</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-md">
-                    <h4 class="font-semibold text-blue-400 mb-2">Data Handling</h4>
-                    <ul class="space-y-1 text-gray-300">
-                        <li><code>json</code> - JSON encoding and decoding</li>
-                        <li><code>csv</code> - CSV file reading and writing</li>
-                        <li><code>sqlite3</code> - SQLite database interface</li>
-                        <li><code>pickle</code> - Python object serialization</li>
-                        <li><code>xml</code> - XML processing modules</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-md">
-                    <h4 class="font-semibold text-blue-400 mb-2">Networking</h4>
-                    <ul class="space-y-1 text-gray-300">
-                        <li><code>http</code> - HTTP modules</li>
-                        <li><code>urllib</code> - URL handling modules</li>
-                        <li><code>socket</code> - Low-level networking interface</li>
-                        <li><code>email</code> - Email handling modules</li>
-                        <li><code>ftplib</code> - FTP protocol client</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-md">
-                    <h4 class="font-semibold text-blue-400 mb-2">Utilities</h4>
-                    <ul class="space-y-1 text-gray-300">
-                        <li><code>datetime</code> - Date and time handling</li>
-                        <li><code>random</code> - Generate random data</li>
-                        <li><code>re</code> - Regular expressions</li>
-                        <li><code>logging</code> - Python logging facility</li>
-                        <li><code>collections</code> - Specialized container types</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Virtual Environments</h3>
-                <p class="mb-4">
-                    Virtual environments allow you to create isolated Python environments with separate packages and dependencies.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Creating a virtual environment</span>
-python -m venv my_project_env
-
-<span class="code-comment"># Activating the environment</span>
-<span class="code-comment"># On Windows:</span>
-# my_project_env\Scripts\activate
-
-<span class="code-comment"># On Unix or MacOS:</span>
-# source my_project_env/bin/activate
-
-<span class="code-comment"># Installing packages in the virtual environment</span>
-pip install numpy pandas matplotlib
-
-<span class="code-comment"># Creating a requirements.txt file</span>
-pip freeze > requirements.txt
-
-<span class="code-comment"># Installing from requirements.txt</span>
-pip install -r requirements.txt
-
-<span class="code-comment"># Deactivating the environment</span>
-deactivate</pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Creating Installable Packages</h3>
-                <p class="mb-4">
-                    To create a Python package that can be installed with pip, you need to structure it correctly and create a setup.py file.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Basic structure for an installable package</span>
-my_package/
-├── setup.py
-├── README.md
-├── LICENSE
-├── my_package/
-│   ├── __init__.py
-│   ├── module1.py
-│   └── module2.py
-└── tests/
-    ├── __init__.py
-    └── test_module1.py
-
-<span class="code-comment"># Simple setup.py</span>
-from setuptools import setup, find_packages
-
-setup(
-    name="my_package",
-    version="0.1.0",
-    author="Your Name",
-    author_email="your.email@example.com",
-    description="A short description of your package",
-    long_description=open("README.md").read(),
-    long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/my_package",
-    packages=find_packages(),
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
-    python_requires=">=3.6",
-    install_requires=[
-        "numpy>=1.18.0",
-        "pandas>=1.0.0",
-    ],
-)
-
-<span class="code-comment"># Installing in development mode</span>
-pip install -e .</pre>
-                </div>
-            </div>
-        </section>
-
-        <!-- Advanced Module Techniques -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Advanced Module Techniques</h2>
-            
-            <div class="prose prose-invert max-w-none">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Lazy Imports</h3>
-                <p class="mb-4">
-                    To improve startup time or handle optional dependencies, you can implement lazy imports.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Lazily import expensive modules</span>
-def get_numpy():
-    import numpy as np
-    return np
-
-<span class="code-comment"># Only import when needed</span>
-def process_data(data):
-    np = get_numpy()
-    return np.mean(data)
-
-<span class="code-comment"># With importlib (more sophisticated approach)</span>
-import importlib
-import sys
-
-class LazyLoader:
-    def __init__(self, module_name):
-        self.module_name = module_name
-        self.module = None
-    
-    def __getattr__(self, name):
-        if self.module is None:
-            self.module = importlib.import_module(self.module_name)
-        return getattr(self.module, name)
-
-<span class="code-comment"># Usage</span>
-np = LazyLoader('numpy')
-<span class="code-comment"># numpy not imported yet</span>
-
-result = np.array([1, 2, 3])
-<span class="code-comment"># numpy imported now</span></pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Module-level Dunder Methods</h3>
-                <p class="mb-4">
-                    Modules can define special methods (dunder methods) that influence their behavior when imported.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># example_module.py</span>
-
-<span class="code-comment"># __all__ defines what is imported with "from module import *"</span>
+<span class="code-comment"># The __all__ attribute controls what is imported with 'from module import *'</span>
+<span class="code-comment"># Example of how it works in a custom module:</span>
+"""
+# mymodule.py
 __all__ = ['public_function', 'PublicClass']
 
-<span class="code-comment"># __dir__ controls what is returned by dir(module)</span>
-def __dir__():
-    return __all__ + ['__version__']
-
-<span class="code-comment"># Private function (by convention, not enforced)</span>
-def _private_function():
-    return "This is private"
-
-<span class="code-comment"># Public functions/classes (included in __all__)</span>
 def public_function():
-    return "This is public"
-
+    pass
+    
+def _private_function():  # Won't be imported with 'from mymodule import *'
+    pass
+    
 class PublicClass:
-    pass</pre>
-                </div>
-            </div>
-
-            <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Import Hooks</h3>
-                <p class="mb-4">
-                    For advanced use cases, Python's import system allows custom import hooks to modify how modules are found and loaded.
-                </p>
-            </div>
-
-            <div class="code-box">
-                <div class="bg-gray-800 p-4">
-                    <pre>
-<span class="code-comment"># Basic import hook example</span>
-import sys
-from importlib.abc import MetaPathFinder, Loader
-from importlib.util import spec_from_file_location
-
-class CustomImporter(MetaPathFinder, Loader):
-    def find_spec(self, fullname, path, target=None):
-        <span class="code-comment"># Check if we can handle this import</span>
-        if fullname.startswith('custom_'):
-            <span class="code-comment"># Create a module spec with this loader</span>
-            return spec_from_file_location(
-                fullname, 
-                f"/path/to/custom/{fullname}.py",
-                loader=self
-            )
-        return None
-    
-    def create_module(self, spec):
-        <span class="code-comment"># Return None to use default module creation</span>
-        return None
-    
-    def exec_module(self, module):
-        <span class="code-comment"># Custom module initialization</span>
-        code = f"def hello(): return 'Hello from {module.__name__}'"
-        exec(code, module.__dict__)
-
-<span class="code-comment"># Register the import hook</span>
-sys.meta_path.insert(0, CustomImporter())
-
-<span class="code-comment"># Now you can import modules with the 'custom_' prefix</span>
-import custom_module
-print(custom_module.hello())  <span class="code-comment"># Hello from custom_module</span></pre>
+    pass
+"""</pre>
                 </div>
             </div>
         </section>
 
-        <!-- Best Practices and Common Patterns -->
+        <!-- Creating and Organizing Modules -->
         <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices and Patterns</h2>
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Creating and Organizing Modules</h2>
             
             <div class="prose prose-invert max-w-none">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Module Organization Patterns</h3>
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Creating Your Own Modules</h3>
                 <p class="mb-4">
-                    Common patterns for organizing code into modules and packages.
+                    Any Python file can be a module that other Python scripts can import.
                 </p>
             </div>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
                     <pre>
-<span class="code-comment"># Facade pattern</span>
-<span class="code-comment"># Expose a simplified interface in __init__.py</span>
+<span class="code-comment"># File: mymath.py</span>
+"""
+Custom math operations module.
 
-<span class="code-comment"># my_package/__init__.py</span>
-from .module1 import function1, function2
-from .module2 import Class1
+This module provides additional math functions
+not found in the standard math module.
+"""
 
-<span class="code-comment"># User imports only what they need</span>
-from my_package import function1, Class1
+PI = 3.14159
 
+def square(x):
+    """Return the square of a number."""
+    return x * x
 
-<span class="code-comment"># Submodule organization</span>
-<span class="code-comment"># Group related functionality into focused submodules</span>
+def cube(x):
+    """Return the cube of a number."""
+    return x * x * x
 
-<span class="code-comment"># Project structure</span>
-my_app/
-├── __init__.py
-├── models/       <span class="code-comment"># Data models</span>
-├── views/        <span class="code-comment"># UI components</span>
-├── controllers/  <span class="code-comment"># Business logic</span>
-├── utils/        <span class="code-comment"># Utility functions</span>
-└── config/       <span class="code-comment"># Configuration</span></pre>
+if __name__ == "__main__":
+    <span class="code-comment"># This code runs only when the file is executed directly</span>
+    <span class="code-comment"># and not when imported as a module</span>
+    print("Testing mymath module")
+    print(f"Square of 4: {square(4)}")
+    print(f"Cube of 3: {cube(3)}")
+
+<span class="code-comment"># In another file:</span>
+# import mymath
+# print(mymath.square(5))  # 25</pre>
                 </div>
             </div>
 
             <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Circular Import Solutions</h3>
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Working with Packages</h3>
                 <p class="mb-4">
-                    Circular imports occur when module A imports module B, which also imports module A, directly or indirectly.
-                    Here are strategies to resolve them.
+                    Packages are directories containing Python modules and a special <code>__init__.py</code> file.
+                    They help organize related modules into a hierarchical structure.
                 </p>
             </div>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
                     <pre>
-<span class="code-comment"># Problem: Circular imports</span>
-<span class="code-comment"># module_a.py</span>
-import module_b
+<span class="code-comment"># Package structure example</span>
+"""
+mypackage/                  # Root package
+    __init__.py             # Makes mypackage a package
+    module1.py              # Regular module
+    module2.py              # Regular module
+    subpackage/             # Subpackage
+        __init__.py         # Makes subpackage a package
+        module3.py          # Module in subpackage
+        module4.py          # Module in subpackage
+"""
 
-def function_a():
-    return module_b.function_b()
+<span class="code-comment"># The __init__.py file can be empty or contain initialization code</span>
+<span class="code-comment"># File: mypackage/__init__.py</span>
+"""
+This is the mypackage package.
+"""
+print("Initializing mypackage")
 
-<span class="code-comment"># module_b.py</span>
-import module_a
+<span class="code-comment"># You can also use __init__.py to expose specific modules/objects</span>
+from mypackage.module1 import function1
+from mypackage.module2 import function2
+from mypackage.subpackage.module3 import function3
 
-def function_b():
-    return module_a.function_a()
+<span class="code-comment"># Using the package</span>
+# import mypackage
+# mypackage.function1()
 
-<span class="code-comment"># This will fail with an ImportError</span>
+# from mypackage import module1
+# module1.function1()
 
-
-<span class="code-comment"># Solution 1: Import inside function</span>
-<span class="code-comment"># module_a.py</span>
-def function_a():
-    import module_b
-    return module_b.function_b()
-
-<span class="code-comment"># module_b.py</span>
-def function_b():
-    import module_a
-    return module_a.function_a()
-
-
-<span class="code-comment"># Solution 2: Restructure code</span>
-<span class="code-comment"># common.py</span>
-def shared_functionality():
-    pass
-
-<span class="code-comment"># module_a.py</span>
-from common import shared_functionality
-
-<span class="code-comment"># module_b.py</span>
-from common import shared_functionality
-
-
-<span class="code-comment"># Solution 3: Use imports at the end of the file</span>
-<span class="code-comment"># module_a.py</span>
-def function_a():
-    return function_b()
-
-<span class="code-comment"># Import at end of the file</span>
-from module_b import function_b</pre>
+# from mypackage.subpackage import module3
+# module3.function3()</pre>
                 </div>
             </div>
 
             <div class="prose prose-invert max-w-none mt-6">
-                <h3 class="text-xl font-bold mb-3 text-blue-400">Error Handling for Imports</h3>
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Relative Imports</h3>
                 <p class="mb-4">
-                    Gracefully handle missing optional dependencies.
+                    Within a package, you can use relative imports to reference other modules in the same package.
                 </p>
             </div>
 
             <div class="code-box">
                 <div class="bg-gray-800 p-4">
                     <pre>
-<span class="code-comment"># Handle optional dependencies</span>
-try:
-    import numpy as np
-    HAS_NUMPY = True
-except ImportError:
-    HAS_NUMPY = False
+<span class="code-comment"># Relative imports</span>
+<span class="code-comment"># File: mypackage/subpackage/module4.py</span>
 
-def analyze_data(data):
-    if HAS_NUMPY:
-        return np.mean(data)
-    else:
-        <span class="code-comment"># Fallback implementation</span>
-        return sum(data) / len(data)
+<span class="code-comment"># Import from the same directory</span>
+from . import module3
+<span class="code-comment"># or</span>
+from .module3 import function3
 
-<span class="code-comment"># Check required version</span>
+<span class="code-comment"># Import from parent package</span>
+from .. import module1
+<span class="code-comment"># or</span>
+from ..module1 import function1
+
+<span class="code-comment"># Import from sibling package</span>
+from ..othersubpackage import module5
+
+<span class="code-comment"># Note: Relative imports can only be used inside packages</span>
+<span class="code-comment"># and cannot be used in scripts run directly with python</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Python's Import System -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Python's Import System</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Module Search Path</h3>
+                <p class="mb-4">
+                    When you import a module, Python searches for it in multiple locations in a specific order.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Python searches for modules in the following order:</span>
+<span class="code-comment"># 1. The directory containing the script being run</span>
+<span class="code-comment"># 2. Directories in the PYTHONPATH environment variable</span>
+<span class="code-comment"># 3. Standard library directories</span>
+<span class="code-comment"># 4. Directories of installed packages</span>
+
+<span class="code-comment"># The search path is stored in sys.path</span>
 import sys
+print(sys.path)
 
-if sys.version_info < (3, 6):
-    raise ImportError("This module requires Python 3.6 or higher")</pre>
+<span class="code-comment"># You can add a directory to the search path</span>
+import sys
+sys.path.append('/path/to/my/modules')
+import my_custom_module
+
+<span class="code-comment"># Safer alternative: use site-packages or a .pth file</span></pre>
                 </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Import Mechanics</h3>
+                <p class="mb-4">
+                    Understanding how Python's import system works behind the scenes.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># What happens during import:</span>
+<span class="code-comment"># 1. Find the module (search in sys.path)</span>
+<span class="code-comment"># 2. Create a new module object</span>
+<span class="code-comment"># 3. Execute the module code in the new module's namespace</span>
+<span class="code-comment"># 4. Store the module object in sys.modules cache</span>
+
+<span class="code-comment"># Subsequent imports use the cached module</span>
+import sys
+print('math' in sys.modules)  <span class="code-comment"># False (if not imported yet)</span>
+import math
+print('math' in sys.modules)  <span class="code-comment"># True</span>
+
+<span class="code-comment"># Reloading a module (rarely needed)</span>
+import importlib
+import math
+importlib.reload(math)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Standard Library Modules -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Standard Library Modules</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python's standard library includes a vast collection of modules covering many common programming tasks.
+                    Here are some essential modules you should know:
+                </p>
+            </div>
+
+            <table class="min-w-full bg-gray-800 rounded-md overflow-hidden">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="py-3 px-4 text-left">Module</th>
+                        <th class="py-3 px-4 text-left">Purpose</th>
+                        <th class="py-3 px-4 text-left">Common Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4"><code>os</code></td>
+                        <td class="py-3 px-4">Operating system interface</td>
+                        <td class="py-3 px-4">File operations, environment variables</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4"><code>sys</code></td>
+                        <td class="py-3 px-4">System-specific parameters</td>
+                        <td class="py-3 px-4">Command line args, Python internals</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4"><code>datetime</code></td>
+                        <td class="py-3 px-4">Date and time handling</td>
+                        <td class="py-3 px-4">Creating and manipulating dates/times</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4"><code>math</code></td>
+                        <td class="py-3 px-4">Mathematical functions</td>
+                        <td class="py-3 px-4">Trigonometry, rounding, etc.</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4"><code>random</code></td>
+                        <td class="py-3 px-4">Random number generation</td>
+                        <td class="py-3 px-4">Generating random values, shuffling</td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-3 px-4"><code>json</code></td>
+                        <td class="py-3 px-4">JSON encoding/decoding</td>
+                        <td class="py-3 px-4">Working with JSON data</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-4"><code>re</code></td>
+                        <td class="py-3 px-4">Regular expressions</td>
+                        <td class="py-3 px-4">Pattern matching in strings</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-box mt-6">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Examples of common standard library modules</span>
+
+<span class="code-comment"># os: Operating system interfaces</span>
+import os
+current_dir = os.getcwd()
+files = os.listdir('.')
+os.mkdir('new_directory')
+
+<span class="code-comment"># datetime: Date and time handling</span>
+from datetime import datetime, timedelta
+now = datetime.now()
+tomorrow = now + timedelta(days=1)
+
+<span class="code-comment"># json: JSON encoding and decoding</span>
+import json
+data = {'name': 'John', 'age': 30}
+json_string = json.dumps(data)
+parsed_data = json.loads(json_string)</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Import Style Guidelines</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Put all imports at the top of the file</li>
+                    <li>Group imports in this order: standard library, third-party, local modules</li>
+                    <li>Use separate lines for each import</li>
+                    <li>Avoid wildcard imports (<code>from module import *</code>)</li>
+                    <li>Be explicit about what you're importing</li>
+                    <li>Use absolute imports when possible</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Good import style</span>
+# Standard library imports
+import os
+import sys
+from datetime import datetime
+
+# Third-party imports
+import numpy as np
+import pandas as pd
+
+# Local/application imports
+from myapp.models import User
+from myapp.utils import helper_function</pre>
+                </div>
+            </div>
+
+            <div class="prose prose-invert max-w-none mt-6">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Module Design Tips</h3>
+                <ul class="list-disc list-inside mb-4 ml-4 space-y-2">
+                    <li>Keep modules focused on a single purpose or functionality</li>
+                    <li>Use docstrings to document modules, classes, and functions</li>
+                    <li>Use `__all__` to explicitly define the public API</li>
+                    <li>Prefix internal-use functions and variables with an underscore</li>
+                    <li>Structure large applications as packages with clear hierarchies</li>
+                    <li>Test modules independently for better modularity</li>
+                </ul>
             </div>
         </section>
 
@@ -825,11 +516,11 @@ if sys.version_info < (3, 6):
             <div class="prose prose-invert max-w-none">
                 <h3 class="text-xl font-bold mb-3 text-blue-400">Try These:</h3>
                 <ol class="list-decimal pl-6 space-y-2">
-                    <li>Create a Python package with modules for different mathematical operations (arithmetic, geometry, statistics).</li>
-                    <li>Write a script that displays all modules in the Python standard library ordered by their file size.</li>
-                    <li>Create a module with a class that uses lazy loading for its dependencies.</li>
-                    <li>Implement a custom import hook that logs all module imports to a file.</li>
-                    <li>Refactor a script with repeated functionality into modules with proper imports.</li>
+                    <li>Create a module with utility functions for string manipulation and import it in another script.</li>
+                    <li>Create a package with modules for different algorithms (sorting, searching, etc.).</li>
+                    <li>Write a script that dynamically imports a module based on a command-line argument.</li>
+                    <li>Create a module that uses relative imports within a package hierarchy.</li>
+                    <li>Implement a lazy loading mechanism for a module with expensive initialization.</li>
                 </ol>
             </div>
         </section>
