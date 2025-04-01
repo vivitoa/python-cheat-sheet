@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Data Science - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Data Science</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Python has become the leading language for data science due to its simplicity, versatility, and the rich 
+                    ecosystem of libraries specifically designed for data analysis, visualization, and machine learning. 
+                    This guide covers the core libraries and techniques used in the Python data science workflow.
+                </p>
+            </div>
+        </section>
+
+        <!-- NumPy -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">NumPy: Numerical Computing</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    NumPy is the fundamental package for scientific computing in Python. It provides support for 
+                    large, multi-dimensional arrays and matrices, along with a collection of mathematical functions 
+                    to operate on these arrays efficiently.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install NumPy</span>
+<span class="code-comment"># pip install numpy</span>
+
+import numpy as np
+
+<span class="code-comment"># Creating arrays</span>
+arr1 = np.array([1, 2, 3, 4, 5])                     <span class="code-comment"># 1D array</span>
+arr2 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])   <span class="code-comment"># 2D array</span>
+
+<span class="code-comment"># Array creation functions</span>
+zeros = np.zeros((3, 4))           <span class="code-comment"># Array of zeros</span>
+ones = np.ones((2, 3, 4))          <span class="code-comment"># Array of ones</span>
+empty = np.empty((2, 3))           <span class="code-comment"># Uninitialized array</span>
+arange = np.arange(10, 30, 5)      <span class="code-comment"># [10, 15, 20, 25]</span>
+linspace = np.linspace(0, 1, 5)    <span class="code-comment"># 5 evenly spaced values between 0 and 1</span>
+random = np.random.random((2, 2))  <span class="code-comment"># Random values between 0 and 1</span>
+identity = np.eye(3)               <span class="code-comment"># 3x3 identity matrix</span>
+
+<span class="code-comment"># Array attributes</span>
+print(f"Shape: {arr2.shape}")      <span class="code-comment"># (3, 3)</span>
+print(f"Dimensions: {arr2.ndim}")  <span class="code-comment"># 2</span>
+print(f"Size: {arr2.size}")        <span class="code-comment"># 9</span>
+print(f"Data type: {arr2.dtype}")  <span class="code-comment"># int64</span>
+
+<span class="code-comment"># Indexing and slicing</span>
+print(arr2[0, 0])                  <span class="code-comment"># 1 (first element)</span>
+print(arr2[0, :])                  <span class="code-comment"># [1, 2, 3] (first row)</span>
+print(arr2[:, 0])                  <span class="code-comment"># [1, 4, 7] (first column)</span>
+print(arr2[0:2, 1:3])              <span class="code-comment"># [[2, 3], [5, 6]] (sub-matrix)</span>
+
+<span class="code-comment"># Reshaping arrays</span>
+arr3 = np.arange(12)
+arr3_reshaped = arr3.reshape(3, 4)
+arr3_flattened = arr3_reshaped.flatten()
+
+<span class="code-comment"># Basic operations</span>
+a = np.array([10, 20, 30, 40])
+b = np.array([1, 2, 3, 4])
+
+<span class="code-comment"># Element-wise operations</span>
+print(a + b)      <span class="code-comment"># [11, 22, 33, 44]</span>
+print(a - b)      <span class="code-comment"># [9, 18, 27, 36]</span>
+print(a * b)      <span class="code-comment"># [10, 40, 90, 160]</span>
+print(a / b)      <span class="code-comment"># [10., 10., 10., 10.]</span>
+print(a ** 2)     <span class="code-comment"># [100, 400, 900, 1600]</span>
+
+<span class="code-comment"># Matrix operations</span>
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+print(A.dot(B))                <span class="code-comment"># Matrix multiplication</span>
+print(np.dot(A, B))            <span class="code-comment"># Alternative syntax</span>
+print(A @ B)                   <span class="code-comment"># Python 3.5+ syntax</span>
+
+<span class="code-comment"># Statistical functions</span>
+data = np.array([1, 2, 3, 4, 5])
+print(f"Sum: {np.sum(data)}")
+print(f"Mean: {np.mean(data)}")
+print(f"Median: {np.median(data)}")
+print(f"Standard deviation: {np.std(data)}")
+print(f"Minimum: {np.min(data)}")
+print(f"Maximum: {np.max(data)}")
+
+<span class="code-comment"># Broadcasting</span>
+<span class="code-comment"># NumPy can automatically handle operations between arrays of different shapes</span>
+grid = np.zeros((3, 3))
+row = np.array([1, 2, 3])
+grid = grid + row  <span class="code-comment"># Row is broadcast to all rows of grid</span>
+
+<span class="code-comment"># Conditional operations</span>
+values = np.array([1, 2, 3, 4, 5, 6])
+even_mask = (values % 2 == 0)           <span class="code-comment"># [False, True, False, True, False, True]</span>
+even_values = values[even_mask]         <span class="code-comment"># [2, 4, 6]</span>
+values_clipped = np.clip(values, 2, 5)  <span class="code-comment"># [2, 2, 3, 4, 5, 5]</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pandas -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Pandas: Data Analysis</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Pandas is a powerful library for data manipulation and analysis. It provides data structures like 
+                    DataFrames (tabular data) and Series (one-dimensional arrays), along with functions to efficiently 
+                    process and analyze data.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install Pandas</span>
+<span class="code-comment"># pip install pandas</span>
+
+import pandas as pd
+import numpy as np
+
+<span class="code-comment"># Creating Series (1D labeled arrays)</span>
+s = pd.Series([1, 3, 5, np.nan, 6, 8])
+print(s)
+
+<span class="code-comment"># Creating DataFrames (2D labeled data structure)</span>
+<span class="code-comment"># From a dictionary</span>
+data = {
+    'Name': ['John', 'Anna', 'Peter', 'Linda'],
+    'Age': [28, 34, 29, 42],
+    'City': ['New York', 'Paris', 'Berlin', 'London']
+}
+df1 = pd.DataFrame(data)
+print(df1)
+
+<span class="code-comment"># From a NumPy array</span>
+dates = pd.date_range('20230101', periods=6)
+df2 = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list('ABCD'))
+print(df2)
+
+<span class="code-comment"># Reading data</span>
+<span class="code-comment"># df_csv = pd.read_csv('file.csv')</span>
+<span class="code-comment"># df_excel = pd.read_excel('file.xlsx')</span>
+<span class="code-comment"># df_sql = pd.read_sql('SELECT * FROM table', connection)</span>
+<span class="code-comment"># df_json = pd.read_json('file.json')</span>
+
+<span class="code-comment"># Viewing data</span>
+print(df1.head())      <span class="code-comment"># First 5 rows</span>
+print(df1.tail(2))     <span class="code-comment"># Last 2 rows</span>
+print(df1.describe())  <span class="code-comment"># Summary statistics</span>
+print(df1.info())      <span class="code-comment"># DataFrame info</span>
+
+<span class="code-comment"># Accessing data</span>
+<span class="code-comment"># By column</span>
+print(df1['Name'])              <span class="code-comment"># Single column</span>
+print(df1[['Name', 'Age']])     <span class="code-comment"># Multiple columns</span>
+
+<span class="code-comment"># By row (iloc for integer position, loc for label)</span>
+print(df1.iloc[0])              <span class="code-comment"># First row</span>
+print(df1.iloc[0:2])            <span class="code-comment"># First two rows</span>
+print(df1.loc[df1['Age'] > 30]) <span class="code-comment"># Conditional selection</span>
+
+<span class="code-comment"># Data manipulation</span>
+<span class="code-comment"># Adding columns</span>
+df1['Country'] = ['USA', 'France', 'Germany', 'UK']
+df1['Birth Year'] = 2023 - df1['Age']
+
+<span class="code-comment"># Modifying data</span>
+df1.loc[0, 'Age'] = 29
+df1['Age'] = df1['Age'] + 1  <span class="code-comment"># Increment all ages</span>
+
+<span class="code-comment"># Filtering data</span>
+young_people = df1[df1['Age'] < 35]
+europeans = df1[df1['Country'].isin(['France', 'Germany', 'UK'])]
+
+<span class="code-comment"># Handling missing data</span>
+df3 = pd.DataFrame({
+    'A': [1, 2, np.nan, 4],
+    'B': [5, np.nan, np.nan, 8],
+    'C': [9, 10, 11, 12]
+})
+
+print(df3.isna())           <span class="code-comment"># Identify missing values</span>
+print(df3.dropna())         <span class="code-comment"># Drop rows with any missing values</span>
+print(df3.fillna(value=0))  <span class="code-comment"># Fill missing values with 0</span>
+
+<span class="code-comment"># Grouping and aggregation</span>
+df4 = pd.DataFrame({
+    'Category': ['A', 'A', 'B', 'B', 'C', 'C'],
+    'Value1': [10, 15, 20, 25, 30, 35],
+    'Value2': [100, 150, 200, 250, 300, 350]
+})
+
+<span class="code-comment"># Group by Category and calculate statistics</span>
+grouped = df4.groupby('Category')
+print(grouped.mean())                <span class="code-comment"># Mean of each group</span>
+print(grouped.agg(['min', 'max']))   <span class="code-comment"># Min and max of each group</span>
+
+<span class="code-comment"># Custom aggregation</span>
+print(grouped.agg({
+    'Value1': ['min', 'max', 'mean'],
+    'Value2': ['sum', 'mean']
+}))
+
+<span class="code-comment"># Merging and joining</span>
+left = pd.DataFrame({
+    'key': ['A', 'B', 'C', 'D'],
+    'value': [1, 2, 3, 4]
+})
+right = pd.DataFrame({
+    'key': ['B', 'D', 'E', 'F'],
+    'value': [5, 6, 7, 8]
+})
+
+<span class="code-comment"># Different types of joins</span>
+inner_join = pd.merge(left, right, on='key', how='inner')
+left_join = pd.merge(left, right, on='key', how='left')
+outer_join = pd.merge(left, right, on='key', how='outer')
+
+<span class="code-comment"># Reshaping data</span>
+df5 = pd.DataFrame({
+    'Date': ['2023-01-01', '2023-01-01', '2023-01-02', '2023-01-02'],
+    'Variable': ['X', 'Y', 'X', 'Y'],
+    'Value': [1, 3, 2, 4]
+})
+
+<span class="code-comment"># Wide format (pivot)</span>
+wide = df5.pivot(index='Date', columns='Variable', values='Value')
+print(wide)
+
+<span class="code-comment"># Long format (melt)</span>
+long = wide.reset_index().melt(id_vars=['Date'], value_vars=['X', 'Y'])
+print(long)
+
+<span class="code-comment"># Time series</span>
+ts = pd.Series(np.random.randn(1000), 
+              index=pd.date_range('1/1/2023', periods=1000))
+print(ts.resample('M').mean())  <span class="code-comment"># Monthly resampling</span>
+print(ts.shift(2))              <span class="code-comment"># Shift data by 2 periods</span>
+print(ts.rolling(window=7).mean())  <span class="code-comment"># 7-day rolling average</span>
+
+<span class="code-comment"># Visualization (requires matplotlib)</span>
+<span class="code-comment"># df1.plot(kind='bar')</span>
+<span class="code-comment"># df2.plot(kind='line')</span>
+<span class="code-comment"># df1['Age'].plot(kind='hist')</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Visualization -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Data Visualization</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Data visualization is crucial for understanding patterns, trends, and relationships in data. 
+                    Python offers several powerful libraries for creating visualizations, with Matplotlib and 
+                    Seaborn being the most popular ones.
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold mb-3 text-yellow-300">Matplotlib</h3>
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install matplotlib</span>
+<span class="code-comment"># pip install matplotlib</span>
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+<span class="code-comment"># Basic line plot</span>
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+plt.figure(figsize=(10, 6))
+plt.plot(x, y, label='sin(x)')
+plt.title('Sine Function')
+plt.xlabel('x')
+plt.ylabel('sin(x)')
+plt.grid(True)
+plt.legend()
+<span class="code-comment"># plt.savefig('sine_plot.png')</span>
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Multiple plots on the same figure</span>
+plt.figure(figsize=(10, 6))
+plt.plot(x, np.sin(x), label='sin(x)')
+plt.plot(x, np.cos(x), label='cos(x)')
+plt.title('Sine and Cosine Functions')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid(True)
+plt.legend()
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Subplots</span>
+fig, axes = plt.subplots(2, 2, figsize=(12, 8))
+
+axes[0, 0].plot(x, np.sin(x))
+axes[0, 0].set_title('Sine')
+
+axes[0, 1].plot(x, np.cos(x))
+axes[0, 1].set_title('Cosine')
+
+axes[1, 0].plot(x, np.tan(x))
+axes[1, 0].set_title('Tangent')
+axes[1, 0].set_ylim(-5, 5)  <span class="code-comment"># Limit y-axis for better visibility</span>
+
+axes[1, 1].plot(x, x**2)
+axes[1, 1].set_title('Quadratic')
+
+<span class="code-comment"># Adjust layout</span>
+plt.tight_layout()
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Different plot types</span>
+<span class="code-comment"># Scatter plot</span>
+plt.figure(figsize=(8, 6))
+x = np.random.rand(50)
+y = np.random.rand(50)
+colors = np.random.rand(50)
+sizes = 1000 * np.random.rand(50)
+
+plt.scatter(x, y, c=colors, s=sizes, alpha=0.7)
+plt.title('Scatter Plot')
+plt.colorbar()
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Bar plot</span>
+categories = ['A', 'B', 'C', 'D', 'E']
+values = [3, 7, 2, 5, 8]
+
+plt.figure(figsize=(8, 6))
+plt.bar(categories, values, color='skyblue')
+plt.title('Bar Plot')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Histogram</span>
+data = np.random.randn(1000)  <span class="code-comment"># 1000 random samples from normal distribution</span>
+
+plt.figure(figsize=(8, 6))
+plt.hist(data, bins=30, color='skyblue', edgecolor='black', alpha=0.7)
+plt.title('Histogram')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Pie chart</span>
+labels = ['Python', 'Java', 'JavaScript', 'C++', 'Other']
+sizes = [45, 15, 20, 10, 10]
+explode = (0.1, 0, 0, 0, 0)  <span class="code-comment"># Explode the 1st slice</span>
+
+plt.figure(figsize=(8, 8))
+plt.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+plt.axis('equal')  <span class="code-comment"># Equal aspect ratio ensures that pie is drawn as a circle</span>
+plt.title('Programming Languages')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Box plot</span>
+data = [np.random.normal(0, std, 100) for std in range(1, 4)]
+
+plt.figure(figsize=(8, 6))
+plt.boxplot(data, vert=True, patch_artist=True)
+plt.title('Box Plot')
+plt.xlabel('Group')
+plt.ylabel('Value')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># 3D plot</span>
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+<span class="code-comment"># Create the mesh in polar coordinates and compute corresponding Z</span>
+r = np.linspace(0, 1.25, 50)
+p = np.linspace(0, 2*np.pi, 50)
+R, P = np.meshgrid(r, p)
+Z = R**2 * np.sin(P)
+
+<span class="code-comment"># Express the mesh in the cartesian system</span>
+X, Y = R*np.cos(P), R*np.sin(P)
+
+<span class="code-comment"># Plot the surface</span>
+surf = ax.plot_surface(X, Y, Z, cmap=plt.cm.YlGnBu_r)
+
+<span class="code-comment"># Adjust the viewing angle</span>
+ax.view_init(40, 45)
+plt.colorbar(surf)
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Customizing plots</span>
+plt.figure(figsize=(10, 6))
+plt.plot(x, np.sin(x), 'r-', linewidth=2, label='sin(x)')
+plt.plot(x, np.cos(x), 'b--', linewidth=2, label='cos(x)')
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.title('Customized Plot', fontsize=16)
+plt.xlabel('x', fontsize=14)
+plt.ylabel('y', fontsize=14)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.legend(fontsize=12)
+
+<span class="code-comment"># Add text annotation</span>
+plt.annotate('Local maximum', xy=(1.5, 1), xytext=(2, 1.4),
+             arrowprops=dict(facecolor='black', shrink=0.05))
+
+<span class="code-comment"># Add a vertical line</span>
+plt.axvline(x=np.pi/2, color='green', linestyle='--', alpha=0.7)
+
+<span class="code-comment"># Save with high resolution</span>
+<span class="code-comment"># plt.savefig('custom_plot.png', dpi=300, bbox_inches='tight')</span>
+<span class="code-comment"># plt.show()</span></pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mb-3 mt-8 text-yellow-300">Seaborn</h3>
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install seaborn</span>
+<span class="code-comment"># pip install seaborn</span>
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+<span class="code-comment"># Set the styling</span>
+sns.set(style="whitegrid")
+
+<span class="code-comment"># Sample data</span>
+tips = sns.load_dataset("tips")
+flights = sns.load_dataset("flights")
+iris = sns.load_dataset("iris")
+
+<span class="code-comment"># Basic plotting with Seaborn</span>
+<span class="code-comment"># Distribution plots</span>
+plt.figure(figsize=(10, 6))
+sns.histplot(tips['total_bill'], kde=True)
+plt.title('Distribution of Total Bill')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Scatter plot with categorical data</span>
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x="total_bill", y="tip", hue="time", size="size", data=tips)
+plt.title('Tips vs Total Bill by Time of Day')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Categorical plots</span>
+plt.figure(figsize=(10, 6))
+sns.boxplot(x="day", y="total_bill", hue="sex", data=tips)
+plt.title('Total Bill by Day and Gender')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Violin plot - combines box plot with kernel density estimate</span>
+plt.figure(figsize=(10, 6))
+sns.violinplot(x="day", y="total_bill", hue="sex", split=True, data=tips)
+plt.title('Total Bill by Day and Gender (Violin Plot)')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Count plot - shows the counts of observations</span>
+plt.figure(figsize=(10, 6))
+sns.countplot(x="day", hue="sex", data=tips)
+plt.title('Count of Orders by Day and Gender')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Pair plot - grid of plots for multiple variables</span>
+sns.pairplot(iris, hue="species", height=2.5)
+plt.suptitle('Pair Plot of Iris Dataset', y=1.02)
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Heat map - useful for correlation matrices</span>
+plt.figure(figsize=(10, 8))
+correlation = iris.drop('species', axis=1).corr()
+sns.heatmap(correlation, annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix of Iris Features')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Regression plot - linear regression with confidence interval</span>
+plt.figure(figsize=(10, 6))
+sns.regplot(x="sepal_length", y="petal_length", data=iris)
+plt.title('Sepal Length vs Petal Length (with Regression Line)')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Facet grid - multiple plots organized by different variables</span>
+g = sns.FacetGrid(tips, col="sex", row="smoker", height=4)
+g.map(sns.scatterplot, "total_bill", "tip")
+g.add_legend()
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Joint plot - combines bivariate and univariate plots</span>
+sns.jointplot(x="sepal_length", y="sepal_width", data=iris, kind="hex")
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Cluster map - hierarchical clustering with heat map</span>
+plt.figure(figsize=(12, 10))
+iris_no_species = iris.drop('species', axis=1)
+sns.clustermap(iris_no_species, standard_scale=1, cmap='coolwarm')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Time series visualization</span>
+<span class="code-comment"># Reshape the flights data for plotting</span>
+flights_pivot = flights.pivot(index="month", columns="year", values="passengers")
+
+plt.figure(figsize=(12, 8))
+sns.heatmap(flights_pivot, cmap="YlGnBu", annot=True, fmt="d")
+plt.title('Number of Passengers per Month (1949-1960)')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Line plot for time series</span>
+plt.figure(figsize=(12, 6))
+sns.lineplot(x="year", y="passengers", hue="month", data=flights)
+plt.title('Passenger Numbers by Year and Month')
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Setting different themes</span>
+themes = ["darkgrid", "whitegrid", "dark", "white", "ticks"]
+fig, axes = plt.subplots(1, len(themes), figsize=(20, 5))
+
+for i, theme in enumerate(themes):
+    sns.set_theme(style=theme)
+    ax = axes[i]
+    sns.lineplot(x="sepal_length", y="sepal_width", hue="species", data=iris, ax=ax)
+    ax.set_title(f"Theme: {theme}")
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+
+plt.tight_layout()
+<span class="code-comment"># plt.show()</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Machine Learning -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Machine Learning with Scikit-learn</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Scikit-learn is a powerful machine learning library in Python that provides simple and efficient 
+                    tools for data analysis and modeling. It includes various classification, regression, and clustering 
+                    algorithms along with tools for model selection, preprocessing, and evaluation.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install scikit-learn</span>
+<span class="code-comment"># pip install scikit-learn</span>
+
+import numpy as np
+import pandas as pd
+from sklearn import datasets
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.metrics import mean_squared_error, r2_score
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+<span class="code-comment"># Load a dataset</span>
+iris = datasets.load_iris()
+X = iris.data
+y = iris.target
+
+<span class="code-comment"># Split the data into training and testing sets</span>
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+<span class="code-comment"># Data Preprocessing</span>
+<span class="code-comment"># Standardize features (mean=0, variance=1)</span>
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+<span class="code-comment"># Classification</span>
+<span class="code-comment"># Logistic Regression</span>
+from sklearn.linear_model import LogisticRegression
+
+<span class="code-comment"># Create and train the model</span>
+logreg = LogisticRegression(max_iter=200, random_state=42)
+logreg.fit(X_train_scaled, y_train)
+
+<span class="code-comment"># Make predictions</span>
+y_pred = logreg.predict(X_test_scaled)
+
+<span class="code-comment"># Evaluate the model</span>
+print(f"Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+print("\nConfusion Matrix:")
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+<span class="code-comment"># Other common classification algorithms</span>
+<span class="code-comment"># K-Nearest Neighbors</span>
+from sklearn.neighbors import KNeighborsClassifier
+
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train_scaled, y_train)
+knn_pred = knn.predict(X_test_scaled)
+print(f"KNN Accuracy: {accuracy_score(y_test, knn_pred):.4f}")
+
+<span class="code-comment"># Support Vector Machine</span>
+from sklearn.svm import SVC
+
+svm = SVC(kernel='rbf', random_state=42)
+svm.fit(X_train_scaled, y_train)
+svm_pred = svm.predict(X_test_scaled)
+print(f"SVM Accuracy: {accuracy_score(y_test, svm_pred):.4f}")
+
+<span class="code-comment"># Decision Tree</span>
+from sklearn.tree import DecisionTreeClassifier
+
+dt = DecisionTreeClassifier(random_state=42)
+dt.fit(X_train_scaled, y_train)
+dt_pred = dt.predict(X_test_scaled)
+print(f"Decision Tree Accuracy: {accuracy_score(y_test, dt_pred):.4f}")
+
+<span class="code-comment"># Random Forest</span>
+from sklearn.ensemble import RandomForestClassifier
+
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train_scaled, y_train)
+rf_pred = rf.predict(X_test_scaled)
+print(f"Random Forest Accuracy: {accuracy_score(y_test, rf_pred):.4f}")
+
+<span class="code-comment"># Regression</span>
+<span class="code-comment"># Load Boston Housing dataset</span>
+boston = datasets.load_boston()
+X_boston = boston.data
+y_boston = boston.target
+
+X_train_boston, X_test_boston, y_train_boston, y_test_boston = train_test_split(
+    X_boston, y_boston, test_size=0.2, random_state=42)
+
+<span class="code-comment"># Standardize features</span>
+scaler_boston = StandardScaler()
+X_train_boston_scaled = scaler_boston.fit_transform(X_train_boston)
+X_test_boston_scaled = scaler_boston.transform(X_test_boston)
+
+<span class="code-comment"># Linear Regression</span>
+from sklearn.linear_model import LinearRegression
+
+lr = LinearRegression()
+lr.fit(X_train_boston_scaled, y_train_boston)
+lr_pred = lr.predict(X_test_boston_scaled)
+
+<span class="code-comment"># Evaluate the model</span>
+mse = mean_squared_error(y_test_boston, lr_pred)
+r2 = r2_score(y_test_boston, lr_pred)
+print(f"Linear Regression MSE: {mse:.4f}")
+print(f"Linear Regression R²: {r2:.4f}")
+
+<span class="code-comment"># Other regression algorithms</span>
+<span class="code-comment"># Ridge Regression (L2 regularization)</span>
+from sklearn.linear_model import Ridge
+
+ridge = Ridge(alpha=1.0)
+ridge.fit(X_train_boston_scaled, y_train_boston)
+ridge_pred = ridge.predict(X_test_boston_scaled)
+print(f"Ridge Regression R²: {r2_score(y_test_boston, ridge_pred):.4f}")
+
+<span class="code-comment"># Lasso Regression (L1 regularization)</span>
+from sklearn.linear_model import Lasso
+
+lasso = Lasso(alpha=0.1)
+lasso.fit(X_train_boston_scaled, y_train_boston)
+lasso_pred = lasso.predict(X_test_boston_scaled)
+print(f"Lasso Regression R²: {r2_score(y_test_boston, lasso_pred):.4f}")
+
+<span class="code-comment"># Clustering</span>
+<span class="code-comment"># K-Means</span>
+from sklearn.cluster import KMeans
+
+<span class="code-comment"># Use only sepal length and width for visualization</span>
+X_cluster = X[:, :2]
+
+kmeans = KMeans(n_clusters=3, random_state=42)
+clusters = kmeans.fit_predict(X_cluster)
+
+<span class="code-comment"># Visualize the clusters</span>
+plt.figure(figsize=(10, 6))
+plt.scatter(X_cluster[:, 0], X_cluster[:, 1], c=clusters, cmap='viridis')
+plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], 
+            s=200, c='red', marker='X', label='Centroids')
+plt.xlabel(iris.feature_names[0])
+plt.ylabel(iris.feature_names[1])
+plt.title('K-Means Clustering of Iris Dataset')
+plt.legend()
+<span class="code-comment"># plt.show()</span>
+
+<span class="code-comment"># Hierarchical Clustering</span>
+from sklearn.cluster import AgglomerativeClustering
+
+hc = AgglomerativeClustering(n_clusters=3, affinity='euclidean', linkage='ward')
+hc_clusters = hc.fit_predict(X_cluster)
+
+<span class="code-comment"># Feature Importance</span>
+<span class="code-comment"># Using Random Forest</span>
+feature_importance = pd.DataFrame({
+    'Feature': iris.feature_names,
+    'Importance': rf.feature_importances_
+}).sort_values('Importance', ascending=False)
+
+print("\nFeature Importance:")
+print(feature_importance)
+
+<span class="code-comment"># Cross-validation</span>
+<span class="code-comment"># K-fold cross-validation</span>
+cv_scores = cross_val_score(logreg, X, y, cv=5)
+print(f"\nLogistic Regression CV Scores: {cv_scores}")
+print(f"Average CV Score: {np.mean(cv_scores):.4f}")
+
+<span class="code-comment"># Hyperparameter Tuning</span>
+<span class="code-comment"># Grid Search</span>
+param_grid = {
+    'C': [0.01, 0.1, 1, 10, 100],
+    'solver': ['liblinear', 'lbfgs']
+}
+
+grid_search = GridSearchCV(LogisticRegression(max_iter=200, random_state=42), 
+                          param_grid, cv=5, scoring='accuracy')
+grid_search.fit(X, y)
+
+print("\nBest Hyperparameters:", grid_search.best_params_)
+print(f"Best Score: {grid_search.best_score_:.4f}")
+
+<span class="code-comment"># Pipelines</span>
+<span class="code-comment"># Creating a preprocessing and modeling pipeline</span>
+pipe = Pipeline([
+    ('scaler', StandardScaler()),
+    ('classifier', LogisticRegression(random_state=42))
+])
+
+pipe.fit(X_train, y_train)
+pipe_pred = pipe.predict(X_test)
+print(f"\nPipeline Accuracy: {accuracy_score(y_test, pipe_pred):.4f}")
+
+<span class="code-comment"># Working with mixed data types (categorical and numerical)</span>
+<span class="code-comment"># For demonstration, creating a mixed dataset</span>
+<span class="code-comment"># categorical_features = ['cat1', 'cat2']</span>
+<span class="code-comment"># numerical_features = ['num1', 'num2', 'num3']</span>
+
+<span class="code-comment"># preprocessor = ColumnTransformer(
+#     transformers=[
+#         ('num', Pipeline([
+#             ('imputer', SimpleImputer(strategy='median')),
+#             ('scaler', StandardScaler())
+#         ]), numerical_features),
+#         ('cat', Pipeline([
+#             ('imputer', SimpleImputer(strategy='most_frequent')),
+#             ('onehot', OneHotEncoder(handle_unknown='ignore'))
+#         ]), categorical_features)
+#     ]
+# )</span>
+
+<span class="code-comment"># Processing with a pipeline</span>
+<span class="code-comment"># full_pipeline = Pipeline([
+#     ('preprocessor', preprocessor),
+#     ('classifier', RandomForestClassifier(random_state=42))
+# ])</span>
+
+<span class="code-comment"># Model Persistence</span>
+import joblib
+
+<span class="code-comment"># Save the model</span>
+joblib.dump(logreg, 'logreg_model.pkl')
+
+<span class="code-comment"># Load the model</span>
+loaded_model = joblib.load('logreg_model.pkl')
+loaded_pred = loaded_model.predict(X_test_scaled)
+print(f"\nLoaded Model Accuracy: {accuracy_score(y_test, loaded_pred):.4f}")</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices in Data Science -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices in Data Science</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Following best practices in data science projects ensures reproducibility, maintainability, and efficiency.
+                </p>
+                
+                <h3 class="text-xl font-bold mb-3 text-yellow-300">Project Structure</h3>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Organize your code in modular scripts or packages</li>
+                    <li>Separate data acquisition, processing, modeling, and evaluation</li>
+                    <li>Use version control (Git) for your code</li>
+                    <li>Create clear documentation</li>
+                    <li>Use virtual environments to manage dependencies</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mb-3 text-yellow-300">Data Preprocessing</h3>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Always explore your data before modeling</li>
+                    <li>Handle missing values appropriately</li>
+                    <li>Check for and handle outliers</li>
+                    <li>Scale features when needed</li>
+                    <li>Split data into training, validation, and test sets</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mb-3 text-yellow-300">Modeling</h3>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Start with simple models before trying complex ones</li>
+                    <li>Use cross-validation to evaluate model performance</li>
+                    <li>Tune hyperparameters systematically</li>
+                    <li>Evaluate models using appropriate metrics</li>
+                    <li>Watch out for overfitting and underfitting</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mb-3 text-yellow-300">Reproducibility</h3>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Set random seeds for reproducibility</li>
+                    <li>Use configuration files for parameters</li>
+                    <li>Document data sources and transformations</li>
+                    <li>Consider containerization (e.g., Docker) for environment consistency</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Practice with these exercises to improve your data science skills:
+                </p>
+                
+                <ol class="list-decimal pl-6 mb-4">
+                    <li class="mb-2">
+                        <strong>Data Exploration:</strong> Download a dataset from Kaggle or UCI Machine Learning Repository 
+                        and perform exploratory data analysis using Pandas and visualization libraries.
+                    </li>
+                    <li class="mb-2">
+                        <strong>Feature Engineering:</strong> Create new features from an existing dataset that improve 
+                        the performance of a machine learning model.
+                    </li>
+                    <li class="mb-2">
+                        <strong>Model Comparison:</strong> Implement and compare the performance of at least three 
+                        different machine learning algorithms on the same dataset.
+                    </li>
+                    <li class="mb-2">
+                        <strong>Time Series Analysis:</strong> Find a time series dataset and build a model to forecast 
+                        future values.
+                    </li>
+                    <li class="mb-2">
+                        <strong>Pipeline Construction:</strong> Build a complete data science pipeline from data loading 
+                        to preprocessing, modeling, and evaluation.
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
