@@ -329,6 +329,7 @@
             <a href="#gui-programming" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">GUI Programming</a>
             <a href="#machine-learning" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Machine Learning</a>
             <a href="#cybersecurity" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Cybersecurity</a>
+            <a href="#game-development" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Game Development</a>
         </nav>
     </div>
 </aside>
@@ -3305,6 +3306,191 @@ response = requests.get("https://api.example.com", verify=True)
 context = ssl.create_default_context()
 context.check_hostname = True
 context.verify_mode = ssl.CERT_REQUIRED</pre>
+        </div>
+    </div>
+</section>
+<!-- Game Development -->
+<section id="game-development" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Game Development with Python</h2>
+    
+    <div class="mb-4">
+        <a href="pages/game-development.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Game Development →
+        </a>
+    </div>
+    
+    <div class="space-y-6">
+        <!-- Pygame Basics -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Pygame Basics</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import pygame
+
+<span class="code-comment"># Initialize pygame</span>
+pygame.init()
+
+<span class="code-comment"># Set up the display</span>
+screen_width, screen_height = 800, 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("My Pygame")
+
+<span class="code-comment"># Game variables</span>
+running = True
+clock = pygame.time.Clock()
+FPS = 60
+
+<span class="code-comment"># Game loop</span>
+while running:
+    <span class="code-comment"># Event handling</span>
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    <span class="code-comment"># Clear the screen</span>
+    screen.fill((0, 0, 0))  <span class="code-comment"># Black background</span>
+    
+    <span class="code-comment"># Draw game elements</span>
+    pygame.draw.circle(screen, (255, 0, 0), (400, 300), 50)  <span class="code-comment"># Red circle</span>
+    
+    <span class="code-comment"># Update the display</span>
+    pygame.display.flip()
+    
+    <span class="code-comment"># Control the game speed</span>
+    clock.tick(FPS)
+
+<span class="code-comment"># Quit Pygame</span>
+pygame.quit()</pre>
+        </div>
+        <!-- Game Sprites -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Sprites and Objects</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import pygame
+
+class Player(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        
+        <span class="code-comment"># Create a surface (image)</span>
+        self.image = pygame.Surface((50, 50))
+        self.image.fill((0, 255, 0))  <span class="code-comment"># Green square</span>
+        
+        <span class="code-comment"># Create a rectangle (hitbox)</span>
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        
+        <span class="code-comment"># Movement variables</span>
+        self.speed = 5
+        self.direction = pygame.math.Vector2(0, 0)
+    
+    def update(self):
+        <span class="code-comment"># Get keyboard input</span>
+        keys = pygame.key.get_pressed()
+        self.direction.x = keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]
+        self.direction.y = keys[pygame.K_DOWN] - keys[pygame.K_UP]
+        
+        <span class="code-comment"># Normalize for diagonal movement</span>
+        if self.direction.length() > 0:
+            self.direction = self.direction.normalize()
+        
+        <span class="code-comment"># Move the player</span>
+        self.rect.x += self.direction.x * self.speed
+        self.rect.y += self.direction.y * self.speed</pre>
+        </div>
+        <!-- Collision Detection -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Collision Detection</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Check if two sprites collide</span>
+if pygame.sprite.collide_rect(player, enemy):
+    print("Collision detected!")
+
+<span class="code-comment"># Check if a sprite collides with any in a group</span>
+hits = pygame.sprite.spritecollide(player, enemies, False)
+for enemy in hits:
+    player.health -= 1
+    
+<span class="code-comment"># Group collision detection</span>
+hits = pygame.sprite.groupcollide(bullets, enemies, True, True)
+for bullet, hit_enemies in hits.items():
+    for enemy in hit_enemies:
+        score += 10</pre>
+        </div>
+        <!-- Sound and Music -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Game Audio</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Load and play sound effects</span>
+pygame.mixer.init()
+sound_effect = pygame.mixer.Sound("explosion.wav")
+sound_effect.set_volume(0.5)  <span class="code-comment"># 50% volume</span>
+sound_effect.play()
+
+<span class="code-comment"># Background music</span>
+pygame.mixer.music.load("background_music.mp3")
+pygame.mixer.music.set_volume(0.3)  <span class="code-comment"># 30% volume</span>
+pygame.mixer.music.play(-1)  <span class="code-comment"># -1 for infinite loop</span>
+
+<span class="code-comment"># Stop the music</span>
+pygame.mixer.music.stop()</pre>
+        </div>
+        <!-- PyGame Frameworks -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Other Game Frameworks</h3>
+            <div class="text-gray-300 space-y-2">
+                <p><strong>Arcade:</strong> Modern Python framework for 2D games</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import arcade
+
+<span class="code-comment"># Simple Arcade game</span>
+class MyGame(arcade.Window):
+    def __init__(self):
+        super().__init__(800, 600, "Arcade Game")
+        arcade.set_background_color(arcade.color.BLACK)
+        self.player = None
+        
+    def setup(self):
+        <span class="code-comment"># Create player sprite</span>
+        self.player = arcade.SpriteSolidColor(50, 50, arcade.color.WHITE)
+        self.player.center_x = 400
+        self.player.center_y = 300
+        
+    def on_draw(self):
+        <span class="code-comment"># Draw everything</span>
+        arcade.start_render()
+        self.player.draw()
+        
+    def on_update(self, delta_time):
+        <span class="code-comment"># Update game logic</span>
+        pass
+        
+<span class="code-comment"># Run the game</span>
+game = MyGame()
+game.setup()
+arcade.run()</pre>
+                
+                <p><strong>Panda3D:</strong> Framework for 3D game development</p>
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Panda3D snippet</span>
+from direct.showbase.ShowBase import ShowBase
+
+class MyGame(ShowBase):
+    def __init__(self):
+        super().__init__()
+        
+        <span class="code-comment"># Load a 3D model</span>
+        self.model = self.loader.loadModel("models/teapot")
+        self.model.setPos(0, 20, 0)
+        self.model.reparentTo(self.render)
+        
+        <span class="code-comment"># Add a spinning task</span>
+        self.taskMgr.add(self.spin_camera_task, "SpinCameraTask")
+        
+    def spin_camera_task(self, task):
+        angle_degrees = task.time * 20.0
+        self.camera.setHpr(angle_degrees, 0, 0)
+        return task.cont</pre>
+            </div>
         </div>
     </div>
 </section>
