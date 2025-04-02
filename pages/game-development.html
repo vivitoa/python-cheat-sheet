@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Game Development - Python Cheat Sheet</title>
+    
+    <!-- Same CSS/JS as main page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">Python Game Development</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Python offers several libraries and frameworks for game development, making it accessible for beginners 
+                    and powerful enough for experienced developers. From 2D arcade games to complex 3D simulations, 
+                    Python provides the tools to bring your game ideas to life.
+                </p>
+            </div>
+        </section>
+
+        <!-- Pygame Basics -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Pygame: The Foundation of Python Game Development</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Pygame is the most popular library for game development in Python. It provides a set of modules to create games
+                    and multimedia applications, offering capabilities for handling graphics, sound, input, and more.
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Setting Up Pygame</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install pygame</span>
+<span class="code-comment"># pip install pygame</span>
+
+<span class="code-comment"># Import and initialize</span>
+import pygame
+pygame.init()
+
+<span class="code-comment"># Create game window</span>
+screen_width, screen_height = 800, 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("My First Pygame")
+
+<span class="code-comment"># Set up game clock</span>
+clock = pygame.time.Clock()
+FPS = 60  <span class="code-comment"># Frames per second</span>
+
+<span class="code-comment"># Colors (RGB format)</span>
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">The Game Loop</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Every game needs a main loop that handles events, updates game state, and redraws the screen.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Game loop</span>
+running = True
+while running:
+    <span class="code-comment"># Event handling</span>
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    <span class="code-comment"># Game logic updates</span>
+    # ... update game objects here ...
+    
+    <span class="code-comment"># Drawing</span>
+    screen.fill(BLACK)  <span class="code-comment"># Clear screen with black</span>
+    
+    <span class="code-comment"># Draw game elements</span>
+    pygame.draw.rect(screen, RED, (100, 100, 50, 50))  <span class="code-comment"># (x, y, width, height)</span>
+    pygame.draw.circle(screen, BLUE, (400, 300), 40)  <span class="code-comment"># (x, y, radius)</span>
+    
+    <span class="code-comment"># Update the display</span>
+    pygame.display.flip()
+    
+    <span class="code-comment"># Control game speed</span>
+    clock.tick(FPS)
+
+<span class="code-comment"># Quit pygame</span>
+pygame.quit()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Handling User Input</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Event-based input handling (one-time actions)</span>
+for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+        running = False
+    elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+            player.jump()
+        elif event.key == pygame.K_ESCAPE:
+            pause_game()
+    elif event.type == pygame.MOUSEBUTTONDOWN:
+        if event.button == 1:  <span class="code-comment"># Left mouse button</span>
+            shoot()
+
+<span class="code-comment"># State-based input handling (continuous actions)</span>
+keys = pygame.key.get_pressed()
+if keys[pygame.K_LEFT]:
+    player.move_left()
+if keys[pygame.K_RIGHT]:
+    player.move_right()
+if keys[pygame.K_UP]:
+    player.move_up()
+if keys[pygame.K_DOWN]:
+    player.move_down()
+
+<span class="code-comment"># Mouse position</span>
+mouse_x, mouse_y = pygame.mouse.get_pos()
+cursor.position = (mouse_x, mouse_y)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Working with Images</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Load an image</span>
+player_image = pygame.image.load("player.png").convert_alpha()  <span class="code-comment"># convert_alpha preserves transparency</span>
+
+<span class="code-comment"># Resize an image</span>
+player_image = pygame.transform.scale(player_image, (64, 64))  <span class="code-comment"># (width, height)</span>
+
+<span class="code-comment"># Rotate an image</span>
+rotated_image = pygame.transform.rotate(player_image, 45)  <span class="code-comment"># 45 degrees</span>
+
+<span class="code-comment"># Flip an image</span>
+flipped_image = pygame.transform.flip(player_image, True, False)  <span class="code-comment"># (horizontal, vertical)</span>
+
+<span class="code-comment"># Draw an image</span>
+screen.blit(player_image, (100, 200))  <span class="code-comment"># (x, y) coordinates</span></pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Working with Text</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Initialize font module</span>
+pygame.font.init()
+
+<span class="code-comment"># Create a font object</span>
+font = pygame.font.SysFont("Arial", 32)  <span class="code-comment"># font name, size</span>
+<span class="code-comment"># Or load a custom font</span>
+custom_font = pygame.font.Font("custom_font.ttf", 28)
+
+<span class="code-comment"># Render text (create a surface)</span>
+text_surface = font.render("Score: 100", True, WHITE)  <span class="code-comment"># (text, antialiasing, color)</span>
+
+<span class="code-comment"># Draw text to screen</span>
+screen.blit(text_surface, (10, 10))  <span class="code-comment"># (x, y) coordinates</span></pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Sprite Management</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Pygame's sprite system makes it easier to manage game objects with common behaviors.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Create a sprite class</span>
+class Player(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load("player.png").convert_alpha()
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.speed = 5
+        self.health = 100
+    
+    def update(self):
+        <span class="code-comment"># Move based on keyboard input</span>
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.rect.x -= self.speed
+        if keys[pygame.K_RIGHT]:
+            self.rect.x += self.speed
+        
+        <span class="code-comment"># Keep player on screen</span>
+        if self.rect.left < 0:
+            self.rect.left = 0
+        if self.rect.right > screen_width:
+            self.rect.right = screen_width
+
+<span class="code-comment"># Create sprite groups to manage multiple sprites</span>
+all_sprites = pygame.sprite.Group()
+enemies = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
+
+<span class="code-comment"># Add sprites to groups</span>
+player = Player(400, 500)
+all_sprites.add(player)
+
+<span class="code-comment"># Update all sprites</span>
+all_sprites.update()
+
+<span class="code-comment"># Draw all sprites</span>
+all_sprites.draw(screen)</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Collision Detection</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Check collision between two sprites</span>
+if pygame.sprite.collide_rect(player, enemy):
+    player.take_damage()
+
+<span class="code-comment"># Check collision between a sprite and any in a group</span>
+hits = pygame.sprite.spritecollide(player, enemies, False)
+<span class="code-comment"># The third parameter (False) means enemies are not removed when hit</span>
+for enemy in hits:
+    player.take_damage(enemy.damage)
+
+<span class="code-comment"># Check collisions between all sprites in two groups</span>
+<span class="code-comment"># The True parameters mean sprites are killed (removed from groups) when they collide</span>
+hits = pygame.sprite.groupcollide(bullets, enemies, True, True)
+for bullet, hit_enemies in hits.items():
+    for enemy in hit_enemies:
+        score += 10
+
+<span class="code-comment"># More precise collision using masks (pixel-perfect)</span>
+if pygame.sprite.collide_mask(player, enemy):
+    handle_collision()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Sound and Music</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Initialize the mixer</span>
+pygame.mixer.init()
+
+<span class="code-comment"># Load and play a sound effect</span>
+laser_sound = pygame.mixer.Sound("laser.wav")
+laser_sound.set_volume(0.5)  <span class="code-comment"># 0.0 to 1.0</span>
+laser_sound.play()
+
+<span class="code-comment"># Play a sound with options</span>
+explosion_sound = pygame.mixer.Sound("explosion.wav")
+explosion_sound.play(loops=0, maxtime=0, fade_ms=0)
+<span class="code-comment"># loops: -1 for infinite, 0 for once, etc.</span>
+<span class="code-comment"># maxtime: maximum play time in milliseconds</span>
+<span class="code-comment"># fade_ms: fade-in time in milliseconds</span>
+
+<span class="code-comment"># Background music</span>
+pygame.mixer.music.load("background.mp3")
+pygame.mixer.music.set_volume(0.3)
+pygame.mixer.music.play(-1)  <span class="code-comment"># -1 means loop indefinitely</span>
+
+<span class="code-comment"># Pause and unpause music</span>
+pygame.mixer.music.pause()
+pygame.mixer.music.unpause()
+
+<span class="code-comment"># Stop music</span>
+pygame.mixer.music.stop()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Complete Simple Game Example</h3>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+import pygame
+import random
+
+<span class="code-comment"># Initialize pygame</span>
+pygame.init()
+
+<span class="code-comment"># Screen setup</span>
+screen_width, screen_height = 800, 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Simple Arcade Game")
+
+<span class="code-comment"># Colors</span>
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+
+<span class="code-comment"># Player class</span>
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface((50, 50))
+        self.image.fill(GREEN)
+        self.rect = self.image.get_rect()
+        self.rect.centerx = screen_width // 2
+        self.rect.bottom = screen_height - 10
+        self.speed = 8
+    
+    def update(self):
+        <span class="code-comment"># Move player based on keyboard input</span>
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.rect.x -= self.speed
+        if keys[pygame.K_RIGHT]:
+            self.rect.x += self.speed
+        
+        <span class="code-comment"># Keep player on screen</span>
+        if self.rect.left < 0:
+            self.rect.left = 0
+        if self.rect.right > screen_width:
+            self.rect.right = screen_width
+
+<span class="code-comment"># Enemy class</span>
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface((30, 30))
+        self.image.fill(RED)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(screen_width - self.rect.width)
+        self.rect.y = random.randrange(-100, -40)
+        self.speedy = random.randrange(1, 8)
+    
+    def update(self):
+        <span class="code-comment"># Move the enemy down</span>
+        self.rect.y += self.speedy
+        
+        <span class="code-comment"># If enemy is off screen, respawn at top</span>
+        if self.rect.top > screen_height:
+            self.rect.x = random.randrange(screen_width - self.rect.width)
+            self.rect.y = random.randrange(-100, -40)
+            self.speedy = random.randrange(1, 8)
+
+<span class="code-comment"># Initialize sprite groups</span>
+all_sprites = pygame.sprite.Group()
+enemies = pygame.sprite.Group()
+player = Player()
+all_sprites.add(player)
+
+<span class="code-comment"># Create enemies</span>
+for i in range(8):
+    enemy = Enemy()
+    all_sprites.add(enemy)
+    enemies.add(enemy)
+
+<span class="code-comment"># Set up the game clock</span>
+clock = pygame.time.Clock()
+FPS = 60
+
+<span class="code-comment"># Score</span>
+score = 0
+font = pygame.font.SysFont("Arial", 36)
+
+<span class="code-comment"># Game loop</span>
+running = True
+while running:
+    <span class="code-comment"># Keep loop running at the right speed</span>
+    clock.tick(FPS)
+    
+    <span class="code-comment"># Process input (events)</span>
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    <span class="code-comment"># Update</span>
+    all_sprites.update()
+    
+    <span class="code-comment"># Check if player hits an enemy</span>
+    hits = pygame.sprite.spritecollide(player, enemies, True)
+    for hit in hits:
+        score += 1
+        enemy = Enemy()
+        all_sprites.add(enemy)
+        enemies.add(enemy)
+    
+    <span class="code-comment"># Render</span>
+    screen.fill(BLACK)
+    all_sprites.draw(screen)
+    
+    <span class="code-comment"># Draw the score</span>
+    score_text = font.render(f"Score: {score}", True, WHITE)
+    screen.blit(score_text, (10, 10))
+    
+    <span class="code-comment"># Flip the display</span>
+    pygame.display.flip()
+
+<span class="code-comment"># Quit the game</span>
+pygame.quit()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Game Frameworks -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Other Python Game Frameworks</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    While Pygame is the most popular choice, Python offers several other game development frameworks,
+                    each with its own strengths and focus areas.
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Arcade: Modern Python Game Library</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Arcade is a modern Python library for creating 2D video games with compelling graphics and sound.
+                    It's built on top of OpenGL and designed to be easier to use than Pygame, with better performance
+                    for certain types of games.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install arcade</span>
+<span class="code-comment"># pip install arcade</span>
+
+import arcade
+
+<span class="code-comment"># Constants</span>
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+SCREEN_TITLE = "Arcade Game"
+
+<span class="code-comment"># Simple game class</span>
+class MyGame(arcade.Window):
+    def __init__(self):
+        <span class="code-comment"># Initialize window</span>
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        
+        <span class="code-comment"># Set background color</span>
+        arcade.set_background_color(arcade.color.AMAZON)
+        
+        <span class="code-comment"># Sprite lists</span>
+        self.player_list = None
+        self.player = None
+
+    def setup(self):
+        <span class="code-comment"># Initialize sprite lists</span>
+        self.player_list = arcade.SpriteList()
+        
+        <span class="code-comment"># Create player sprite</span>
+        self.player = arcade.Sprite("player.png", 0.5)
+        self.player.center_x = SCREEN_WIDTH // 2
+        self.player.center_y = SCREEN_HEIGHT // 2
+        self.player_list.append(self.player)
+    
+    def on_draw(self):
+        <span class="code-comment"># Clear screen and start rendering</span>
+        arcade.start_render()
+        
+        <span class="code-comment"># Draw sprites</span>
+        self.player_list.draw()
+    
+    def on_key_press(self, key, modifiers):
+        <span class="code-comment"># Handle key presses</span>
+        if key == arcade.key.UP:
+            self.player.change_y = 5
+        elif key == arcade.key.DOWN:
+            self.player.change_y = -5
+        elif key == arcade.key.LEFT:
+            self.player.change_x = -5
+        elif key == arcade.key.RIGHT:
+            self.player.change_x = 5
+    
+    def on_key_release(self, key, modifiers):
+        <span class="code-comment"># Handle key releases</span>
+        if key in (arcade.key.UP, arcade.key.DOWN):
+            self.player.change_y = 0
+        elif key in (arcade.key.LEFT, arcade.key.RIGHT):
+            self.player.change_x = 0
+    
+    def on_update(self, delta_time):
+        <span class="code-comment"># Update game logic</span>
+        self.player_list.update()
+
+<span class="code-comment"># Create and run the game</span>
+def main():
+    window = MyGame()
+    window.setup()
+    arcade.run()
+
+if __name__ == "__main__":
+    main()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Pyglet: Windowing and Multimedia Library</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Pyglet is a cross-platform windowing and multimedia library for Python, primarily developed for game development.
+                    It provides an object-oriented programming interface for developing games and other visually rich applications.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install pyglet</span>
+<span class="code-comment"># pip install pyglet</span>
+
+import pyglet
+
+<span class="code-comment"># Create a window</span>
+window = pyglet.window.Window(width=800, height=600, caption="Pyglet Game")
+
+<span class="code-comment"># Load an image</span>
+image = pyglet.resource.image("player.png")
+sprite = pyglet.sprite.Sprite(image, x=400, y=300)
+
+<span class="code-comment"># Create a label</span>
+label = pyglet.text.Label("Hello, Pyglet!",
+                          font_name="Arial",
+                          font_size=36,
+                          x=window.width//2, y=window.height//2,
+                          anchor_x="center", anchor_y="center")
+
+<span class="code-comment"># Event handlers</span>
+@window.event
+def on_draw():
+    window.clear()
+    label.draw()
+    sprite.draw()
+
+@window.event
+def on_key_press(symbol, modifiers):
+    if symbol == pyglet.window.key.LEFT:
+        sprite.x -= 10
+    elif symbol == pyglet.window.key.RIGHT:
+        sprite.x += 10
+    elif symbol == pyglet.window.key.UP:
+        sprite.y += 10
+    elif symbol == pyglet.window.key.DOWN:
+        sprite.y -= 10
+
+<span class="code-comment"># Run the game</span>
+pyglet.app.run()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">PyGame Zero: Simplified Game Development</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Pygame Zero is designed for educational use, allowing beginners to create games without boilerplate code.
+                    It's built on top of Pygame and provides a simpler interface by handling the game loop for you.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install pygame zero</span>
+<span class="code-comment"># pip install pgzero</span>
+
+<span class="code-comment"># Create a game.py file with the following code</span>
+<span class="code-comment"># Run with: pgzrun game.py</span>
+
+import pgzrun
+
+<span class="code-comment"># Define window dimensions</span>
+WIDTH = 800
+HEIGHT = 600
+
+<span class="code-comment"># Define an actor (sprite)</span>
+player = Actor('player')  <span class="code-comment"># Looks for player.png in the 'images' directory</span>
+player.pos = (WIDTH // 2, HEIGHT // 2)
+
+<span class="code-comment"># Enemies</span>
+enemies = []
+for i in range(5):
+    enemy = Actor('enemy')
+    enemy.pos = (random.randint(0, WIDTH), random.randint(0, HEIGHT))
+    enemies.append(enemy)
+
+<span class="code-comment"># Draw function (called by Pygame Zero)</span>
+def draw():
+    screen.fill((0, 0, 0))
+    player.draw()
+    for enemy in enemies:
+        enemy.draw()
+    screen.draw.text(f"Enemies: {len(enemies)}", (10, 10), color="white")
+
+<span class="code-comment"># Update function (called by Pygame Zero)</span>
+def update():
+    <span class="code-comment"># Move player with arrow keys</span>
+    if keyboard.left:
+        player.x -= 5
+    if keyboard.right:
+        player.x += 5
+    if keyboard.up:
+        player.y -= 5
+    if keyboard.down:
+        player.y += 5
+    
+    <span class="code-comment"># Check for collisions</span>
+    for enemy in list(enemies):
+        if player.colliderect(enemy):
+            enemies.remove(enemy)
+            sounds.explosion.play()
+
+<span class="code-comment"># Handle mouse clicks</span>
+def on_mouse_down(pos):
+    for enemy in list(enemies):
+        if enemy.collidepoint(pos):
+            enemies.remove(enemy)
+            sounds.explosion.play()
+
+<span class="code-comment"># Pygame Zero automatically calls the draw and update functions</span></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Game Development -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">3D Game Development with Python</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Python can also be used for 3D game development with libraries that provide 3D rendering capabilities
+                    and physics simulations.
+                </p>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Panda3D: Powerful 3D Game Engine</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    Panda3D is a game engine that includes graphics, audio, I/O, collision detection, and other
+                    capabilities relevant to the creation of 3D games. It was developed by Disney and Carnegie Mellon University.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install Panda3D</span>
+<span class="code-comment"># pip install panda3d</span>
+
+from direct.showbase.ShowBase import ShowBase
+from panda3d.core import AmbientLight, DirectionalLight, Vec4, Vec3
+from direct.task import Task
+from direct.actor.Actor import Actor
+
+class MyGame(ShowBase):
+    def __init__(self):
+        <span class="code-comment"># Initialize the Panda3D engine</span>
+        super().__init__()
+        
+        <span class="code-comment"># Set up the environment</span>
+        self.set_background_color(0.5, 0.7, 1.0)
+        
+        <span class="code-comment"># Load a 3D model</span>
+        self.environ = self.loader.loadModel("models/environment")
+        self.environ.setScale(0.25, 0.25, 0.25)
+        self.environ.setPos(-8, 42, 0)
+        self.environ.reparentTo(self.render)
+        
+        <span class="code-comment"># Add light</span>
+        self.setup_lighting()
+        
+        <span class="code-comment"># Add a 3D character with animation</span>
+        self.player = Actor("models/player", {"walk": "models/player-walk"})
+        self.player.setScale(0.2, 0.2, 0.2)
+        self.player.setPos(0, 0, 0)
+        self.player.reparentTo(self.render)
+        
+        <span class="code-comment"># Play the walk animation</span>
+        self.player.loop("walk")
+        
+        <span class="code-comment"># Set up camera</span>
+        self.camera.setPos(0, -10, 3)
+        self.camera.lookAt(self.player)
+        
+        <span class="code-comment"># Add a task to the task manager</span>
+        self.taskMgr.add(self.update, "update")
+        
+        <span class="code-comment"># Set up keyboard control</span>
+        self.keys = {}
+        self.accept("arrow_up", self.set_key, ["up", True])
+        self.accept("arrow_up-up", self.set_key, ["up", False])
+        self.accept("arrow_down", self.set_key, ["down", True])
+        self.accept("arrow_down-up", self.set_key, ["down", False])
+        self.accept("arrow_left", self.set_key, ["left", True])
+        self.accept("arrow_left-up", self.set_key, ["left", False])
+        self.accept("arrow_right", self.set_key, ["right", True])
+        self.accept("arrow_right-up", self.set_key, ["right", False])
+    
+    def setup_lighting(self):
+        <span class="code-comment"># Ambient light (overall illumination)</span>
+        ambient_light = AmbientLight("ambient_light")
+        ambient_light.setColor(Vec4(0.2, 0.2, 0.2, 1))
+        ambient_light_np = self.render.attachNewNode(ambient_light)
+        self.render.setLight(ambient_light_np)
+        
+        <span class="code-comment"># Directional light (sun-like)</span>
+        directional_light = DirectionalLight("directional_light")
+        directional_light.setColor(Vec4(0.8, 0.8, 0.8, 1))
+        directional_light.setDirection(Vec3(-5, -5, -5))
+        directional_light_np = self.render.attachNewNode(directional_light)
+        self.render.setLight(directional_light_np)
+    
+    def set_key(self, key, value):
+        <span class="code-comment"># Store key states</span>
+        self.keys[key] = value
+    
+    def update(self, task):
+        <span class="code-comment"># Define the player's movement speed</span>
+        speed = 0.1
+        
+        <span class="code-comment"># Handle key-based movement</span>
+        if self.keys.get("up", False):
+            self.player.setY(self.player, speed)
+        if self.keys.get("down", False):
+            self.player.setY(self.player, -speed)
+        if self.keys.get("left", False):
+            self.player.setX(self.player, -speed)
+        if self.keys.get("right", False):
+            self.player.setX(self.player, speed)
+        
+        <span class="code-comment"># Continue the task</span>
+        return Task.cont
+
+<span class="code-comment"># Create and run the game</span>
+game = MyGame()
+game.run()</pre>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">PyBullet: Physics Simulation</h3>
+
+            <div class="prose prose-invert max-w-none mb-4">
+                <p>
+                    PyBullet is a physics simulation engine that can be used for 3D games, robotics, and reinforcement learning.
+                    It provides collision detection, dynamics simulation, and visualization.
+                </p>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Install PyBullet</span>
+<span class="code-comment"># pip install pybullet</span>
+
+import pybullet as p
+import pybullet_data
+import time
+
+<span class="code-comment"># Connect to the physics server</span>
+physicsClient = p.connect(p.GUI)  <span class="code-comment"># or p.DIRECT for no GUI</span>
+
+<span class="code-comment"># Set up the environment</span>
+p.setAdditionalSearchPath(pybullet_data.getDataPath())
+p.setGravity(0, 0, -9.81)  <span class="code-comment"># Set gravity (X, Y, Z)</span>
+
+<span class="code-comment"># Load a plane</span>
+planeId = p.loadURDF("plane.urdf")
+
+<span class="code-comment"># Load a robot</span>
+robotId = p.loadURDF("r2d2.urdf", [0, 0, 1])  <span class="code-comment"># Position [X, Y, Z]</span>
+
+<span class="code-comment"># Create a box</span>
+boxId = p.createCollisionShape(p.GEOM_BOX, halfExtents=[0.5, 0.5, 0.5])
+boxBody = p.createMultiBody(baseMass=1, baseCollisionShapeIndex=boxId, 
+                            basePosition=[2, 0, 1])
+
+<span class="code-comment"># Simulation loop</span>
+for i in range(10000):
+    <span class="code-comment"># Apply force to the box</span>
+    if i == 100:
+        p.applyExternalForce(boxBody, -1, [50, 0, 100], [0, 0, 0], p.WORLD_FRAME)
+    
+    <span class="code-comment"># Step the simulation</span>
+    p.stepSimulation()
+    
+    <span class="code-comment"># Get robot position and orientation</span>
+    pos, orn = p.getBasePositionAndOrientation(robotId)
+    
+    <span class="code-comment"># Print position</span>
+    if i % 100 == 0:
+        print(f"Robot position: {pos}")
+    
+    <span class="code-comment"># Sleep to slow down the simulation</span>
+    time.sleep(1./240.)
+
+<span class="code-comment"># Disconnect from the physics server</span>
+p.disconnect()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Development Tips and Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Game Development Best Practices</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    When developing games with Python, following these best practices will help you create more efficient,
+                    maintainable, and engaging games.
+                </p>
+            </div>
+
+            <div class="bg-gray-800 rounded-md p-6 mb-8">
+                <h3 class="text-xl font-bold mb-4 text-blue-400">Performance Optimization</h3>
+                <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                    <li>Use sprite groups to manage game objects efficiently</li>
+                    <li>Implement object pooling for frequently created/destroyed objects</li>
+                    <li>Use efficient collision detection algorithms appropriate for your game type</li>
+                    <li>Optimize rendering by only drawing visible elements</li>
+                    <li>Consider using NumPy for intensive mathematical operations</li>
+                    <li>Profile your game to identify bottlenecks</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Code Structure and Organization</h3>
+                <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                    <li>Separate game logic from rendering code</li>
+                    <li>Use classes to represent game entities and components</li>
+                    <li>Implement a proper state management system for your game</li>
+                    <li>Organize resources (images, sounds, levels) in a clear directory structure</li>
+                    <li>Use configuration files for game settings</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold mt-6 mb-4 text-blue-400">Game Design Considerations</h3>
+                <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                    <li>Implement a consistent and responsive control scheme</li>
+                    <li>Design clear visual feedback for player actions</li>
+                    <li>Create a balanced difficulty curve with proper pacing</li>
+                    <li>Use sound effects and music to enhance the experience</li>
+                    <li>Test your game with different screen resolutions</li>
+                    <li>Implement proper saving and loading functionality</li>
+                </ul>
+            </div>
+
+            <div class="code-box">
+                <div class="bg-gray-800 p-4">
+                    <pre>
+<span class="code-comment"># Example of a game state management system</span>
+class GameState:
+    def __init__(self, game):
+        self.game = game
+    
+    def update(self, dt):
+        pass
+    
+    def draw(self, screen):
+        pass
+    
+    def handle_event(self, event):
+        pass
+
+class MenuState(GameState):
+    def __init__(self, game):
+        super().__init__(game)
+        self.menu_items = ["Play", "Options", "Quit"]
+        self.selected_item = 0
+    
+    def update(self, dt):
+        pass
+    
+    def draw(self, screen):
+        screen.fill((0, 0, 0))
+        
+        font = pygame.font.SysFont("Arial", 36)
+        for i, item in enumerate(self.menu_items):
+            color = (255, 255, 0) if i == self.selected_item else (255, 255, 255)
+            text = font.render(item, True, color)
+            screen.blit(text, (400 - text.get_width() // 2, 200 + i * 50))
+    
+    def handle_event(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                self.selected_item = (self.selected_item - 1) % len(self.menu_items)
+            elif event.key == pygame.K_DOWN:
+                self.selected_item = (self.selected_item + 1) % len(self.menu_items)
+            elif event.key == pygame.K_RETURN:
+                if self.selected_item == 0:  <span class="code-comment"># Play</span>
+                    self.game.change_state(PlayState(self.game))
+                elif self.selected_item == 1:  <span class="code-comment"># Options</span>
+                    self.game.change_state(OptionsState(self.game))
+                elif self.selected_item == 2:  <span class="code-comment"># Quit</span>
+                    pygame.quit()
+                    sys.exit()
+
+class PlayState(GameState):
+    def __init__(self, game):
+        super().__init__(game)
+        <span class="code-comment"># Initialize game objects, sprites, etc.</span>
+    
+    def update(self, dt):
+        <span class="code-comment"># Update game logic</span>
+        pass
+    
+    def draw(self, screen):
+        <span class="code-comment"># Draw game elements</span>
+        pass
+    
+    def handle_event(self, event):
+        <span class="code-comment"># Handle gameplay input</span>
+        pass
+
+class Game:
+    def __init__(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((800, 600))
+        pygame.display.set_caption("State-Based Game")
+        self.clock = pygame.time.Clock()
+        self.running = True
+        self.state = MenuState(self)
+    
+    def change_state(self, new_state):
+        self.state = new_state
+    
+    def run(self):
+        while self.running:
+            dt = self.clock.tick(60) / 1000.0  <span class="code-comment"># Delta time in seconds</span>
+            
+            <span class="code-comment"># Event handling</span>
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                self.state.handle_event(event)
+            
+            <span class="code-comment"># Update and draw</span>
+            self.state.update(dt)
+            self.state.draw(self.screen)
+            pygame.display.flip()
+        
+        pygame.quit()
+
+<span class="code-comment"># Create and run the game</span>
+if __name__ == "__main__":
+    game = Game()
+    game.run()</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Practice Exercises</h2>
+            
+            <div class="prose prose-invert max-w-none">
+                <p class="mb-4">
+                    Try these exercises to improve your Python game development skills:
+                </p>
+                
+                <ol class="list-decimal pl-6 space-y-3">
+                    <li>
+                        <strong>Simple Pong Game:</strong> Create a classic Pong game with two paddles and a ball.
+                        Implement scoring, collision detection, and simple AI for the computer player.
+                    </li>
+                    <li>
+                        <strong>Platform Jumper:</strong> Build a side-scrolling platform game where a character can move
+                        left and right, jump on platforms, and collect items while avoiding obstacles.
+                    </li>
+                    <li>
+                        <strong>Space Shooter:</strong> Create a space-themed game where the player controls a ship that
+                        fires at incoming enemies. Include waves of enemies, different weapon types, and power-ups.
+                    </li>
+                    <li>
+                        <strong>Tile-based RPG:</strong> Develop a simple RPG with a tile-based map, character movement,
+                        and interaction with NPCs or objects.
+                    </li>
+                    <li>
+                        <strong>Physics Puzzle Game:</strong> Build a puzzle game that uses physics simulation for
+                        object interactions, such as stacking blocks or launching projectiles.
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed hidden bg-blue-500 hover:bg-blue-600 text-white rounded-full p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        // Back to Top Button Script
+        const backToTopButton = document.getElementById('backToTop');
+        
+        // Show the button when user scrolls down 300px
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        // Smooth scroll to top when button is clicked
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html> 
