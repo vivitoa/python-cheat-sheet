@@ -271,6 +271,185 @@ values = [x if x % 2 == 0 else -x for x in range(10)]
 print(values)  <span class="code-comment"># [0, -1, 2, -3, 4, -5, 6, -7, 8, -9]</span></pre>
                 </div>
             </div>
+
+            <!-- Lists as Data Structures Section -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-4 text-yellow-400">Lists as Data Structures</h2>
+                
+                <div class="prose prose-invert max-w-none">
+                    <h3 class="text-xl font-bold mb-3 text-blue-400">Lists as Stacks</h3>
+                    <p class="mb-4">
+                        A stack is a Last-In-First-Out (LIFO) data structure. Python lists can efficiently implement stacks 
+                        using <code>append()</code> for push and <code>pop()</code> for pop operations. Both operations are O(1).
+                    </p>
+                </div>
+
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+<span class="code-comment"># Using list as a Stack</span>
+stack = []
+
+<span class="code-comment"># Push operations</span>
+stack.append(1)        <span class="code-comment"># Stack: [1]</span>
+stack.append(2)        <span class="code-comment"># Stack: [1, 2]</span>
+stack.append(3)        <span class="code-comment"># Stack: [1, 2, 3]</span>
+
+<span class="code-comment"># Stack operations</span>
+top = stack[-1]        <span class="code-comment"># Peek at top: 3</span>
+popped = stack.pop()   <span class="code-comment"># Pop: 3, Stack: [1, 2]</span>
+is_empty = len(stack) == 0  <span class="code-comment"># Check if empty: False</span>
+
+<span class="code-comment"># Practical example: Bracket matching</span>
+def is_balanced(expression):
+    stack = []
+    brackets = {')': '(', '}': '{', ']': '['}
+    
+    for char in expression:
+        if char in '({[':
+            stack.append(char)
+        elif char in ')}]':
+            if not stack or stack.pop() != brackets[char]:
+                return False
+    
+    return len(stack) == 0
+
+print(is_balanced('{[()]}'))    <span class="code-comment"># True</span>
+print(is_balanced('{[(])}'))    <span class="code-comment"># False</span></pre>
+                    </div>
+                </div>
+
+                <div class="prose prose-invert max-w-none mt-6">
+                    <h3 class="text-xl font-bold mb-3 text-blue-400">Lists as Queues</h3>
+                    <p class="mb-4">
+                        A queue is a First-In-First-Out (FIFO) data structure. While lists can implement queues, it's recommended 
+                        to use <code>collections.deque</code> for efficient queue operations, as <code>list.pop(0)</code> is O(n).
+                    </p>
+                </div>
+
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+<span class="code-comment"># Using collections.deque as a Queue</span>
+from collections import deque
+
+queue = deque()
+
+<span class="code-comment"># Enqueue operations</span>
+queue.append(1)         <span class="code-comment"># Queue: deque([1])</span>
+queue.append(2)         <span class="code-comment"># Queue: deque([1, 2])</span>
+queue.append(3)         <span class="code-comment"># Queue: deque([1, 2, 3])</span>
+
+<span class="code-comment"># Queue operations</span>
+front = queue[0]        <span class="code-comment"># Peek at front: 1</span>
+dequeued = queue.popleft()  <span class="code-comment"># Dequeue: 1, Queue: deque([2, 3])</span>
+is_empty = len(queue) == 0  <span class="code-comment"># Check if empty: False</span>
+
+<span class="code-comment"># Advanced queue operations</span>
+queue.appendleft(0)     <span class="code-comment"># Add to front: deque([0, 2, 3])</span>
+queue.extend([4, 5])    <span class="code-comment"># Add multiple to right: deque([0, 2, 3, 4, 5])</span>
+queue.extendleft([-2, -1])  <span class="code-comment"># Add multiple to left: deque([-1, -2, 0, 2, 3, 4, 5])</span>
+
+<span class="code-comment"># Rotation operations</span>
+numbers = deque([1, 2, 3, 4, 5])
+numbers.rotate(1)       <span class="code-comment"># Rotate right by 1: deque([5, 1, 2, 3, 4])</span>
+numbers.rotate(2)       <span class="code-comment"># Rotate right by 2: deque([3, 4, 5, 1, 2])</span>
+numbers.rotate(-1)      <span class="code-comment"># Rotate left by 1: deque([4, 5, 1, 2, 3])</span>
+numbers.rotate(-2)      <span class="code-comment"># Rotate left by 2: deque([1, 2, 3, 4, 5])</span>
+
+<span class="code-comment"># Practical rotation example: Round-robin scheduling</span>
+def round_robin(tasks, time_slice):
+    task_queue = deque(tasks)
+    while task_queue:
+        current = task_queue.popleft()
+        print(f"Processing {current}")
+        if current['time'] > time_slice:
+            current['time'] -= time_slice
+            task_queue.append(current)  # Re-add to end if not complete
+    
+tasks = [
+    {'name': 'Task1', 'time': 5},
+    {'name': 'Task2', 'time': 3},
+    {'name': 'Task3', 'time': 4}
+]
+round_robin(tasks, 2)  <span class="code-comment"># Will process tasks in rounds</span>
+
+<span class="code-comment"># Practical example: Print Queue</span>
+class PrintQueue:
+    def __init__(self):
+        self.queue = deque()
+        
+    def add_document(self, doc):
+        self.queue.append(doc)
+        
+    def print_next(self):
+        if self.queue:
+            return self.queue.popleft()
+        return "No documents waiting"
+        
+    def view_next(self):
+        if self.queue:
+            return self.queue[0]
+        return "Queue empty"
+
+printer = PrintQueue()
+printer.add_document("Report.pdf")
+printer.add_document("Letter.doc")
+print(printer.print_next())    <span class="code-comment"># "Report.pdf"</span>
+print(printer.view_next())     <span class="code-comment"># "Letter.doc"</span></pre>
+                    </div>
+                </div>
+
+                <div class="prose prose-invert max-w-none mt-6">
+                    <h3 class="text-xl font-bold mb-3 text-blue-400">Performance Considerations</h3>
+                    <table class="w-full text-left text-gray-300 border border-gray-600 mb-6">
+                        <thead class="bg-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 border border-gray-600">Operation</th>
+                                <th class="px-4 py-2 border border-gray-600">List (Stack)</th>
+                                <th class="px-4 py-2 border border-gray-600">List (Queue)</th>
+                                <th class="px-4 py-2 border border-gray-600">deque (Queue)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-2 border border-gray-600">Insert at end</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border border-gray-600">Remove from end</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border border-gray-600">Insert at start</td>
+                                <td class="px-4 py-2 border border-gray-600">O(n)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(n)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border border-gray-600">Remove from start</td>
+                                <td class="px-4 py-2 border border-gray-600">O(n)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(n)</td>
+                                <td class="px-4 py-2 border border-gray-600">O(1)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="bg-gray-800 p-4 rounded-md mb-6">
+                        <h4 class="text-lg font-semibold text-blue-300 mb-2">Key Takeaways:</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>Use lists for stacks (LIFO) - they're perfect for push/pop operations</li>
+                            <li>Use collections.deque for queues (FIFO) - efficient for both ends</li>
+                            <li>Avoid using list as a queue with pop(0) - it's inefficient</li>
+                            <li>deque supports both stack and queue operations efficiently</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </section>
 
         <!-- Python Tuples -->
