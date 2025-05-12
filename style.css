@@ -2,7 +2,19 @@
 body {
     background: #1e1e1e;
     color: #f8f8f2;
-    font-family: 'Handjet', monospace;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* Add font for headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-weight: 600;
+}
+
+/* Style for code blocks and inline code */
+pre, code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-feature-settings: "liga" 1;
 }
 
 /* Notebook-style grid lines */
