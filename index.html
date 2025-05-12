@@ -1108,6 +1108,42 @@ words = "Hello World".split()  <span class="code-comment"># ['Hello', 'World']</
             </div>
         </div>
 
+        <!-- Lists as Stacks and Queues Section -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Lists as Stacks and Queues</h3>
+            <p class="mb-3">Lists can be used as both stacks (LIFO) and queues (FIFO) data structures</p>
+
+            <div class="space-y-4">
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Using list as a Stack (Last-In-First-Out)</span>
+stack = []
+stack.append(1)        <span class="code-comment"># Push → [1]</span>
+stack.append(2)        <span class="code-comment"># Push → [1, 2]</span>
+stack.append(3)        <span class="code-comment"># Push → [1, 2, 3]</span>
+last = stack.pop()     <span class="code-comment"># Pop 3 → [1, 2]</span>
+print(stack[-1])       <span class="code-comment"># Peek at top: 2</span></pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Using list as a Queue (First-In-First-Out)</span>
+from collections import deque
+queue = deque([])
+queue.append(1)        <span class="code-comment"># Enqueue → [1]</span>
+queue.append(2)        <span class="code-comment"># Enqueue → [1, 2]</span>
+queue.append(3)        <span class="code-comment"># Enqueue → [1, 2, 3]</span>
+first = queue.popleft() <span class="code-comment"># Dequeue 1 → [2, 3]</span>
+print(queue[0])        <span class="code-comment"># Peek at front: 2</span></pre>
+
+                <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Performance considerations</span>
+<span class="code-comment"># Stack operations (append/pop) are O(1)</span>
+<span class="code-comment"># Queue with list.pop(0) is O(n), use deque instead!</span>
+queue = deque(maxlen=3)  <span class="code-comment"># Optional size limit</span>
+queue.extend([1, 2, 3])  <span class="code-comment"># Bulk enqueue</span>
+queue.rotate(1)          <span class="code-comment"># Rotate right</span>
+queue.rotate(-1)         <span class="code-comment"># Rotate left</span></pre>
+            </div>
+        </div>
+        
         <!-- Tuples Section -->
         <div>
             <h3 class="text-xl font-semibold text-blue-400">🔸 Tuples</h3>
