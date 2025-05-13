@@ -17,6 +17,69 @@ pre, code {
     font-feature-settings: "liga" 1;
 }
 
+/* Additional pages styling */
+.container {
+    font-size: 1.125rem; /* 18px base font size */
+}
+
+/* Heading sizes for additional pages */
+.container h1 {
+    font-size: 2.5rem;  /* 40px */
+    margin-bottom: 1.5rem;
+}
+
+.container h2 {
+    font-size: 2rem;    /* 32px */
+    margin-bottom: 1.25rem;
+}
+
+.container h3 {
+    font-size: 1.75rem; /* 28px */
+    margin-bottom: 1rem;
+}
+
+.container h4 {
+    font-size: 1.5rem;  /* 24px */
+    margin-bottom: 0.75rem;
+}
+
+/* Code blocks in additional pages */
+.container pre {
+    font-size: 1.125rem; /* Match base font size */
+    line-height: 1.6;
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+}
+
+/* Paragraphs and list items */
+.container p,
+.container li {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* Table text in additional pages */
+.container table {
+    font-size: 1.125rem;
+}
+
+/* Code comments */
+.container .code-comment {
+    font-size: 1rem;
+    color: #94a3b8;
+}
+
+/* Prose sections */
+.container .prose {
+    font-size: 1.125rem;
+}
+
+/* Inline code */
+.container code {
+    font-size: 1.125rem;
+}
+
 /* Notebook-style grid lines */
 .notebook {
     background: linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
