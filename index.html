@@ -311,6 +311,7 @@
             <a href="#loops" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Loops</a>
             <a href="#functions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Functions</a>
             <a href="#lists-tuples" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Lists & Tuples</a>
+            <a href="#multidimensional-lists" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Multidimensional Lists</a>
             <a href="#dictionaries-sets" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Dictionaries & Sets</a>
             <a href="#oop" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">OOP</a>
             <a href="#file-handling" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">File Handling</a>
@@ -1214,6 +1215,181 @@ mixed[1].append(4)     <span class="code-comment"># Valid → (1, [2,3,4], "hell
                         <td class="px-4 py-2 border border-gray-600">Methods</td>
                         <td class="px-4 py-2 border border-gray-600">append(), sort(), etc</td>
                         <td class="px-4 py-2 border border-gray-600">count(), index()</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- Multidimensional Lists -->
+<section id="multidimensional-lists" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Multidimensional Lists in Python</h2>
+    <div class="mb-4">
+        <a href="pages/multidimensional-lists.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python Multidimensional Lists →
+        </a>
+    </div>
+    <p class="mb-3">Multidimensional lists are lists containing other lists, useful for representing grids, matrices, and higher-dimensional arrays.</p>
+
+    <div class="space-y-6">
+        <!-- Creating Multidimensional Lists -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Creating 2D Lists</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Direct initialization</span>
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+<span class="code-comment"># Creating an empty 3x3 matrix</span>
+empty_matrix = [[0 for _ in range(3)] for _ in range(3)]
+
+<span class="code-comment"># CAUTION: Using * for multiplication can cause issues</span>
+<span class="code-comment"># This doesn't work as expected for nested lists:</span>
+wrong_matrix = [[0] * 3] * 3  <span class="code-comment"># Creates references to the same inner list!</span>
+wrong_matrix[0][0] = 1        <span class="code-comment"># Changes ALL rows' first element to 1</span></pre>
+        </div>
+
+        <!-- Accessing and Modifying -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Accessing & Modifying Elements</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Accessing elements (row, column)</span>
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(matrix[0][0])  <span class="code-comment"># 1 (first row, first column)</span>
+print(matrix[1][2])  <span class="code-comment"># 6 (second row, third column)</span>
+
+<span class="code-comment"># Modifying elements</span>
+matrix[0][0] = 10    <span class="code-comment"># [[10, 2, 3], [4, 5, 6], [7, 8, 9]]</span>
+
+<span class="code-comment"># Replacing an entire row</span>
+matrix[1] = [14, 15, 16]  <span class="code-comment"># [[10, 2, 3], [14, 15, 16], [7, 8, 9]]</span>
+
+<span class="code-comment"># Adding a new row</span>
+matrix.append([10, 11, 12])  <span class="code-comment"># Adds fourth row</span></pre>
+        </div>
+
+        <!-- Iterating -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Iterating Through 2D Lists</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Iterating with nested loops</span>
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+for row in matrix:
+    for element in row:
+        print(element, end=" ")  <span class="code-comment"># 1 2 3 4 5 6 7 8 9</span>
+
+<span class="code-comment"># With enumerate for position tracking</span>
+for i, row in enumerate(matrix):
+    for j, element in enumerate(row):
+        print(f"matrix[{i}][{j}] = {element}")
+
+<span class="code-comment"># List comprehension for transformation</span>
+squared = [[x**2 for x in row] for row in matrix]  <span class="code-comment"># [[1, 4, 9], [16, 25, 36], [49, 64, 81]]</span></pre>
+        </div>
+
+        <!-- Common Operations -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Common Matrix Operations</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Transposing a matrix (rows become columns)</span>
+matrix = [[1, 2, 3], [4, 5, 6]]
+transposed = [[row[i] for row in matrix] for i in range(len(matrix[0]))]
+print(transposed)  <span class="code-comment"># [[1, 4], [2, 5], [3, 6]]</span>
+
+<span class="code-comment"># Flattening a 2D list into 1D</span>
+matrix = [[1, 2], [3, 4]]
+flattened = [x for row in matrix for x in row]
+print(flattened)  <span class="code-comment"># [1, 2, 3, 4]</span>
+
+<span class="code-comment"># Getting dimensions</span>
+rows = len(matrix)
+cols = len(matrix[0]) if rows > 0 else 0</pre>
+        </div>
+
+        <!-- 3D and Higher -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 3D and Higher Dimensions</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+<span class="code-comment"># Creating a 3D list (2x2x2 cube)</span>
+cube = [
+    [[1, 2], [3, 4]],
+    [[5, 6], [7, 8]]
+]
+
+<span class="code-comment"># Accessing elements (depth, row, column)</span>
+print(cube[0][0][0])  <span class="code-comment"># 1</span>
+print(cube[1][1][1])  <span class="code-comment"># 8</span>
+
+<span class="code-comment"># Creating a 3D array with list comprehension</span>
+cube = [[[i+j+k for k in range(2)] for j in range(2)] for i in range(2)]
+
+<span class="code-comment"># Iterating through 3D structure</span>
+for i, matrix in enumerate(cube):
+    for j, row in enumerate(matrix):
+        for k, element in enumerate(row):
+            print(f"cube[{i}][{j}][{k}] = {element}")</pre>
+        </div>
+
+        <!-- NumPy Alternative -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 NumPy for More Efficient Arrays</h3>
+            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+import numpy as np
+
+<span class="code-comment"># Create a 2D NumPy array</span>
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+<span class="code-comment"># Slicing entire rows/columns</span>
+print(arr[0])    <span class="code-comment"># [1 2 3] (first row)</span>
+print(arr[:, 1]) <span class="code-comment"># [2 5] (second column)</span>
+
+<span class="code-comment"># Matrix operations</span>
+print(arr.T)                    <span class="code-comment"># Transpose</span>
+print(np.dot(arr, arr.T))       <span class="code-comment"># Matrix multiplication</span>
+print(arr.reshape(3, 2))        <span class="code-comment"># Reshape to 3x2</span></pre>
+        </div>
+
+        <!-- Best Practices -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Best Practices</h3>
+            <div class="text-gray-300 space-y-2">
+                <p>✓ Use proper list comprehension for creating nested lists</p>
+                <p>✓ Be cautious with shallow vs. deep copying</p>
+                <p>✓ Use NumPy for large arrays or mathematical operations</p>
+                <p>✓ Verify all rows have the same length for rectangular matrices</p>
+                <p>✓ Check for valid indices before accessing elements</p>
+            </div>
+        </div>
+
+        <!-- Common Pitfalls Table -->
+        <div>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Common Pitfalls</h3>
+            <table class="w-full text-left text-gray-300 border border-gray-600">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="px-4 py-2 border border-gray-600">Issue</th>
+                        <th class="px-4 py-2 border border-gray-600">Wrong</th>
+                        <th class="px-4 py-2 border border-gray-600">Correct</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Creating with multiplication</td>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">[[0] * 3] * 3 <span class="code-comment"># References!</span></td>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">[[0 for _ in range(3)] for _ in range(3)]</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Deep copying</td>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">new_matrix = matrix <span class="code-comment"># Just a reference</span></td>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">import copy; new_matrix = copy.deepcopy(matrix)</td>
+                    </tr>
+                    <tr>
+                        <td class="px-4 py-2 border border-gray-600">Jagged arrays</td>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">matrix = [[1, 2], [3]] <span class="code-comment"># Inconsistent lengths</span></td>
+                        <td class="px-4 py-2 border border-gray-600 font-mono">matrix = [[1, 2], [3, None]] <span class="code-comment"># Use None or pad</span></td>
                     </tr>
                 </tbody>
             </table>
