@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python String Manipulation - Python Cheat Sheet</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style.css">
+    
+    <style>
+        /* Copy all styles from other pages */
+        .breadcrumb { padding: 1rem; background: #1F2937; }
+        .code-comment { color: #6B7280; font-style: italic; }
+        .code-box {
+            background: #1F2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .code-box pre {
+            padding: 1.5rem;
+            margin: 0;
+            overflow-x: auto;
+            white-space: pre;
+            word-wrap: normal;
+        }
+        
+        @media (max-width: 767px) {
+            /* Code blocks */
+            pre {
+                margin: 0 -1rem !important;
+                width: calc(100% + 2rem) !important;
+                padding: 1rem !important;
+                font-size: 14px !important;
+                border-radius: 0 !important;
+            }
+
+            /* Code containers */
+            .code-box {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+                border-radius: 0;
+            }
+
+            /* Tables */
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+
+            /* Back to Top Button */
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+                padding: 12px !important;
+            }
+
+            /* Scrollbars */
+            pre::-webkit-scrollbar {
+                height: 8px;
+            }
+            pre::-webkit-scrollbar-track {
+                background: #374151;
+                border-radius: 4px;
+            }
+            pre::-webkit-scrollbar-thumb {
+                background: #4B5563;
+                border-radius: 4px;
+            }
+        }
+
+        /* Back to Top button matching index.html */
+        #backToTop {
+            bottom: 70px;
+            right: 20px;
+            padding: 12px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 767px) {
+            #backToTop {
+                bottom: 70px !important;
+                right: 20px !important;
+                width: 48px !important;
+                height: 48px !important;
+            }
+        }
+    </style>
+</head>
+<body class="dark bg-gray-900 text-gray-200">
+    <!-- Breadcrumb navigation -->
+    <div class="breadcrumb">
+        <a href="../index.html" class="text-blue-400 hover:text-blue-300">← Back to Cheat Sheet</a>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold mb-8">String Manipulation in Python</h1>
+
+        <!-- Introduction -->
+        <section class="mb-12">
+            <div class="prose prose-invert max-w-none">
+                <p class="text-lg mb-6">
+                    Python provides a rich set of string methods for text manipulation. Here's a comprehensive guide to all string methods with examples.
+                </p>
+            </div>
+        </section>
+
+        <!-- String Methods -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">String Methods</h2>
+            
+            <!-- Case Manipulation -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Case Manipulation Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+text = "Python Programming"
+
+<span class="code-comment"># capitalize() - Converts first character to upper case</span>
+print(text.capitalize())    <span class="code-comment"># "Python programming"</span>
+
+<span class="code-comment"># casefold() - More aggressive lower() for case-insensitive matching</span>
+print(text.casefold())     <span class="code-comment"># "python programming"</span>
+
+<span class="code-comment"># lower() - Converts string to lower case</span>
+print(text.lower())        <span class="code-comment"># "python programming"</span>
+
+<span class="code-comment"># upper() - Converts string to upper case</span>
+print(text.upper())        <span class="code-comment"># "PYTHON PROGRAMMING"</span>
+
+<span class="code-comment"># swapcase() - Swaps cases of all characters</span>
+print(text.swapcase())     <span class="code-comment"># "pYTHON pROGRAMMING"</span>
+
+<span class="code-comment"># title() - Converts first character of each word to upper case</span>
+print(text.title())        <span class="code-comment"># "Python Programming"</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alignment and Padding -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Alignment and Padding Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+text = "Python"
+
+<span class="code-comment"># center() - Returns centered string with specified width</span>
+print(text.center(10, '*'))    <span class="code-comment"># "**Python**"</span>
+
+<span class="code-comment"># ljust() - Left-aligns string with specified width</span>
+print(text.ljust(10, '-'))     <span class="code-comment"># "Python----"</span>
+
+<span class="code-comment"># rjust() - Right-aligns string with specified width</span>
+print(text.rjust(10, '-'))     <span class="code-comment"># "----Python"</span>
+
+<span class="code-comment"># zfill() - Fills string with zeros from left</span>
+print(text.zfill(8))           <span class="code-comment"># "00Python"</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search and Replace -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Search and Replace Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+text = "Python Programming Python"
+
+<span class="code-comment"># count() - Returns number of occurrences of substring</span>
+print(text.count('Python'))    <span class="code-comment"># 2</span>
+
+<span class="code-comment"># find() - Returns lowest index of substring (-1 if not found)</span>
+print(text.find('Python'))     <span class="code-comment"># 0</span>
+
+<span class="code-comment"># rfind() - Returns highest index of substring (-1 if not found)</span>
+print(text.rfind('Python'))    <span class="code-comment"># 18</span>
+
+<span class="code-comment"># index() - Like find() but raises ValueError if not found</span>
+print(text.index('Python'))    <span class="code-comment"># 0</span>
+
+<span class="code-comment"># rindex() - Like rfind() but raises ValueError if not found</span>
+print(text.rindex('Python'))   <span class="code-comment"># 18</span>
+
+<span class="code-comment"># replace() - Replaces substring with another string</span>
+print(text.replace('Python', 'Java'))  <span class="code-comment"># "Java Programming Java"</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- String Testing -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">String Testing Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+<span class="code-comment"># isalnum() - Returns True if all characters are alphanumeric</span>
+print("Python3".isalnum())     <span class="code-comment"># True</span>
+
+<span class="code-comment"># isalpha() - Returns True if all characters are alphabetic</span>
+print("Python".isalpha())      <span class="code-comment"># True</span>
+
+<span class="code-comment"># isascii() - Returns True if all characters are ASCII</span>
+print("Python!".isascii())     <span class="code-comment"># True</span>
+
+<span class="code-comment"># isdecimal() - Returns True if all characters are decimals</span>
+print("123".isdecimal())       <span class="code-comment"># True</span>
+
+<span class="code-comment"># isdigit() - Returns True if all characters are digits</span>
+print("123".isdigit())         <span class="code-comment"># True</span>
+
+<span class="code-comment"># isidentifier() - Returns True if string is valid identifier</span>
+print("Python_3".isidentifier()) <span class="code-comment"># True</span>
+
+<span class="code-comment"># islower() - Returns True if all characters are lower case</span>
+print("python".islower())      <span class="code-comment"># True</span>
+
+<span class="code-comment"># isnumeric() - Returns True if all characters are numeric</span>
+print("123".isnumeric())       <span class="code-comment"># True</span>
+
+<span class="code-comment"># isprintable() - Returns True if all characters are printable</span>
+print("Python\n".isprintable()) <span class="code-comment"># False</span>
+
+<span class="code-comment"># isspace() - Returns True if all characters are whitespaces</span>
+print("   ".isspace())         <span class="code-comment"># True</span>
+
+<span class="code-comment"># istitle() - Returns True if string follows title rules</span>
+print("Python Programming".istitle()) <span class="code-comment"># True</span>
+
+<span class="code-comment"># isupper() - Returns True if all characters are upper case</span>
+print("PYTHON".isupper())      <span class="code-comment"># True</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- String Splitting and Joining -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Splitting and Joining Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+<span class="code-comment"># split() - Splits string at specified separator</span>
+text = "Python,Java,C++"
+print(text.split(','))         <span class="code-comment"># ['Python', 'Java', 'C++']</span>
+
+<span class="code-comment"># rsplit() - Splits string from right</span>
+print(text.rsplit(',', 1))     <span class="code-comment"># ['Python,Java', 'C++']</span>
+
+<span class="code-comment"># splitlines() - Splits string at line boundaries</span>
+text = "Line 1\nLine 2"
+print(text.splitlines())       <span class="code-comment"># ['Line 1', 'Line 2']</span>
+
+<span class="code-comment"># join() - Joins iterable elements with string as separator</span>
+words = ['Python', 'is', 'awesome']
+print(' '.join(words))         <span class="code-comment"># "Python is awesome"</span>
+
+<span class="code-comment"># partition() - Returns tuple of three parts</span>
+text = "Python:Programming"
+print(text.partition(':'))     <span class="code-comment"># ('Python', ':', 'Programming')</span>
+
+<span class="code-comment"># rpartition() - Like partition() but from right</span>
+print(text.rpartition(':'))    <span class="code-comment"># ('Python', ':', 'Programming')</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- String Stripping -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">String Stripping Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+text = "   Python   "
+
+<span class="code-comment"># strip() - Removes leading and trailing whitespace</span>
+print(text.strip())            <span class="code-comment"># "Python"</span>
+
+<span class="code-comment"># lstrip() - Removes leading whitespace</span>
+print(text.lstrip())           <span class="code-comment"># "Python   "</span>
+
+<span class="code-comment"># rstrip() - Removes trailing whitespace</span>
+print(text.rstrip())           <span class="code-comment"># "   Python"</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- String Encoding and Translation -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">Encoding and Translation Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+<span class="code-comment"># encode() - Returns encoded version of string</span>
+text = "Python"
+print(text.encode('utf-8'))    <span class="code-comment"># b'Python'</span>
+
+<span class="code-comment"># maketrans() & translate() - Create and apply translation table</span>
+trans = str.maketrans('aeiou', '12345')
+text = "Python"
+print(text.translate(trans))   <span class="code-comment"># "Pyth4n"</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- String Formatting -->
+            <div class="mb-8">
+                <h3 class="text-xl font-bold mb-3 text-blue-400">String Formatting Methods</h3>
+                <div class="code-box">
+                    <div class="bg-gray-800 p-4">
+                        <pre class="text-green-300">
+<span class="code-comment"># format() - Formats specified values in string</span>
+print("{} {}".format('Hello', 'World'))  <span class="code-comment"># "Hello World"</span>
+
+<span class="code-comment"># format_map() - Formats using dictionary</span>
+data = {'name': 'Python', 'version': '3.9'}
+print("{name} {version}".format_map(data))  <span class="code-comment"># "Python 3.9"</span>
+
+<span class="code-comment"># expandtabs() - Sets tab size of string</span>
+text = "Python\tProgramming"
+print(text.expandtabs(4))      <span class="code-comment"># "Python    Programming"</span></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">Best Practices</h2>
+            <div class="prose prose-invert max-w-none">
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Use f-strings for string formatting in Python 3.6+</li>
+                    <li>Prefer strip() over manual whitespace removal</li>
+                    <li>Use casefold() instead of lower() for case-insensitive comparisons</li>
+                    <li>Handle potential ValueError when using index() methods</li>
+                    <li>Consider using join() instead of + for string concatenation</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Back to Top Button -->
+        <button id="backToTop" class="fixed hidden bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+        </button>
+    </main>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById("backToTop");
+        
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove("hidden");
+            } else {
+                backToTopButton.classList.add("hidden");
+            }
+        });
+        
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html> 
