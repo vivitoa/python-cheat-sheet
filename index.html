@@ -306,6 +306,7 @@
         <nav class="mt-3 space-y-2">
             <a href="#variables" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Variables</a>
             <a href="#data-types" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Data Types</a>
+            <a href="#string-manipulation" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">String Manipulation</a>
             <a href="#operators" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Operators</a>
             <a href="#conditions" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Conditional Statements</a>
             <a href="#loops" class="block p-2 rounded-md text-gray-300 hover:bg-gray-700">Loops</a>
@@ -534,79 +535,138 @@ True/False   <span class="code-comment"># Boolean constants</span>
         </div>
     </div>
 </section>
-
         <!-- Type Conversion -->
-<section id="type-conversion" class="mb-10">
-    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Type Checking & Conversion</h2>
+        <section id="type-conversion" class="mb-10">
+            <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Type Checking & Conversion</h2>
+        
+            <div class="space-y-4">
+                <!-- Type Checking -->
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400">Type Checking</h3>
+                    <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+        num = 42
+        print(type(num))          <span class="code-comment"># &lt;class 'int'&gt;</span>
+        
+        name = "Alice"
+        print(isinstance(name, str))  <span class="code-comment"># True</span>
+        
+        mixed_list = [1, "two", 3.0]
+        print(type(mixed_list))   <span class="code-comment"># &lt;class 'list'&gt;</span></pre>
+                </div>
+        
+                <!-- Conversion Methods -->
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400">Conversion Functions</h3>
+                    <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+        <span class="code-comment"># String to numeric</span>
+        int_num = int("100")        <span class="code-comment"># 100</span>
+        float_num = float("3.14")   <span class="code-comment"># 3.14</span>
+        
+        <span class="code-comment"># Numeric to string</span>
+        str_num = str(255)          <span class="code-comment"># "255"</span>
+        
+        <span class="code-comment"># List conversions</span>
+        num_tuple = tuple([1, 2, 3])  <span class="code-comment"># (1, 2, 3)</span>
+        char_list = list("Hello")    <span class="code-comment"># ['H', 'e', 'l', 'l', 'o']</span>
+        
+        <span class="code-comment"># Boolean conversion</span>
+        bool_val = bool(1)          <span class="code-comment"># True</span>
+        int_from_bool = int(True)   <span class="code-comment"># 1</span></pre>
+                </div>
+        
+                <!-- Special Cases -->
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400">Special Conversions</h3>
+                    <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+        <span class="code-comment"># Base conversion</span>
+        hex_num = int("ff", 16)     <span class="code-comment"># 255</span>
+        bin_num = bin(42)           <span class="code-comment"># '0b101010'</span>
+        
+        <span class="code-comment"># ASCII conversion</span>
+        char = chr(65)              <span class="code-comment"># 'A'</span>
+        code = ord('A')             <span class="code-comment"># 65</span>
+        
+        <span class="code-comment"># String formatting</span>
+        formatted = f"{255:x}"      <span class="code-comment"># "ff" (hexadecimal)</span></pre>
+                </div>
+        
+                <!-- Error Handling -->
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-400">Error Handling</h3>
+                    <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
+        try:
+            num = int("123a")
+        except ValueError as e:
+            print(f"Conversion error: {e}")
+        
+        <span class="code-comment"># Check before conversion</span>
+        value = "3.14"
+        if value.replace('.', '', 1).isdigit():
+            print(float(value))</pre>
+                </div>
+            </div>
+        </section>
+        <!-- String Manipulation -->
+<section id="string-manipulation" class="mb-10">
+    <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 String Manipulation in Python</h2>
+    <div class="mb-4">
+        <a href="pages/string-manipulation.html" class="text-blue-400 hover:text-blue-300 underline">
+            Click here for detailed information about Python String Manipulation →
+        </a>
+    </div>
+    <p class="mb-3">Python provides powerful built-in methods for string manipulation.</p>
 
-    <div class="space-y-4">
-        <!-- Type Checking -->
+    <div class="space-y-6">
+        <!-- Basic String Methods -->
         <div>
-            <h3 class="text-xl font-semibold text-blue-400">Type Checking</h3>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 Basic String Methods</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-num = 42
-print(type(num))          <span class="code-comment"># &lt;class 'int'&gt;</span>
+text = "Python Programming"
+print(text.upper())      <span class="code-comment"># PYTHON PROGRAMMING</span>
+print(text.lower())      <span class="code-comment"># python programming</span>
+print(text.title())      <span class="code-comment"># Python Programming</span>
+print(text.capitalize()) <span class="code-comment"># Python programming</span>
 
-name = "Alice"
-print(isinstance(name, str))  <span class="code-comment"># True</span>
-
-mixed_list = [1, "two", 3.0]
-print(type(mixed_list))   <span class="code-comment"># &lt;class 'list'&gt;</span></pre>
+<span class="code-comment"># Search and replace operations</span>
+print(text.find("Pro"))  <span class="code-comment"># 7 (index of substring)</span>
+print(text.count("P"))   <span class="code-comment"># 2 (count occurrences)</span>
+print(text.replace("Python", "Java")) <span class="code-comment"># Java Programming</span></pre>
         </div>
 
-        <!-- Conversion Methods -->
+        <!-- String Testing -->
         <div>
-            <h3 class="text-xl font-semibold text-blue-400">Conversion Functions</h3>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 String Testing</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-<span class="code-comment"># String to numeric</span>
-int_num = int("100")        <span class="code-comment"># 100</span>
-float_num = float("3.14")   <span class="code-comment"># 3.14</span>
-
-<span class="code-comment"># Numeric to string</span>
-str_num = str(255)          <span class="code-comment"># "255"</span>
-
-<span class="code-comment"># List conversions</span>
-num_tuple = tuple([1, 2, 3])  <span class="code-comment"># (1, 2, 3)</span>
-char_list = list("Hello")    <span class="code-comment"># ['H', 'e', 'l', 'l', 'o']</span>
-
-<span class="code-comment"># Boolean conversion</span>
-bool_val = bool(1)          <span class="code-comment"># True</span>
-int_from_bool = int(True)   <span class="code-comment"># 1</span></pre>
+<span class="code-comment"># Character type checks</span>
+print("123".isdigit())   <span class="code-comment"># True (only digits)</span>
+print("abc".isalpha())   <span class="code-comment"># True (only letters)</span>
+print("Abc1".isalnum())  <span class="code-comment"># True (letters or numbers)</span>
+print("  ".isspace())    <span class="code-comment"># True (only whitespace)</span>
+print("Title".istitle()) <span class="code-comment"># True (titlecased)</span></pre>
         </div>
 
-        <!-- Special Cases -->
+        <!-- String Formatting -->
         <div>
-            <h3 class="text-xl font-semibold text-blue-400">Special Conversions</h3>
+            <h3 class="text-xl font-semibold text-blue-400">🔸 String Formatting</h3>
             <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-<span class="code-comment"># Base conversion</span>
-hex_num = int("ff", 16)     <span class="code-comment"># 255</span>
-bin_num = bin(42)           <span class="code-comment"># '0b101010'</span>
+name = "Python"
+version = 3.9
 
-<span class="code-comment"># ASCII conversion</span>
-char = chr(65)              <span class="code-comment"># 'A'</span>
-code = ord('A')             <span class="code-comment"># 65</span>
+<span class="code-comment"># Modern f-strings (Python 3.6+)</span>
+print(f"{name} {version}")  <span class="code-comment"># Python 3.9</span>
 
-<span class="code-comment"># String formatting</span>
-formatted = f"{255:x}"      <span class="code-comment"># "ff" (hexadecimal)</span></pre>
-        </div>
+<span class="code-comment"># format() method</span>
+print("{} {}".format(name, version))  <span class="code-comment"># Python 3.9</span>
 
-        <!-- Error Handling -->
-        <div>
-            <h3 class="text-xl font-semibold text-blue-400">Error Handling</h3>
-            <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-green-300">
-try:
-    num = int("123a")
-except ValueError as e:
-    print(f"Conversion error: {e}")
-
-<span class="code-comment"># Check before conversion</span>
-value = "3.14"
-if value.replace('.', '', 1).isdigit():
-    print(float(value))</pre>
+<span class="code-comment"># Alignment options</span>
+print(f"|{name:>10}|")  <span class="code-comment"># |    Python|</span>
+print(f"|{name:<10}|")  <span class="code-comment"># |Python    |</span>
+print(f"|{name:^10}|")  <span class="code-comment"># |  Python  |</span></pre>
         </div>
     </div>
 </section>
-            <!-- Operators -->
+
+        <!-- Operators -->
 <section id="operators" class="mb-10">
     <h2 class="text-2xl font-bold mb-3 text-yellow-400">🔹 Operators in Python</h2>
     <div class="mb-4">
